@@ -1,0 +1,33 @@
+\crefname{equation}{式}{式}% {環境名}{単数形}{複数形} \crefで引くときの表示
+\crefname{figure}{図}{図}% {環境名}{単数形}{複数形} \crefで引くときの表示
+\crefname{table}{表}{表}% {環境名}{単数形}{複数形} \crefで引くときの表示
+\crefname{algorithm}{Algorithm}{Algorithm}
+
+\crefname{section}{第}{第}
+\creflabelformat{section}{#2#1節#3}
+\crefname{subsection}{第}{第}
+\creflabelformat{subsection}{#2#1小節#3}
+
+\theoremstyle{definition}% 日本語用．定理とか斜体にならないようにする
+\newtheorem{theorem}{定理}
+\crefname{theorem}{定理}{定理}
+\newtheorem{lemma}{補題}
+\crefname{lemma}{補題}{補題}
+\newtheorem{corollary}{系}
+\crefname{corollary}{系}{系}
+\newtheorem*{proof*}{証明}
+\crefname{proof*}{証明}{証明}
+\newtheorem{assumption}{仮定}
+\crefname{assumption}{仮定}{仮定}
+\newtheorem{definition}{定義}
+\crefname{definition}{定義}{定義}
+\newtheorem{remark}{注意}
+\crefname{remark}{注意}{注意}
+\newtheorem{proposition}{命題}
+\crefname{proposition}{命題}{命題}
+
+
+\newcommand{\crefpairconjunction}{と}
+\newcommand{\crefrangeconjunction}{から}
+\newcommand{\crefmiddleconjunction}{，}
+\newcommand{\creflastconjunction}{，および}

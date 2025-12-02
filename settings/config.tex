@@ -1,0 +1,127 @@
+%===============================================================================
+% This file is based on the following source:
+%
+% ファイル名: master_ja_sample.tex
+% 作成者：サイトウ リョウタ（2024年度山上研究室 修士修了）
+% 作成日：2025年2月19日
+% https://github.com/ryota-saito-coastal/LaTeXsample_for_Kyoto-u_civileng_mthesis
+%===============================================================================
+
+% --- 基本パッケージ ---
+\usepackage{luatexja}
+\usepackage{luatexja-fontspec}
+\usepackage[haranoaji]{luatexja-preset}
+
+\usepackage{amsmath,amssymb,amsthm}% 数式関連のパッケージ
+\usepackage{mathtools}
+\mathtoolsset{showonlyrefs=true}
+\usepackage[unicode=true,hypertexnames=false,setpagesize=false,colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
+\usepackage{cleveref}
+\input{./settings/cref.tex} 
+\usepackage{mathtools}
+
+\usepackage{physics}
+\usepackage[ppl]{mathcomp}
+\usepackage{bm}
+\usepackage{siunitx}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}       % [H] オプション用
+\usepackage{booktabs}    % 表の罫線（topruleなど）
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{ifthen}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tocloft}
+\usepackage{indentfirst} % 章の最初の段落も字下げ
+\usepackage{bookmark}
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{url}
+
+% --- 参考文献設定 (Biber + BibLaTeX) ---
+% 従来の \usepackage{cite} や thebibliography環境 の代わり
+\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+
+% 引用番号のスタイルを [1] から 1) に変更
+\DeclareFieldFormat{labelnumberwidth}{#1)}
+
+% 文中の引用 \cite{} を上付き文字にする設定
+\DeclareCiteCommand{\cite}[\mkbibsuperscript]
+  {\usebibmacro{cite:init}%
+   \usebibmacro{prenote}}
+  {\usebibmacro{citeindex}%
+   \printfield{labelnumber}\printtext{)}} % 閉じ括弧 ) を追加
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+
+% 複数の引用をカンマ区切りにする
+\renewcommand*{\multicitedelim}{\textsuperscript{,}}
+
+% --- フォント設定 (LuaLaTeX用) ---
+% 英数字フォント
+\setmainfont{Times New Roman}[RawFeature={+palt, +kern}, LetterSpace=2.0]
+\setsansfont{Arial}[RawFeature={+palt, +kern}, LetterSpace=1.5]
+\setmonofont{Courier New}[RawFeature={+palt, +kern}, LetterSpace=1.0]
+
+% 日本語フォント（必要に応じて有効化してください）
+% \setmainjfont{MS Mincho}[RawFeature={+palt, +kern}, LetterSpace=12.5]
+% \setsansjfont{MS Gothic}[RawFeature={+palt, +kern}, LetterSpace=10.0]
+% \renewcommand{\bfseries}{\gtfamily}
+
+% --- ページレイアウト ---
+\geometry{left=20mm, right=20mm, top=25mm, bottom=25mm}
+\setstretch{1.2}
+\linespread{2.5} % 普通は1.25くらいらしい
+
+% --- キャプション等の日本語化 ---
+\renewcommand{\figurename}{\normalfont\gtfamily 図}
+\renewcommand{\tablename}{\normalfont\gtfamily 表}
+\renewcommand{\contentsname}{\normalfont\gtfamily 目次}
+\renewcommand{\thefigure}{\thechapter-\arabic{figure}}
+\renewcommand{\thetable}{\thechapter-\arabic{table}}
+
+% --- 見出しデザイン (titlesec) ---
+\titleformat{\chapter}
+    {\normalfont\fontsize{20pt}{24pt}\gtfamily}
+    {第\hspace{2pt}\thechapter 章}
+    {20pt}
+    {\fontsize{20pt}{10pt}\selectfont}
+
+\titleformat{\section}{\normalfont\fontsize{12pt}{12pt}\gtfamily}{\thesection}{1em}{}
+\titleformat{\subsection}{\normalfont\fontsize{12pt}{12pt}\gtfamily}{\thesubsection}{1em}{}
+
+% --- 目次設定 (tocloft) ---
+\renewcommand{\cftchappresnum}{第}
+\renewcommand{\cftchapaftersnum}{章\hspace{0.5em}}
+\setlength{\cftchapnumwidth}{4.0em}
+
+% --- ヘッダー・フッター ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0pt}
+
+% --- 便利コマンド ---
+\newcommand{\HRule}[1]{\rule{1\linewidth}{#1}}
+\newcommand{\percent}{\%}
+\newcommand{\figureref}[1]{図\ref{#1}}
+\newcommand{\tableref}[1]{表\ref{#1}}
+
+% --- デバッグモード設定 (目に優しい黒背景) ---
+% \submissionmode は main.tex で定義する
+\newcommand{\debugnote}{
+    \ifthenelse{\submissionmode=0}{
+        \textbf{\textcolor{red}{\LARGE{REMOVE THIS COLOR SETTING FOR SUBMISSION!}}} \\
+    }{}
+}
+% 設定反映ロジック
+\AtBeginDocument{
+    \ifthenelse{\submissionmode=0}{
+        \pagecolor{black}
+        \color{white}
+    }{}
+}

@@ -1,0 +1,58 @@
+\documentclass[a4paper, 11pt]{report}
+
+% --- 提出モード設定 (1:提出用/白背景, 0:デバッグ用/黒背景) ---
+\newcommand{\submissionmode}{1} 
+
+% --- Load settings ---
+\input{settings/config.tex}
+
+% --- Load reference file ---
+\addbibresource{references.bib}
+
+% === Document Start ===
+\begin{document}
+
+% --- 表紙 (別ファイルから読み込み) ---
+\input{sections/00_title.tex}
+
+% --- 論文要旨 ---
+\input{sections/10_abstract.tex}
+
+% --- 目次 ---
+\clearpage
+\pagenumbering{roman} 
+\tableofcontents
+\newpage
+
+% --- 本文 (ページ番号アラビア数字) ---
+\clearpage
+\pagenumbering{arabic}
+
+% 各章を読み込む
+\input{sections/20_intro.tex}
+
+% --- 謝辞 ---
+\input{sections/90_acknowledg.tex}
+
+% --- 参考文献リスト出力 ---
+\newpage
+\addtocontents{toc}{\vspace{2em}}
+\addcontentsline{toc}{section}{参考文献}
+
+% title引数で目次上の表示名を指定、heading=bibintocで目次に追加も可能だが、
+% 上記でaddcontentslineしているので標準出力のみ
+\printbibliography[title={参考文献}]
+
+% --- Bibliography ---
+\printbibliography[title={参考文献}]
+
+% --- End of document ---
+\end{document}
+
+
+
+
+
+
+
+\end{document}
