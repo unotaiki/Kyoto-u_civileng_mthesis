@@ -1,0 +1,75 @@
+\subsection{\sout{Color correction}}\label{sec:color-correction}
+同様に、Future Work。実装が間に合っていません。
+
+Observing a 3D scene through a refractive interface, such as from air to water, results in a reduction of its apparent brightness. 
+This phenomenon occurs even without considering Fresnel reflections at the boundary \parencite{frestnel_law} or attenuation from scattering and absorption. 
+This is a direct consequence of the fundamental change in radiance governed by the law of etendue conservation. 
+
+From Snell's Law, multiplying \cref{eq:snell,eq:dtheta_r/dtheta_i} yields:
+\begin{equation}
+  n^2 \cos \theta_i \sin \theta_i d \theta_i = n^2 \cos \theta_r \sin \theta_r d \theta_r
+\end{equation}
+Multiplying by a differential surface area  $dA$  and the azimuthal angle differential $d \psi$, we relate this to the differential solid angles $d\omega = \sin\psi d\psi d\theta$ \parencite{solid_angle}:
+\begin{equation}\label{eq:etendue_preservation}
+  \cos\theta_i d\omega_i dA = n^2 \cos\theta_r d\omega_r dA
+\end{equation}
+This relationship is known as the law of etendue conservation \parencite{etendue}. 
+Etendue, a measure of how spread out light is in terms of both area and solid angle, is conserved across a lossless interface. 
+Assuming the differential area dA remains constant for incident and refracted rays, the radiance must change. 
+Specifically, for a light ray bundle traveling from water (radiance $L_w$) to air (radiance $L_a$), their relationship is:
+\begin{align}\label{eq:radiance_between_air_and_water}
+  L_a &= \frac{d^2 \Phi }{dA \cos\theta_i d\theta_i} \notag \\
+      &= \frac{d^2 \Phi }{n^2 dA \cos\theta_r d\theta_r} \notag \\
+      &= \frac{1}{n^2} L_w 
+\end{align}
+Thus, Radiance in water into air become reduce devided by $n^2$, and the brightness is lower and looks darker.
+Thus, the radiance is reduced by a factor of $n^2$ when light passes from water to air, causing the scene to appear darker, as illustrated in Fig. \ref{fig:refraction-makes-scene-darker}.
+
+\begin{figure}[htbp]
+  \centering
+  % 1枚目の画像
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/color/0090_gt_background.png}
+  \end{minipage}
+  \hfill % 画像間のスペースを最大にする
+  % 2枚目の画像
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/color/0090_refraction_background.png}
+  \end{minipage}
+  \caption{A scene Rendered using a path tracer in Blender Cycles. The right image, viewed through a refractive water surface, is significantly darker than the left image without refraction.}
+  \label{fig:refraction-makes-scene-darker}
+\end{figure}
+
+To compensate for this radiometric distortion, we introduce a correction that scales the intensity of each pixel $\mathrm{intensity}(\bm{\Gamma}(\bm{x}))$, devided by $n^2$.
+In 3DGS, the radiance of the 3D scene is baked into the final RGB color values. 
+Assuming the pixel intensity is determined after gamma correction:
+\begin{align}
+  \mathrm{intensity}(\Gamma(\bm{x})) = \langle\mathbf{I},\bm{\Gamma}^\gamma\rangle
+\end{align}
+where $ \mathbf{I}^\top = (0.2126, 0.7152, 0.0722)$  is the standard vector for converting sRGB to luminance \parencite{sRGB},
+and we assume $\gamma=2.2$.
+
+The target refractive intensity for the corrected scene $\Gamma'(\bm{x})$ should be:
+\begin{align}
+  \mathrm{intensity}(\Gamma'(\bm{x})) &= \frac{1}{n^2}\langle\mathbf{I},\bm{\Gamma}^\gamma\rangle \notag \\
+                                      &= \langle\mathbf{I}, \frac{1}{n^2} \bm{\Gamma}^\gamma\rangle  \notag \\
+\end{align}
+This implies that the following condition must be satisfied:
+\begin{align}
+  & \left(\bm{\Gamma}'\right)^\gamma = \frac{1}{n^2} \bm{\Gamma}^\gamma \notag \\
+  & \bm{\Gamma}' = n^{-\frac{2}{\gamma}} \Gamma
+\end{align}
+This correction can be achieved by scaling the color $\bm{c}'$ of each Gaussian by $n^{-\frac{2}{\gamma}}$.
+The validity of this approach is demonstrated by substituting the corrected color $\bm{c}' = n^{-\frac{2}{\gamma}} \bm{c}$  into the volumetric rendering equation \cref{eq:3dgs-alpha-blending}:
+\begin{align}\label{eq:correc-color-intensity}
+  \bm{\Gamma}'(\bm{x}) &= \sum_{k=1}^{K} \bm{c}'_k \alpha^{\text{pixel}}_k \prod_{j=1}^{k-1} (1-\alpha^{\text{pixel}}_j) \notag \\
+                      &= \sum_{k=1}^{K} \left(n^{-\frac{2}{\gamma}}\bm{c}_k\right) \alpha^{\text{pixel}}_k \prod_{j=1}^{k-1} (1-\alpha^{\text{pixel}}_j) \notag \\
+                      &= n^{-\frac{2}{\gamma}} \sum_{k=1}^{K} \bm{c}_k \alpha^{\text{pixel}}_k \prod_{j=1}^{k-1} (1-\alpha^{\text{pixel}}_j) \notag \\
+                      &= n^{-\frac{2}{\gamma}} \bm{\Gamma}(\bm{x})
+\end{align}
+For simplicity, our derivation considers only the base color of the Gaussians, neglecting view-dependent effects modeled by Spherical Harmonics.
+While this formulation provides a physically-grounded correction for the base color, it does not account for view-dependent effects. 
+Extending this model to appropriately scale the Spherical Harmonic coefficients remains a non-trivial challenge for future work, as the correction factor would depend on the outgoing light direction.
+

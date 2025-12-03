@@ -1,0 +1,106 @@
+\subsection{詳細なApparent Depthの導出}
+
+Here we assume the cartesian coordinates, which is like camera position is in \textit{z-axis} $(0, 0, H)$, and water surface is correspond to \textit{xy-plane}, flat and calm so it means the normal is constant like other research. % [TODO] 既存研究 
+Now position $\bm{p}$ a 3D Gaussian primitive underwater water is represented as $(x, y, z) \text{ where } z < 0$.
+To make it easy the problem to think, the position projects to 2D coordinates by $r = \sqrt{x^2 + y^2}$, into \textit{rz-plane}. % insert figure
+Although this doesn't be well known, points underwater is determined at specific position from the view point position, which is not dependent for the view direction from Snell's law and geometric optics.
+The appearance position of the Gaussian center is set as $\bm{p' (r', z')}$.
+We lead that easily below.
+The intersection between camera and appearance position can be set $(s, 0) \text{ where } 0 <  s < r $.
+Snell's Law lead to below equation, by the set of the incident angle $\theta_i$, refractive angle $\theta_r$, refractive index of water $n$, and we assume the refractive index of air is 1. % incident angle という言い方は良くない。実際のrayの向きはtransmitされたものをみている。observed という。添字もiやrとしない
+\begin{equation}\label{eq:snell}
+  \sin \theta_i = n \sin \theta_r
+\end{equation}
+Each sine function can be represented as the ratio of triangle camera, the intersection and origin, or the intersection, the appearance position and the vertival line from the appearance and $\textit{r-axix}$.
+% In \ref{}
+$\triangle OAI$ and $\triangle IPC$
+This leads to a quartic equation and the value of s can be got by solving this. % insert reference (refractive-aware SfM)
+\begin{equation}\label{eq:quartic-s}
+\begin{split}
+  (1-n^2)s^4 &+ 2(n^2-1)rs^3 \\
+             &+ ((1-n^2)r^2 + h^2 - n^2 H^2)s^2 \\
+             &+ 2n^2H^2rs - n^2H^2r^2 = 0 % [TODO] have to check
+\end{split}
+\end{equation}
+% in the implementation, i solved this by newton's method.
+Here we think of the ray from the real Gaussian center to camera with small difference, the intersection defines as $(s + \Delta s, 0) \text{ where }  \Delta s < 0$, the incident angle is difined as $\theta_r + \Delta \theta_r$.
+From the relation of $\triangle IP'C'$, 
+\begin{equation}\label{eq:triangle-IP'C'}
+  -z' \tan \theta_i  = r' - s 
+\end{equation}
+and from the relation of $\triangle I'P'C'$, 
+\begin{align}
+  -z' \tan \left(\theta_i + \Delta \theta_i \right) & = (r' - s) + (- \Delta s) \notag \\
+  -z' \left( \sin \theta_i + \Delta \theta_i \cos \theta_i  \right) & = (r' -s - \Delta s) \left( \cos \theta_i - \Delta \theta_i \sin \theta_i \right) \label{eq:triangle-I'P'C'}
+\end{align}
+
+% By removing $z'$ from \cref{eq:triangle-IP'C', eq:triangle-I'P'C'}, we get
+By removing $z'$ from \eqref{eq:triangle-IP'C'}, \eqref{eq:triangle-I'P'C'} and $\triangle \to 0$, we get
+\begin{equation}\label{eq:limit-r'}
+  r' = s - \sin \theta_i \cos \theta_i \frac{d s}{d \theta_i}
+\end{equation}
+
+With the equations of \cref{eq:limit-r',eq:triangle-IP'C'}, we get
+\begin{equation}\label{eq:z'_ds/dtheta_i}
+  z' = \frac{d s}{d \theta_i} {\cos \theta_i}^2
+\end{equation}
+
+From the triangle $\triangle IPC$, we get
+\begin{equation}\label{eq:r-s}
+  r - s = - z \tan \theta_r
+\end{equation}
+
+and derivalate by $\theta_r$, we get
+\begin{equation}\label{eq:ds/dtheta_r}
+  \frac{d s}{d \theta_r} = z \cdot \frac{1}{{\cos \theta_r}^2}
+\end{equation}
+
+With derivalating \cref{eq:snell} by $\theta_i$, we get
+\begin{equation}\label{eq:dtheta_r/dtheta_i}
+  \frac{d \theta_r}{d \theta_i} = \frac{1}{n} \cdot \frac{\cos \theta_i}{\cos \theta_r}
+\end{equation}
+
+With \cref{eq:dtheta_r/dtheta_i,eq:ds/dtheta_r}, we get
+\begin{equation}\label{eq:ds/dtheta_i}
+  \frac{d s}{d \theta_i} = \frac{z}{n} \cdot \frac{\cos \theta_i}{{\cos \theta_r}^3}
+\end{equation}
+
+With \cref{eq:limit-r',eq:z'_ds/dtheta_i,eq:ds/dtheta_i,eq:r-s}, we get
+\begin{subequations}
+  \begin{empheq}[left=\empheqlbrace]{align}
+      r' &= r + (n^2 -1) \cdot z \cdot {\tan \theta_r}^3 \label{eq:r'} \\
+      z' &= \frac{1}{n} \cdot \frac{{\cos \theta_i}^3}{{\cos \theta_r}^3} \cdot z \label{eq:z'}
+  \end{empheq}
+\end{subequations}
+
+This is the center position correction transformation.
+$\theta_i$ and $\theta_r$ are determined by the camera position and means of Gaussians. 
+Therefore, the apparent Gaussian position relative to the view is uniquely determined, and we can correct means of Gaussians into apparent depth position $\bm{p'}(x', y', z')$.
+
+$(n^2 -1) \cdot z \cdot {\tan \theta_r}^3 < 0$ therefore $r' < r$, and $\frac{1}{n} \cdot \frac{{\cos \theta_i}^3}{{\cos \theta_r}^3} < 1$ therefore $\left| z' \right| < \left| z \right|$, which ensures that the apparent Gaussian $G'(\bm{x})$ is always looks closer than the actual Gaussian $G(\bm{x})$. 
+When $\theta_i = 0$, $r' = r$ and $z' = \frac{z}{n}$, which means that the apparent Gaussian is observed in the location which depth is devided by refractive index $n$.
+Based on this situation, a lot of work like \parencite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}, however, this is not exacly approximation in the majority of the cases because the camera rays with perspective range is off-nadir unless camera set down to vertical.
+
+% Implementation details に記述するべき?
+To validate the differentiableness in \textit{Gaussian Splatting}, we have to calculate the $\textit{Jacobian}$ of this transformation.
+
+\begin{equation}\label{eq:Jacobian}
+  \begin{split}
+    J_{app} = 
+    \frac{\partial \bm{p'}}{\partial \bm{p}} &= 
+    \begin{bmatrix} 
+      \frac{\partial x'}{\partial x} & \frac{\partial x'}{\partial y} & \frac{\partial x'}{\partial z} \\
+      \frac{\partial y'}{\partial x} & \frac{\partial y'}{\partial y} & \frac{\partial y'}{\partial z} \\ 
+      \frac{\partial z'}{\partial x} & \frac{\partial z'}{\partial y} & \frac{\partial z'}{\partial z} 
+    \end{bmatrix} \\
+  \end{split}
+\end{equation}
+
+This can be calculated analytically, here, we calculate it by numercial derivativation in the implementation. 
+We set $\bm{p} \pm {(\Delta x, \Delta y, \Delta z)}^T$ and calculate the apparent postion by \cref{eq:r',eq:z'}, so for examle, the ${\partial x'} / {\partial x} = \lbrace p'(x+\Delta x) - p'(x-\Delta x) \rbrace / 2\Delta x$.
+
+This correction is the key proposal in this paper, which modelize the effect of refraction between tha air and water, by simple position transformation. 
+This correction enables estimate the accurate 3D scene without refraction from the posed image correction with refractive water surfece, unless we need to give the refractive index and location of the water surface relative to the cameras.
+% [TODO] ↑後に Limitationで、水面位置や、nを微分可能な変数として考えることで、PyTorchの自動微分などを使用することで、画像スタックから推定可能と述べる。
+
+

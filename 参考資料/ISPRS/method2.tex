@@ -1,0 +1,42 @@
+\subsection{Opacity Correction}\label{sec:opacity-correction}
+
+Reconstructing scenes observed through a refractive interface introduces a characteristic radiometric attenuation.
+As illustrated in \cref{fig:refraction-makes-scene-darker}, a scene viewed through water appears substantially darker due to etendue conservation \cite{etendue}. 
+For a light bundle traveling from a medium with refractive index $n$ into air, the radiance is scaled as
+\begin{equation}
+L_{\mathrm{air}} = \frac{1}{n^{2}} L_{\mathrm{water}}
+\end{equation}
+This reduction in observed radiance poses a challenge for 3D Gaussian Splatting. 
+When optimizing directly against the darker target images, the solution often collapses into a configuration with artificially low opacity.
+Such semi-transparent Gaussians explain the low observed brightness but lead to geometrically ambiguous, blurry, and under-constrained reconstructions.
+
+To counteract these phenomena, we introduce an opacity regularization inspired by the radiometric relationship above. 
+Rather than allowing the optimizer to freely reduce opacity, we compensate the expected radiance loss by scaling the opacity of Gaussians located behind the refractive interface:
+\begin{equation}
+\alpha' = \frac{1}{n^{2}} \alpha
+\end{equation}
+This adjustment reduces the opacity budget available to each Gaussian, thereby discouraging trivial low-opacity solutions. 
+As a result, the optimizer is driven to represent the scene using a denser and more spatially coherent set of primitives, improving both geometric and apparent fidelity.
+
+It is important to emphasize that this strategy is not a physically exact model of refraction. 
+Instead, it is a principled heuristic that stabilizes the optimization in refractive environments. 
+Empirically, it yields consistently sharper geometry and avoids common artifacts such as floaters and oversmoothing.
+
+\begin{figure}[htbp]
+  \centering
+  % 1枚目の画像
+  \begin{minipage}[b]{0.40\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/color/0050_gt_background.png}
+  \end{minipage}
+  % \hfill % 画像間のスペースを最大にする
+  % 2枚目の画像
+  \begin{minipage}[b]{0.40\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/color/0050_refraction_background.png}
+  \end{minipage}
+  \caption{
+    Comparison of path-traced renderings in Blender Cycles.
+    The right image, viewed through a water surface, exhibits substantial radiance reduction compared to the left image rendered without refraction.
+    Our opacity regularization mitigates the tendency of Gaussian Splatting to converge to low-opacity, blurry configurations under such conditions.}\label{fig:refraction-makes-scene-darker}
+\end{figure}

@@ -1,0 +1,40 @@
+\section{Introduction}\label{INTRODUCTION}
+\sloppy
+
+\begin{figure*}[htbp]
+  \centering
+  \captionsetup{justification=raggedright}
+  \includegraphics[width=0.9\linewidth]{figure/Intro/overview_task2.pdf}
+  \caption{Overview of our proposed method for photogrammetric bathymetry. 
+  Our Refractive-Aware Gaussian Splatting takes multi-view images distorted by refraction (top right) as input. 
+  By explicitly modeling refraction within the rendering pipeline, it reconstructs a geometrically accurate and refraction-free 3D scene (bottom left).}
+  \label{fig:photogrammetric-bathymetry}
+\end{figure*}
+
+Bathymetry is critically important.
+Accurate topographic information serves as fundamental data for river management, including flood prediction and monitoring geomorphological changes, and it also has potential applications in marine environments as well.
+However, sonar-based hydrographic surveying, which is widely used from vessels, faces significant limitations in shallow waters due to the risk of grounding and equipment damage, and narrow and inefficient survey width.  
+More recently, Airborne Light Detection and Ranging Bathymetry (ALB) has been employed, but both the equipment and data acquisition costs remain prohibitively high.  
+On land, UAV-based photogrammetry has become a widely adopted technique, offering an efficient, inexpensive, safe, and accessible solution.  
+Nonetheless, when applied to underwater targets from aerial platforms, photogrammetry encounters fundamental challenges.  
+These include specular reflections from the water surface, distortions by waves, and light scattering and attenuation within the water medium.  
+Among these factors, optical refraction is particularly detrimental, as it fundamentally breaks the assumption that light travels in a straight line, which is the foundation of photogrammetry.  
+
+A variety of methods have been proposed to mitigate refraction effects, but most rely on post-hoc or iterative corrections applied to the outputs of conventional photogrammetric pipelines.  
+Since they lack explicit physical modeling of refraction, such approaches fail to generalize to scenarios involving oblique or close-range imaging, leaving the core problem unresolved.  
+Recently, refraction-aware structure-from-motion (R-SfM) methods have emerged \parencite{Makris2024_refractive-aware-sfm}, explicitly incorporating refraction into the SfM pipeline.  
+Although promising, these methods typically yield only sparse point clouds and rely on deep learning–based densification techniques trained on ALB-derived datasets \parencite{Agrafiotis2019ISPRS_SVM-UAV-Bathymetry}.  
+Given the scarcity of high-quality training data, applying these approaches across diverse regions remains infeasible.  
+
+Concurrently, 3D Gaussian Splatting (3DGS) has recently gained significant attention as an emerging paradigm for 3D reconstruction \parencite{Kerbl2023ToG_3DGS}.  
+Building on this advancement, we propose a novel foundation for photogrammetric bathymetry: Refractive-Aware Gaussian Splatting, which directly integrates an optically accurate two-media refraction model into the Gaussian Splatting pipeline.  
+Our methods not only enables the recovery of geometrically accurate bathymetry but also provides photorealistic renderings for a clear appearance with refraction artifacts effectively removed.  
+The key idea is to incorporate a differentiable parameter transformation that adjusts each Gaussian’s parameters with respect to the camera ray according to appearance depth, embedding this directly into the optimization process of Gaussian Splatting.  
+
+Under the assumption of a calm, planar water surface without reflection and attenuation underwater, 
+Our method reconstructs accurate 3D Gaussians free of refraction effect from multi-view images with known camera poses and refractive surface position, initialized with only a coarse prior of the depth of the floor.  
+On multiple synthetic CG datasets, our method achieved image quality metrics exceeding PSNR 25 and demonstrated shape reconstruction with F1-scores above 90\% after 3DGS to point cloud conversion.  
+This establishes a foundation for a next generation of photogrammetric bathymetry.  
+
+\newpage
+

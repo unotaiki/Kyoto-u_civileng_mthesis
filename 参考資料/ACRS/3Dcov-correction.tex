@@ -1,0 +1,23 @@
+% これを実装する
+\subsection{\sout{3D Covariance correction}}\label{covariance-correction}
+Futere Work的 論文には載せないです。
+
+memo 
+overestimateするから、ローパスフィルタ的な感じで、Gaussianが萎みすぎないようにする?
+
+
+By the transformation of Gaussians mean $\bm{p} \to \bm{p'}$ that equals to refractive scene effect, the Cartesian space of camera coordinates in the real 3D space is going to be distorted and compressed.
+We term this space \textit{the appearance space} and this is no longer orthogonal like \cref{fig:space_compression_by_view}.
+
+Particularly, when the ray of incident angle is larger, the apparent space is compressed significantly.
+Without the correction about a scale $\bm{s}$ and a rotation $\bm{R}$, each Gaussian is observed to be dense and dilated.
+This causes visual artifacts, such as blurring and unrealistic expansion of surfaces as shown in \cref{fig:artifact-w/o-scale-correction}.
+
+
+So corrections about scales $\bm{s}$ and rotation $\bm{R}$ are needed to scale down Gaussians according to the compressed space of the apparent space.
+Same as forward rendering process of 3DGS \cref{eq:3dgs-affine-projection}, we can express transformed 3D covariance $\Sigma^{3D}_{app}$ which include the scales and rotation as below, assuming each Gaussians are small enough and can be approximated by affine transformation.
+\begin{equation}
+  \Sigma^{3D}_{app} = J_{app} \Sigma^{3D}_{cam} J_{app}^\top
+\end{equation}
+Then, as in \cref{eq:3dgs-affine-projection,eq:3dgs-alpha-blending}, the rendering is done by perspective projection and alpha blending.
+

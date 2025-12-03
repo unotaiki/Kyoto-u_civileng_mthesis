@@ -1,0 +1,40 @@
+\section{Introduction}\label{INTRODUCTION}
+
+\sloppy
+
+\begin{figure*}[htbp]
+\centering
+\includegraphics[width=0.8\linewidth]{figure/Intro/overview_task2.pdf}
+\caption{Overview of our proposed method for photogrammetric bathymetry.
+Our Refractive-Aware Gaussian Splatting takes multi-view images distorted by refraction (top right) as input.
+By explicitly modeling refraction within the rendering pipeline, it reconstructs a geometrically accurate and refraction-free 3D scene (bottom left).}
+\label{fig:photogrammetric-bathymetry}
+\end{figure*}
+
+Accurate bathymetric information is crucial for applications such as flood forecasting~\cite{Grimaldi2018_flood-forecasting}, river morphology monitoring~\cite{Hemmelder2018_monitoring-river-morphology}, habitat assessment~\cite{Thomson2001_habitat-assessment}, and coastal zone management~\cite{Pasquali2021_coastal-zone-management}. 
+Traditional shipborne sonar~\cite{Giordano2015_sonar-bathymetry}, while effective in deeper waters, is limited in shallow environments due to grounding risk, narrow swath coverage, and high operational costs. 
+Airborne LiDAR Bathymetry (ALB) offers improved coverage~\cite{Saylam2018_ALB}, but the required hardware and flight operations remain expensive and difficult to deploy at high temporal frequency.
+
+In recent years, Unmanned Aerial Vehicle (UAV) photogrammetry has become a widely used, low-cost, and efficient technique for terrestrial mapping~\cite{Bemis2014_UAV-photogrammetry,Gomez2016_UAV-photogrammetry-disaster,Iglhaut2019_UAV-photogrammetry-forestry}. 
+Extending it to derive underwater topography—known as photogrammetric bathymetry—is therefore an attractive alternative~\cite{He2024_survey-shallow-bathymetry}. 
+However, when images are acquired from above the water surface, they are affected by several complex optical phenomena, including specular highlights, wave-induced distortions, scattering, and most critically, refraction at the air–water interface.
+Among these, refraction is the principal challenge because it violates the straight-line light propagation assumption underlying conventional photogrammetry and structure-from-motion (SfM)~\cite{Furukawa2010_PatchMVS,schoenberger2016_colmap}. 
+As a result, naively applying standard pipelines leads to systematic depth errors and inconsistent multi-view geometry.
+
+Early efforts addressed refraction using empirical corrections, such as depth scaling by the refractive index~\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n} or view-angle-based adjustments~\cite{Murase2008_refractiveCorrection,Dietrich2016_multi-angle-correction}. 
+Although these methods provide partial improvements, they treat refraction as a post-hoc correction and do not explicitly model the physical imaging process.
+More recently, refraction-aware structure-from-motion (R-SfM) methods~\cite{Makris2024_refractive-aware-sfm} have integrated refractive geometry directly into the SfM optimization, achieving higher accuracy in pose estimation and point-cloud reconstruction.
+However, such pipelines still yield sparse reconstructions and often rely on deep learning–based densification trained on Unmanned Surface Vehicle (USV) derived datasets~\cite{Agrafiotis2019ISPRS_SVM-UAV-Bathymetry}, which are difficult to generalize due to data scarcity and site dependence.
+
+In parallel, 3D Gaussian Splatting (3DGS) has recently emerged as a powerful representation for 3D reconstruction and novel view synthesis~\cite{Kerbl2023ToG_3DGS}.
+Unlike implicit neural fields such as NeRF~\cite{Mildenhall2021ECCV_NeRF}, 3DGS represents scenes explicitly as a set of anisotropic Gaussian primitives optimized through differentiable rendering.
+Its explicit structure allows fast training, real-time rendering, and, importantly, direct incorporation of physical constraints.
+This flexibility makes it an appealing foundation for addressing refractive problems.
+
+Motivated by these advances, we propose Refractive-Aware Gaussian Splatting, a new framework for photogrammetric bathymetry that explicitly incorporates two-media refraction into the 3DGS rendering pipeline. 
+We introduce a differentiable refractive transformation that adjusts each Gaussian’s location, covariance and opacity according to the refractive geometry, thereby embedding the optical physics directly into the optimization. 
+Under the assumption of a calm, planar water surface with a known interface, the method recovers refraction-free underwater structure from multi-view aerial imagery.
+
+Experiments conducted on a physically based, ray-traced synthetic riverbed demonstrate that our method delivers photorealistic rendering with PSNR exceeding 25 dB and precise geometric reconstruction with F1-scores above 90\% after conversion to point clouds. 
+These results highlight our method as a physically grounded, computationally efficient, and scalable solution for next-generation photogrammetric bathymetry.
+

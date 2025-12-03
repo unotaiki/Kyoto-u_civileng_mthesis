@@ -1,0 +1,44 @@
+\section{Conclusion}\label{sec:conclusion}
+\sloppy
+
+We presented refractive-aware Gaussian Splatting, which accurately models effects of refraction by leveraging the radiance field representation and the optimization framework of 3D Gaussian Splatting\parencite{Kerbl2023ToG_3DGS}.
+Our differentiable transformation into apparent appearance enables refraction-free 3D reconstruction from images of a refractive scene. 
+Our experiments demonstrate superior reconstruction quality, achieving high SSIM scores when our corrected model is compared against the pristine, non-refractive ground-truth images.
+Furthermore, the extracted 3D geometry attains an F1 Score of over 99\% and a Chamfer Distance of 0.011 m, confirming its high geometric accuracy.
+
+\subsection{Limitations and Future Work}\label{sec:limitation}
+
+Our study primarily focuses on refractive effects, making our method best suited for idealized environments. 
+In real-world scenarios, however, several other physical phenomena must be considered. 
+Our model does not account for surface reflections, underwater light attenuation (i.e., absorption and scattering), or the Fresnel effect. 
+This is a notable limitation, as our radiometric loss is minimized against observed images that inherently capture these phenomena.
+
+Future work should address these effects.
+Surface reflections, for instance, could be mitigated during image capture using polarizing filters. 
+Light attenuation could be tackled by incorporating recent advances, such as WaterSplatting \parencite{li20243DV_watersplatting} and SeaSplat \parencite{Yang2025ICRA_SeaSplat}, which explicitly model and estimate these underwater characteristics. 
+Furthermore, incorporating the Fresnel effect, which governs the view-dependent interplay between reflection and refraction, is crucial for higher fidelity. 
+This could be implemented by applying a radiance reduction to each Gaussian's color parameter $\bm{c}$ based on the ray's angle of incidence.
+
+Moreover, our geometry extraction pipeline currently relies on handcrafted heuristic priors. Alternative Gaussian Splatting methods with a stronger emphasis on geometric fidelity \parencite{Huang2024SIGGRAPH_2DGS,Gu2024CVPR_SuGaR,fan2024_trimGS} could further improve geometric accuracy. Introducing regularization terms that encourage Gaussians to align with surfaces could enable more faithful reconstructions of bed topography. Such regularization could also mitigate wave-induced distortions by prioritizing geometric plausibility over per-pixel fidelity.
+
+Overall, our method represents an important step toward tackling refraction, one of the key challenges in photogrammetric bathymetry, and opens a new avenue for accurate shallow-water depth estimation.
+
+
+% 自分で書いた初稿
+% This study primarily focuses on refractive effects, and thus the method is currently applicable only to idealized refractive environments. 
+% In real scenarios, reflections at the water surface and absorption within the water medium cannot be neglected, since our approach seeks to minimize radiometric difference to  observed images, which inherently capture reflection and attenuation. 
+% Even with respect to the refractive correction, Fresnel's effect is not currently taken into account. 
+% To do so, a reduction of radiance according to ray angle should be applied to each Gaussian color parameter $\bm{c}$.
+% Polarizing filters could also mitigate surface reflections during image capture. 
+% About absorption, which caused by spectral-depended
+% absorption and backscattering of ambient light, should affect result.
+% WaterSplatting \parencite{li20243DV_watersplatting} or SeaSplat \parencite{Yang2025ICRA_SeaSplat}, which model attenuation of light underwater and estimate, can be applied to scenarios where observations from UAVs.
+% Similarly, absorption and scattering caused by wavelength-dependent attenuation of light underwater should be considered. 
+% Recent approaches such as WaterSplatting \parencite{li20243DV_watersplatting} and SeaSplat \parencite{Yang2025ICRA_SeaSplat}, which explicitly model underwater light attenuation and are able to estimate these parameters, could potentially be extended to scenarios where observations from UAVs, not limited in underwater. 
+
+% Moreover, our geometry extraction pipeline currently relies on handcrafted heuristic priors.
+% Alternative related work of Gaussian Splatting with a stronger emphasis on geometric fidelity \parencite{Huang2024SIGGRAPH_2DGS,Gu2024CVPR_SuGaR,fan2024_trimGS} may help to improve geometric accuracy.
+% Introducing regularization terms that encourage Gaussians to align along surfaces could enable sharper and more faithful reconstructions of bed topography.
+% It could also mitigate wave-induced distortions by prioritizing geometric plausibility over per-pixel fidelity.
+
+% Overall, our method represents an important step toward tackling refraction, one of the key challenges in photogrammetric bathymetry, exploring to a new way for accurate shallow-water depth estimation.

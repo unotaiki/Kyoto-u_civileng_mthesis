@@ -1,0 +1,39 @@
+\subsection{Opacity Correction}\label{sec:opacity-correction}
+
+In this section, we introduce the regularization that increases the opacity $\alpha$ of each Gaussians through the refractive surface. 
+This is not a physically accurate regularization as refraction, however, it contributes to the fidelity of both appearance and geometry.
+As illustrated in Figure \ref{fig:refraction-makes-scene-darker}, observing a scene through a refractive interface causes a significant reduction in apparent radiance. 
+This is a direct consequence of etendue conservation, which dictates that for a light bundle traveling from a medium with refractive index $n$ (e.g., water) to air, the radiance is scaled:
+\begin{equation}
+  L_{air} = \frac{1}{n^2} L_{water}
+\end{equation}
+This radiometric principle poses a challenge for 3D Gaussian Splatting. 
+To reconstruct the darker target images, the optimizer often converges to a trivial solution composed of Gaussians with low opacity $\alpha$.
+This reliance on low-opacity primitives results in a geometrically ambiguous or "blurry" reconstruction, as the scene is represented by a sparse, semi-transparent Gaussians, failing to capture fine details.
+To counteract this, we introduce a regularization technique inspired by the radiometric relationship. 
+We preemptively scale the opacity of underwater Gaussians to account for the expected radiance loss:
+\begin{equation}
+  \alpha' = \frac{1}{n^2} \alpha
+\end{equation}
+By intentionally reducing the opacity budget for each Gaussian, we force the optimizer to explain the target appearance by utilizing a larger number—and therefore a denser configuration—of primitives. 
+This process regularizes the optimization, inducing the model to learn a more detailed and geometrically faithful scene representation. 
+While this is a heuristic, not a physically exact correction for refraction, it yields significant improvements in both final appearance and geometric fidelity.
+
+\begin{figure}[htbp]
+  \centering
+  % 1枚目の画像
+  \begin{minipage}[b]{0.40\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/color/0050_gt_background.png}
+  \end{minipage}
+  % \hfill % 画像間のスペースを最大にする
+  % 2枚目の画像
+  \begin{minipage}[b]{0.40\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/color/0050_refraction_background.png}
+  \end{minipage}
+  \caption{This is a scene rendered using the path tracer in Blender Cycles. 
+  The image on the right, viewed through a refractive water surface, is significantly darker than the one on the left (which is shown without refraction). 
+  Opacity correction serves as regularization to avoid ambiguities, such as blurriness or floaters.}
+  \label{fig:refraction-makes-scene-darker}
+\end{figure}

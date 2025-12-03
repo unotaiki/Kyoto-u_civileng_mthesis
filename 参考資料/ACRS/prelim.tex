@@ -1,0 +1,101 @@
+\section{Preliminaries}\label{PRELIMINALIES}
+\sloppy
+
+\subsection{3D Gaussian Splatting}\label{3DGS}
+
+3D Gaussian Splatting (3DGS) is a recent method that has achieved state-of-the-art results in novel view synthesis \parencite{Kerbl2023ToG_3DGS}.
+It is distinguished by its remarkable capability for high-fidelity 3D scene capturing with photorealism, rapid training times, and real-time rendering.
+As an explicit 3D representation, 3DGS has been successfully applied to a wide range of tasks, including Visual-SLAM \parencite{Yan2024CVPR_GS-SLAM,Zheng2025CVPR_WildGS-SLAM,Matsuki2024CVPR_GaussianSplattingSLAM}, human avatar creation \parencite{Moreau2024CVPR_HumanGaussianSplatting,Shao2024CVPR_GaussianAvatar}, and feedforward 3D reconstruction \parencite{Chen2024ECCV_MVSplatting}.
+Its potential further extends to various real-world applications such as digital surface model (DSM) generation from satellite imagery \parencite{Aira2025CVPR_EOGS}, UAV-based surveying, autonomous driving, and underwater 3D reconstruction \parencite{li20243DV_watersplatting}.
+
+
+The 3DGS pipeline consists of two primary stages: a forward pass for rendering and a backward pass for optimization. 
+In the forward pass, a collection of 3D Gaussians is rasterized to synthesize an image.
+Each Gaussian is defined by a set of optimizable parameters: a center position $\bm{p} \in \mathbb{R}^3$, an opacity $\alpha \in [0, 1]$, view-dependent color coefficients represented by Spherical Harmonics (SH) $\bm{c}(\bm{p}, \bm{t}_i) \in \mathbb{R}^{3}$, and a 3D covariance matrix $\bm{\Sigma}^{\mathrm{3D}} \in \mathbb{R}^{3 \times 3}$. 
+The covariance matrix $\bm{\Sigma}^{\mathrm{3D}}$ is composed by a scaling diagonal matrix $\bm{S} \in \mathbb{R}^{3 \times 3}$ composed of a scaling vector $\bm{s} \in \mathbb{R}^3$ and a rotation quaternion (represented as a rotation matrix $\bm{R} \in SO(3)$) as:
+\begin{equation}\label{eq:3dgs-sigma_RssR}
+  \bm{\Sigma}^{\mathrm{3D}} = \bm{R} \bm{s} \bm{s}^\top \bm{R}^\top
+\end{equation}
+The corresponding unnormalized Gaussian distribution function for a point $\bm{x} \in \mathbb{R}^3$ is given by:
+\begin{equation}\label{eq:3dgs-G(x)}
+  G(\bm{x}) = 
+    \exp \left( -\frac{1}{2} (\bm{x} - \bm{p})^T \left({\bm{\Sigma}^{3D}}\right)^{-1} (\bm{x} - \bm{p}) \right)
+\end{equation}
+During the forward pass, to render an image from a given camera view, these Gaussians are first transformed from world to camera coordinates using the extrinsic matrix $[\bm{W} | \bm{t}]$ where $\bm{R}_\mathrm{view} \in \mathbb{R}^{3 \times 3}$ is a viewing rotation matrix and  $\bm{t} \in \mathbb{R}^3$ is a translation vector. 
+The position of a Gaussian center $\bm{p}$ and 3D covariance matrix are updated as:
+\begin{align*}
+  &\bm{p}_\mathrm{cam} = \bm{R}_\mathrm{view}\bm{p} + \bm{t} \\
+  &\bm{\Sigma}^{3D}_\mathrm{cam} = \bm{R}_\mathrm{view} \bm{\Sigma}^{3D} \bm{R}_\mathrm{view}^\top
+\end{align*} 
+Following the projection method from \parencite{Zwicker2001_EWA-volume-splatting}, the 3D covariance in camera space, $\Sigma_{cam}^{3D}$ ,is then projected onto the 2D image plane. This is achieved using the Jacobian $\bm{J}$ of the affine approximation of the perspective projection, yielding a 2D covariance matrix $\bm{\Sigma}^{\mathrm{2D}}$:
+\begin{equation}\label{eq:3dgs-affine-projection}
+\Sigma^\mathrm{2D} = \bm{J} \Sigma^{\mathrm{3D}}_\mathrm{cam} \bm{J}^\top
+\end{equation}
+The final RGB value $\bm{\Gamma} \in \mathbb{R}^{3}$ for each pixel is rendered by alpha-blending the projected Gaussians. 
+The set of Gaussians that overlap with the pixel are first sorted front-to-back based on their depth, and the view-dependent color is then accumulated as:
+\begin{align}\label{eq:3dgs-alpha-blending}
+  \bm{\Gamma}(\bm{x}) = \sum_{k=1}^{K} \bm{c}_k \alpha^{\text{pixel}}_k \prod_{j=1}^{k-1} (1-\alpha^{\text{pixel}}_j) \\
+  \quad \text{where} \quad \alpha^{\text{pixel}}_k = \alpha_k G_k^{\mathrm{2D}} \notag
+\end{align}
+here $k$ is the ordered set of Gaussians overlapping the pixel.
+
+During the backward pass, the optimization minimizes a photometric loss, which is a weighted sum of a $\mathcal{L}_1 (\Gamma, \Gamma_{gt})$ Loss and a D-SSIM loss $\mathcal{L}_\mathrm{D-SSIM} (\Gamma, \Gamma_{gt})$ \parencite{Zhou2004_SSIM}:
+\begin{equation}\label{eq:loss-function}
+  \mathcal{L} = (1 - \lambda) \mathcal{L}1 + \lambda \mathcal{L}_\mathrm{D-SSIM}
+\end{equation}
+Thus, the optimization problem is formulated as follows:
+\begin{equation}\label{eq:optimization}
+  \underset{p, R, s, c, \alpha}{\textrm{argmin}} \quad \mathcal{L} = \mathcal{L}(\bm{\Gamma}, \bm{\Gamma_{gt}}) 
+\end{equation}
+These formulations ensure that the entire pipeline is fully differentiable, allowing the parameters $\{\bm{p}, \bm{R}, \bm{s}, \bm{c}, \alpha\}$ to be optimized via gradient descent using the Adam optimizer \parencite{Adam}.
+
+The collection of 3D Gaussians obtained through this process captures the 3D scene with high fidelity. 
+However, this entire pipeline relies on the pinhole camera model and perspective projection, which fundamentally assume that light travels in a straight line. 
+This assumption is violated in environments with multi-medium interfaces, such as where refraction at the air-water boundary causes severe geometric inconsistency, leading to a failure in the reconstruction.
+
+Despite this limitation, 3DGS is uniquely suited for addressing this challenge compared to implicit representations like NeRF. 
+This is because the explicit nature of the Gaussian primitives that is highly open to direct physical modeling. 
+It allows us to mathematically formulate and apply the laws of refraction directly to the geometric parameters of the scene representation itself.
+
+%%%%%%%%%
+
+
+
+% from collection of each Gaussian $\{G_k(\bm{x}) | k=1, \cdots, K\}$
+
+% As an example, the Jacobian for the Gaussian center for the Loss function is as follows:
+% \begin{align}
+%   \diff{\mathcal{L}}{p_{k}}
+%     &= \sum_{\bm{x} \in \mathrm{image}}
+%     \diff{\mathcal{L}}{\Gamma}
+%     \diff{\Gamma}{G(\bm{x})_k^{\mathrm{2D}}}
+%     \diff{G(\bm{x})_k^{\mathrm{2D}}}{u_{i}}
+    
+%     \diff{u_{i}}{p_{c,i}}
+    
+%     \diff{p_{c,i}}{p_{w,i}} \\
+    
+%     &+  \sum_{\bm{x} \in \mathrm{image}}{
+    
+%     \diff{\mathcal{L}}{\Gamma_j}
+    
+%     \diff{\Gamma_j}{c_i}
+    
+%     \diff{c_i}{p_{w,i}}} \\
+    
+%     &+  \sum_{\bm{x} \in \mathrm{image}}{
+    
+%     \diff{\mathcal{L}}{\Gamma_j}
+    
+%     \diff{\Gamma_j}{\alpha_{ij}^{\prime}}
+    
+%     \diff{\alpha_{ij}^{\prime}}{\sigma_i^{\prime}}
+    
+%     \diff{\sigma_i^{\prime}}{p_{c,i}}
+    
+%     \diff{p_{c,i}}{p_{w,i}}
+    
+%     }
+    
+% \end{align}
+% where $\bm{u}_k$ is the projected point of Gaussian mean in image coordinate.

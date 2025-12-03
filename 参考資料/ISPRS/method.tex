@@ -1,0 +1,170 @@
+\section{Methods}\label{METHODOLOGY}
+\sloppy
+
+\begin{figure*}[htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth]{figure/method/position/overview.pdf}
+  \caption{
+    Overview of Refractive-Aware Gaussian Splatting.
+    A 3D scene represented by Gaussian primitives is transformed into an
+    \textit{apparent space} for each camera view by applying a differentiable refractive transformation consisting of position, scale, and opacity corrections. 
+    This models light bending at the air–water interface.
+    The transformed Gaussians are rendered and compared with the input images (which themselves contain refractive distortions). 
+    The reconstruction loss is backpropagated to optimize the original Gaussians, enabling recovery of a refraction-free 3D model and photorealistic novel views.
+  }
+  \label{fig:overview}
+\end{figure*}
+
+Our goal is to reconstruct a refraction-free 3D representation from aerial images that are distorted by the air–water interface.
+To achieve this, we incorporate a physically grounded refractive transformation into 3D Gaussian Splatting (3DGS).
+For each view, every Gaussian is mapped from its true underwater parameters $(\bm{p},\ \bm{s},\ \alpha)$ to an apparent set $(\bm{p}',\ \bm{s}',\ \alpha')$ via a differentiable three-component transformation: Position correction (\cref{sec:center-correction}), Scale correction (\cref{sec:scale-correction}), Opacity correction (\cref{sec:opacity-correction}).
+
+
+\subsection{Position Correction}\label{sec:center-correction}
+
+
+We assume a camera located at $(0,0,H)$, a planar and calm water surface at $z=0$, and an underwater Gaussian center $\bm{p} = (x, y, z)$, where $z < 0$.
+Because refraction is rotationally symmetric around the viewing direction, we reduce the geometry to the \textit{rz}-plane using the radial distance $r = \sqrt{x^2 + y^2}$. 
+
+Let $s$ be the radial coordinate of the ray–interface intersection
+($0\le s < r$).
+Let $\theta_r$ and $\theta_i$ denote, respectively, the incidence and
+refraction angles with respect to the interface normal.
+With refractive index $n$ for water (air assumed to be $1$), Snell’s law reads:
+\begin{equation}
+    \sin\theta_{i}=n\sin\theta_{r}
+    \label{eq:snell}
+\end{equation}
+
+By relating these angles to the geometry of the triangles formed by the camera,
+the interface, and the underwater point, we obtain a quartic equation in $s$ (triangle similarity between $\triangle OAI$ and $\triangle IPC$):
+\begin{equation}\label{eq:quartic-s}
+\begin{split}
+  (1-n^2)s^4 &+ 2(n^2-1)rs^3 \\
+             &+ ((1-n^2)r^2 + H^2 - n^2 z^2)s^2 \\
+             &+ 2n^2z^2rs - n^2z^2r^2 = 0.
+\end{split}
+\end{equation}
+The physically valid root $s$ is computed numerically using Newton iterations or Ferrari’s closed-form solution.
+
+Once $s$ is known, the geometric relations ($\triangle IPC$, $\triangle IP'C'$, and $\triangle I'P'C'$):
+\begin{align}
+  r - s &= -z\tan\theta_r  \notag \\
+  r' - s &= z'\tan\theta_i \notag \\ 
+  -z' \tan \left(\theta_i + \Delta \theta_i \right) & = (r' - s) + (- \Delta s) 
+  \label{eq:triangle-relations}
+\end{align}
+combined with \cref{eq:snell} and the derivative of Snell’s law:
+\begin{equation}
+  \frac{d\theta_r}{d\theta_i}
+  =\frac{1}{n}\frac{\cos\theta_i}{\cos\theta_r} 
+  \label{eq:dtheta_r/dtheta_i}
+\end{equation}
+lead to closed-form expressions for the apparent position:
+\begin{subequations}
+\begin{empheq}[left=\empheqlbrace]{align}
+    r' &= r + (n^{2}-1)\,z\,\tan^{3}\theta_{r}, \label{eq:r'}\\[2pt]
+    z' &= \frac{1}{n}\left(\frac{\cos\theta_i}{\cos\theta_r}\right)^{3} z. \label{eq:z'}
+\end{empheq}
+\end{subequations}
+
+Because $z<0$ and $\theta_i>\theta_r$, these relations guarantee
+$r'<r$ and $|z'|<|z|$; i.e., underwater points appear both shallower and closer to the optical axis (\cref{fig:rz}).  
+For $r=0$ (nadir view), the formula simplifies to the well-known approximation
+$z' = z/n$.
+
+To ensure differentiability within 3DGS, we compute the Jacobian:
+\begin{equation}
+  J_{\text{app}}=\frac{\partial\bm{p}'}{\partial\bm{p}}
+  \in\mathbb{R}^{3\times3}
+  \label{eq:Jacobian}
+\end{equation}
+via central finite differences, for example:
+\begin{equation}
+  \frac{\partial x'}{\partial x} \approx \frac{p'_x(x+\Delta x) - p'_x(x-\Delta x)}{2\Delta x}
+\end{equation}
+This provides stable gradients while avoiding cumbersome analytical
+derivations.
+
+This position correction—an analytical mapping of Gaussian means through a
+refractive interface—is the central contribution of our method and enables the
+reconstruction of refraction-free geometry using only the refractive index and
+interface height.
+
+
+
+\begin{figure}[htbp]
+  \centering
+  \setlength\textfloatsep{0pt}
+  \setlength\intextsep{0pt}
+  \includegraphics[width=0.9\linewidth]{figure/method/rz.png}
+    \caption{
+    Illustration of the apparent position $P^{\prime}$ versus the true position $P$ in the \textit{rz}-plane.
+    Even though the actual object is located at the blue Gaussian position $P$, it appears shifted toward the red Gaussian position $P'$ when observed through the refractive interface.
+    }
+    \label{fig:rz}
+\end{figure}
+
+
+\subsection{Scale Correction}\label{sec:scale-correction}
+
+\begin{figure}[htpb]
+  \centering
+  \includegraphics[width=0.75\linewidth]{figure/method/space_compression.png}
+  \caption{Space compression from the camera view. 
+  The space is distorted by the camera position.
+  Each colored grid represents the corresponding compressed space of entire grid in camera coordinates (shown in black.)}
+  \label{fig:space_compression_by_view}
+\end{figure}
+
+Because the transformation $\mathbf{p}\rightarrow\mathbf{p}'$ is nonlinear, it induces a distorted coordinate system in the apparent space (\cref{fig:space_compression_by_view}).  
+Without compensatory scaling, the space becomes unrealistically compressed, causing Gaussians to be blurred and expanded on their surface (\cref{fig:artifact-w/o-scale-correction}).
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[width=\linewidth]{figure/method/artifact-wo-scale-correction.png}
+    \caption{Artifact without scale correction. 
+    Left: A rendered image of the 3DGS model trained on the ground truth images without refractive plane.
+    Right: A rendered image of the same model using center position correction, but without scale correction.
+    The scene in the area bounded by red is expanded, where the incidence angle of the ray is larger}\label{fig:artifact-w/o-scale-correction}
+\end{figure}
+
+To mitigate these artifacts, we quantify local anisotropic distortion by examining how the Jacobian $J_{\text{app}}$ transforms the canonical basis.  
+For example, the transformed $x$-axis basis vector is given by the first column of $J_{\text{app}}$ \cref{eq:Jacobian}:
+\begin{equation}
+  \bm{e}_x'=
+  J_{\text{app}}\bm{e}_x=
+    \begin{bmatrix}
+        \partial x'/\partial x \\
+        \partial y'/\partial x \\
+        \partial z'/\partial x
+    \end{bmatrix}
+\end{equation}
+whose norm defines the directional scale factor:
+\begin{equation}
+  s_x=\|\bm{e}_x'\|
+  % = \sqrt{\left(\frac{\partial x'}{\partial x}\right)^2 + \left(\frac{\partial y'}{\partial x}\right)^2 + \left(\frac{\partial z'}{\partial x}\right)^2}
+\end{equation}
+Analogous factors $s_y$ and $s_z$ are obtained for the remaining axes.
+
+
+A natural option is to use $\lvert\det J_{\text{app}}\rvert$ as a volumetric
+compression measure.
+However, we found this approximation to overcompensate near large incidence angles, producing excessively small Gaussians.  
+Instead, we use the geometric mean of the directional scale factors:
+\begin{equation}
+  V=s_x\,s_y\,s_z
+  \label{eq:volume-compression-ratio}
+\end{equation}
+and define an isotropic correction factor:
+\begin{equation}
+  S = V^{1/3}
+  \label{scale-correction-factor}
+\end{equation}
+The corrected scale is then:
+\begin{equation}
+  \bm{s}' = S\,\bm{s}
+  \label{eq:scale-correction-edge}
+\end{equation}
+This isotropic strategy eliminates refractive expansion artifacts while
+preserving stable training and preventing primitives from expanding and shrinking excessively.

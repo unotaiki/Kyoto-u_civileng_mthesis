@@ -1,0 +1,8 @@
+Unmanned Aerial Vehicles (UAV)-based photogrammetry provides an efficient solution for shallow-water bathymetry, yet its accuracy is fundamentally constrained by light refraction at the air–water interface, which violates the central geometric assumptions of traditional photogrammetry. 
+Existing approaches — ranging from empirical corrections and iterative post-processing to black-box deep learning — often compromise geometric fidelity, physical interpretability, or generalization.
+We address this challenge through a Refractive-Aware Gaussian Splatting framework that embeds a physically rigorous two-media refraction model directly into the reconstruction process. 
+The core contribution is a differentiable refractive transformation that analytically maps 3D Gaussians from their true underwater locations to their refracted observations in aerial imagery. 
+This enables unified optimization of dense geometry and appearance while keeping the computational cost within practical limits for UAV-based workflows.
+Using a physically based, ray-traced synthetic riverbed dataset, we isolate and explicitly correct refractive distortions. 
+Our method achieves a geometric F1-score of 94\% (10 cm threshold at 10 m depth) and produces high-quality novel view synthesis with a PSNR of 25.9 dB and SSIM of 0.93.
+By resolving the fundamental refractive ambiguity, the proposed framework enables cost-effective, accurate, and high-frequency mapping of aquatic environments under calm surface conditions, bridging the gap between photorealistic rendering and metrically reliable bathymetry.

@@ -1,0 +1,201 @@
+\section{Evaluation}\label{sec:EVALUATION}
+
+The training images for our evaluation are those generated as described in \cref{sec:dataset}, which exhibit distortions caused by a refractive plane.
+
+\subsection{Appearance Evaulation}\label{sec:appearance-evaluation}
+
+
+\begin{table*}[htbp]
+  \caption{Quantitative results of appearance results, compared to an ablation of proposed components. 
+  Each model is trained from images with a refractive scene.}
+  \label{tab:apparent-evaluation}
+  \centering
+  \small
+  \scalebox{0.70}
+  {
+    \begin{tabular}{l|ccc|ccc|ccc|cc}
+      
+      & \multicolumn{3}{c|}{Correction Components} & \multicolumn{3}{c|}{Render w/ Refraction} & \multicolumn{3}{c|}{Render w/o Refraction} & \multicolumn{2}{c}{Stats}\\
+      Method & Position & Scale & Opacity
+      & $SSIM^\uparrow$   & $PSNR^\uparrow$    & $LPIPS^\downarrow$  
+      & $SSIM^\uparrow$   & $PSNR^\uparrow$    & $LPIPS^\downarrow$  
+      & \# Gaussians (K) & Time (min) \\
+      \hline \hline 
+      
+      3DGS
+      & \XSolidBrush & \XSolidBrush & \XSolidBrush
+      % & 0.610 & 14.81 & 0.332 & 0.682 & 14.12 & 0.292 & 40.0 & 6.8 \\ 
+      & - & - & - & 0.682 & 14.12 & 0.292 & 40.0 & 6.8 \\ 
+      
+      Position
+      & \CheckmarkBold & \XSolidBrush & \XSolidBrush
+      & 0.980 & 37.56 & 0.023 & 0.953 & 21.49 & 0.039 & 23.1 & 10.9 \\
+      
+      + Scale
+      & \CheckmarkBold & \CheckmarkBold & \XSolidBrush
+      & 0.964 & 37.21 & 0.023 & 0.936 & 22.97 & 0.043 & 28.0 & 21.0 \\
+
+      + Opacity 
+      & \CheckmarkBold & \XSolidBrush & \CheckmarkBold
+      & 0.984 & 38.44 & 0.018 & 0.954 & 25.27 & 0.033 & 38.8 & 11.5 \\
+
+      Ours
+      & \CheckmarkBold & \CheckmarkBold & \CheckmarkBold
+      & 0.981 & 38.42 & 0.017 & 0.933 & 25.97 & 0.046 & 41.3 & 21.9 \\
+
+    \end{tabular}
+  }
+\end{table*}
+
+Following the standards for Novel View Synthesis (NVS) evaluation, we assess the similarity between rendered images of our 3D model and the corresponding ground-truth images from unseen viewpoints. 
+We employ three widely-used metrics: the Peak Signal-to-Noise Ratio (PSNR), which measures pixel-wise accuracy; 
+the Structural Similarity Index Measure (SSIM) \parencite{Zhou2004_SSIM}, which considers local image structures; 
+and the Learned Perceptual Image Patch Similarity (LPIPS) \parencite{Zhang2018CVPR_LPIPS}, which leverages deep features from a Convolutional Neural Network (CNN) to better approximate human perception.
+Our method aims to reconstruct a 3DGS model that is free of refractive artifacts. 
+To comprehensively evaluate this, we report metrics under two conditions, as shown in \cref{tab:apparent-evaluation}. 
+First, we render the scene with the refractive plane ("Render w/ Refraction") and compare against the distorted ground-truth images. 
+Second, we render the model without the refractive plane ("Render w/o Refraction") and compare against the undistorted ground-truth images.
+
+The results demonstrate that correcting the Gaussian center positions plays the most crucial role, leading to a significant improvement across all metrics. 
+For applications like bed surface classification, preserving structural details is paramount, making SSIM a key metric. 
+Notably, our full method maintains an SSIM score above 0.93 even in the challenging "w/o Refraction" scenario.
+However, the PSNR for our full method in this scenario is nearly 13 dB lower than in the "w/ Refraction" case. 
+We attribute this to the physical incorrectness as discussed in \cref{sec:opacity-correction}.
+Our opacity correction uniformly reduces the opacity of all Gaussians, causing background Gaussians to be composited rather than revealing a black background.
+While the opacity regularization slightly contributes the increase of PSNR, the effect is insufficient to model the reduction of radiance at a refractive surface.
+This results in a subtle change in luminance, a discrepancy that is heavily penalized by the pixel-wise PSNR metric. 
+Therefore, we need the correction method that directly models the change of the luminance through water to air.
+
+Furthermore, the inclusion of the scale correction slightly degrades the SSIM score. 
+This is likely because our method isotropically corrects the Gaussian volumes regardless of their shape or orientation, which can cause a blurring effect that harms fine structural details in the non-refractive rendering. 
+Finally, while the training time for our method is over three times that of the baseline 3DGS, yet it remains within a practical range. 
+We anticipate that this could be significantly accelerated with a dedicated CUDA implementation.
+
+
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{justification=raggedright}
+  \includegraphics[width=0.9\linewidth]{figure/evaluation/real-space/appearance_align.png}
+  \caption{Visual comparisons between our method, Ground Truth, ablation of each correction. 
+           We also apply center position correction with scale correction and opacity correction.}
+  \label{fig:ablation-appearance}
+\end{figure}
+
+
+
+
+
+
+\subsection{Geometry Evalation}\label{sec:geometry-evaluation}
+
+\begin{table*}[htbp]
+  \caption{Quantitative results of geometry, compared to an ablation of proposed components. 
+  Each model is trained from images with a refractive scene.
+  We report the averaged chamfer distance, F1 score for each threshold (10 cm, 30 cm)}
+  \label{tab:geometry-evaluation}
+  \centering
+  \small
+  \scalebox{0.70}
+  {
+    \begin{tabular}{l||ccc|c|ccc|ccc}
+      
+      & \multicolumn{3}{c|}{Correction Components} & &  \multicolumn{3}{c|}{10cm} & \multicolumn{3}{c}{30cm}\\
+
+      Method & Position & Scale & Opacity
+      & $CD^\downarrow$ (m)  
+      & $Precise^\uparrow$ (\%)   & $Recall^\uparrow$ (\%) & $F1^\uparrow$ (\%)
+      & $Precise^\uparrow$ (\%)   & $Recall^\uparrow$ (\%) & $F1^\uparrow$ (\%) \\
+      \hline \hline 
+      
+      3DGS
+      & \XSolidBrush & \XSolidBrush & \XSolidBrush
+      & 8.477 & 0.03  & 0.20  & 0.06  & 0.12  & 2.52   & 0.23  \\
+      
+      Position
+      & \CheckmarkBold & \XSolidBrush & \XSolidBrush
+      & 0.110 & 69.80 & 84.65 & 76.51 & 82.80 & 99.95  & 90.57 \\
+      
+      + Scale
+      & \CheckmarkBold & \CheckmarkBold & \XSolidBrush
+      & 0.033 & 81.10 & 91.06 & 85.79 & 93.03 & 99.97  & 96.37 \\
+
+      + Opacity 
+      & \CheckmarkBold & \XSolidBrush & \CheckmarkBold
+      & 0.054 & 79.29 & 90.80 & 84.66 & 90.64 & 99.99  & 95.09 \\
+
+      Ours
+      & \CheckmarkBold & \CheckmarkBold & \CheckmarkBold
+      & 0.011 & 91.56 & 96.58 & 94.00 & 98.26 & 100.00 & 99.12 \\
+
+
+    \end{tabular}
+  }
+\end{table*}
+
+
+Accurately reconstructing the true geometry of a terrain observed through a refractive interface poses a significant challenge. 
+In this section, we quantitatively evaluate our method's geometric accuracy by comparing the extracted point cloud against the ground truth from the simulator.
+We employ two standard metrics for evaluating similarity between point clouds: Chamfer Distance (CD) and F1 Score. 
+The Chamfer Distance measures the average squared distance between nearest neighbors in two point clouds $S_{gt}$ and $S_{est}$.
+It is defined symmetrically as:
+\begin{align}\label{eq:CD}
+  \text{CD}(S_{gt}, S_{est}) &= \frac{1}{|S_{gt}|} \sum_{x \in S_{gt}} \min_{y \in S_{est}} \|x-y\|^2_2 \notag  \\
+  &+ \frac{1}{|S_{est}|} \sum_{y \in S_{est}} \min_{x \in S_{gt}} \|x-y\|^2_2
+\end{align}
+A lower CD value indicates a closer match between the point clouds.
+
+The F1 score assesses the overall quality by balancing precision and recall against a distance threshold $\tau$.
+\begin{itemize}
+  \item Precision: the percentage of points in the estimated cloud $S_{est}$ that are within the threshold $\tau$ of the ground-truth cloud $S_{gt}$.
+  \item Recall: the percentage of points in $S_{gt}$ that are within $\tau$ of $S_{est}$. 
+\end{itemize}
+  
+The F1 score is the harmonic mean of Precision and Recall, defined as:
+\begin{equation}\label{eq:F1}
+  F1 = \frac{2 \cdot Precision \cdot Recall}{Precision + Recall}
+\end{equation}
+
+
+As shown in \cref{tab:geometry-evaluation}, the baseline 3DGS performs extremely poorly on the refractive scene, resulting in a very high Chamfer Distance (8.477 m) and near-zero F1 scores, as it fails to account for the physics of refraction.
+Our ablation study demonstrates the incremental contribution of each proposed component. 
+Introducing position correction yields the most substantial improvement, significantly reducing the CD to 0.110 m and boosting the 10 cm threshold F1 score to 76.51\%. 
+Adding scale correction further refines the geometry, lowering the CD to 0.033 m and increasing the F1 score to 85.79\%. 
+While adding scale correction and opacity correction each provides incremental improvements, the synergistic integration of all three components in our full method ("Ours") achieves the best performance.
+This comprehensive approach achieves the lowest Chamfer Distance of 0.011 m and the highest F1 scores of 94.00\% (at 10 cm) and 99.12\% (at 30 cm). 
+These results are achieved on a challenging dataset featuring water depths of up to 10 meters, highlighting the robustness of our method. 
+This demonstrates that our combined correction strategy is crucial for achieving high-fidelity geometric reconstruction, complementing the appearance enhancements shown previously.
+
+
+\begin{figure}[htbp]
+  \centering
+  % 1枚目の画像
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/evaluation/geometry/gt.png}
+  \end{minipage}
+  \hfill % 画像間のスペースを最大にする
+  % 2枚目の画像
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/evaluation/geometry/wo.png}
+  \end{minipage}
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/evaluation/geometry/w.png}
+  \end{minipage}
+  \caption{Qualitative results of geometry.
+  Top-left: The ground truth geometry rendered in simulator.
+  Top-right: The extracted geometry without correction.
+  Bottom-center: The extracted geometry with all correction.
+  Each image is rendered from an identical viewpoint and under the same lighting conditions. 
+  The ground truth and the corrected geometry are very similar in both position and shape. 
+  In contrast, the uncorrected geometry appears completely noisy and is incorrectly positioned at a shallower depth.
+  }
+  \label{fig:geometry-evaluation-quantitatively}
+\end{figure}
+
+
+% 完璧じゃなくてNoiseが残っていることを示す。
+% (BlenderでNormalMapと普通のRendaring)
+

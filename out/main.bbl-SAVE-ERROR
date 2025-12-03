@@ -1,0 +1,333 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{Grimaldi2018_flood-forecasting}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=7bf1d4e4db5816901b5aa94c987c8d6f}{%
+           family={Grimaldi},
+           familyi={G\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=66d548e0e670e107fc4a80dc0c3825b3}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Y.},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=c517bf33832a01f5c5b2dbf97fced9fa}{%
+           family={Walker},
+           familyi={W\bibinitperiod},
+           given={J.\bibnamedelimi P.},
+           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=b0571629a828b945600efa6aa4abebe7}{%
+           family={Pauwels},
+           familyi={P\bibinitperiod},
+           given={V.\bibnamedelimi R.\bibnamedelimi N.},
+           giveni={V\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {American Geophysical Union (AGU)}%
+      }
+      \strng{namehash}{d00a8ab5eaf86e70480381fa891d1132}
+      \strng{fullhash}{e4cd67371b8d327b8311cb9017f16c81}
+      \strng{fullhashraw}{e4cd67371b8d327b8311cb9017f16c81}
+      \strng{bibnamehash}{d00a8ab5eaf86e70480381fa891d1132}
+      \strng{authorbibnamehash}{d00a8ab5eaf86e70480381fa891d1132}
+      \strng{authornamehash}{d00a8ab5eaf86e70480381fa891d1132}
+      \strng{authorfullhash}{e4cd67371b8d327b8311cb9017f16c81}
+      \strng{authorfullhashraw}{e4cd67371b8d327b8311cb9017f16c81}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1944-7973}
+      \field{journaltitle}{Water Resources Research}
+      \field{month}{2}
+      \field{number}{2}
+      \field{title}{Effective Representation of River Geometry in Hydraulic Flood Forecast Models}
+      \field{volume}{54}
+      \field{year}{2018}
+      \field{pages}{1031\bibrangedash 1057}
+      \range{pages}{27}
+      \verb{doi}
+      \verb 10.1002/2017wr021765
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1002/2017wr021765
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1002/2017wr021765
+      \endverb
+    \endentry
+    \entry{Hemmelder2018_monitoring-river-morphology}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=228ea56255ccecbf8194750cbf27cbbb}{%
+           family={Hemmelder},
+           familyi={H\bibinitperiod},
+           given={Sven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=55052c2ce689187af6ff60509ed0e6b6}{%
+           family={Marra},
+           familyi={M\bibinitperiod},
+           given={Wouter},
+           giveni={W\bibinitperiod}}}%
+        {{hash=768cc01405a296c2dd6a7780b3b83145}{%
+           family={Markies},
+           familyi={M\bibinitperiod},
+           given={Henk},
+           giveni={H\bibinitperiod}}}%
+        {{hash=ee4c967c498ee0f253f969fa8e2d8f91}{%
+           family={De\bibnamedelima Jong},
+           familyi={D\bibinitperiod\bibinitdelim J\bibinitperiod},
+           given={Steven\bibnamedelima M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier BV}%
+      }
+      \strng{namehash}{5b9f8dddf95864f3c91549795c424461}
+      \strng{fullhash}{cb94b1a3444c9c19bbd301296a6d59bc}
+      \strng{fullhashraw}{cb94b1a3444c9c19bbd301296a6d59bc}
+      \strng{bibnamehash}{5b9f8dddf95864f3c91549795c424461}
+      \strng{authorbibnamehash}{5b9f8dddf95864f3c91549795c424461}
+      \strng{authornamehash}{5b9f8dddf95864f3c91549795c424461}
+      \strng{authorfullhash}{cb94b1a3444c9c19bbd301296a6d59bc}
+      \strng{authorfullhashraw}{cb94b1a3444c9c19bbd301296a6d59bc}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1569-8432}
+      \field{journaltitle}{International Journal of Applied Earth Observation and Geoinformation}
+      \field{month}{12}
+      \field{title}{Monitoring river morphology \& bank erosion using UAV imagery--A case study of the river Buëch, Hautes-Alpes, France}
+      \field{volume}{73}
+      \field{year}{2018}
+      \field{pages}{428\bibrangedash 437}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1016/j.jag.2018.07.016
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/j.jag.2018.07.016
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/j.jag.2018.07.016
+      \endverb
+    \endentry
+    \entry{Thomson2001_habitat-assessment}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=912c3e583c854f86872c7fc717b86738}{%
+           family={Thomson},
+           familyi={T\bibinitperiod},
+           given={J.R.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=7a8a535a147220f344d1eadb32d59083}{%
+           family={Taylor},
+           familyi={T\bibinitperiod},
+           given={M.P.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=e47af4e156b6f497b4e9fa7582846a41}{%
+           family={Fryirs},
+           familyi={F\bibinitperiod},
+           given={K.A.},
+           giveni={K\bibinitperiod}}}%
+        {{hash=03810096ec0b2625bcd54a25c100bc9d}{%
+           family={Brierley},
+           familyi={B\bibinitperiod},
+           given={G.J.},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{94dcfbfa4f63fa473e1586ce9efb1773}
+      \strng{fullhash}{ce4e42df1f434e554b471a69ae4833d8}
+      \strng{fullhashraw}{ce4e42df1f434e554b471a69ae4833d8}
+      \strng{bibnamehash}{94dcfbfa4f63fa473e1586ce9efb1773}
+      \strng{authorbibnamehash}{94dcfbfa4f63fa473e1586ce9efb1773}
+      \strng{authornamehash}{94dcfbfa4f63fa473e1586ce9efb1773}
+      \strng{authorfullhash}{ce4e42df1f434e554b471a69ae4833d8}
+      \strng{authorfullhashraw}{ce4e42df1f434e554b471a69ae4833d8}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1099-0755}
+      \field{journaltitle}{Aquatic Conservation: Marine and Freshwater Ecosystems}
+      \field{month}{9}
+      \field{number}{5}
+      \field{title}{A geomorphological framework for river characterization and habitat assessment}
+      \field{volume}{11}
+      \field{year}{2001}
+      \field{pages}{373\bibrangedash 389}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1002/aqc.467
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1002/aqc.467
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1002/aqc.467
+      \endverb
+    \endentry
+    \entry{Pasquali2021_coastal-zone-management}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=43b3f101a5c223dd2010a7912f2be9b8}{%
+           family={Pasquali},
+           familyi={P\bibinitperiod},
+           given={Davide},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8b06527b85fe16944851600534214fc6}{%
+           family={Marucci},
+           familyi={M\bibinitperiod},
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI AG}%
+      }
+      \strng{namehash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{fullhash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{fullhashraw}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{bibnamehash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{authorbibnamehash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{authornamehash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{authorfullhash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{authorfullhashraw}{d577a2c7e5120dd110be2ef4106e19fb}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2071-1050}
+      \field{journaltitle}{Sustainability}
+      \field{month}{5}
+      \field{number}{11}
+      \field{title}{The Effects of Urban and Economic Development on Coastal Zone Management}
+      \field{volume}{13}
+      \field{year}{2021}
+      \field{pages}{6071}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/su13116071
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.3390/su13116071
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.3390/su13116071
+      \endverb
+    \endentry
+    \entry{Giordano2015_sonar-bathymetry}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=28e50af6ba7b1f51cd1738988f4061e0}{%
+           family={Giordano},
+           familyi={G\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=742630daabeb7a63e9bf4143d304662f}{%
+           family={Mattei},
+           familyi={M\bibinitperiod},
+           given={Gaia},
+           giveni={G\bibinitperiod}}}%
+        {{hash=011d07a75301104ddc5cfad8d588458f}{%
+           family={Parente},
+           familyi={P\bibinitperiod},
+           given={Claudio},
+           giveni={C\bibinitperiod}}}%
+        {{hash=e91373e7fcea3de5e468d29a8285b53f}{%
+           family={Peluso},
+           familyi={P\bibinitperiod},
+           given={Francesco},
+           giveni={F\bibinitperiod}}}%
+        {{hash=fca83d4fd390782f49e290d9318d4051}{%
+           family={Santamaria},
+           familyi={S\bibinitperiod},
+           given={Raffaele},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI AG}%
+      }
+      \strng{namehash}{7a1b71e3d9c9e892c73235bd0deadf1e}
+      \strng{fullhash}{e8909b7385cdb695b6ee943bedcd6b01}
+      \strng{fullhashraw}{e8909b7385cdb695b6ee943bedcd6b01}
+      \strng{bibnamehash}{7a1b71e3d9c9e892c73235bd0deadf1e}
+      \strng{authorbibnamehash}{7a1b71e3d9c9e892c73235bd0deadf1e}
+      \strng{authornamehash}{7a1b71e3d9c9e892c73235bd0deadf1e}
+      \strng{authorfullhash}{e8909b7385cdb695b6ee943bedcd6b01}
+      \strng{authorfullhashraw}{e8909b7385cdb695b6ee943bedcd6b01}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1424-8220}
+      \field{journaltitle}{Sensors}
+      \field{month}{12}
+      \field{number}{1}
+      \field{title}{Integrating Sensors into a Marine Drone for Bathymetric 3D Surveys in Shallow Waters}
+      \field{volume}{16}
+      \field{year}{2015}
+      \field{pages}{41}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/s16010041
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.3390/s16010041
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.3390/s16010041
+      \endverb
+    \endentry
+    \entry{Adam}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=b6fbd171848aad4edf3925543f1f1522}{%
+           family={Kingma},
+           familyi={K\bibinitperiod},
+           given={Diederik\bibnamedelima P},
+           giveni={D\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=8aa66e8231cc2fdbe67aa4f18ca970c6}{%
+           family={Ba},
+           familyi={B\bibinitperiod},
+           given={Jimmy},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{fullhash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{fullhashraw}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{bibnamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorbibnamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authornamehash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorfullhash}{a09df9f123146b8e2c7f1134c9496932}
+      \strng{authorfullhashraw}{a09df9f123146b8e2c7f1134c9496932}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{arXiv preprint arXiv:1412.6980}
+      \field{title}{Adam: A method for stochastic optimization}
+      \field{year}{2014}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

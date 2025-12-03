@@ -1,0 +1,13 @@
+The 3D reconstruction of geometry in shallow water has a wide range of applications, such as monitoring bed morphology changes and conducting hazard simulations. 
+In addition, the detailed texture of the reconstructed data is useful for bed surface classification and aquatic habitat quantification. 
+In this context, bathymetric surveying using photogrammetry from aerial images captured by Unmanned Aerial Vehicles (UAVs) is gaining attention as a particularly efficient method. 
+However, it is fundamentally challenged by light refraction at the air-water interface, which invalidates the geometric principles of photogrammetry. 
+Existing methods either rely on iterative post-processing or employ deep learning models that lack physical guarantees and explainability. 
+We solve this challenge by introducing a refraction-aware 3D Gaussian Splatting framework that incorporates an optically accurate model of two-media refraction directly into the reconstruction pipeline. 
+Our key innovation is a differentiable coordinate transformation that analytically models light refraction, mapping 3D Gaussians from their true underwater positions to their apparent space for each aerial view. 
+This enables unified optimization, simultaneously solving for dense scene geometry and detailed appearance while maintaining the efficiency of standard 3D Gaussian Splatting. 
+We evaluated our method on a simulated UAV dataset of a riverbed, rendered with physically-based ray tracing to isolate refractive effects from other optical phenomena. 
+Our approach achieved a geometric F1-score of 96\% (with a 10 cm error threshold at a depth scale of 10 m). 
+Furthermore, in novel view synthesis, we obtained photorealistic views with a Peak Signal-to-Noise Ratio (PSNR) of 25.9 dB and a Structural Similarity Index Measure (SSIM) of 0.93. 
+By creating 3D models that are both photorealistic in appearance and dense and geometrically precise in structure, our method addresses a key challenge in aquatic remote sensing from aerial imagery. 
+This work enables cost-effective, high-frequency monitoring of riverbeds, lakeshores, and seashores under calm surface conditions.

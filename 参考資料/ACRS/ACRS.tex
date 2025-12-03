@@ -1,0 +1,274 @@
+%======================================================================
+%【1. 基本設定】
+%  文書クラス、用紙サイズ、フォントなど、文書全体の基本的な定義
+%======================================================================
+
+% 文書クラスを「article」に設定。基本フォントサイズ12pt、用紙A4。
+\documentclass[12pt,a4paper]{article}
+
+% --- パッケージ読み込み ---
+
+% ページレイアウトの設定 (geometry)
+\usepackage[a4paper,margin=1in]{geometry} % 用紙をA4に、上下左右の余白を1インチに設定
+
+% フォントの設定 (fontspec) - LuaLaTeXまたはXeLaTeXでのコンパイルが必要
+\usepackage{fontspec}
+\setmainfont{Times New Roman} % 文書全体のメインフォントを「Times New Roman」に設定
+
+% 多言語対応と言語特有のルール設定 (babel)
+\usepackage[british]{babel} % イギリス英語のハイフネーション（単語の改行ルール）などを適用
+
+
+%======================================================================
+%【2. レイアウト・デザイン設定】
+%  段落、行間、見出しのデザインなど、文書の見た目に関する設定
+%======================================================================
+
+% 段落の体裁設定 (parskip)
+\usepackage{parskip} % 段落開始のインデント（字下げ）をなくし、代わりに段落間に少しスペースを入れる
+\setlength{\parskip}{\baselineskip} % 段落間のスペース(\parskip)を1行の高さ(\baselineskip)に設定
+
+% 行間の設定 (setspace)
+\usepackage{setspace}
+\setstretch{1.5} % 文書全体の行間を1.6倍に設定（\onehalfspacing は1.5倍）
+
+% 見出し（セクション等）のデザイン設定 (titlesec)
+\usepackage{titlesec}
+% \section のフォーマット設定
+% 書式: \titleformat{<command>}{<shape>}{<format>}{<sep>}{<before-code>}[<after-code>]
+\titleformat{\section}
+  {\normalfont\fontsize{12pt}{12pt}\bfseries} % フォントを12ptの太字に
+  {}                                         % 番号のフォーマット（空欄でデフォルト）
+  {0em}                                      % 番号とタイトルの間隔
+  {}                                         % タイトルの直前のコード
+\titlespacing*{\section}
+  {0pt}         % 左インデント
+  {1.5\baselineskip} % 見出しの上のスペース
+  {6pt}         % 見出しの下のスペース
+
+% \subsection のフォーマット設定
+\titleformat{\subsection}
+  {\bfseries\fontsize{12pt}{12pt}\selectfont} % フォントを12ptの太字に
+  {\thesubsection.}                          % 番号（例: a.）を表示
+  {0.5em}                                    % 番号とタイトルの間隔
+  {}
+\titlespacing*{\subsection}
+  {0pt}
+  {1.5\baselineskip}
+  {6pt}
+
+
+% セクション番号の深さとスタイルの設定
+\setcounter{secnumdepth}{2}                % 2階層目（subsection）まで番号を振る
+\renewcommand{\thesubsection}{\alph{subsection}} % subsectionの番号をアルファベット（a, b, c...）に変更
+
+
+%======================================================================
+%【3. 論文構成要素の設定】
+%  著者、抄録、図表、参考文献など、論文特有のパーツに関する設定
+%======================================================================
+
+% ----- 著者・所属情報の設定 (authblk)
+\usepackage{authblk}
+\renewcommand\Authfont{\fontsize{11}{13}\selectfont} % 著者ブロックのフォントを11ptに設定
+\renewcommand\Authands{ and }                        % 複数著者を 'and' でつなぐ
+
+% ----- 抄録（Abstract）のフォーマット再定義 (abstract)
+\usepackage{abstract}
+\renewenvironment{abstract}
+  { % \begin{abstract} で実行される処理
+    \noindent{\fontsize{12}{14}\selectfont\bfseries\itshape Abstract} % "Abstract"という単語を12pt, 太字, イタリックに
+    \fontsize{11}{13}\selectfont\itshape % 抄録本文を11pt, イタリックに
+    \onehalfspacing % 抄録内の行間を1.5倍に
+  }
+  { % \end{abstract} で実行される処理
+    \par\vspace{\baselineskip} % 抄録の終わりに1行分のスペースを空ける
+  }
+
+  % ----- 図・表のキャプション設定 (caption, subcaption)
+\usepackage{graphicx}      % 画像を挿入するため (\includegraphics) 
+% \usepackage{svg}           % SVGファイルを挿入する. lulatexのコンパイルに"-shell-escape"の引数、またInkscapeのインストールが必要
+\usepackage{bmpsize}
+\usepackage{caption}
+\usepackage{subcaption} % (a), (b)のようなサブキャプションを使うため
+\usepackage{float} % figureやtable環境で[H]オプションが使える
+\usepackage{wrapfig} % 文中に図を挿入し、隙間には文章が入る
+\captionsetup{font=small, labelfont=bf, labelsep=period, justification=raggedright}
+ %キャプション全体のフォントを小さく %ラベル（"Figure 1"など）を太字に
+ % ラベルとキャプション本文の間にピリオドを挿入 %キャプションを左揃えにする
+
+% ----- 参考文献のスタイル設定 (biblatex)
+\usepackage{csquotes} % 引用符を言語に合わせて正しく処理するため
+\usepackage[style=apa, backend=biber]{biblatex} % スタイルはAPA、処理エンジンはbiberを指定
+\addbibresource{ra-gs.bib} % 参考文献データベースファイル（.bib）を指定
+
+% 参考文献リストの書式設定
+\setlength{\bibitemsep}{1em} % 参考文献の項目間のスペース
+\setlength{\bibhang}{0em}    % 2行目以降のインデント量を0にする（ぶら下げインデントなし）
+
+% 参考文献リスト内での改行を調整し、テキストがはみ出るのを防ぐ設定
+\AtBeginBibliography{
+  \singlespacing
+  \emergencystretch=1em\relax
+  \hyphenpenalty=100
+  \exhyphenpenalty=100
+}
+
+%======================================================================
+%【4. ヘッダー・フッターの設定】
+%  1ページ目と2ページ目以降で異なるヘッダー画像を設定
+%======================================================================
+
+\usepackage{eso-pic}    % ページ背景に画像などを配置するため（1ページ目ヘッダーで使用）
+\usepackage{fancyhdr}   % ヘッダーとフッターを柔軟にカスタマイズするため（2ページ目以降で使用）
+
+% --- 1ページ目のヘッダー画像設定 ---
+\AddToShipoutPictureBG*{%
+  \AtPageUpperLeft{%
+    % 用紙の左上を基準に、(x=0, y=-70pt)の位置に画像を配置
+    \put(0, -70){\includegraphics[width=\paperwidth]{acrc_header.png}}
+  }%
+}
+
+% --- 2ページ目以降のヘッダー画像設定 ---
+\pagestyle{fancy} % ページスタイルを'fancy'に切り替える
+\fancyhf{} % ヘッダー・フッターを一度すべてクリア
+\renewcommand{\headrulewidth}{0pt} % ヘッダーの下線を消す
+
+% ヘッダーの左側(L)に画像を配置
+\fancyhead[L]{%
+  \makebox[\textwidth][l]{%
+    \raisebox{-0cm}[0pt][0pt]{%
+      \includegraphics[width=10cm]{acrs_header_2.png}
+    }%
+  }%
+}
+% \fancyhead[R]{\thepage} % もし右上にページ番号を入れたい場合はこの行を有効化
+
+
+%======================================================================
+%【5. カスタムコマンドと補助パッケージ】
+%  数式、記号、ハイパーリンクなど、執筆を便利にするための設定
+%======================================================================
+
+% --- よく使われるパッケージ ---
+\usepackage{amsmath}       % 高度な数式環境を提供
+\usepackage{empheq}        % 数式を囲んだり、左に数式番号を付けたりする
+\usepackage{amsfonts}      % 数学用フォントを提供
+\usepackage{bm}            % 数式内で太字を使うため (\bm)
+\usepackage{enumitem}      % 箇条書き環境のカスタマイズ
+\usepackage[normalem]{ulem}% 打ち消し線 (\sout) [normalem]はReferenceで下線が入るのを防ぐ
+\usepackage{pifont}        % 特殊な記号（チェックマークなど）
+\usepackage{ragged2e}      % 左揃え、右揃えなどをより柔軟に行う
+
+
+% --- URLとハイパーリンクの設定 ---
+\usepackage{xurl} % 長いURLをハイフンなどで適切に改行できるようにする
+\urlstyle{same}   % URLを本文と同じフォントで表示
+\usepackage[colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref} % PDF内にクリック可能なリンクを生成
+\usepackage[capitalize]{cleveref} % \cref{fig:myfig} のように書くと "Figure 1" と自動で参照してくれる賢い相互参照
+
+% --- カスタムコマンド定義 ---
+\newcommand{\CheckmarkBold}{\ding{51}} % 太いチェックマーク
+\newcommand{\XSolidBrush}{\ding{55}}   % バツ印
+\newcommand{\diff}[2]{\frac{\partial #1}{\partial #2}} % 偏微分のショートカットコマンド
+
+% --- その他の微調整 ---
+\everymath{\displaystyle} % 数式内の分数などが小さく潰れないように、常にディスプレイ形式で表示
+
+% 2段組用のfigure*環境などを、1段組でもエラーなく動くように再定義（1段組では実質影響なし）
+\let\origfigure\figure
+\let\endorigfigure\endfigure
+\renewenvironment{figure*}{\origfigure}{\endorigfigure}
+\let\origtable\table
+\let\endorigtable\endtable
+\renewenvironment{table*}{\origtable}{\endorigtable}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%                         ここから文書本体
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% --------------------------------------------------------------------
+% タイトル、著者、所属
+% --------------------------------------------------------------------
+% \vspace*{-0.5cm} % タイトルブロック全体を上に移動
+
+\title{\fontsize{14}{17}\selectfont\bfseries \textbf{Refractive-Aware Gaussian Splatting for Geometrically Accurate and Photorealistic 3D Reconstruction of Bathymetry from UAV-based Imagery}}
+
+\vspace{-0.5cm}
+
+% 著者情報 (authblkパッケージの書式)
+\author[1*]{Taiki Uno}
+\author[2]{Sohei Kobayashi}
+
+\vspace{-0.5cm}
+
+
+% 所属情報
+\affil[1]{Kyoto University, Graduate School of Engineering, Kyoto, Japan}
+\affil[2]{Kyoto University, Disaster Prevention Research Institute, Uji, Japan}
+\affil[*]{uno.taiki.65r@st.kyoto-u.ac.jp} % 責任著者のメールアドレス
+
+% 日付は表示しない
+\date{}
+
+% 1ページ目だけページスタイルを'empty'に上書きし、ヘッダー・フッターを非表示にする
+\thispagestyle{empty}
+
+% 上記で設定したタイトル、著者、所属を実際に出力
+\maketitle
+
+% タイトル、著者、所属 と Abstractの間隔を調整 (狭める)
+\vspace{-1.0cm}
+
+% --------------------------------------------------------------------
+% 抄録 (Abstract)
+% --------------------------------------------------------------------
+\begin{abstract}
+  \input{abstract} % abstract.tex ファイルから抄録本文を読み込む
+\end{abstract}
+
+
+% --------------------------------------------------------------------
+% キーワード (Keywords)
+% --------------------------------------------------------------------
+\vspace{-0.8cm} % Abstractとの間隔を調整
+\noindent\textit{\fontsize{12pt}{14pt}\selectfont % 12pt、イタリックで表示
+Keywords: \quad % "Keywords:" の後に少しスペース
+Bathymetry, Gaussian Splatting, 3D Reconstruction, Refraction Correction, UAV Imagery}
+
+
+% --------------------------------------------------------------------
+% 論文本文 (Main Body)
+% --------------------------------------------------------------------
+% 各セクションを個別の .tex ファイルから読み込む
+% → ファイルを分割することで、長文の管理がしやすくなる
+\input{intro}
+\input{related}
+\input{prelim}
+\input{method}
+\input{method2}
+\input{experiments}
+\input{evaluation}
+\input{conclusion}
+
+
+% --------------------------------------------------------------------
+% 参考文献 (References)
+% --------------------------------------------------------------------
+\clearpage % 新しいページから始める
+\printbibliography % biblatexで処理した参考文献リストを出力
+
+
+% --------------------------------------------------------------------
+% 付録 (Appendix) - 必要に応じて
+% --------------------------------------------------------------------
+% \clearpage
+% ここに付録の内容を記述
+
+
+\end{document}

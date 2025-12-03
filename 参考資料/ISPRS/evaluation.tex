@@ -1,0 +1,183 @@
+\section{Results}\label{sec:EVALUATION}
+
+The evaluation is performed on the synthetic dataset described in \cref{sec:dataset}, where all training images contain distortions induced by a planar air–water interface. 
+Our goal is to assess how effectively the proposed refractive corrections recover both appearance and geometry relative to ground truth.
+
+\subsection{Appearance Evaulation}\label{sec:appearance-evaluation}
+
+
+\begin{table*}[!tb]
+  \caption{
+    Quantitative appearance evaluation under two rendering conditions: (1) rendering with the refractive interface and comparing to refractive ground truth, and (2) rendering without the interface and comparing to refraction-free ground truth. 
+    We show the ground truth, the baseline 3DGS, and ablation results where each component (Scale or Opacity) is added on top of the position correction.
+    The full method (Ours) applies position, scale, and opacity correction simultaneously.
+    All models are trained from refracted images only.}
+  \label{tab:apparent-evaluation}
+  \centering
+  \small
+  \scalebox{0.9}
+  {
+    \begin{tabular}{l||ccc|ccc|ccc|cc}
+      
+      & \multicolumn{3}{c|}{Correction Components} & \multicolumn{3}{c|}{Render w/ Refraction} & \multicolumn{3}{c|}{Render w/o Refraction} & \multicolumn{2}{c}{Stats}\\
+      Method & Position & Scale & Opacity
+      & $SSIM^\uparrow$   & $PSNR^\uparrow$    & $LPIPS^\downarrow$  
+      & $SSIM^\uparrow$   & $PSNR^\uparrow$    & $LPIPS^\downarrow$  
+      & \# Gaussians (K) & Time (min) \\
+      \hline \hline 
+      
+      3DGS
+      & \XSolidBrush & \XSolidBrush & \XSolidBrush
+      % & 0.610 & 14.81 & 0.332 & 0.682 & 14.12 & 0.292 & 40.0 & 6.8 \\ 
+      & - & - & - & 0.682 & 14.12 & 0.292 & 40.0 & 6.8 \\ 
+      
+      Position
+      & \CheckmarkBold & \XSolidBrush & \XSolidBrush
+      & 0.980 & 37.56 & 0.023 & 0.953 & 21.49 & 0.039 & 23.1 & 10.9 \\
+      
+      + Scale
+      & \CheckmarkBold & \CheckmarkBold & \XSolidBrush
+      & 0.964 & 37.21 & 0.023 & 0.936 & 22.97 & 0.043 & 28.0 & 21.0 \\
+
+      + Opacity 
+      & \CheckmarkBold & \XSolidBrush & \CheckmarkBold
+      & 0.984 & 38.44 & 0.018 & 0.954 & 25.27 & 0.033 & 38.8 & 11.5 \\
+
+      Ours
+      & \CheckmarkBold & \CheckmarkBold & \CheckmarkBold
+      & 0.981 & 38.42 & 0.017 & 0.933 & 25.97 & 0.046 & 41.3 & 21.9 \\
+
+    \end{tabular}
+  }
+\end{table*}
+
+
+
+Following established protocol in Novel View Synthesis (NVS), we evaluate similarity between rendered images from unseen viewpoints and ground truth.
+We employ three widely-used metrics: the Peak Signal-to-Noise Ratio (PSNR), which measures pixel-wise accuracy; the Structural Similarity Index Measure (SSIM) \cite{Zhou2004_SSIM}, which considers local image structures; and the Learned Perceptual Image Patch Similarity (LPIPS) \cite{Zhang2018CVPR_LPIPS}, which leverages deep features from a Convolutional Neural Network (CNN) to better approximate human perception.
+To fully characterize the impact of refraction, metrics are reported under two conditions (\cref{tab:apparent-evaluation}):
+(1) rendering with the refractive interface and comparing to refracted ground truth, and
+(2) rendering without the interface and comparing to refraction-free ground truth.
+
+Across all metrics, Gaussian center position correction provides the largest performance gain, consistent with its role in resolving refractive ray-path deviations. 
+SSIM, which is particularly relevant for downstream tasks such as riverbed classification, rises from 0.68 (baseline) to above 0.95 with position correction alone.
+
+Opacity correction further improves perceptual quality, achieving the lowest LPIPS among all ablations. 
+However, when evaluated in the non-refractive rendering condition, the PSNR remains considerably lower—approximately 13 dB below the refractive case. 
+This is expected: as discussed in \cref{sec:opacity-correction}, the uniform opacity reduction preserves background visibility but does not physically model the reduction in radiance occurring at the refractive interface. 
+Consequently, small luminance deviations are heavily penalized by PSNR despite being visually negligible.
+
+Scale correction exhibits a mixed effect. 
+Although geometrically beneficial (as shown in \cref{tab:geometry-evaluation}), isotropic covariance correction introduces slight blurring in fine textures, marginally reducing SSIM in non-refractive rendering. 
+Nonetheless, all three corrections together yield a well-balanced representation with competitive perceptual fidelity (\cref{fig:ablation-appearance}).
+
+Despite a training time roughly three times that of standard 3DGS, the absolute runtime remains practical, and can be further reduced via a dedicated CUDA implementation.
+
+
+\subsection{Geometry Evalation}\label{sec:geometry-evaluation}
+
+\begin{table*}[!tb]
+  \caption{Quantitative results of Geometry evaluation using Chamfer Distance (CD) and F1 score at 10 cm and 30 cm thresholds. 
+  All models are trained on refracted images.}
+  \label{tab:geometry-evaluation}
+  \centering
+  \setlength\textfloatsep{0pt}
+  \setlength\intextsep{0pt}
+  \small
+  \scalebox{0.90}
+  {
+    \begin{tabular}{l||ccc|c|ccc|ccc}
+      
+      & \multicolumn{3}{c|}{Correction Components} & &  \multicolumn{3}{c|}{10cm} & \multicolumn{3}{c}{30cm}\\
+
+      Method & Position & Scale & Opacity
+      & $CD^\downarrow$ (m)  
+      & $Precise^\uparrow$ (\%)   & $Recall^\uparrow$ (\%) & $F1^\uparrow$ (\%)
+      & $Precise^\uparrow$ (\%)   & $Recall^\uparrow$ (\%) & $F1^\uparrow$ (\%) \\
+      \hline \hline 
+      
+      3DGS
+      & \XSolidBrush & \XSolidBrush & \XSolidBrush
+      & 8.477 & 0.03  & 0.20  & 0.06  & 0.12  & 2.52   & 0.23  \\
+      
+      Position
+      & \CheckmarkBold & \XSolidBrush & \XSolidBrush
+      & 0.110 & 69.80 & 84.65 & 76.51 & 82.80 & 99.95  & 90.57 \\
+      
+      + Scale
+      & \CheckmarkBold & \CheckmarkBold & \XSolidBrush
+      & 0.033 & 81.10 & 91.06 & 85.79 & 93.03 & 99.97  & 96.37 \\
+
+      + Opacity 
+      & \CheckmarkBold & \XSolidBrush & \CheckmarkBold
+      & 0.054 & 79.29 & 90.80 & 84.66 & 90.64 & 99.99  & 95.09 \\
+
+      Ours
+      & \CheckmarkBold & \CheckmarkBold & \CheckmarkBold
+      & 0.011 & 91.56 & 96.58 & 94.00 & 98.26 & 100.00 & 99.12 \\
+
+
+    \end{tabular}
+  }
+\end{table*}
+
+\begin{figure*}[!tb]
+  \centering
+  % \setlength\textfloatsep{2pt}
+  % \setlength\intextsep{2pt}
+  \includegraphics[width=0.65\linewidth]{figure/evaluation/real-space/appearance_align.png}
+  \caption{
+    Qualitative comparison of appearance reconstruction.
+    We show Ground Truth, the baseline 3DGS, and ablations of individual correction components.
+    }
+  \label{fig:ablation-appearance}
+\end{figure*}
+
+Accurate reconstruction of underwater terrain from aerial imagery is fundamentally challenging due to refractive ray bending.
+We evaluate geometric accuracy using the Chamfer Distance and the F1 score, two standard metrics for point-cloud comparison~\cite{Seitz2006_Comparison-MVS}.
+The Chamfer Distance captures the average nearest-neighbor deviation between reconstructed and ground truth surfaces, while the F1 score balances precision and recall under a specified tolerance.
+Following practical requirements for high-resolution bathymetric mapping~\cite{Agrafiotis2020_refractiveCorrection}, we adopt 10 cm and 30 cm thresholds, which represent realistically stringent criteria for operational use.
+
+
+As shown in \cref{tab:geometry-evaluation}, the baseline 3DGS completely fails in the refractive scenario, yielding a CD of 8.477 m and near-zero F1 scores. 
+Introducing position correction alone resolves most of the refractive displacement, reducing the CD by two orders of magnitude to 0.110 m.
+
+Scale correction further refines spatial consistency, bringing the CD down to 0.033 m and improving the 10 cm F1 score from 76.51\% to 85.79\%.
+While opacity correction has a smaller geometric influence, it contributes modest improvements in both precision and recall.
+
+The full mode (Ours) — combining all three corrections — achieves the best performance, with a CD of only 0.011 m and F1 scores of 94.00\% (10 cm) and 99.12\% (30 cm). 
+Notably, these results are obtained under water depths up to 10 m, demonstrating strong robustness to severe refractive distortion.
+
+Qualitative comparisons in \cref{fig:geometry-evaluation-quantitatively} confirm these findings: the corrected geometry closely matches the ground truth in position and shape, whereas the uncorrected reconstruction collapses into a shallow, noisy surface.
+
+
+\begin{figure*}[!ht]
+  \setlength\textfloatsep{0pt}
+  \setlength\intextsep{0pt}
+  \centering
+  % 1枚目の画像
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/evaluation/geometry/gt.png}
+  \end{minipage}
+  % \hfill % 画像間のスペースを最大にする
+  % 2枚目の画像
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/evaluation/geometry/wo.png}
+  \end{minipage}
+  \begin{minipage}[b]{0.45\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/evaluation/geometry/w.png}
+  \end{minipage}
+  \caption{Qualitative geometry comparison.
+  Top-left: The ground truth geometry rendered in simulator.
+  Top-right: The extracted geometry without correction.
+  Bottom-center: The extracted geometry with all correction.
+  Each image is rendered from an identical viewpoint and under the same lighting conditions. 
+  The ground truth and the corrected geometry are very similar in both position and shape. 
+  In contrast, the uncorrected geometry appears completely noisy and is incorrectly positioned at a shallower depth.
+  }
+  \label{fig:geometry-evaluation-quantitatively}
+\end{figure*}
+

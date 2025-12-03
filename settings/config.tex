@@ -46,17 +46,17 @@
 % 従来の \usepackage{cite} や thebibliography環境 の代わり
 \usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
 
-% 引用番号のスタイルを [1] から 1) に変更
-\DeclareFieldFormat{labelnumberwidth}{#1)}
+% % 引用番号のスタイルを [1] から 1) に変更
+% \DeclareFieldFormat{labelnumberwidth}{#1)}
 
-% 文中の引用 \cite{} を上付き文字にする設定
-\DeclareCiteCommand{\cite}[\mkbibsuperscript]
-  {\usebibmacro{cite:init}%
-   \usebibmacro{prenote}}
-  {\usebibmacro{citeindex}%
-   \printfield{labelnumber}\printtext{)}} % 閉じ括弧 ) を追加
-  {\multicitedelim}
-  {\usebibmacro{postnote}}
+% % 文中の引用 \cite{} を上付き文字にする設定
+% \DeclareCiteCommand{\cite}[\mkbibsuperscript]
+%   {\usebibmacro{cite:init}%
+%    \usebibmacro{prenote}}
+%   {\usebibmacro{citeindex}%
+%    \printfield{labelnumber}\printtext{)}} % 閉じ括弧 ) を追加
+%   {\multicitedelim}
+%   {\usebibmacro{postnote}}
 
 % 複数の引用をカンマ区切りにする
 \renewcommand*{\multicitedelim}{\textsuperscript{,}}

@@ -1,0 +1,110 @@
+\documentclass{isprs}
+
+% プリアンブル (文章の型版を定義)
+\usepackage{subfigure}
+\usepackage{setspace}
+\usepackage{geometry} % added 27-02-2014 Markus Englich
+\usepackage{epstopdf}
+\usepackage[labelsep=period]{caption}  % added 14-04-2016 Markus Englich - Recommendation by Sebastian Brocks
+\usepackage[british]{babel} 
+\usepackage[hang]{footmisc}
+\def\footnotemargin{1em} % added 08-01-2020 Dennis Wittich
+
+%\usepackage[authoryear]{natbib}
+%\def\bibhang{0pt}
+
+\geometry{a4paper, top=25mm, left=20mm, right=20mm, bottom=25mm, headsep=10mm, footskip=12mm} % added 27-02-2014 Markus Englich
+%\usepackage{enumitem}
+
+%\usepackage[perpage,para,symbol*]{footmisc}
+
+%\renewcommand*{\thefootnote}{\fnsymbol{footnote}}
+\captionsetup{justification=centering,font=normal} % thanks to Niclas Borlin 05-05-2016
+\captionsetup[figure]{font=small} % added 23-04-2019 Dennis Wittich
+\captionsetup[table]{font=small} % added 23-04-2019 Dennis Wittich
+
+% My Definition
+\usepackage{caption}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{pifont}
+\newcommand{\CheckmarkBold}{\ding{51}} % チェックボックス
+\newcommand{\XSolidBrush}{\ding{55}} % ばってん
+\usepackage{ulem} % 打ち消し線
+\usepackage{bm}
+\usepackage{empheq}
+% \usepackage{physics}
+\usepackage{subcaption} 
+\captionsetup{justification=raggedright}
+\usepackage{cuted}
+% \usepackage{colortbl}
+
+
+\newcommand{\diff}[2]{\frac{\partial #1}{\partial #2}}
+
+\usepackage[style=apa, backend=biber]{biblatex}
+\addbibresource{ra-gs.bib}
+\usepackage{ragged2e} 
+\usepackage{xurl} % URLを任意の位置で改行可能にする
+\AtNextBibliography{\sloppy} % 参考文献リスト内でのみ、改行ルールを少し緩くする \sloppy コマンドを適用
+% \AtNextBibliography{\RaggedRight} % sloppyより強力な改行命令
+% \usepackage[dvipdfmx, colorlinks=true]{hyperref} 
+\usepackage[colorlinks=true]{hyperref} 
+\usepackage[capitalize]{cleveref} % hyperrefの後ろ
+
+
+\everymath{\displaystyle} % 分数を縦に潰さない
+
+
+% 本文
+\begin{document}
+
+\title{RA-GS : Refractive-Aware Gaussian Splatting for Geometrically Accurate and Photorealistic 3D Reconstruction of Bathymetry from UAV-based Imagery}
+\date{2025}
+
+\author{
+ Taiki Uno\textsuperscript{1}, 
+ Sohei Kobayashi\textsuperscript{2}
+}
+\address{
+	\textsuperscript{1 }Kyoto University, Graduate School of Engineering, Kyoto, Japan - uno.taiki.65r@st.kyoto-u.ac.jp\\
+  \textsuperscript{2 }Kyoto University, Disaster Prevention Research Institute, Uji, Japan - kobayashi.sohei.7a@kyoto-u.ac.jp\\
+  }
+
+
+\abstract{
+  \input{abstract.tex}
+}
+
+\keywords{
+  Bathymetry, Gaussian Splatting, 3D Reconstruction, Two-Media Photogrammetry, Refraction Correction
+}
+
+\maketitle
+
+\input{intro}
+\input{related}
+\input{prelim}
+\input{method}
+\input{method2}
+\input{experiments}
+\input{evaluation}
+% \input{limitation}
+\input{conclusion}
+
+% --- 参考文献リストを出力 ---
+\clearpage
+\printbibliography
+
+
+% ---- APPENDIX ----
+\clearpage
+\section{APPENDIX}
+\input{3Dcov-correction}
+\input{color-correction}
+\input{apparent-depth}
+
+\end{document}
+

@@ -1,0 +1,41 @@
+% \section{CONCLUSION}\label{sec:conclusion}
+\subsection{Limitations}\label{LIMITATIONS}
+\sloppy
+
+\subsection*{Checklist for Discussion}
+Here is a sample checklist of limitations to address.
+
+\newlist{checklist}{itemize}{1}
+\setlist[checklist]{label=$\square$, leftmargin=*}
+
+\begin{checklist}
+	\item フレネルの法則で支配される反射や全反射の関係を考えていない。
+	\item 波の影響を考えていない。Surfaceをアラインする正則化\parencite{hoge_sugar}などによって、波に対して眼瞼に検証が可能になるはず。
+	\item 水の減衰の影響を考えていない。\parencite{hoge_seathru,hoge_seathru_gs}などによって、いい感じにできると思う。
+\end{checklist}
+
+実用化には、カメラポーズを正確に得る必要があり、SfMを用いる。
+今回はシミュレーションを用い、正確なカメラ内部外部パラメータが既知であることを仮定し検証を進めたが、水面のあるSceneと同様に、光の直進性が崩壊するため、実環境で正確なSfMの結果を得ることは難しい。
+SfM内で屈折を考慮する\parencite{Makris2024_refractive-aware-sfm}では、カメラのポーズは既知と仮定されているが、今回導入した\cref{center-correction}は、微分可能な座標変換に過ぎず、Bundle Ajustmentの過程に容易に組み込むことができる。
+よって、今回の提案手法、を応用することによって、水面を写した画像から正確なカメラポーズ推定が可能になる可能性がある。
+また、カメラ高度から水面までの高さも既知と仮定していた。
+これは、実際の測量ではUAVの飛行高度設定によっておおよおそ推定、制御可能である。
+水面からの相対的な高さをバンドル調整に据えることで、正確な水面の位置も推定可能になると考えている。
+
+波の影響
+本研究は、水面は完全にPlaneであると仮定したが、実際の環境ではそういった状況はほとんど生じない。
+3DGSがAppearanceベースの最適化である以上、Geometry的な正則化が必須になるだろう。
+\parencite{Huang2024SIGGRAPH_2DGS,Gu2024CVPR_SuGaR}などで提案されるGaussianが表面に沿って配置されるようにすることで、複数視点からの撮影で平均的に波の影響を緩和できると思う。
+また、\cref{eq:loss-function}において、画素ごとの信頼度であるPSNRよりもSSIMを信頼するように$\lambda$の割合を増やすというアイデアもある。
+LPIPSをロス関数に組み込んでもよいだろう。
+
+% To achieve a more comprehensive underwater rendering, this radiance scaling must be integrated with other optical phenomena, such as wavelength-dependent attenuation (i.e., light absorption and scattering) and Fresnel reflections at the water's surface, which we plan to investigate in subsequent research.
+
+水の濁り
+3DGSはAppearanceをもとに、
+
+Mesh Estractionを、SuGARなど、よりエレガントな手法を用いる。目的の人るがGeometryなら2DGSを使うべき。
+
+
+% "The evaluation is performed on synthetic data. How does the method generalize to real-world underwater scenes?"
+% 対策: もし実データでの実験がなければ、「実環境では、水の濁り、動的な浮遊物、不正確な水面推定など、さらなる課題が存在する」と正直に認めること。その上で、「本研究は、屈折という根源的な問題に対する初の解決策の一つを提示するものであり、将来的にこれらの課題に取り組むための重要な基盤となる」と、研究の位置づけと貢献を明確に主張しよう。

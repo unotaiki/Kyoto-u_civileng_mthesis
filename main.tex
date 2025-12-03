@@ -39,20 +39,11 @@
 \addtocontents{toc}{\vspace{2em}}
 \addcontentsline{toc}{section}{参考文献}
 
-% title引数で目次上の表示名を指定、heading=bibintocで目次に追加も可能だが、
-% 上記でaddcontentslineしているので標準出力のみ
-\printbibliography[title={参考文献}]
-
 % --- Bibliography ---
 \printbibliography[title={参考文献}]
+% 参考文献のみ行間を狭める
+\setlength{\bibitemsep}{0.5em}
 
 % --- End of document ---
 \end{document}
 
-
-
-
-
-
-
-\end{document}

@@ -1,0 +1,198 @@
+\newpage
+
+\section{Methodology}\label{METHODOLOGY}
+\sloppy
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{justification=raggedright}
+  \includegraphics[width=0.9\linewidth]{figure/method/position/overview.pdf}
+  \caption{
+  Overview of Refractive-aware Gaussian Splatting. 
+  This figure illustrates our proposed pipeline. 
+  A 3D scene, represented by 3D Gaussians, is transformed into an "apparent space" for each camera view by applying a differentiable refraction correction, which consists of position, scale, and opacity correction. 
+  This transformation models the physical effects of light refraction at the air-water interface. 
+  The resulting Gaussians are rendered to produce an image that includes refractive distortions.
+  The core of our method is a fully differentiable process. A loss is computed by comparing the rendered image with the input source image (which also contains refraction). This loss is then backpropagated to optimize the parameters of the original 3D Gaussians. Through this optimization, the model learns a refraction-free 3D representation of the scene, enabling the generation of both photorealistic, undistorted novel views and a geometrically accurate 3D model.
+  }
+  \label{fig:overview}
+\end{figure}
+
+As illustrated in \cref{fig:overview}, our method explicitly models refraction by applying a corrective transformation to the parameters of each Gaussian primitive. 
+This transformation accounts for the refractive effect of bending light rays at the air-water interface.
+This refractive transformation is composed of three components:
+(a) position correction, (b)scale correction, and (c)opacity correction.
+
+
+\subsection{Position Correction}\label{center-correction}
+
+We assume a Cartesian coordinate system where the camera is positioned on the positive z-axis at $(0, 0, H)$, and the water surface corresponds to the xy-plane ($z=0$). 
+Following prior work, we assume the water surface is flat and calm, resulting in a constant surface normal $\mathbf{n} = (0, 0, 1)$. A 3D Gaussian primitive located underwater has a center position $\bm{p} = (x, y, z)$, where $z < 0$.  % [TODO] 既存研究
+
+To simplify the geometry, we project the 3D position onto the 2D \textit{rz-plane} using the radial distance $r = \sqrt{x^2 + y^2}$. 
+The apparent position of the Gaussian's center, after accounting for refraction, is denoted as $\bm{p'} = (x', y', z')$, which projects to $(r', z')$ on this plane.
+
+From Snell's law and geometric optics, it follows that the apparent position of a submerged point, as seen from a fixed camera center, is uniquely determined\parencite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}.
+The ray from the apparent position $\bm{p'}$ to the camera intersects the water surface at a point we define as $(s, 0)$ on the \textit{rz-plane}, where $0 \leq s < r$.
+Let $\theta_r$ be the angle of incidence (in water) and $\theta_i$ be the angle of refraction (in air), both measured with respect to the surface normal. 
+Let $n$ be the refractive index of water, and we assume the refractive index of air is 1. 
+Snell's Law gives:
+\begin{equation}\label{eq:snell}
+  \sin \theta_i = n \sin \theta_r
+\end{equation}
+From the geometry of the system, these angles can be related to the positions, leading to a quartic equation in $s$
+(triangle similarity between $\triangle OAI$ and $\triangle IPC$):
+\begin{equation}\label{eq:quartic-s}
+\begin{split}
+  (1-n^2)s^4 &+ 2(n^2-1)rs^3 \\
+             &+ ((1-n^2)r^2 + H^2 - n^2 z^2)s^2 \\ % Note: Original had H^2 and z^2 swapped in position, check your derivation. Assuming H is camera height and z is object depth.
+             &+ 2n^2z^2rs - n^2z^2r^2 = 0
+\end{split}
+\end{equation}
+This equation can be solved numerically for $s$, for instance, using Newton's method or directly solved by Ferrari's method. 
+To find the apparent position $(r', z')$, we analyze the differential change in ray position. 
+From the geometry of triangles formed by the rays and positions, we can establish the following relationships.
+( $\triangle IPC$, $\triangle IP'C'$, and $\triangle I'P'C'$):
+\begin{equation}\label{eq:r-s}
+  r - s = -z \tan \theta_r
+\end{equation}
+\begin{equation}\label{eq:triangle-IP'C'}
+  r' - s = z' \tan \theta_i
+\end{equation}
+\begin{align}
+  -z' \tan \left(\theta_i + \Delta \theta_i \right) & = (r' - s) + (- \Delta s) \notag \\
+  -z' \left( \sin \theta_i + \Delta \theta_i \cos \theta_i  \right) & = (r' -s - \Delta s) \left( \cos \theta_i - \Delta \theta_i \sin \theta_i \right) \label{eq:triangle-I'P'C'}
+\end{align}
+With the derivative of Snell's law from \cref{eq:snell}:
+\begin{equation}\label{eq:dtheta_r/dtheta_i}
+  \frac{d \theta_r}{d \theta_i} = \frac{1}{n} \frac{\cos \theta_i}{\cos \theta_r}
+\end{equation}
+By differentiating these geometric relationships \cref{eq:triangle-I'P'C',eq:triangle-IP'C',eq:r-s} and combining them with equations of Snell's law \cref{eq:snell,eq:dtheta_r/dtheta_i},
+we can represent the apparent position $(r', z')$ with $\theta_i$ and $\theta_r$.
+\begin{subequations}
+  \begin{empheq}[left=\empheqlbrace]{align}
+      r' &= r + (n^2 -1) \cdot z \cdot \tan^3 \theta_r \label{eq:r'} \\
+      z' &= \frac{1}{n} \cdot \frac{{\cos \theta_i}^3}{{\cos \theta_r}^3} \cdot z \label{eq:z'}
+  \end{empheq}
+\end{subequations}
+This is the center position correction transformation. 
+Since $\theta_i$ and $\theta_r$ are determined by the camera position and the Gaussian's mean position $\bm{p}$, the apparent position $\bm{p'}$ is uniquely determined. 
+The transformation is applied by first calculating $r$ and then finding the new coordinates $x' = x \frac{r'}{r}$ and $y' = y \frac{r'}{r}$.
+Note that since $z<0$, the term $(n^2 -1) \cdot z \cdot \tan^3 \theta_r$ is negative, ensuring $r' < r$. 
+Similarly, since $\theta_i > \theta_r$ for $n>1$, we have $\cos \theta_i < \cos \theta_r$, which ensures $|z'| < |z|$. 
+This confirms that the apparent Gaussian $G'(\bm{p'})$ always appears shallower and closer to the central axis than the actual Gaussian $G(\bm{p})$.
+In the special case where the Gaussian is directly below the camera ($r=0$, thus $\theta_i = \theta_r = 0$), the equations simplify to $r'=r$ and $z' = z/n$. 
+This special case, where apparent depth is the true depth divided by $n$, is a common approximation used in prior work (e.g., \cite{Woodget2014_PhotograBathy-multiply-n}). 
+However, this approximation is inaccurate for most rays in a perspective projection which are off-nadir.
+
+For use in Gaussian Splatting, this transformation must be differentiable. 
+We therefore require the Jacobian of the transformation:
+\begin{equation}\label{eq:Jacobian}
+  \begin{split}
+    J_{app} = 
+    \frac{\partial \bm{p'}}{\partial \bm{p}} &= 
+    \begin{bmatrix} 
+      \frac{\partial x'}{\partial x} & \frac{\partial x'}{\partial y} & \frac{\partial x'}{\partial z} \\
+      \frac{\partial y'}{\partial x} & \frac{\partial y'}{\partial y} & \frac{\partial y'}{\partial z} \\ 
+      \frac{\partial z'}{\partial x} & \frac{\partial z'}{\partial y} & \frac{\partial z'}{\partial z} 
+    \end{bmatrix} \\
+  \end{split}
+\end{equation}
+While this Jacobian can be derived analytically, we compute it using numerical differentiation in our implementation for simplicity. Specifically, we use finite differences; for example, the partial derivative ${\partial x'} / {\partial x}$ is approximated as $(p'_x(x+\Delta x) - p'_x(x-\Delta x)) / (2\Delta x)$.
+
+This correction is the key proposal of our paper, which models the effect of refraction through a direct analytical transformation of the Gaussian means. 
+This enables the reconstruction of an accurate, refraction-free 3D scene from posed images of an underwater environment. 
+The only required inputs are the refractive index of the water and the location of the water surface relative to the cameras.
+
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{justification=raggedright,singlelinecheck=false}
+
+  % 左
+  \begin{minipage}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/rz.png}
+    \caption{Illustration of the apparent position $P^{\prime}$ versus the true position $P$ in the \textit{rz}-plane.
+    Even though the actual object is located at the blue Gaussian position $P$, it appears shifted toward the red Gaussian position $P'$ when observed through the refractive interface.
+    }
+    \label{fig:rz}
+  \end{minipage}
+  \hfill
+  % 右
+  \begin{minipage}[t]{0.48\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/space_compression.png}
+    \caption{Space compression from the camera view. 
+    The Space is distorted by the camera position.
+    Each colored grid means the corresponding compressed space of entire grid in camera coordinates (shown as black.)}
+    \label{fig:space_compression_by_view}
+  \end{minipage}
+\end{figure}
+
+
+
+\subsection{Scale Correction}\label{scale-correction}
+
+The transformation of the Gaussians center position $\bm{p} \to \bm{p'}$, which models the core effect of refraction, distorts the Cartesian coordinates system of camera coordinates.
+This space is named \textit{the apparent space}, where the axes are no longer orthogonal as illustrated in \cref{fig:space_compression_by_view}.
+This distortion is particularly pronounced for large angles of incidence (in the air), causing the space to be significantly compressed. 
+Without a corresponding correction to the scale parameter $\bm{s}$, individual Gaussians are perceived as being both densely packed and dilated. 
+This leads to severe visual artifacts, such as blurring and unrealistic expansion of surfaces, as shown in \cref{fig:artifact-w/o-scale-correction}.
+
+\begin{figure}[htbp]
+  \centering
+    \includegraphics[width=0.8\linewidth]{figure/method/artifact-wo-scale-correction.png}
+    \caption{Artifact without scale correction. \\ 
+    \textbf{Left}: The image is rendered image of 3DGS model trained by Ground Truth (GT) images without refractive plane.
+    \textbf{Right}: The image is rendered of same model using center position correction, but without scale correction.
+    The scene in area bounded by the red is expanded, where the ray of incident angle is larger.}\label{fig:artifact-w/o-scale-correction}
+\end{figure}
+
+To mitigate these artifacts, we propose to downscale each Gaussian according to the local space compression ratio. 
+We quantify this compression by analyzing the transformation of the Cartesian basis vectors. 
+For instance, the basis vector \(\mathbf{e}_x = (1,0,0)^\top\) is to be mapped by given by the first column of $J_{app}$:
+\begin{equation}
+    \mathbf{e}_{x}' = J_{app} \mathbf{e}_x = 
+    \begin{bmatrix}
+    \frac{\partial x'}{\partial x} \\
+    \frac{\partial y'}{\partial x} \\
+    \frac{\partial z'}{\partial x}
+    \end{bmatrix}.
+\end{equation}
+
+The local scaling factor along the \(x\)-axis is quantified by the norm of this vector:
+\begin{equation}
+    s_x = \|\mathbf{e}_{x}'\| = \sqrt{\left(\frac{\partial x'}{\partial x}\right)^2 + \left(\frac{\partial y'}{\partial x}\right)^2 + \left(\frac{\partial z'}{\partial x}\right)^2}.
+\end{equation}
+Similarly, we can compute the scaling factor $s_y$ and $s_z$ along the $y$-axis and $z$-axis.
+
+It seems better in order to calculate the volume compression ratio $V$ by applying to a determinant of \cref{eq:Jacobian} $|\det J_{app}|$.
+However, this value overestimates downscaling especially the ray of incident angle is larger, which makes Gaussians too small.
+
+While one might consider using the determinant of the Jacobian $|\det J_{app}|$ as a direct measure of the volumetric compression, we empirically found that this approach overestimates the required downscaling, particularly for large incidence angles, resulting in overly diminished Gaussians.
+Instead, we define an isotropic scale correction factor $S$ derived from the geometric mean of the directional scaling factors. 
+This factor is computed as the cubic root of the product of the individual scaling factors:
+\begin{equation}
+  \label{eq:volume-compression-ratio}
+  V = s_x \cdot s_y \cdot s_z
+\end{equation}
+This formulation provides a stable measure of the average spatial compression that is robust to the extreme shear in the transformation.
+While it intentionally disregards the shear components, it is precisely this property that makes it effective for isotropically rescaling the Gaussians, preventing the visual artifacts without eliminating the primitives themselves.
+
+
+\begin{equation}\label{scale-correction-factor}
+  S = V ^ {1/3}
+\end{equation}
+We then apply this factor to the original scale vector  $\bm{s}$ to obtain the corrected scale $\bm{s'}$
+\begin{equation}
+\label{eq:scale-correction-edge}  
+  \bm{s'} = S \bm{s}
+\end{equation}
+We apply this correction during the rendering phase, dynamically adjusting the scale of each Gaussian based on its position relative to the camera and the refractive interface.
+
+
+% 1.  **"Why the geometric mean?":** A sharp reviewer will ask: "The product of norms `s_x s_y s_z` is not the true volume change, which is given by the determinant. Your method ignores the shear/non-orthogonality of the transformed basis vectors. Please justify why this simplification is valid or even preferable."
+%     **Your Defense:** You need to be ready. Your answer should be something like: "We acknowledge that our formulation `V` does not represent the true geometric volume change. However, our goal is to find an effective isotropic scaling factor for the Gaussian primitive, which itself is symmetric. We found that applying an isotropic correction based on the geometric mean of the directional stretches yielded visually superior results by preventing the excessive and often anisotropic shrinkage caused by using the determinant, which is more sensitive to shear."
+% 2.  **"What are the limitations?":** "Does this method work for curved refractive surfaces or only planar ones? What about materials with varying indices of refraction?"
+%     **Your Defense:** Be upfront about the scope of your work in the paper. State clearly that you've validated it for planar surfaces and that extending it to more complex, spatially-varying scenarios is a promising direction for future work. Never claim your method solves everything. Honesty about limitations builds trust with reviewers.

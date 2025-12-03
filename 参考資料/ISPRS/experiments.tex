@@ -1,0 +1,60 @@
+\section{Experiments}\label{sec:EXPERIMENTS}
+
+\subsection{Dataset}\label{sec:dataset}
+
+\begin{figure}[!tbhp]
+\centering
+\includegraphics[width=0.7\linewidth]{figure/experiment/simulator.png}
+\caption{Overview of the simulated data capture setup.}
+\label{fig:simulator-settings}
+\end{figure}
+
+To isolate refractive effects from other optical phenomena such as surface reflection and underwater light attenuation, all experiments are conducted in a controlled simulation environment.
+We acknowledge that these effects are non-negligible in real-world conditions, and addressing them remains future work.
+
+A synthetic riverbed mesh is generated in Blender \cite{blender} by applying a displacement modifier to a gravel texture, and physically accurate images are rendered using the Cycles path tracer.
+The water surface is assumed to be flat and free of specular reflections, with an average depth of 10 m.
+Images were captured with 85\% side and forward overlap, combining nadir views with off-nadir shots at 20° and 40° inclination, rotating 10° around the target area for full coverage.
+While multi-view observations benefit geometric consistency, larger angles amplify refractive distortion and apparent depth errors (\cref{fig:space_compression_by_view}).
+
+The simulated camera follows a pinhole model with a 70° field of view and a resolution of 800 $\times$ 800 pixels.
+Each dataset consists of 90 images, excluding novel-view test images.
+An overview of the capture setup is shown in \cref{fig:simulator-settings}.
+
+\subsection{Implementation}\label{sec:implementation}
+
+We implement Refractive-Aware Gaussian Splatting by extending the open-source gsplat framework~\cite{ye2025_gsplat}.
+The refractive parameter transformation is realized as a custom PyTorch~\cite{paszke2019pytorch} autograd function, integrated into gsplat’s differentiable rasterizer.
+The quartic equation for center correction (\cref{sec:center-correction}) is solved via GPU-parallelized Newton–-Raphson iteration, introducing a modest overhead of up to $3 \times$  compared to the original gsplat implementation.
+
+We adopt the adaptive density control and default hyperparameters from vanilla 3DGS and run optimization for 30,000 iterations.
+To simplify gradient computation, the spherical harmonic degree is fixed to 0, making colors view-independent.
+Feature-based SfM~\cite{schoenberger2016_colmap} frequently results in sparse point clouds on textureless riverbeds in real-world environments~\cite{Mandlburger2019_featureMatching-textureless}. Consequently, we initialize Gaussians as a planar point cloud at a depth of approximately 10 m.
+All experiments are performed on a single NVIDIA RTX 3090 GPU.
+
+\subsection{Geometry Extraction}\label{sec:geometry-extraction}
+
+% \begin{figure}[htbp]
+% \centering
+% \includegraphics[width=\linewidth]{figure/experiment/flow_pc_extraction.png}
+% \caption{Flow of point cloud extraction.}
+% \label{fig:flow_pc_extraction}
+% \end{figure}
+
+\begin{figure}[!tbhp]
+\centering
+\includegraphics[width=\linewidth]{figure/experiment/extraction.png}
+\caption{Geometry extraction pipeline.
+Left: noisy point cloud from 3DGS.
+Center: discretization and median-height computation.
+Right: 2.5D height map and final surface-aligned point cloud.}
+\label{fig:extract_surface_aligned_pc}
+\end{figure}
+
+To evaluate geometric accuracy, the optimized 3D Gaussians are converted into dense, surface-aligned point clouds suitable for bathymetric analysis.
+While advanced extraction schemes exist (e.g., SuGaR~\cite{Gu2024CVPR_SuGaR}, 2DGS~\cite{Huang2024SIGGRAPH_2DGS}, TrimGS~\cite{fan2024_trimGS}), we employ a lightweight procedure for reproducibility.
+
+Raw point clouds are generated using the 3DGS-to-PC converter~\cite{stuart20253dgstopcconvert3dgaussian}, which samples points proportionally to Gaussian volume.
+To remove floating artifacts, local-plane outlier filtering is performed using CloudCompare~\cite{girardeau2016cloudcompare}.
+The filtered cloud is discretized into a 2D grid on the horizontal plane; the median height of each cell defines a height map, from which we reconstruct a surface-aligned point cloud (\cref{fig:extract_surface_aligned_pc}).
+Grid resolution and filtering parameters are adjusted per dataset to balance smoothness and detail preservation.

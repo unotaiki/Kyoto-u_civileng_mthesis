@@ -1,0 +1,24 @@
+\section{Conclusion}\label{sec:conclusion}
+\sloppy
+
+We introduced a Refractive-Aware Gaussian Splatting framework that integrates a physically rigorous two-media refraction model directly into the 3DGS optimization process. 
+By deriving a fully differentiable transformation that maps underwater Gaussians to their refracted appearances in aerial imagery, the method enables refraction-free 3D reconstruction without relying on empirical depth corrections or data-driven priors. 
+Our experiments on a physically based, ray-traced riverbed dataset demonstrate that the proposed model substantially reduces refractive distortions, achieving high-fidelity image synthesis and accurate geometric recovery. 
+Quantitatively, the reconstructed imagery attains superior SSIM and PSNR scores when compared against pristine, non-refractive ground truth, while the extracted geometry reaches an F1-score exceeding 94\% and a Chamfer Distance of 0.011~m, confirming its high metric reliability.
+
+\subsection{Limitations and Future Work}\label{sec:limitation}
+
+While effective under controlled, calm-surface conditions, the current framework focuses exclusively on refraction and does not model other important aquatic imaging phenomena. 
+Specifically, surface reflections, underwater attenuation (absorption and scattering), and the Fresnel-dependent balance between reflection and refraction are not explicitly accounted for. 
+Since these effects are inherently present in real-world images, they inevitably act as noise in the radiometric optimization if not explicitly addressed.
+
+Future work may incorporate these processes more explicitly. 
+Specular reflections could be mitigated during acquisition using polarization filters, whereas attenuation could be modeled through recent underwater extensions of Gaussian Splatting such as WaterSplatting~\cite{li20243DV_watersplatting} and SeaSplat~\cite{Yang2025ICRA_SeaSplat}. 
+Our geometry extraction pipeline, which currently relies on heuristic priors, could also be strengthened. 
+Integrating recent geometry-focused 3DGS variants or introducing regularization terms that encourage Gaussians to adhere to coherent surfaces may further improve geometric stability~\cite{Huang2024SIGGRAPH_2DGS,Gu2024CVPR_SuGaR}. 
+Such priors could also suppress wave-induced artifacts by favoring physically plausible bed topography over per-pixel photometric accuracy.
+
+Overall, this work takes a significant step toward resolving the long-standing challenge of refractive distortion in photogrammetric bathymetry. 
+By tightly coupling optical physics with explicit 3D representations, the proposed method lays the foundation for accurate depth mapping in shallow aquatic environments, and opens new directions for physically grounded reconstruction in refractive media.
+
+
