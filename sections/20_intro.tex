@@ -1,25 +1,66 @@
 %!TEX root = ../main.tex
 \chapter{序論}
 \section{研究背景}
-正確な水深情報(Bathymetry Information)の取得は、洪水予測~\cite{Grimaldi2018_flood-forecasting}、河床地形変動モニタリング~\cite{Hemmelder2018_monitoring-river-morphology}、水生生物生息環境評価~\cite{Thomson2001_habitat-assessment}、沿岸域管理~\cite{Pasquali2021_coastal-zone-management}などの様々な分野において重要である。
-従来の船載ソナー~\cite{Giordano2015_sonar-bathymetry}は深海では有効であるが、浅海では座礁リスク、狭帯域カバレッジ、高コストな運用が課題となっている。
-近年、航空機に搭載された光電測量システム(Airborne Light Detection and Ranging: ALB)が導入されているが、設備コストと運用コストが高いという課題がある。
-一方、無人航空機(Unmanned Aerial Vehicle: UAV)を用いた写真測量(Photogrammetry)は、低コストで広範囲を効率的に調査する手法として注目されている。
-しかし、UAVによる水域地形計測においては、水面で発生する光の屈折が、従来の写真測量における幾何学的仮定（共線性条件）を根本的に破綻させるという課題がある。
-既存の手法は、屈折を完全に正確に物理的正確性を持ってモデル化しない経験的な補正や反復的な後処理に依存するか、あるいは説明可能性を欠くブラックボックス的な深層学習モデルを用いるものが多く、形状の幾何学的忠実性と外観の写実性を両立させることは困難であった。
+地球表面の大部分を覆う水域、特に沿岸部や河川などの浅水域(Shallow Water)は、人間社会の経済活動、防災、生態系保全において極めて重要な役割を果たしている。
+河川管理における氾濫原の地形変状把握\cite{Fujii2024_seigyu}、沿岸域管理\cite{Pasquali2021_coastal-zone-management}、生態系の生息環境評価\cite{Thomson2001_habitat-assessment}など、水底の詳細な地形データを観測する水深測量(Bathymetry)は非常に重要である。
+しかしながら、これらの領域は従来の測量技術では取得が困難な空白地帯となりがちであった。
 
-\section{研究目的}
-本研究では、この課題を解決するために、物理的に忠実な二媒質屈折モデルを再構成パイプラインに直接組み込んだ``Refraction-aware 3D Gaussian Splatting''を提案する。
-本手法の核心的な貢献は、水中の真の位置にある3D Gaussian を、航空画像上の見かけの位置へと解析的にマッピングする微分可能なパラメータ変換の導入にある。これにより、標準的な3D Gaussian Splattingの柔軟なフレームワークを維持しつつ、屈折あり画像からの密な3次元形状と詳細なテクスチャ情報の復元を実現した。
+% [TODO] 最も伝統的な水深測量は人 (Bathymetryの歴史で紹介)
+伝統的な船舶搭載型マルチビームソナー(深浅測量･音響測深)は、一定の深度がある海域においては標準的な手法であるが、水深が極めて浅い河川や海岸線付近においては、船舶の座礁リスクなどの航行不可領域の存在により、その運用は著しく制限される。
+近年では、小型の無人水上艇(Unmanned Surface Vehicle: USV)を用いた水深測量が注目されているが\cite{Giordano2015_sonar-bathymetry,Kurowski2019_survey-USV}、マルチビームの指向角の制限により、浅水域においては走査幅(Swath Width)が狭く、面的な測量を行うには時間的コストが高くなるという、非効率性の問題も生じる。
+一方で、航空機搭載レーザ測深（ALB: Airborne LiDAR Bathymetry）は\cite{Saylam2018_ALB}、広域かつ高精度な計測が可能であるが、導入および運用コストが極めて高く、高頻度なモニタリングには不向きであるという経済的な障壁が存在する。
+
+こうした背景の中、近年急速に普及したドローンなどの無人航空機（UAV: Unmanned Aerial Vehicle）を用いた写真測量(Photogrammetry)は、低コストかつ高解像度、高頻度なデータ取得が可能であることから、次世代の浅瀬測量技術として大きな期待を集めている。
+UAVにより空撮された多視点画像から、Structure-from-Motion (SfM) \cite{schoenberger2016_colmap}、および Multi-View Stereo (MVS) \cite{Furukawa2010_PatchMVS,Furukawa2015_MVS}を用いて3次元形状を復元するアプローチは、陸部においては既に広い用途で実用化されている\cite{Bemis2014_UAV-photogrammetry,Gomez2016_UAV-photogrammetry-disaster,Iglhaut2019_UAV-photogrammetry-forestry}。
+これらの技術を水中に適用する場合、その手法は空中からの水深写真測量(Photogrammetric Bathymetry)と呼ばれ、空中から撮像した多視点画像からの水中の三次元再構成問題と捉えることができる。
+水深写真測量には、光の反射や、水中での光の散乱･吸収による減衰、波による被写体の歪みなどの課題が存在するが、中でも最も根本的で重要な課題として取り組まれてきたのが光の屈折(Refraction)である。
+
+
+\section{研究課題}
+
+既存のSfM･MVSアルゴリズムの大部分は、幾何光学(Geometry Optics)を前提としている。
+すなわち、撮像(Image Sensing)のプロセスにおいて、観測対象となる光は、被写体からカメラ中心まで直進することを仮定する。
+しかし、UAVによる水中撮影においては、光は水中から空気中へ進む際に、水面と異なる媒質の境界でスネルの法則(Snell's Law)に従って屈折する。
+この物理現象によって、カメラから見た被写体の｢見かけの位置｣(Apparent Appearance)は、実際の位置よりも浅く、近く、歪ませる。
+屈折の影響を無視し、既存のSfM･MVSアルゴリズムを適用する場合、水深が実際よりも浅く評価される。
+これに対処するために、従来はSfM･MVSの出力結果に屈折率に基づく補正を適用する手法\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n}や、
+点群とカメラフレームの位置関係から推定する手法\cite{Murase2008_refractiveCorrection,Dietrich2016_multi-angle-correction}、
+手動で計測した数カ所の真値をもとに出力結果の補正率を回帰で決定する手法\cite{}%TODO: 引用
+が提案されてきた。
+こうした手法は、屈折の影響を補正する一方で、屈折の物理的特性を完全にモデル化しているわけではなく、視線角度依存性や多視点間の整合性を厳密に扱えないため、幾何学的精度には限界があった。
+直近では、\cite{Makris2024_refractive-aware-sfm}が、屈折の物理的特性を直接SfMの最適化に組み込むことで、より高精度な再構成を実現する手法を提案している。
+しかし、この手法では、疎な出力結果を補うために、USVなど高いコストを要する計測機器を用いた測量結果を用いた深層学習手法で補間する\cite{Agrafiotis2019ISPRS_SVM-UAV-Bathymetry}必要があり、学習データ不足とフィールド依存性という問題がある。
+
+さらに、近年のコンピュータビジョン(Computer Vision)･コンピュータグラフィックス(Computer Graphics)の領域では、Neural Radiance Fields (NeRF)\cite{Mildenhall2021ECCV_NeRF}や 3D Gaussian Splatting (3DGS) \cite{Kerbl2023ToG_3DGS}といった、微分可能なレンダリング(Differentiable Rendering)を用いた新たな3次元表現･再構成手法が登場している。
+これらは任意視点における写真のようなリアルな新規視点合成（Novel View Synthesis:NVS）において卓越した性能を示し、照明依存性、時間軸方向へ拡張、幾何情報の抽出といった多種多様な課題を克服するよう、日進月歩の進化を遂げている\cite{}。% Survey論文でも引用しとけ。
+特に、NeRFのような陰的三次元表現（Implicit Representation）は計算コストが高く、幾何的な走査や解釈が容易ではない一方、3DGSは明示的な三次元Gaussian点群表現（Explicit Representation）を持ち、高速かつ直接的な形状操作が可能であるという利点を持つが、空気中から観測する水中屈折を考慮した定式化は未だ十分になされていない。
+
+\section{研究の目的と貢献}
+以上の背景から、本修士論文では、UAV空撮画像からの水中3次元復元において、物理的な屈折モデルをGaussian Splatting(GS)のパイプラインに直接統合することで、幾何学的正確性と写実的な外観再現を両立させる新たな枠組み（Refractive-Aware Gaussian Splatting）を提案・実証する。
+本手法の核心的な貢献は、水中の真の位置にある3D Gaussianを、UAV空撮画像中の見かけの位置へと解析的にマッピングするパラメータ変換にある。
+この変換は、微分可能であるたり、GSの最適化過程に直接組み込むことで、屈折を含む入力画像から直接、屈折のない三次元シーン(3D Scene)を推定し、屈折の影響を排した密な3次元形状と詳細なテクスチャ情報の復元を実現する。
+
+\begin{figure}[htbp] % [TODO] 日本語の図を作成
+  \centering
+  \includegraphics[width=0.8\linewidth]{figure/20_intro/task_overview_en.png}
+  \caption{
+    空気中からの水深写真測量のタスクの概要。
+    空中から水底を撮像したパラメータ既知の多視点画像を入力として、Refractive-Aware Gaussian Splattingを用いることで、屈折の影響を排除した水中の三次元シーンを再構成する。
+  }
+  \label{fig:photogrammetric-bathymetry}
+  \end{figure}
+
+検証においては、PBRレンダリング(Pysically-Based Rendering:PBR)によってシミュレートされた合成データと実データの双方を用いて検証を行った。
+合成データでは、不観測地点からの再構成3Dモデルの視覚的品質を指すPeak Signal-to-Noise Ratio (PSNR)が 25 dBを超え、提案手法から抽出した幾何情報では真値との幾何的復元精度を表すF1スコア(F1-score)で94\%を超える結果を確認した。
+(合成データは深度 10 m、撮影高度 10 mのスケールである。
+完全に平面の水面とカメラパラメータ既知を仮定し、屈折の影響のみを考慮し、反射や減衰、波など屈折以外の物理的影響は除外している。
+F1スコアは許容誤差 10 cmとした。)
+実データにおいても、幾何的誤差 ~ を確認するなど、実用的な空中からの水深写真測量としての方法を確認した。
 
 \section{論文構成}
-本論文の構成は以下の通りである。
-
-\begin{itemize}
-  \item 第2章：先行研究
-  \item 第3章：理論背景
-  \item 第4章：提案手法
-  \item 第5章：評価実験
-  \item 第6章：考察
-  \item 第7章：結論
-\end{itemize}
+本論文は導入部である第1章を含め、全6章で構成される。
+第2章では、水深測量の概要と諸手法、に関して述べる。
+第3章では、本研究の基盤となるGaussian Splattingやコンピュータビジョンの諸手法の学術的背景と理論に関して記述する。
+第4章では、提案手法であるRefractive-Aware Gaussian Splattingの詳細な理論と実装に関して記述する。
+第5章では、検証において用いた合成データと実データの双方を用いて、提案手法の性能を定性･定量的に検証する。
+第6章では、研究の課題(Limitation)と今後の課題(Future Work)に関して述べ、研究の統括を行う。

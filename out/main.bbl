@@ -19,117 +19,108 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
-    \entry{Grimaldi2018_flood-forecasting}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=7bf1d4e4db5816901b5aa94c987c8d6f}{%
-           family={Grimaldi},
-           familyi={G\bibinitperiod},
-           given={S.},
-           giveni={S\bibinitperiod}}}%
-        {{hash=66d548e0e670e107fc4a80dc0c3825b3}{%
-           family={Li},
-           familyi={L\bibinitperiod},
-           given={Y.},
+    \entry{Fujii2024_seigyu}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=426ccfe6fbcb4fa51daba6249fcad74f}{%
+           family={Fujii},
+           familyi={F\bibinitperiod},
+           given={Temma},
+           giveni={T\bibinitperiod}}}%
+        {{hash=cc3b567f592eafc3cc4737393742a4b4}{%
+           family={Kantoush},
+           familyi={K\bibinitperiod},
+           given={Sameh\bibnamedelima Ahmed},
+           giveni={S\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=e5d3f42c1912285a6bed8395b640b3ab}{%
+           family={Takemon},
+           familyi={T\bibinitperiod},
+           given={Yasuhiro},
            giveni={Y\bibinitperiod}}}%
-        {{hash=c517bf33832a01f5c5b2dbf97fced9fa}{%
-           family={Walker},
-           familyi={W\bibinitperiod},
-           given={J.\bibnamedelimi P.},
-           giveni={J\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
-        {{hash=b0571629a828b945600efa6aa4abebe7}{%
-           family={Pauwels},
-           familyi={P\bibinitperiod},
-           given={V.\bibnamedelimi R.\bibnamedelimi N.},
-           giveni={V\bibinitperiod\bibinitdelim R\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=139667d78838341fe76632aea44f6936}{%
+           family={{Al mamari}},
+           familyi={A\bibinitperiod},
+           given={Mahmood\bibnamedelima Mohamed},
+           giveni={M\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=5fa7da3dc76bae7124b725252ca1fadf}{%
+           family={Sumi},
+           familyi={S\bibinitperiod},
+           given={Tetsuya},
+           giveni={T\bibinitperiod}}}%
       }
-      \list{publisher}{1}{%
-        {American Geophysical Union (AGU)}%
-      }
-      \strng{namehash}{d00a8ab5eaf86e70480381fa891d1132}
-      \strng{fullhash}{e4cd67371b8d327b8311cb9017f16c81}
-      \strng{fullhashraw}{e4cd67371b8d327b8311cb9017f16c81}
-      \strng{bibnamehash}{d00a8ab5eaf86e70480381fa891d1132}
-      \strng{authorbibnamehash}{d00a8ab5eaf86e70480381fa891d1132}
-      \strng{authornamehash}{d00a8ab5eaf86e70480381fa891d1132}
-      \strng{authorfullhash}{e4cd67371b8d327b8311cb9017f16c81}
-      \strng{authorfullhashraw}{e4cd67371b8d327b8311cb9017f16c81}
+      \strng{namehash}{ae000383dc1fc489ca742ab0029eadeb}
+      \strng{fullhash}{90e625ab2759349bb0698835b7e6baad}
+      \strng{fullhashraw}{90e625ab2759349bb0698835b7e6baad}
+      \strng{bibnamehash}{ae000383dc1fc489ca742ab0029eadeb}
+      \strng{authorbibnamehash}{ae000383dc1fc489ca742ab0029eadeb}
+      \strng{authornamehash}{ae000383dc1fc489ca742ab0029eadeb}
+      \strng{authorfullhash}{90e625ab2759349bb0698835b7e6baad}
+      \strng{authorfullhashraw}{90e625ab2759349bb0698835b7e6baad}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{1944-7973}
-      \field{journaltitle}{Water Resources Research}
-      \field{month}{2}
-      \field{number}{2}
-      \field{title}{Effective Representation of River Geometry in Hydraulic Flood Forecast Models}
-      \field{volume}{54}
-      \field{year}{2018}
-      \field{pages}{1031\bibrangedash 1057}
-      \range{pages}{27}
+      \field{issn}{2772-4115}
+      \field{journaltitle}{Nature-Based Solutions}
+      \field{title}{Impact of the Japanese traditional river training structure “Seigyu (Crib spur dike)” on river morphology and its geometrical changes}
+      \field{volume}{6}
+      \field{year}{2024}
+      \field{pages}{100180}
+      \range{pages}{1}
       \verb{doi}
-      \verb 10.1002/2017wr021765
+      \verb 10.1016/j.nbsj.2024.100180
       \endverb
       \verb{urlraw}
-      \verb http://dx.doi.org/10.1002/2017wr021765
+      \verb https://www.sciencedirect.com/science/article/pii/S2772411524000715
       \endverb
       \verb{url}
-      \verb http://dx.doi.org/10.1002/2017wr021765
+      \verb https://www.sciencedirect.com/science/article/pii/S2772411524000715
       \endverb
     \endentry
-    \entry{Hemmelder2018_monitoring-river-morphology}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=228ea56255ccecbf8194750cbf27cbbb}{%
-           family={Hemmelder},
-           familyi={H\bibinitperiod},
-           given={Sven},
-           giveni={S\bibinitperiod}}}%
-        {{hash=55052c2ce689187af6ff60509ed0e6b6}{%
-           family={Marra},
+    \entry{Pasquali2021_coastal-zone-management}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=43b3f101a5c223dd2010a7912f2be9b8}{%
+           family={Pasquali},
+           familyi={P\bibinitperiod},
+           given={Davide},
+           giveni={D\bibinitperiod}}}%
+        {{hash=8b06527b85fe16944851600534214fc6}{%
+           family={Marucci},
            familyi={M\bibinitperiod},
-           given={Wouter},
-           giveni={W\bibinitperiod}}}%
-        {{hash=768cc01405a296c2dd6a7780b3b83145}{%
-           family={Markies},
-           familyi={M\bibinitperiod},
-           given={Henk},
-           giveni={H\bibinitperiod}}}%
-        {{hash=ee4c967c498ee0f253f969fa8e2d8f91}{%
-           family={De\bibnamedelima Jong},
-           familyi={D\bibinitperiod\bibinitdelim J\bibinitperiod},
-           given={Steven\bibnamedelima M.},
-           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+           given={Alessandro},
+           giveni={A\bibinitperiod}}}%
       }
       \list{publisher}{1}{%
-        {Elsevier BV}%
+        {MDPI AG}%
       }
-      \strng{namehash}{5b9f8dddf95864f3c91549795c424461}
-      \strng{fullhash}{cb94b1a3444c9c19bbd301296a6d59bc}
-      \strng{fullhashraw}{cb94b1a3444c9c19bbd301296a6d59bc}
-      \strng{bibnamehash}{5b9f8dddf95864f3c91549795c424461}
-      \strng{authorbibnamehash}{5b9f8dddf95864f3c91549795c424461}
-      \strng{authornamehash}{5b9f8dddf95864f3c91549795c424461}
-      \strng{authorfullhash}{cb94b1a3444c9c19bbd301296a6d59bc}
-      \strng{authorfullhashraw}{cb94b1a3444c9c19bbd301296a6d59bc}
+      \strng{namehash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{fullhash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{fullhashraw}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{bibnamehash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{authorbibnamehash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{authornamehash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{authorfullhash}{d577a2c7e5120dd110be2ef4106e19fb}
+      \strng{authorfullhashraw}{d577a2c7e5120dd110be2ef4106e19fb}
       \field{sortinit}{2}
       \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{issn}{1569-8432}
-      \field{journaltitle}{International Journal of Applied Earth Observation and Geoinformation}
-      \field{month}{12}
-      \field{title}{Monitoring river morphology \& bank erosion using UAV imagery--A case study of the river Buëch, Hautes-Alpes, France}
-      \field{volume}{73}
-      \field{year}{2018}
-      \field{pages}{428\bibrangedash 437}
-      \range{pages}{10}
+      \field{issn}{2071-1050}
+      \field{journaltitle}{Sustainability}
+      \field{month}{5}
+      \field{number}{11}
+      \field{title}{The Effects of Urban and Economic Development on Coastal Zone Management}
+      \field{volume}{13}
+      \field{year}{2021}
+      \field{pages}{6071}
+      \range{pages}{1}
       \verb{doi}
-      \verb 10.1016/j.jag.2018.07.016
+      \verb 10.3390/su13116071
       \endverb
       \verb{urlraw}
-      \verb http://dx.doi.org/10.1016/j.jag.2018.07.016
+      \verb http://dx.doi.org/10.3390/su13116071
       \endverb
       \verb{url}
-      \verb http://dx.doi.org/10.1016/j.jag.2018.07.016
+      \verb http://dx.doi.org/10.3390/su13116071
       \endverb
     \endentry
     \entry{Thomson2001_habitat-assessment}{article}{}{}
@@ -189,53 +180,6 @@
       \verb http://dx.doi.org/10.1002/aqc.467
       \endverb
     \endentry
-    \entry{Pasquali2021_coastal-zone-management}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=43b3f101a5c223dd2010a7912f2be9b8}{%
-           family={Pasquali},
-           familyi={P\bibinitperiod},
-           given={Davide},
-           giveni={D\bibinitperiod}}}%
-        {{hash=8b06527b85fe16944851600534214fc6}{%
-           family={Marucci},
-           familyi={M\bibinitperiod},
-           given={Alessandro},
-           giveni={A\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {MDPI AG}%
-      }
-      \strng{namehash}{d577a2c7e5120dd110be2ef4106e19fb}
-      \strng{fullhash}{d577a2c7e5120dd110be2ef4106e19fb}
-      \strng{fullhashraw}{d577a2c7e5120dd110be2ef4106e19fb}
-      \strng{bibnamehash}{d577a2c7e5120dd110be2ef4106e19fb}
-      \strng{authorbibnamehash}{d577a2c7e5120dd110be2ef4106e19fb}
-      \strng{authornamehash}{d577a2c7e5120dd110be2ef4106e19fb}
-      \strng{authorfullhash}{d577a2c7e5120dd110be2ef4106e19fb}
-      \strng{authorfullhashraw}{d577a2c7e5120dd110be2ef4106e19fb}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{2071-1050}
-      \field{journaltitle}{Sustainability}
-      \field{month}{5}
-      \field{number}{11}
-      \field{title}{The Effects of Urban and Economic Development on Coastal Zone Management}
-      \field{volume}{13}
-      \field{year}{2021}
-      \field{pages}{6071}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.3390/su13116071
-      \endverb
-      \verb{urlraw}
-      \verb http://dx.doi.org/10.3390/su13116071
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.3390/su13116071
-      \endverb
-    \endentry
     \entry{Giordano2015_sonar-bathymetry}{article}{}{}
       \name{author}{5}{}{%
         {{hash=28e50af6ba7b1f51cd1738988f4061e0}{%
@@ -275,8 +219,8 @@
       \strng{authornamehash}{7a1b71e3d9c9e892c73235bd0deadf1e}
       \strng{authorfullhash}{e8909b7385cdb695b6ee943bedcd6b01}
       \strng{authorfullhashraw}{e8909b7385cdb695b6ee943bedcd6b01}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1424-8220}
@@ -296,6 +240,900 @@
       \endverb
       \verb{url}
       \verb http://dx.doi.org/10.3390/s16010041
+      \endverb
+    \endentry
+    \entry{Kurowski2019_survey-USV}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=f62e86f99ee3c033950b89da0e2f3b62}{%
+           family={Kurowski},
+           familyi={K\bibinitperiod},
+           given={Martin},
+           giveni={M\bibinitperiod}}}%
+        {{hash=a3b4d9387b766650bf341f839b7533a1}{%
+           family={Thal},
+           familyi={T\bibinitperiod},
+           given={Janis},
+           giveni={J\bibinitperiod}}}%
+        {{hash=62e3050d0aaf85ae3ae57f8fcfc14f13}{%
+           family={Damerius},
+           familyi={D\bibinitperiod},
+           given={Robert},
+           giveni={R\bibinitperiod}}}%
+        {{hash=6fbcbae22a2bae4adb4a83712bce2102}{%
+           family={Korte},
+           familyi={K\bibinitperiod},
+           given={Holger},
+           giveni={H\bibinitperiod}}}%
+        {{hash=a6d24800832f1f1269ded15261ac9ebc}{%
+           family={Jeinsch},
+           familyi={J\bibinitperiod},
+           given={Torsten},
+           giveni={T\bibinitperiod}}}%
+      }
+      \strng{namehash}{176f735e710e19ea62b840bafd3eeff6}
+      \strng{fullhash}{6cc65f29163ab8e7a77b639761ce155f}
+      \strng{fullhashraw}{6cc65f29163ab8e7a77b639761ce155f}
+      \strng{bibnamehash}{176f735e710e19ea62b840bafd3eeff6}
+      \strng{authorbibnamehash}{176f735e710e19ea62b840bafd3eeff6}
+      \strng{authornamehash}{176f735e710e19ea62b840bafd3eeff6}
+      \strng{authorfullhash}{6cc65f29163ab8e7a77b639761ce155f}
+      \strng{authorfullhashraw}{6cc65f29163ab8e7a77b639761ce155f}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2405-8963}
+      \field{journaltitle}{IFAC-PapersOnLine}
+      \field{note}{12th IFAC Conference on Control Applications in Marine Systems, Robotics, and Vehicles CAMS 2019}
+      \field{number}{21}
+      \field{title}{Automated Survey in Very Shallow Water using an Unmanned Surface Vehicle}
+      \field{volume}{52}
+      \field{year}{2019}
+      \field{pages}{146\bibrangedash 151}
+      \range{pages}{6}
+      \verb{doi}
+      \verb https://doi.org/10.1016/j.ifacol.2019.12.298
+      \endverb
+      \verb{urlraw}
+      \verb https://www.sciencedirect.com/science/article/pii/S2405896319321834
+      \endverb
+      \verb{url}
+      \verb https://www.sciencedirect.com/science/article/pii/S2405896319321834
+      \endverb
+    \endentry
+    \entry{Saylam2018_ALB}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=318274412b08152c97c1b70e804ea954}{%
+           family={Saylam},
+           familyi={S\bibinitperiod},
+           given={Kutalmis},
+           giveni={K\bibinitperiod}}}%
+        {{hash=089ddc13948f136a61d7cafa248c619d}{%
+           family={Hupp},
+           familyi={H\bibinitperiod},
+           given={John\bibnamedelima R.},
+           giveni={J\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=aa19bc54d2f6946724c412db517b7a8e}{%
+           family={Averett},
+           familyi={A\bibinitperiod},
+           given={Aaron\bibnamedelima R.},
+           giveni={A\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=e3e1c2a685b41a6a3b7d343b4b372602}{%
+           family={Gutelius},
+           familyi={G\bibinitperiod},
+           given={William\bibnamedelima F.},
+           giveni={W\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=2762aa80b60a3aedf3c832ca9549507d}{%
+           family={Gelhar},
+           familyi={G\bibinitperiod},
+           given={Brent\bibnamedelima W.},
+           giveni={B\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Informa UK Limited}%
+      }
+      \strng{namehash}{6d03ed3e6c22b92c1113a4163e49677f}
+      \strng{fullhash}{eb796e35a4597a3f94d08c0a53037559}
+      \strng{fullhashraw}{eb796e35a4597a3f94d08c0a53037559}
+      \strng{bibnamehash}{6d03ed3e6c22b92c1113a4163e49677f}
+      \strng{authorbibnamehash}{6d03ed3e6c22b92c1113a4163e49677f}
+      \strng{authornamehash}{6d03ed3e6c22b92c1113a4163e49677f}
+      \strng{authorfullhash}{eb796e35a4597a3f94d08c0a53037559}
+      \strng{authorfullhashraw}{eb796e35a4597a3f94d08c0a53037559}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1366-5901}
+      \field{journaltitle}{International Journal of Remote Sensing}
+      \field{month}{1}
+      \field{number}{8}
+      \field{title}{Airborne lidar bathymetry: assessing quality assurance and quality control methods with Leica Chiroptera examples}
+      \field{volume}{39}
+      \field{year}{2018}
+      \field{pages}{2518\bibrangedash 2542}
+      \range{pages}{25}
+      \verb{doi}
+      \verb 10.1080/01431161.2018.1430916
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1080/01431161.2018.1430916
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1080/01431161.2018.1430916
+      \endverb
+    \endentry
+    \entry{schoenberger2016_colmap}{inproceedings}{}{}
+      \name{author}{2}{}{%
+        {{hash=e4ed718dd19b3fee6b128ed86216cb38}{%
+           family={Schönberger},
+           familyi={S\bibinitperiod},
+           given={Johannes\bibnamedelima Lutz},
+           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
+        {{hash=4af0c62bceb93c143845555052179bc8}{%
+           family={Frahm},
+           familyi={F\bibinitperiod},
+           given={Jan-Michael},
+           giveni={J\bibinithyphendelim M\bibinitperiod}}}%
+      }
+      \strng{namehash}{3a4b1342454668721b1324a50fbe5111}
+      \strng{fullhash}{3a4b1342454668721b1324a50fbe5111}
+      \strng{fullhashraw}{3a4b1342454668721b1324a50fbe5111}
+      \strng{bibnamehash}{3a4b1342454668721b1324a50fbe5111}
+      \strng{authorbibnamehash}{3a4b1342454668721b1324a50fbe5111}
+      \strng{authornamehash}{3a4b1342454668721b1324a50fbe5111}
+      \strng{authorfullhash}{3a4b1342454668721b1324a50fbe5111}
+      \strng{authorfullhashraw}{3a4b1342454668721b1324a50fbe5111}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{title}{Structure-from-Motion Revisited}
+      \field{year}{2016}
+    \endentry
+    \entry{Furukawa2010_PatchMVS}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=352b1ed7e14d74b1f159928c01ed9078}{%
+           family={Furukawa},
+           familyi={F\bibinitperiod},
+           given={Yasutaka},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=ee672c13ddea8aa3bc5a45024cfd7354}{%
+           family={Ponce},
+           familyi={P\bibinitperiod},
+           given={Jean},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Institute of Electrical}%
+        {Electronics Engineers (IEEE)}%
+      }
+      \strng{namehash}{0aab0e5a2280e34eb2a53a4b1e7e0575}
+      \strng{fullhash}{0aab0e5a2280e34eb2a53a4b1e7e0575}
+      \strng{fullhashraw}{0aab0e5a2280e34eb2a53a4b1e7e0575}
+      \strng{bibnamehash}{0aab0e5a2280e34eb2a53a4b1e7e0575}
+      \strng{authorbibnamehash}{0aab0e5a2280e34eb2a53a4b1e7e0575}
+      \strng{authornamehash}{0aab0e5a2280e34eb2a53a4b1e7e0575}
+      \strng{authorfullhash}{0aab0e5a2280e34eb2a53a4b1e7e0575}
+      \strng{authorfullhashraw}{0aab0e5a2280e34eb2a53a4b1e7e0575}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0162-8828}
+      \field{journaltitle}{IEEE Transactions on Pattern Analysis and Machine Intelligence}
+      \field{month}{8}
+      \field{number}{8}
+      \field{title}{Accurate, Dense, and Robust Multiview Stereopsis}
+      \field{volume}{32}
+      \field{year}{2010}
+      \field{pages}{1362\bibrangedash 1376}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1109/tpami.2009.161
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/tpami.2009.161
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/tpami.2009.161
+      \endverb
+    \endentry
+    \entry{Furukawa2015_MVS}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=352b1ed7e14d74b1f159928c01ed9078}{%
+           family={Furukawa},
+           familyi={F\bibinitperiod},
+           given={Yasutaka},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=0ca2a8f05328559f821cbfaf9a5abed2}{%
+           family={Hernández},
+           familyi={H\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {now Publishers Inc}%
+      }
+      \strng{namehash}{79d34165c70fb349e24c9076c753e161}
+      \strng{fullhash}{79d34165c70fb349e24c9076c753e161}
+      \strng{fullhashraw}{79d34165c70fb349e24c9076c753e161}
+      \strng{bibnamehash}{79d34165c70fb349e24c9076c753e161}
+      \strng{authorbibnamehash}{79d34165c70fb349e24c9076c753e161}
+      \strng{authornamehash}{79d34165c70fb349e24c9076c753e161}
+      \strng{authorfullhash}{79d34165c70fb349e24c9076c753e161}
+      \strng{authorfullhashraw}{79d34165c70fb349e24c9076c753e161}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9781601988379}
+      \field{title}{Multi-View Stereo: A Tutorial}
+      \field{year}{2015}
+      \verb{doi}
+      \verb 10.1561/9781601988379
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1561/9781601988379
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1561/9781601988379
+      \endverb
+    \endentry
+    \entry{Bemis2014_UAV-photogrammetry}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=1102e43cfe12a1440c4f2f0e1e7b351b}{%
+           family={Bemis},
+           familyi={B\bibinitperiod},
+           given={Sean\bibnamedelima P.},
+           giveni={S\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=5128801988ebcfb74578f38cc2ea64de}{%
+           family={Micklethwaite},
+           familyi={M\bibinitperiod},
+           given={Steven},
+           giveni={S\bibinitperiod}}}%
+        {{hash=0442f0ef2328ed56677c414d943a816f}{%
+           family={Turner},
+           familyi={T\bibinitperiod},
+           given={Darren},
+           giveni={D\bibinitperiod}}}%
+        {{hash=342ebc788d00fd5c7892246fe10cea6f}{%
+           family={James},
+           familyi={J\bibinitperiod},
+           given={Mike\bibnamedelima R.},
+           giveni={M\bibinitperiod\bibinitdelim R\bibinitperiod}}}%
+        {{hash=23d4cdc65de34a7b7b4011b10e16e942}{%
+           family={Akciz},
+           familyi={A\bibinitperiod},
+           given={Sinan},
+           giveni={S\bibinitperiod}}}%
+        {{hash=028c021f428526409415c8e7e6a0bec9}{%
+           family={Thiele},
+           familyi={T\bibinitperiod},
+           given={Sam\bibnamedelima T.},
+           giveni={S\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=007532da947c4d6abb348e4d73b802fc}{%
+           family={Bangash},
+           familyi={B\bibinitperiod},
+           given={Hasnain\bibnamedelima Ali},
+           giveni={H\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier BV}%
+      }
+      \strng{namehash}{9093ad82b3ae023db36b3cd7c1019ff6}
+      \strng{fullhash}{2f61f931e2e6b296be2867cb1d9c26d2}
+      \strng{fullhashraw}{2f61f931e2e6b296be2867cb1d9c26d2}
+      \strng{bibnamehash}{9093ad82b3ae023db36b3cd7c1019ff6}
+      \strng{authorbibnamehash}{9093ad82b3ae023db36b3cd7c1019ff6}
+      \strng{authornamehash}{9093ad82b3ae023db36b3cd7c1019ff6}
+      \strng{authorfullhash}{2f61f931e2e6b296be2867cb1d9c26d2}
+      \strng{authorfullhashraw}{2f61f931e2e6b296be2867cb1d9c26d2}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0191-8141}
+      \field{journaltitle}{Journal of Structural Geology}
+      \field{month}{12}
+      \field{title}{Ground-based and UAV-Based photogrammetry: A multi-scale, high-resolution mapping tool for structural geology and paleoseismology}
+      \field{volume}{69}
+      \field{year}{2014}
+      \field{pages}{163\bibrangedash 178}
+      \range{pages}{16}
+      \verb{doi}
+      \verb 10.1016/j.jsg.2014.10.007
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/j.jsg.2014.10.007
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/j.jsg.2014.10.007
+      \endverb
+    \endentry
+    \entry{Gomez2016_UAV-photogrammetry-disaster}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=7c216d706aa3ede98906cdefea1166e4}{%
+           family={Gomez},
+           familyi={G\bibinitperiod},
+           given={Christopher},
+           giveni={C\bibinitperiod}}}%
+        {{hash=06dee4c15f55b1432f188e768117e48c}{%
+           family={Purdie},
+           familyi={P\bibinitperiod},
+           given={Heather},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{b3a78cd5039185771f9ab7c4445dc66c}
+      \strng{fullhash}{b3a78cd5039185771f9ab7c4445dc66c}
+      \strng{fullhashraw}{b3a78cd5039185771f9ab7c4445dc66c}
+      \strng{bibnamehash}{b3a78cd5039185771f9ab7c4445dc66c}
+      \strng{authorbibnamehash}{b3a78cd5039185771f9ab7c4445dc66c}
+      \strng{authornamehash}{b3a78cd5039185771f9ab7c4445dc66c}
+      \strng{authorfullhash}{b3a78cd5039185771f9ab7c4445dc66c}
+      \strng{authorfullhashraw}{b3a78cd5039185771f9ab7c4445dc66c}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2197-8670}
+      \field{journaltitle}{Geoenvironmental Disasters}
+      \field{month}{11}
+      \field{number}{1}
+      \field{title}{UAV- based Photogrammetry and Geocomputing for Hazards and Disaster Risk Monitoring – A Review}
+      \field{volume}{3}
+      \field{year}{2016}
+      \verb{doi}
+      \verb 10.1186/s40677-016-0060-y
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1186/s40677-016-0060-y
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1186/s40677-016-0060-y
+      \endverb
+    \endentry
+    \entry{Iglhaut2019_UAV-photogrammetry-forestry}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=aa3bee14c923ba2f4d2e2da95110d8b8}{%
+           family={Iglhaut},
+           familyi={I\bibinitperiod},
+           given={Jakob},
+           giveni={J\bibinitperiod}}}%
+        {{hash=32ab404a4ba1f7f07af60f7d733c5d02}{%
+           family={Cabo},
+           familyi={C\bibinitperiod},
+           given={Carlos},
+           giveni={C\bibinitperiod}}}%
+        {{hash=606f0402bdfc16f0c68869067958b15b}{%
+           family={Puliti},
+           familyi={P\bibinitperiod},
+           given={Stefano},
+           giveni={S\bibinitperiod}}}%
+        {{hash=a1f86e0b9c15b20fcf66759b4b2be35d}{%
+           family={Piermattei},
+           familyi={P\bibinitperiod},
+           given={Livia},
+           giveni={L\bibinitperiod}}}%
+        {{hash=55511bddeb23f6d429e94273db31ac7e}{%
+           family={O’Connor},
+           familyi={O\bibinitperiod},
+           given={James},
+           giveni={J\bibinitperiod}}}%
+        {{hash=6a4a5a223a2287637854745043746cd8}{%
+           family={Rosette},
+           familyi={R\bibinitperiod},
+           given={Jacqueline},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{1bf21ba7d1c189c84f11b1445e3a4f72}
+      \strng{fullhash}{83509d0e1eb72e59a79876219a602a63}
+      \strng{fullhashraw}{83509d0e1eb72e59a79876219a602a63}
+      \strng{bibnamehash}{1bf21ba7d1c189c84f11b1445e3a4f72}
+      \strng{authorbibnamehash}{1bf21ba7d1c189c84f11b1445e3a4f72}
+      \strng{authornamehash}{1bf21ba7d1c189c84f11b1445e3a4f72}
+      \strng{authorfullhash}{83509d0e1eb72e59a79876219a602a63}
+      \strng{authorfullhashraw}{83509d0e1eb72e59a79876219a602a63}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2198-6436}
+      \field{journaltitle}{Current Forestry Reports}
+      \field{month}{7}
+      \field{number}{3}
+      \field{title}{Structure from Motion Photogrammetry in Forestry: a Review}
+      \field{volume}{5}
+      \field{year}{2019}
+      \field{pages}{155\bibrangedash 168}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1007/s40725-019-00094-3
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/s40725-019-00094-3
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/s40725-019-00094-3
+      \endverb
+    \endentry
+    \entry{westaway2001_PhotograBathy-multiply-n}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=a5316af656c5b584ee7f5f71e118e481}{%
+           family={Westaway},
+           familyi={W\bibinitperiod},
+           given={Richard\bibnamedelima M},
+           giveni={R\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=3b404b91149d03d2c2fb111256c5c5b7}{%
+           family={Lane},
+           familyi={L\bibinitperiod},
+           given={Stuart\bibnamedelima N},
+           giveni={S\bibinitperiod\bibinitdelim N\bibinitperiod}}}%
+        {{hash=cc4b67bdbb3c37794706c7cb875f200c}{%
+           family={Hicks},
+           familyi={H\bibinitperiod},
+           given={D\bibnamedelima Murray},
+           giveni={D\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ASPRS AMERICAN SOCIETY FOR PHOTOGRAMMETRY AND}%
+      }
+      \strng{namehash}{d093759af5fb771030933fd9fa54a6c8}
+      \strng{fullhash}{d093759af5fb771030933fd9fa54a6c8}
+      \strng{fullhashraw}{d093759af5fb771030933fd9fa54a6c8}
+      \strng{bibnamehash}{d093759af5fb771030933fd9fa54a6c8}
+      \strng{authorbibnamehash}{d093759af5fb771030933fd9fa54a6c8}
+      \strng{authornamehash}{d093759af5fb771030933fd9fa54a6c8}
+      \strng{authorfullhash}{d093759af5fb771030933fd9fa54a6c8}
+      \strng{authorfullhashraw}{d093759af5fb771030933fd9fa54a6c8}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{Photogrammetric Engineering and Remote Sensing}
+      \field{number}{11}
+      \field{title}{Remote sensing of clear-water, shallow, gravel-bed rivers using digital photogrammetry}
+      \field{volume}{67}
+      \field{year}{2001}
+      \field{pages}{1271\bibrangedash 1282}
+      \range{pages}{12}
+    \endentry
+    \entry{Woodget2014_PhotograBathy-multiply-n}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=81054e16c3ab409d82f25594a75bba14}{%
+           family={Woodget},
+           familyi={W\bibinitperiod},
+           given={A.\bibnamedelimi S.},
+           giveni={A\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=6179688095bd99741b08109b2fbbbdd7}{%
+           family={Carbonneau},
+           familyi={C\bibinitperiod},
+           given={P.\bibnamedelimi E.},
+           giveni={P\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=137b975ad31017f7fd21c8164bee97da}{%
+           family={Visser},
+           familyi={V\bibinitperiod},
+           given={F.},
+           giveni={F\bibinitperiod}}}%
+        {{hash=6c8e7c5c6261f2419c7ec03daf46944d}{%
+           family={Maddock},
+           familyi={M\bibinitperiod},
+           given={I.\bibnamedelimi P.},
+           giveni={I\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{0dae5bf2edea38199fbaf98c8f66c851}
+      \strng{fullhash}{0e67e432c2f4a2574d00ddf8a4a6ca7c}
+      \strng{fullhashraw}{0e67e432c2f4a2574d00ddf8a4a6ca7c}
+      \strng{bibnamehash}{0dae5bf2edea38199fbaf98c8f66c851}
+      \strng{authorbibnamehash}{0dae5bf2edea38199fbaf98c8f66c851}
+      \strng{authornamehash}{0dae5bf2edea38199fbaf98c8f66c851}
+      \strng{authorfullhash}{0e67e432c2f4a2574d00ddf8a4a6ca7c}
+      \strng{authorfullhashraw}{0e67e432c2f4a2574d00ddf8a4a6ca7c}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1096-9837}
+      \field{journaltitle}{Earth Surface Processes and Landforms}
+      \field{month}{8}
+      \field{number}{1}
+      \field{title}{Quantifying submerged fluvial topography using hyperspatial resolution UAS imagery and structure from motion photogrammetry}
+      \field{volume}{40}
+      \field{year}{2014}
+      \field{pages}{47\bibrangedash 64}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1002/esp.3613
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1002/esp.3613
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1002/esp.3613
+      \endverb
+    \endentry
+    \entry{Murase2008_refractiveCorrection}{article}{}{}
+      \name{author}{9}{}{%
+        {{hash=3c3c603010950eaf7f6e3c6a59f388ce}{%
+           family={Murase},
+           familyi={M\bibinitperiod},
+           given={Toshimi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=5b565d01f6276bde60b13ad857dd71bc}{%
+           family={Tanaka},
+           familyi={T\bibinitperiod},
+           given={Miho},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1ec4d05fa592288e2566796e45a3f3bc}{%
+           family={Tani},
+           familyi={T\bibinitperiod},
+           given={Tomomi},
+           giveni={T\bibinitperiod}}}%
+        {{hash=f46633d46887d904e0fa4b9e0714da39}{%
+           family={Miyashita},
+           familyi={M\bibinitperiod},
+           given={Yuko},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=e6f526005f4dd6951ecebca006a0999e}{%
+           family={Ohkawa},
+           familyi={O\bibinitperiod},
+           given={Naoto},
+           giveni={N\bibinitperiod}}}%
+        {{hash=57dfede10c8931c41c2bfe6d6369244c}{%
+           family={Ishiguro},
+           familyi={I\bibinitperiod},
+           given={Satoshi},
+           giveni={S\bibinitperiod}}}%
+        {{hash=57c6f1cdf04f255a54c1c617a7746c8d}{%
+           family={Suzuki},
+           familyi={S\bibinitperiod},
+           given={Yasuhiro},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=29a3e0894d741008ad179011e23fc9bb}{%
+           family={Kayanne},
+           familyi={K\bibinitperiod},
+           given={Hajime},
+           giveni={H\bibinitperiod}}}%
+        {{hash=984163d69ed314eb2c54c4fbad9676b7}{%
+           family={Yamano},
+           familyi={Y\bibinitperiod},
+           given={Hiroya},
+           giveni={H\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {American Society for Photogrammetry}%
+        {Remote Sensing}%
+      }
+      \strng{namehash}{72475a2c961579e44948609707d083e7}
+      \strng{fullhash}{919e50dc872c15ccf6e2872eb4e22aa9}
+      \strng{fullhashraw}{919e50dc872c15ccf6e2872eb4e22aa9}
+      \strng{bibnamehash}{72475a2c961579e44948609707d083e7}
+      \strng{authorbibnamehash}{72475a2c961579e44948609707d083e7}
+      \strng{authornamehash}{72475a2c961579e44948609707d083e7}
+      \strng{authorfullhash}{919e50dc872c15ccf6e2872eb4e22aa9}
+      \strng{authorfullhashraw}{919e50dc872c15ccf6e2872eb4e22aa9}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0099-1112}
+      \field{journaltitle}{Photogrammetric engineering \& remote sensing}
+      \field{month}{9}
+      \field{number}{9}
+      \field{title}{A Photogrammetric Correction Procedure for Light Refraction Effects at a Two-Medium Boundary}
+      \field{volume}{74}
+      \field{year}{2008}
+      \field{pages}{1129\bibrangedash 1136}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.14358/pers.74.9.1129
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.14358/pers.74.9.1129
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.14358/pers.74.9.1129
+      \endverb
+    \endentry
+    \entry{Dietrich2016_multi-angle-correction}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=2ed555d3264fce5aa83c1aa40898cb62}{%
+           family={Dietrich},
+           familyi={D\bibinitperiod},
+           given={James\bibnamedelima T.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{2ed555d3264fce5aa83c1aa40898cb62}
+      \strng{fullhash}{2ed555d3264fce5aa83c1aa40898cb62}
+      \strng{fullhashraw}{2ed555d3264fce5aa83c1aa40898cb62}
+      \strng{bibnamehash}{2ed555d3264fce5aa83c1aa40898cb62}
+      \strng{authorbibnamehash}{2ed555d3264fce5aa83c1aa40898cb62}
+      \strng{authornamehash}{2ed555d3264fce5aa83c1aa40898cb62}
+      \strng{authorfullhash}{2ed555d3264fce5aa83c1aa40898cb62}
+      \strng{authorfullhashraw}{2ed555d3264fce5aa83c1aa40898cb62}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1096-9837}
+      \field{journaltitle}{Earth Surface Processes and Landforms}
+      \field{month}{11}
+      \field{number}{2}
+      \field{title}{Bathymetric Structure-from-Motion: extracting shallow stream bathymetry from multi‐view stereo photogrammetry}
+      \field{volume}{42}
+      \field{year}{2016}
+      \field{pages}{355\bibrangedash 364}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1002/esp.4060
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1002/esp.4060
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1002/esp.4060
+      \endverb
+    \endentry
+    \entry{Makris2024_refractive-aware-sfm}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=c45ba1037f24a9ad6866153a209f54bb}{%
+           family={Makris},
+           familyi={M\bibinitperiod},
+           given={Alexandros},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fd9d3c2319a4bf282394678b3608652c}{%
+           family={Nicodemou},
+           familyi={N\bibinitperiod},
+           given={Vassilis\bibnamedelima C.},
+           giveni={V\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=9f8da71c309c7a987bd363a8ade55248}{%
+           family={Alevizos},
+           familyi={A\bibinitperiod},
+           given={Evangelos},
+           giveni={E\bibinitperiod}}}%
+        {{hash=accfa32209cfc206ffc48ea22c5c3d95}{%
+           family={Oikonomidis},
+           familyi={O\bibinitperiod},
+           given={Iason},
+           giveni={I\bibinitperiod}}}%
+        {{hash=fa2693ffec5ed5de4a792ea2415bf09a}{%
+           family={Alexakis},
+           familyi={A\bibinitperiod},
+           given={Dimitrios\bibnamedelima D.},
+           giveni={D\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+        {{hash=0a2fce034bc9fe59562c6d208ac69981}{%
+           family={Roussos},
+           familyi={R\bibinitperiod},
+           given={Anastasios},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI AG}%
+      }
+      \strng{namehash}{6008244c790f6c6d11f8ad7aa4cbb348}
+      \strng{fullhash}{c955a680d20f41f00b0db548bfacccd7}
+      \strng{fullhashraw}{c955a680d20f41f00b0db548bfacccd7}
+      \strng{bibnamehash}{6008244c790f6c6d11f8ad7aa4cbb348}
+      \strng{authorbibnamehash}{6008244c790f6c6d11f8ad7aa4cbb348}
+      \strng{authornamehash}{6008244c790f6c6d11f8ad7aa4cbb348}
+      \strng{authorfullhash}{c955a680d20f41f00b0db548bfacccd7}
+      \strng{authorfullhashraw}{c955a680d20f41f00b0db548bfacccd7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2072-4292}
+      \field{journaltitle}{Remote Sensing}
+      \field{month}{11}
+      \field{number}{22}
+      \field{title}{Refraction-Aware Structure from Motion for Airborne Bathymetry}
+      \field{volume}{16}
+      \field{year}{2024}
+      \field{pages}{4253}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/rs16224253
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.3390/rs16224253
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.3390/rs16224253
+      \endverb
+    \endentry
+    \entry{Agrafiotis2019ISPRS_SVM-UAV-Bathymetry}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=c5fa7eb5c1c3ae1ab0f02c2ce98bdd85}{%
+           family={Agrafiotis},
+           familyi={A\bibinitperiod},
+           given={P.},
+           giveni={P\bibinitperiod}}}%
+        {{hash=fff82733801fbef6f4e55631a71d48c4}{%
+           family={Skarlatos},
+           familyi={S\bibinitperiod},
+           given={D.},
+           giveni={D\bibinitperiod}}}%
+        {{hash=0a7ce9c4690bf6e604800a3c74d6d9ad}{%
+           family={Georgopoulos},
+           familyi={G\bibinitperiod},
+           given={A.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=bd757ceb1bac03b68fb1bb4bc86aac38}{%
+           family={Karantzalos},
+           familyi={K\bibinitperiod},
+           given={K.},
+           giveni={K\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Copernicus GmbH}%
+      }
+      \strng{namehash}{08a32d88123247e4444a2debfe635f97}
+      \strng{fullhash}{3b861b35df8aab4422695f700edb968e}
+      \strng{fullhashraw}{3b861b35df8aab4422695f700edb968e}
+      \strng{bibnamehash}{08a32d88123247e4444a2debfe635f97}
+      \strng{authorbibnamehash}{08a32d88123247e4444a2debfe635f97}
+      \strng{authornamehash}{08a32d88123247e4444a2debfe635f97}
+      \strng{authorfullhash}{3b861b35df8aab4422695f700edb968e}
+      \strng{authorfullhashraw}{3b861b35df8aab4422695f700edb968e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2194-9034}
+      \field{journaltitle}{The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences}
+      \field{month}{4}
+      \field{title}{SHALLOW WATER BATHYMETRY MAPPING FROM UAV IMAGERY BASED ON MACHINE LEARNING}
+      \field{volume}{XLII-2/W10}
+      \field{year}{2019}
+      \field{pages}{9\bibrangedash 16}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.5194/isprs-archives-xlii-2-w10-9-2019
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.5194/isprs-archives-xlii-2-w10-9-2019
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.5194/isprs-archives-xlii-2-w10-9-2019
+      \endverb
+    \endentry
+    \entry{Mildenhall2021ECCV_NeRF}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=a3567364ab52973659adf74ee0c6e6f3}{%
+           family={Mildenhall},
+           familyi={M\bibinitperiod},
+           given={Ben},
+           giveni={B\bibinitperiod}}}%
+        {{hash=b503d22b8c86fb9dfd477d2f70a59650}{%
+           family={Srinivasan},
+           familyi={S\bibinitperiod},
+           given={Pratul\bibnamedelima P.},
+           giveni={P\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=9a18985a5c8b8be23d0ec9de0a3c87b9}{%
+           family={Tancik},
+           familyi={T\bibinitperiod},
+           given={Matthew},
+           giveni={M\bibinitperiod}}}%
+        {{hash=562f3254a241932db4a6d44a97473ec5}{%
+           family={Barron},
+           familyi={B\bibinitperiod},
+           given={Jonathan\bibnamedelima T.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=e7e274981ceb0dd123d44af35cc7bedf}{%
+           family={Ramamoorthi},
+           familyi={R\bibinitperiod},
+           given={Ravi},
+           giveni={R\bibinitperiod}}}%
+        {{hash=96e30bdc2cf905aa1109c46617b16252}{%
+           family={Ng},
+           familyi={N\bibinitperiod},
+           given={Ren},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery (ACM)}%
+      }
+      \strng{namehash}{094342ecc1d4c7df1a909882dd0a89cd}
+      \strng{fullhash}{9bee638bba28fb3cd739399aa8dc9983}
+      \strng{fullhashraw}{9bee638bba28fb3cd739399aa8dc9983}
+      \strng{bibnamehash}{094342ecc1d4c7df1a909882dd0a89cd}
+      \strng{authorbibnamehash}{094342ecc1d4c7df1a909882dd0a89cd}
+      \strng{authornamehash}{094342ecc1d4c7df1a909882dd0a89cd}
+      \strng{authorfullhash}{9bee638bba28fb3cd739399aa8dc9983}
+      \strng{authorfullhashraw}{9bee638bba28fb3cd739399aa8dc9983}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1557-7317}
+      \field{journaltitle}{Communications of the ACM}
+      \field{month}{12}
+      \field{number}{1}
+      \field{title}{NeRF: representing scenes as neural radiance fields for view synthesis}
+      \field{volume}{65}
+      \field{year}{2021}
+      \field{pages}{99\bibrangedash 106}
+      \range{pages}{8}
+      \verb{doi}
+      \verb 10.1145/3503250
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1145/3503250
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/3503250
+      \endverb
+    \endentry
+    \entry{Kerbl2023ToG_3DGS}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=c73d638ffd25328757379835747302ff}{%
+           family={Kerbl},
+           familyi={K\bibinitperiod},
+           given={Bernhard},
+           giveni={B\bibinitperiod}}}%
+        {{hash=2ab758a425dcd6ed440f4ae0d994dc2c}{%
+           family={Kopanas},
+           familyi={K\bibinitperiod},
+           given={Georgios},
+           giveni={G\bibinitperiod}}}%
+        {{hash=23f06719145b1e18e13a7e436bb8c2fc}{%
+           family={Leimkühler},
+           familyi={L\bibinitperiod},
+           given={Thomas},
+           giveni={T\bibinitperiod}}}%
+        {{hash=70ecb4c4a672f7c20e4b53b57d5a437e}{%
+           family={Drettakis},
+           familyi={D\bibinitperiod},
+           given={George},
+           giveni={G\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery (ACM)}%
+      }
+      \strng{namehash}{38ed96775a79b080a25e1e45e0aaa88a}
+      \strng{fullhash}{36d84a8a291db8ba20b3f78b93a2eeee}
+      \strng{fullhashraw}{36d84a8a291db8ba20b3f78b93a2eeee}
+      \strng{bibnamehash}{38ed96775a79b080a25e1e45e0aaa88a}
+      \strng{authorbibnamehash}{38ed96775a79b080a25e1e45e0aaa88a}
+      \strng{authornamehash}{38ed96775a79b080a25e1e45e0aaa88a}
+      \strng{authorfullhash}{36d84a8a291db8ba20b3f78b93a2eeee}
+      \strng{authorfullhashraw}{36d84a8a291db8ba20b3f78b93a2eeee}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1557-7368}
+      \field{journaltitle}{ACM Transactions on Graphics}
+      \field{month}{7}
+      \field{number}{4}
+      \field{title}{3D Gaussian Splatting for Real-Time Radiance Field Rendering}
+      \field{volume}{42}
+      \field{year}{2023}
+      \field{pages}{1\bibrangedash 14}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1145/3592433
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1145/3592433
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/3592433
       \endverb
     \endentry
   \enddatalist
