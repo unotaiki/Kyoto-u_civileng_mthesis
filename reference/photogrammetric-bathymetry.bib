@@ -1,0 +1,159 @@
+
+# ===== Photogrammetry Bathymetry =====
+
+# 単純に屈折率nで除算することで、出力点群を補正する手法
+@article{Woodget2014_PhotograBathy-multiply-n,
+  title     = {Quantifying submerged fluvial topography using hyperspatial resolution UAS imagery and structure from motion photogrammetry},
+  volume    = {40},
+  issn      = {1096-9837},
+  url       = {http://dx.doi.org/10.1002/esp.3613},
+  doi       = {10.1002/esp.3613},
+  number    = {1},
+  journal   = {Earth Surface Processes and Landforms},
+  publisher = {Wiley},
+  author    = {Woodget, A. S. and Carbonneau, P. E. and Visser, F. and Maddock, I. P.},
+  year      = {2014},
+  month     = aug,
+  pages     = {47--64}
+}
+@article{westaway2001_PhotograBathy-multiply-n,
+  title     = {Remote sensing of clear-water, shallow, gravel-bed rivers using digital photogrammetry},
+  author    = {Westaway, Richard M and Lane, Stuart N and Hicks, D Murray},
+  journal   = {Photogrammetric Engineering and Remote Sensing},
+  volume    = {67},
+  number    = {11},
+  pages     = {1271--1282},
+  year      = {2001},
+  publisher = {ASPRS AMERICAN SOCIETY FOR PHOTOGRAMMETRY AND}
+}
+@article{kotowski1988_RefractiveCorrectionN,
+  title   = {Phototriangulation in multi-media photogrammetry},
+  author  = {Kotowski, R{\"u}diger},
+  journal = {International Archives of Photogrammetry and Remote Sensing},
+  volume  = {27},
+  number  = {B5},
+  pages   = {324--334},
+  year    = {1988}
+}
+
+@article{Dietrich2016_multi-angle-correction,
+  title     = {Bathymetric Structure-from-Motion: extracting shallow stream bathymetry from multi‐view stereo photogrammetry},
+  volume    = {42},
+  issn      = {1096-9837},
+  url       = {http://dx.doi.org/10.1002/esp.4060},
+  doi       = {10.1002/esp.4060},
+  number    = {2},
+  journal   = {Earth Surface Processes and Landforms},
+  publisher = {Wiley},
+  author    = {Dietrich, James T.},
+  year      = {2016},
+  month     = nov,
+  pages     = {355--364}
+}
+@article{Murase2008_refractiveCorrection,
+  title     = {A Photogrammetric Correction Procedure for Light Refraction Effects at a Two-Medium Boundary},
+  volume    = {74},
+  issn      = {0099-1112},
+  url       = {http://dx.doi.org/10.14358/pers.74.9.1129},
+  doi       = {10.14358/pers.74.9.1129},
+  number    = {9},
+  journal   = {Photogrammetric engineering \& remote sensing},
+  publisher = {American Society for Photogrammetry and Remote Sensing},
+  author    = {Murase, Toshimi and Tanaka, Miho and Tani, Tomomi and Miyashita, Yuko and Ohkawa, Naoto and Ishiguro, Satoshi and Suzuki, Yasuhiro and Kayanne, Hajime and Yamano, Hiroya},
+  year      = {2008},
+  month     = sep,
+  pages     = {1129--1136}
+}
+
+
+# Survey論文
+@article{He2024_survey-shallow-bathymetry,
+  title     = {Remote sensing for shallow bathymetry: A systematic review},
+  volume    = {258},
+  issn      = {0012-8252},
+  url       = {http://dx.doi.org/10.1016/j.earscirev.2024.104957},
+  doi       = {10.1016/j.earscirev.2024.104957},
+  journal   = {Earth-Science Reviews},
+  publisher = {Elsevier BV},
+  author    = {He, Jinchen and Zhang, Shuhang and Cui, Xiaodong and Feng, Wei},
+  year      = {2024},
+  month     = nov,
+  pages     = {104957}
+}
+
+# Refraction を明示的にSfMパイプラインに組み込む
+@article{Makris2024_refractive-aware-sfm,
+  title     = {Refraction-Aware Structure from Motion for Airborne Bathymetry},
+  volume    = {16},
+  issn      = {2072-4292},
+  url       = {http://dx.doi.org/10.3390/rs16224253},
+  doi       = {10.3390/rs16224253},
+  number    = {22},
+  journal   = {Remote Sensing},
+  publisher = {MDPI AG},
+  author    = {Makris, Alexandros and Nicodemou, Vassilis C. and Alevizos, Evangelos and Oikonomidis, Iason and Alexakis, Dimitrios D. and Roussos, Anastasios},
+  year      = {2024},
+  month     = nov,
+  pages     = {4253}
+}
+
+@article{Alevizos2022_DL-shallow-bathymetry,
+  title     = {Integration of Photogrammetric and Spectral Techniques for Advanced Drone-Based Bathymetry Retrieval Using a Deep Learning Approach},
+  volume    = {14},
+  issn      = {2072-4292},
+  url       = {http://dx.doi.org/10.3390/rs14174160},
+  doi       = {10.3390/rs14174160},
+  number    = {17},
+  journal   = {Remote Sensing},
+  publisher = {MDPI AG},
+  author    = {Alevizos, Evangelos and Nicodemou, Vassilis C. and Makris, Alexandros and Oikonomidis, Iason and Roussos, Anastasios and Alexakis, Dimitrios D.},
+  year      = {2022},
+  month     = aug,
+  pages     = {4160}
+}
+
+@article{Agrafiotis2020_refractiveCorrection,
+  author         = {Agrafiotis, Panagiotis and Karantzalos, Konstantinos and Georgopoulos, Andreas and Skarlatos, Dimitrios},
+  title          = {Correcting Image Refraction: Towards Accurate Aerial Image-Based Bathymetry Mapping in Shallow Waters},
+  journal        = {Remote Sensing},
+  volume         = {12},
+  year           = {2020},
+  number         = {2},
+  article-number = {322},
+  url            = {https://www.mdpi.com/2072-4292/12/2/322},
+  issn           = {2072-4292},
+  abstract       = {Although aerial image-based bathymetric mapping can provide, unlike acoustic or LiDAR (Light Detection and Ranging) sensors, both water depth and visual information, water refraction poses significant challenges for accurate depth estimation. In order to tackle this challenge, we propose an image correction methodology, which first exploits recent machine learning procedures that recover depth from image-based dense point clouds and then corrects refraction on the original imaging dataset. This way, the structure from motion (SfM) and multi-view stereo (MVS) processing pipelines are executed on a refraction-free set of aerial datasets, resulting in highly accurate bathymetric maps. Performed experiments and validation were based on datasets acquired during optimal sea state conditions and derived from four different test-sites characterized by excellent sea bottom visibility and textured seabed. Results demonstrated the high potential of our approach, both in terms of bathymetric accuracy, as well as texture and orthoimage quality.},
+  doi            = {10.3390/rs12020322}
+}
+
+# machine learning
+@article{Agrafiotis2019ISPRS_SVM-UAV-Bathymetry,
+  title     = {SHALLOW WATER BATHYMETRY MAPPING FROM UAV IMAGERY BASED ON MACHINE LEARNING},
+  volume    = {XLII-2/W10},
+  issn      = {2194-9034},
+  url       = {http://dx.doi.org/10.5194/isprs-archives-xlii-2-w10-9-2019},
+  doi       = {10.5194/isprs-archives-xlii-2-w10-9-2019},
+  journal   = {The International Archives of the Photogrammetry, Remote Sensing and Spatial Information Sciences},
+  publisher = {Copernicus GmbH},
+  author    = {Agrafiotis, P. and Skarlatos, D. and Georgopoulos, A. and Karantzalos, K.},
+  year      = {2019},
+  month     = apr,
+  pages     = {9--16}
+}
+
+# image matching
+@article{Mandlburger2019_featureMatching-textureless,
+  title     = {Through-Water Dense Image Matching for Shallow Water Bathymetry},
+  volume    = {85},
+  issn      = {0099-1112},
+  url       = {http://dx.doi.org/10.14358/pers.85.6.445},
+  doi       = {10.14358/pers.85.6.445},
+  number    = {6},
+  journal   = {Photogrammetric Engineering \& Remote Sensing},
+  publisher = {American Society for Photogrammetry and Remote Sensing},
+  author    = {Mandlburger, Gottfried},
+  year      = {2019},
+  month     = jun,
+  pages     = {445--455}
+}
+

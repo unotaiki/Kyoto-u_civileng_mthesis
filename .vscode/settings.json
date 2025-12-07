@@ -1,0 +1,158 @@
+{
+    "security.workspace.trust.untrustedFiles": "open",
+    "github.copilot.nextEditSuggestions.enabled": false,
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    },
+    "geminicodeassist.inlineSuggestions.enableAuto": false,
+    "geminicodeassist.codeGenerationPaneViewEnabled": false,
+    "explorer.confirmDelete": false,
+    "diffEditor.codeLens": true,
+    "code-runner.runInTerminal": true,
+    "cpp": "cd $dir && g++ $fileName -o $fileNameWithoutExt && $dir$fileNameWithoutExt",
+
+
+    "latex-workshop.latex.autoBuild.run": "never",
+    "latex-workshop.view.pdf.viewer": "tab",
+    "latex-workshop.pdf.autoOpen": true,
+    "latex-workshop.view.pdf.internal.synctex.keybinding": "double-click", // ダブルクリックでエディタへジャンプ
+    "latex-workshop.view.autoFocus.onBuild": true,
+
+    "latex-workshop.view.outline.floats.enabled": false, // 図表のアウトラインを無効化
+    "latex-workshop.view.outline.numbers.enabled": true, // 章番号を表示
+    
+    "latex-workshop.intellisense.package.enabled": true,
+    "latex-workshop.intellisense.citation.enabled": true,
+    "latex-workshop.intellisense.glossary.enabled": true,
+    "[tex]": {
+        "editor.suggest.snippetsPreventQuickSuggestions": true,
+        "editor.tabSize": 2
+    },
+    "[latex]": {
+        "editor.suggest.snippetsPreventQuickSuggestions": true,
+        "editor.tabSize": 2,
+        "editor.wordWrap": "on"
+    },
+    "[bibtex]": {
+        "editor.tabSize": 2,
+        "editor.defaultFormatter": "jrbentzon.bibtex-formatter",
+        "editor.formatOnSave": true
+    },
+    "latex-workshop.latex.clean.fileTypes": [
+        // "%OUTDIR%/*.aux",
+        "%OUTDIR%/*.bbl",
+        "%OUTDIR%/*.blg",
+        "%OUTDIR%/*.idx",
+        "%OUTDIR%/*.ind",
+        "%OUTDIR%/*.lof",
+        "%OUTDIR%/*.lot",
+        "%OUTDIR%/*.out",
+        "%OUTDIR%/*.toc",
+        "%OUTDIR%/*.acn",
+        "%OUTDIR%/*.acr",
+        "%OUTDIR%/*.alg",
+        "%OUTDIR%/*.glg",
+        "%OUTDIR%/*.glo",
+        "%OUTDIR%/*.gls",
+        "%OUTDIR%/*.ist",
+        "%OUTDIR%/*.fls",
+        "%OUTDIR%/*.log",
+        "%OUTDIR%/*.fdb_latexmk",
+        "%OUTDIR%/*.snm",
+        "%OUTDIR%/*.nav",
+        "%OUTDIR%/*.dvi",
+        "%OUTDIR%/*.synctex.gz"
+    ],
+    "latex-workshop.latex.autoClean.run": "onBuilt",
+    "latex-workshop.latex.outDir": "out",
+    "latex-workshop.latex.tools": [
+        {
+            "name": "pdflatex",
+            "command": "pdflatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-halt-on-error",
+                "-file-line-error",
+                "-output-directory=out",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "lualatex",
+            "command": "lualatex",
+            "args": [
+                "-synctex=1",
+                "-interaction=nonstopmode",
+                "-halt-on-error",
+                "-file-line-error",
+                "-output-directory=out",
+                "%DOC%"
+            ]
+        },
+        {
+            "name": "biber",
+            "command": "biber",
+            "args": [
+                "--input-directory=out",
+                "--output-directory=out",
+                "%DOCFILE%"
+            ]
+        },
+        {
+            "name": "bibtex",
+            "command": "bibtex",
+            "args": [
+                "%OUTDIR%/%DOCFILE%"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipes": [
+        {
+            "name": "lualatex→biber→lualatex x2",
+            "tools": [
+                "lualatex",
+                "biber",
+                "lualatex",
+                "lualatex"
+            ]
+        },
+        {
+            "name": "lualatex→bibtex→lualatex x2",
+            "tools": [
+                "lualatex",
+                "bibtex",
+                "lualatex",
+                "lualatex"
+            ]
+        },
+        {
+            "name": "pdflatex→bibtex→pdflatex x2",
+            "tools": [
+                "pdflatex",
+                "bibtex",
+                "pdflatex",
+                "pdflatex"
+            ]
+        }
+    ],
+    "latex-workshop.latex.recipe.default": "lualatex→biber→lualatex x2",
+    // ログに表示する警告の種類を減らす
+    "latex-workshop.message.latexlog.exclude": [
+        "(Overfull|Underfull) \\\\(v|h)box",
+        "Package hyperref Warning: Token not allowed in a PDF string" // しおりの数式警告などを無視
+      ],
+
+    "cSpell.enabled": false,
+    "explorer.confirmDragAndDrop": false,
+    "jupyter.askForKernelRestart": false,
+    "explorer.confirmPasteNative": false,
+    "latex-workshop.message.error.show": true,
+    "diffEditor.ignoreTrimWhitespace": false,
+    "cursor.cpp.disabledLanguages": [
+        "scminput"
+    ]
+}
