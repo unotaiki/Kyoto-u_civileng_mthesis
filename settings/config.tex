@@ -44,7 +44,16 @@
 
 % --- 参考文献設定 (Biber + BibLaTeX) ---
 % 従来の \usepackage{cite} や thebibliography環境 の代わり
-\usepackage[backend=biber, style=numeric, sorting=none]{biblatex}
+\usepackage[backend=biber, style=phys, sorting=none]{biblatex} % style=numeric → style=physics
+
+% --- 参考文献リストのスタイル設定 ---
+% 1. 参考文献リスト内の行間を「1.0 (シングル)」に強制変更 ※ 全体の \linespread{2.5} をここだけ無効化
+\AtBeginBibliography{\setstretch{1.0}} 
+% 2. 項目ごとのフォントサイズを少し小さくする（任意） ※ 必要なければ \small を削除してください
+% \renewcommand*{\bibfont}{\small}
+% 3. 文献アイテム同士の間隔を詰める
+\setlength{\bibitemsep}{2.5pt} % 項目間の余白 (0ptでも可)
+\setlength{\bibparsep}{1.0pt}  % 項目内の段落間余白
 
 % % 引用番号のスタイルを [1] から 1) に変更
 % \DeclareFieldFormat{labelnumberwidth}{#1)}
