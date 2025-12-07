@@ -1136,6 +1136,62 @@
       \verb http://dx.doi.org/10.1145/3592433
       \endverb
     \endentry
+    \entry{He2024_survey-shallow-bathymetry}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=86f1b0caff50a226bd19f712714525d8}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Jinchen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c9e415f4af84ee5f5da25bf9160cb9eb}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Shuhang},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ac436fae058a11f0581ec301425b5285}{%
+           family={Cui},
+           familyi={C\bibinitperiod},
+           given={Xiaodong},
+           giveni={X\bibinitperiod}}}%
+        {{hash=5100c76ef1e2288a5166eab4fce15e60}{%
+           family={Feng},
+           familyi={F\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier BV}%
+      }
+      \strng{namehash}{14e4b70d270e28b00420e1b2e3320ac9}
+      \strng{fullhash}{11782c867f2c48938f23c495392a2ef3}
+      \strng{fullhashraw}{11782c867f2c48938f23c495392a2ef3}
+      \strng{bibnamehash}{14e4b70d270e28b00420e1b2e3320ac9}
+      \strng{authorbibnamehash}{14e4b70d270e28b00420e1b2e3320ac9}
+      \strng{authornamehash}{14e4b70d270e28b00420e1b2e3320ac9}
+      \strng{authorfullhash}{11782c867f2c48938f23c495392a2ef3}
+      \strng{authorfullhashraw}{11782c867f2c48938f23c495392a2ef3}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0012-8252}
+      \field{journaltitle}{Earth-Science Reviews}
+      \field{month}{11}
+      \field{title}{Remote sensing for shallow bathymetry: A systematic review}
+      \field{volume}{258}
+      \field{year}{2024}
+      \field{pages}{104957}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.earscirev.2024.104957
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/j.earscirev.2024.104957
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/j.earscirev.2024.104957
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
