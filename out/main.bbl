@@ -1192,6 +1192,73 @@
       \verb http://dx.doi.org/10.1016/j.earscirev.2024.104957
       \endverb
     \endentry
+    \entry{Alevizos2022_DL-shallow-bathymetry}{article}{}{}
+      \name{author}{6}{}{%
+        {{hash=9f8da71c309c7a987bd363a8ade55248}{%
+           family={Alevizos},
+           familyi={A\bibinitperiod},
+           given={Evangelos},
+           giveni={E\bibinitperiod}}}%
+        {{hash=fd9d3c2319a4bf282394678b3608652c}{%
+           family={Nicodemou},
+           familyi={N\bibinitperiod},
+           given={Vassilis\bibnamedelima C.},
+           giveni={V\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+        {{hash=c45ba1037f24a9ad6866153a209f54bb}{%
+           family={Makris},
+           familyi={M\bibinitperiod},
+           given={Alexandros},
+           giveni={A\bibinitperiod}}}%
+        {{hash=accfa32209cfc206ffc48ea22c5c3d95}{%
+           family={Oikonomidis},
+           familyi={O\bibinitperiod},
+           given={Iason},
+           giveni={I\bibinitperiod}}}%
+        {{hash=0a2fce034bc9fe59562c6d208ac69981}{%
+           family={Roussos},
+           familyi={R\bibinitperiod},
+           given={Anastasios},
+           giveni={A\bibinitperiod}}}%
+        {{hash=fa2693ffec5ed5de4a792ea2415bf09a}{%
+           family={Alexakis},
+           familyi={A\bibinitperiod},
+           given={Dimitrios\bibnamedelima D.},
+           giveni={D\bibinitperiod\bibinitdelim D\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {MDPI AG}%
+      }
+      \strng{namehash}{cffec43a235caf9e9b559d772df1b18f}
+      \strng{fullhash}{05f647c1d90342a5728af726d2ce8612}
+      \strng{fullhashraw}{05f647c1d90342a5728af726d2ce8612}
+      \strng{bibnamehash}{05f647c1d90342a5728af726d2ce8612}
+      \strng{authorbibnamehash}{05f647c1d90342a5728af726d2ce8612}
+      \strng{authornamehash}{cffec43a235caf9e9b559d772df1b18f}
+      \strng{authorfullhash}{05f647c1d90342a5728af726d2ce8612}
+      \strng{authorfullhashraw}{05f647c1d90342a5728af726d2ce8612}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2072-4292}
+      \field{journaltitle}{Remote Sensing}
+      \field{month}{8}
+      \field{number}{17}
+      \field{title}{Integration of Photogrammetric and Spectral Techniques for Advanced Drone-Based Bathymetry Retrieval Using a Deep Learning Approach}
+      \field{volume}{14}
+      \field{year}{2022}
+      \field{pages}{4160}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.3390/rs14174160
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.3390/rs14174160
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.3390/rs14174160
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

@@ -1,0 +1,64 @@
+%!TEX root = ../main.tex
+\chapter{背景理論}
+
+\section{画像に基づく3次元復元 (3D Reconstruction from Images)}
+画像を用いた測量は写真測量(Photogrammetry)と呼ばれ、古い歴史あり。
+\url{https://duplicate-3d.com/rd/2025-09-11-photogrammetry-history/} この記事を参考に。
+もともとは専門的な技能を持った人が、専用の機械(?)を用いて作成。
+
+画像のデジタル化、イメージセンサの発明によりコンピュータビジョン（Computer Vision, CV）が始まる。
+Image Sensorから得た視覚情報から、人間や他の生物と同じようにComputerやMachineにSceneを理解させる。
+
+画像センサ（Image Sensor）が捉える情報は、本質的には3次元シーンから2次元平面への射影（Projection）である。
+この過程において、3次元空間の奥行き情報は1次元分欠落し、情報の「縮退」が発生する。
+3次元復元の主眼は、この失われた次元を幾何学的制約や事前知識（Priors）を用いて補完し、元のシーンの構造を逆問題として解くことにある。
+3次元情報は生物が自己が生きる世界を認識、理解するうえで必須の情報であり、ロボットの自己位置推定、環境認識などにも多大なニーズがあり、Computer Visionの主要タスクとして数多くの研究がなされ、今もめちゃくちゃレッドオーシャン。
+
+古くから、単眼画像から形状を推定する手法として、輝度やテクスチャ、影などの手掛かりを利用する \textit{Shape from X}（$X \in \{\text{shading, Silhouette, Texture, Focus, etc.}\}$）の研究が行われてきた。
+しかし、より頑健な復元を行うためには、視点移動を伴う複数枚の画像、あるいは動画（Image sequence）を用いて幾何的な整合性を元に手法が主流となった。
+この手法、タスクの総称を Structure from Motion (SfM) と呼ぶ。
+このSfMを起点とする、3D Vision for Geometry手法の発達、高度なUIを備えた商用ソフト(Pix4D, Metashape, etc.)の出現、オープンソース化により、今日ではPhotogrammetry技術は広く一般に普及した。
+
+\subsection{Structure from Motion}
+SfMは、複数の視点から撮影された画像群に基づき、カメラの内部・外部パラメータ（三次元的な動き）と、シーンの疎な（Sparse）3次元構造を同時に推定する手法である。
+Tomasi-Kanadeによる行列分解法に始まる。
+HartleyやZissermanら(2000年代)によって幾何学的理論の基礎が確立された。 (VGGTのYoutubeの対談動画で取り上げられていた。もう少し詳しくは、Harley先生たちの本を参照。
+2016年に発表された COLMAP は、高い精度と汎用性、そしてOpen Sourceのプロジェクトとしての完成度から現在でもアカデミック分野でデファクトスタンダードとして広く利用されている。
+また、COLMAPにより出力される、正確なカメラ内部パラメータ(Intrinsic)と外部パラメータ(Extrinsic)は、歪みのない画像(Undistorted Images)は、後述するDense Reconstruction や 新規視点合成タスク のための入力データとして、重要なパイプラインの一角を担っている。
+
+In a typical incremental SfM pipeline, keypoints are firstly detected and matched across frames using feature detectors and descriptors such as SIFT \parencite{Lowe2004_SIFT}.
+Fundamental matrix $F$ between two images is then calculated, commonly via eight-points algorithm \parencite{Hartley1997_8PointAlgorithm} combined with random sample consensus (RANSAC) \parencite{Fischler1987_RANSAC}, which lead to camera pose recovery through singular value decomposition.
+New camera poses are iteratively registered via Perspective-n-Point algorithms, which align estimated 3D points with 2D features in new frames.
+Triangulation is subsequently applied to obtain additional 3D points from feature correspondences, and bundle adjustment (BA) \parencite{Triggs2000_BA} is finally performed to minimize reprojection error, refining both camera parameters and 3D points. 
+画像を貼るぞい!!!http://theia-sfm.org/sfm.html
+
+\begin{figure}[htbp]
+  \centering
+  \captionsetup{justification=raggedright}
+  \includegraphics[width=0.7\linewidth]{figure/40_prelim/sfm_pipeline.png}
+  \caption{SfM Pipeline \cite{fig:Theia-SfM}}
+  \label{fig:sfm_pipeline}
+\end{figure}
+
+\subsection{Multi-View Stereo}
+一方、SfMが推定した疎な点群に対し、画素単位で密な復元を行うのが Multi-View Stereo (MVS) である。
+PatchMatch法などのアルゴリズムを用い、各フレームにおける深度（Depth）や法線（Normal）の一貫性を最適化することで、精緻な幾何構造を構築する。
+より詳しく解説したい。\cite{Furukawa2010_PatchMVS,Furukawa2015_MVS}
+
+
+\subsection{Feed Forward 3D Reconstruction}
+近年（2023-2025年現在、大規模データセットを用いた深層学習、特に Transformer アーキテクチャの導入により、従来の幾何学的手法を代替・補完する「フィードフォワード型」の手法が急速に台頭している。
+従来手法が、Optimization-basedの手法であるのに対し、Feed Forwardの手法は、Data-drivenの手法である。
+
+Depth Anything\cite{}: 膨大な画像データから学習された 3D Priors を活用することで、未知のシーンに対しても極めて精緻な単眼深度推定を実現している。
+
+DUSt3R / MASt3R\cite{}: 従来の SfM/MVS のような複雑なパイプライン（特徴点抽出、マッチング、 bundle adjustment 等）を介さず、2枚の画像から直接 Point Map を回帰する。これにより、カメラパラメータを事前に与えることなく、エンドツーエンドでの3次元形状およびカメラ姿勢の推定が可能となった。
+
+VGGT\cite{}: Best Paper Award at CVPR 2025.
+
+現在、大規模モデルによるデータ駆動型のアプローチへと大きなパラダイムシフトを迎えている。
+
+SfM、MVSなどはGeometric Opticsを前提とし、光線が直進するという普遍的で強い過程を前提に構築されており、
+Feed Forward手法は、屈折のあるSceneが学習データには不足しており、屈折のあるSceneを正確な一貫性を持って復元できるかは疑問だ? 
+(動画生成AIが流体や重力、光の反射といった物理法則を理解しつつある側面を考えると、いずれは屈折のあるSceneも学習データに含まれるようになるかもしれない。)
+
