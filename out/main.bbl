@@ -1259,6 +1259,204 @@
       \verb http://dx.doi.org/10.3390/rs14174160
       \endverb
     \endentry
+    \entry{Lowe2004_SIFT}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=83f4643381c1cc2c483b4210498fedb0}{%
+           family={Lowe},
+           familyi={L\bibinitperiod},
+           given={David\bibnamedelima G.},
+           giveni={D\bibinitperiod\bibinitdelim G\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{83f4643381c1cc2c483b4210498fedb0}
+      \strng{fullhash}{83f4643381c1cc2c483b4210498fedb0}
+      \strng{fullhashraw}{83f4643381c1cc2c483b4210498fedb0}
+      \strng{bibnamehash}{83f4643381c1cc2c483b4210498fedb0}
+      \strng{authorbibnamehash}{83f4643381c1cc2c483b4210498fedb0}
+      \strng{authornamehash}{83f4643381c1cc2c483b4210498fedb0}
+      \strng{authorfullhash}{83f4643381c1cc2c483b4210498fedb0}
+      \strng{authorfullhashraw}{83f4643381c1cc2c483b4210498fedb0}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1573-1405}
+      \field{journaltitle}{International Journal of Computer Vision}
+      \field{month}{11}
+      \field{number}{2}
+      \field{title}{Distinctive Image Features from Scale-Invariant Keypoints}
+      \field{volume}{60}
+      \field{year}{2004}
+      \field{pages}{91\bibrangedash 110}
+      \range{pages}{20}
+      \verb{doi}
+      \verb 10.1023/b:visi.0000029664.99615.94
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1023/b:visi.0000029664.99615.94
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1023/b:visi.0000029664.99615.94
+      \endverb
+    \endentry
+    \entry{Hartley1997_8PointAlgorithm}{article}{}{}
+      \name{author}{1}{}{%
+        {{hash=d0465e31872bd5a1d01ac67d592146e9}{%
+           family={Hartley},
+           familyi={H\bibinitperiod},
+           given={R.I.},
+           giveni={R\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Institute of Electrical}%
+        {Electronics Engineers (IEEE)}%
+      }
+      \strng{namehash}{d0465e31872bd5a1d01ac67d592146e9}
+      \strng{fullhash}{d0465e31872bd5a1d01ac67d592146e9}
+      \strng{fullhashraw}{d0465e31872bd5a1d01ac67d592146e9}
+      \strng{bibnamehash}{d0465e31872bd5a1d01ac67d592146e9}
+      \strng{authorbibnamehash}{d0465e31872bd5a1d01ac67d592146e9}
+      \strng{authornamehash}{d0465e31872bd5a1d01ac67d592146e9}
+      \strng{authorfullhash}{d0465e31872bd5a1d01ac67d592146e9}
+      \strng{authorfullhashraw}{d0465e31872bd5a1d01ac67d592146e9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0162-8828}
+      \field{journaltitle}{IEEE Transactions on Pattern Analysis and Machine Intelligence}
+      \field{month}{6}
+      \field{number}{6}
+      \field{title}{In defense of the eight-point algorithm}
+      \field{volume}{19}
+      \field{year}{1997}
+      \field{pages}{580\bibrangedash 593}
+      \range{pages}{14}
+      \verb{doi}
+      \verb 10.1109/34.601246
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/34.601246
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/34.601246
+      \endverb
+    \endentry
+    \entry{Fischler1987_RANSAC}{inbook}{}{}
+      \name{author}{2}{}{%
+        {{hash=53af7a5ea8715d6c3922933be034062f}{%
+           family={Fischler},
+           familyi={F\bibinitperiod},
+           given={Martin\bibnamedelima A.},
+           giveni={M\bibinitperiod\bibinitdelim A\bibinitperiod}}}%
+        {{hash=40bae40d0cc01a890e3631288dd8ffa2}{%
+           family={Bolles},
+           familyi={B\bibinitperiod},
+           given={Robert\bibnamedelima C.},
+           giveni={R\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier}%
+      }
+      \strng{namehash}{fd6cd035a6e3f6ec978ad866925826c7}
+      \strng{fullhash}{fd6cd035a6e3f6ec978ad866925826c7}
+      \strng{fullhashraw}{fd6cd035a6e3f6ec978ad866925826c7}
+      \strng{bibnamehash}{fd6cd035a6e3f6ec978ad866925826c7}
+      \strng{authorbibnamehash}{fd6cd035a6e3f6ec978ad866925826c7}
+      \strng{authornamehash}{fd6cd035a6e3f6ec978ad866925826c7}
+      \strng{authorfullhash}{fd6cd035a6e3f6ec978ad866925826c7}
+      \strng{authorfullhashraw}{fd6cd035a6e3f6ec978ad866925826c7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Readings in Computer Vision}
+      \field{isbn}{9780080515816}
+      \field{title}{Random Sample Consensus: A Paradigm for Model Fitting with Applications to Image Analysis and Automated Cartography}
+      \field{year}{1987}
+      \field{pages}{726\bibrangedash 740}
+      \range{pages}{15}
+      \verb{doi}
+      \verb 10.1016/b978-0-08-051581-6.50070-2
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/b978-0-08-051581-6.50070-2
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/b978-0-08-051581-6.50070-2
+      \endverb
+    \endentry
+    \entry{Triggs2000_BA}{inbook}{}{}
+      \name{author}{4}{}{%
+        {{hash=7edc70f9ce27f4a800aa68cbd1625f51}{%
+           family={Triggs},
+           familyi={T\bibinitperiod},
+           given={Bill},
+           giveni={B\bibinitperiod}}}%
+        {{hash=5ccadc4e60922a3feccd41b7615cb2b5}{%
+           family={McLauchlan},
+           familyi={M\bibinitperiod},
+           given={Philip\bibnamedelima F.},
+           giveni={P\bibinitperiod\bibinitdelim F\bibinitperiod}}}%
+        {{hash=94b8022d4a025176f7356248b253cb7e}{%
+           family={Hartley},
+           familyi={H\bibinitperiod},
+           given={Richard\bibnamedelima I.},
+           giveni={R\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=b9b0b6a06cb9118c726836399bc0e277}{%
+           family={Fitzgibbon},
+           familyi={F\bibinitperiod},
+           given={Andrew\bibnamedelima W.},
+           giveni={A\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Berlin Heidelberg}%
+      }
+      \strng{namehash}{36a5e31de7a1be65ff51f08258616698}
+      \strng{fullhash}{30e48d2aaee2a1fda71a42c2cf87706f}
+      \strng{fullhashraw}{30e48d2aaee2a1fda71a42c2cf87706f}
+      \strng{bibnamehash}{30e48d2aaee2a1fda71a42c2cf87706f}
+      \strng{authorbibnamehash}{30e48d2aaee2a1fda71a42c2cf87706f}
+      \strng{authornamehash}{36a5e31de7a1be65ff51f08258616698}
+      \strng{authorfullhash}{30e48d2aaee2a1fda71a42c2cf87706f}
+      \strng{authorfullhashraw}{30e48d2aaee2a1fda71a42c2cf87706f}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Vision Algorithms: Theory and Practice}
+      \field{isbn}{9783540444800}
+      \field{issn}{0302-9743}
+      \field{title}{Bundle Adjustment — A Modern Synthesis}
+      \field{year}{2000}
+      \field{pages}{298\bibrangedash 372}
+      \range{pages}{75}
+      \verb{doi}
+      \verb 10.1007/3-540-44480-7_21
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/3-540-44480-7_21
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/3-540-44480-7_21
+      \endverb
+    \endentry
+    \entry{fig:Theia-SfM}{online}{}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{note}{Accessed: 2025-12-18}
+      \field{title}{Theia Vision Library: Structure from Motion}
+      \verb{urlraw}
+      \verb http://theia-sfm.org/sfm.html
+      \endverb
+      \verb{url}
+      \verb http://theia-sfm.org/sfm.html
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput
