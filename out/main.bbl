@@ -1457,6 +1457,647 @@
       \verb http://theia-sfm.org/sfm.html
       \endverb
     \endentry
+    \entry{Yan2024CVPR_GS-SLAM}{inproceedings}{}{}
+      \name{author}{7}{}{%
+        {{hash=8eb55777a3e1a9f56e4ec1ac63295521}{%
+           family={Yan},
+           familyi={Y\bibinitperiod},
+           given={Chi},
+           giveni={C\bibinitperiod}}}%
+        {{hash=ca2e75a7a58268c8075ec0c26342dbd5}{%
+           family={Qu},
+           familyi={Q\bibinitperiod},
+           given={Delin},
+           giveni={D\bibinitperiod}}}%
+        {{hash=c683a2b66abb8461ce16ab20fabb5837}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Dan},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b44f42d7580d958fe3ef32a7217ff039}{%
+           family={Zhao},
+           familyi={Z\bibinitperiod},
+           given={Bin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=9f4446a6d583221d3d173f806ecf8627}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhigang},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=4695c12fc5e5638d83abfb67ab9d459c}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Dong},
+           giveni={D\bibinitperiod}}}%
+        {{hash=750adebf12ff1b4140470407f82e2b40}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Xuelong},
+           giveni={X\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{4cd9f80f9c0a6011d36c6da40974de58}
+      \strng{fullhash}{9deb5a118d969e2f12ddfefd58af2519}
+      \strng{fullhashraw}{9deb5a118d969e2f12ddfefd58af2519}
+      \strng{bibnamehash}{9deb5a118d969e2f12ddfefd58af2519}
+      \strng{authorbibnamehash}{9deb5a118d969e2f12ddfefd58af2519}
+      \strng{authornamehash}{4cd9f80f9c0a6011d36c6da40974de58}
+      \strng{authorfullhash}{9deb5a118d969e2f12ddfefd58af2519}
+      \strng{authorfullhashraw}{9deb5a118d969e2f12ddfefd58af2519}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{month}{6}
+      \field{title}{GS-SLAM: Dense Visual SLAM with 3D Gaussian Splatting}
+      \field{year}{2024}
+      \field{pages}{19595\bibrangedash 19604}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/cvpr52733.2024.01853
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/cvpr52733.2024.01853
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/cvpr52733.2024.01853
+      \endverb
+    \endentry
+    \entry{Zheng2025CVPR_WildGS-SLAM}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=6da059d7a06bfe8169f92b8db9eabf19}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Jianhao},
+           giveni={J\bibinitperiod}}}%
+        {{hash=33ed4efed73bba931ef2327c69d56723}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Zihan},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=2f4b72870a4e6d40aca95679172a4c2a}{%
+           family={Bieri},
+           familyi={B\bibinitperiod},
+           given={Valentin},
+           giveni={V\bibinitperiod}}}%
+        {{hash=501629493a5ead2d23ee597103478ce8}{%
+           family={Pollefeys},
+           familyi={P\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=50cf323c42cc810f490f2ba9cbf452c0}{%
+           family={Peng},
+           familyi={P\bibinitperiod},
+           given={Songyou},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d04bfd41c548971c2fc16de7da6c2e82}{%
+           family={Iro},
+           familyi={I\bibinitperiod},
+           given={Armeni},
+           giveni={A\bibinitperiod}}}%
+      }
+      \strng{namehash}{a9c06d9c8dc53b499cee381e94a723a0}
+      \strng{fullhash}{6a2fd2f7256af35f3de368895ed15158}
+      \strng{fullhashraw}{6a2fd2f7256af35f3de368895ed15158}
+      \strng{bibnamehash}{6a2fd2f7256af35f3de368895ed15158}
+      \strng{authorbibnamehash}{6a2fd2f7256af35f3de368895ed15158}
+      \strng{authornamehash}{a9c06d9c8dc53b499cee381e94a723a0}
+      \strng{authorfullhash}{6a2fd2f7256af35f3de368895ed15158}
+      \strng{authorfullhashraw}{6a2fd2f7256af35f3de368895ed15158}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{title}{WildGS-SLAM: Monocular Gaussian Splatting SLAM in Dynamic Environments}
+      \field{year}{2025}
+    \endentry
+    \entry{Matsuki2024CVPR_GaussianSplattingSLAM}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=f6050320968055202331ae77915ca593}{%
+           family={Matsuki},
+           familyi={M\bibinitperiod},
+           given={Hidenobu},
+           giveni={H\bibinitperiod}}}%
+        {{hash=f6b57bc2cb3f90b1b62e95820add9242}{%
+           family={Murai},
+           familyi={M\bibinitperiod},
+           given={Riku},
+           giveni={R\bibinitperiod}}}%
+        {{hash=197a3f208990907b0d3bbd943bb14dd1}{%
+           family={Kelly},
+           familyi={K\bibinitperiod},
+           given={Paul\bibnamedelimb H.\bibnamedelimi J.},
+           giveni={P\bibinitperiod\bibinitdelim H\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=6800da0b1eba1591ea0c413f8efceae3}{%
+           family={Davison},
+           familyi={D\bibinitperiod},
+           given={Andrew\bibnamedelima J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{a6514dccec078c9745e7c9767fec8de7}
+      \strng{fullhash}{8b27c087d4af28ede739310fa8f96e44}
+      \strng{fullhashraw}{8b27c087d4af28ede739310fa8f96e44}
+      \strng{bibnamehash}{8b27c087d4af28ede739310fa8f96e44}
+      \strng{authorbibnamehash}{8b27c087d4af28ede739310fa8f96e44}
+      \strng{authornamehash}{a6514dccec078c9745e7c9767fec8de7}
+      \strng{authorfullhash}{8b27c087d4af28ede739310fa8f96e44}
+      \strng{authorfullhashraw}{8b27c087d4af28ede739310fa8f96e44}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{month}{6}
+      \field{title}{Gaussian Splatting SLAM}
+      \field{year}{2024}
+      \field{pages}{18039\bibrangedash 18048}
+      \range{pages}{10}
+      \verb{doi}
+      \verb 10.1109/cvpr52733.2024.01708
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/cvpr52733.2024.01708
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/cvpr52733.2024.01708
+      \endverb
+    \endentry
+    \entry{Moreau2024CVPR_HumanGaussianSplatting}{inproceedings}{}{}
+      \name{author}{6}{}{%
+        {{hash=a14a3f88b17b70c8c37ecf1e6befc986}{%
+           family={Moreau},
+           familyi={M\bibinitperiod},
+           given={Arthur},
+           giveni={A\bibinitperiod}}}%
+        {{hash=5131d31f343c7be73c0f2e1d986c52ca}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Jifei},
+           giveni={J\bibinitperiod}}}%
+        {{hash=930956a2e03cda1d46ed8529435afae2}{%
+           family={Dhamo},
+           familyi={D\bibinitperiod},
+           given={Helisa},
+           giveni={H\bibinitperiod}}}%
+        {{hash=9c0785ad2147ef6dead43e245caedc0e}{%
+           family={Shaw},
+           familyi={S\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=441742472ab4f4d6527bd49ddd3c6279}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Yiren},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=2052ae80d3d59a19c1214cc480d17e76}{%
+           family={Pérez-Pellitero},
+           familyi={P\bibinithyphendelim P\bibinitperiod},
+           given={Eduardo},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{5951491ea1890c94292fc700adba0663}
+      \strng{fullhash}{c8ad9624cf0f856fa33f6a8a6e506c76}
+      \strng{fullhashraw}{c8ad9624cf0f856fa33f6a8a6e506c76}
+      \strng{bibnamehash}{c8ad9624cf0f856fa33f6a8a6e506c76}
+      \strng{authorbibnamehash}{c8ad9624cf0f856fa33f6a8a6e506c76}
+      \strng{authornamehash}{5951491ea1890c94292fc700adba0663}
+      \strng{authorfullhash}{c8ad9624cf0f856fa33f6a8a6e506c76}
+      \strng{authorfullhashraw}{c8ad9624cf0f856fa33f6a8a6e506c76}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{month}{6}
+      \field{title}{Human Gaussian Splatting: Real-Time Rendering of Animatable Avatars}
+      \field{year}{2024}
+      \field{pages}{788\bibrangedash 798}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/cvpr52733.2024.00081
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/cvpr52733.2024.00081
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/cvpr52733.2024.00081
+      \endverb
+    \endentry
+    \entry{Shao2024CVPR_GaussianAvatar}{inproceedings}{}{}
+      \name{author}{8}{}{%
+        {{hash=cd58f49d4acd5a8808e0a2111e4d047c}{%
+           family={Shao},
+           familyi={S\bibinitperiod},
+           given={Zhijing},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=47f6c26ba949c55ddb4dd899939f6df1}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhaolong},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=276a5d9eefb31930bb6456d94a9dd58d}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Zhuang},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=fcf0c14534a73611bc9bfdf111daa780}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Duotun},
+           giveni={D\bibinitperiod}}}%
+        {{hash=95a2ff59d5bb1068c56bdbb4fd9b8b67}{%
+           family={Lin},
+           familyi={L\bibinitperiod},
+           given={Xiangru},
+           giveni={X\bibinitperiod}}}%
+        {{hash=9a4f4a1ff661cd600eb26523a5ba8bb4}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Yu},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=be7b9ae3f9ae78d447f1e24991504de1}{%
+           family={Fan},
+           familyi={F\bibinitperiod},
+           given={Mingming},
+           giveni={M\bibinitperiod}}}%
+        {{hash=938158f222c630ab1bcd349d4abdb680}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zeyu},
+           giveni={Z\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{d9668dbb73566d1aa055ed322f12bb9b}
+      \strng{fullhash}{d86ec4ce841bcef744626741a3e34d6f}
+      \strng{fullhashraw}{d86ec4ce841bcef744626741a3e34d6f}
+      \strng{bibnamehash}{d86ec4ce841bcef744626741a3e34d6f}
+      \strng{authorbibnamehash}{d86ec4ce841bcef744626741a3e34d6f}
+      \strng{authornamehash}{d9668dbb73566d1aa055ed322f12bb9b}
+      \strng{authorfullhash}{d86ec4ce841bcef744626741a3e34d6f}
+      \strng{authorfullhashraw}{d86ec4ce841bcef744626741a3e34d6f}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{month}{6}
+      \field{title}{SplattingAvatar: Realistic Real-Time Human Avatars With Mesh-Embedded Gaussian Splatting}
+      \field{year}{2024}
+      \field{pages}{1606\bibrangedash 1616}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/cvpr52733.2024.00159
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/cvpr52733.2024.00159
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/cvpr52733.2024.00159
+      \endverb
+    \endentry
+    \entry{Chen2024ECCV_MVSplatting}{inbook}{}{}
+      \name{author}{8}{}{%
+        {{hash=7f783a7829c08fa9360fcd57a31ef819}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Yuedong},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=75a2b3f6434ea6487fd293cd4664311b}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Haofei},
+           giveni={H\bibinitperiod}}}%
+        {{hash=e8debc6e4fa1ef49b727ddfdd0822984}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Chuanxia},
+           giveni={C\bibinitperiod}}}%
+        {{hash=7b69089c6d6117d92dd057e7e70a7607}{%
+           family={Zhuang},
+           familyi={Z\bibinitperiod},
+           given={Bohan},
+           giveni={B\bibinitperiod}}}%
+        {{hash=501629493a5ead2d23ee597103478ce8}{%
+           family={Pollefeys},
+           familyi={P\bibinitperiod},
+           given={Marc},
+           giveni={M\bibinitperiod}}}%
+        {{hash=06133052ac3c14a188601b82783cd4f7}{%
+           family={Geiger},
+           familyi={G\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3177a5f8e10caa650e0f2e79fdb0d6e5}{%
+           family={Cham},
+           familyi={C\bibinitperiod},
+           given={Tat-Jen},
+           giveni={T\bibinithyphendelim J\bibinitperiod}}}%
+        {{hash=c75d31462b261e5c21d1421d64679934}{%
+           family={Cai},
+           familyi={C\bibinitperiod},
+           given={Jianfei},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Springer Nature Switzerland}%
+      }
+      \strng{namehash}{12ecfbee9677d4965da6f805b5017c84}
+      \strng{fullhash}{49902cf46e160313ed5cca415623d1e0}
+      \strng{fullhashraw}{49902cf46e160313ed5cca415623d1e0}
+      \strng{bibnamehash}{49902cf46e160313ed5cca415623d1e0}
+      \strng{authorbibnamehash}{49902cf46e160313ed5cca415623d1e0}
+      \strng{authornamehash}{12ecfbee9677d4965da6f805b5017c84}
+      \strng{authorfullhash}{49902cf46e160313ed5cca415623d1e0}
+      \strng{authorfullhashraw}{49902cf46e160313ed5cca415623d1e0}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Computer Vision – ECCV 2024}
+      \field{isbn}{9783031726644}
+      \field{issn}{1611-3349}
+      \field{month}{10}
+      \field{title}{MVSplat: Efficient 3D Gaussian Splatting from Sparse Multi-view Images}
+      \field{year}{2024}
+      \field{pages}{370\bibrangedash 386}
+      \range{pages}{17}
+      \verb{doi}
+      \verb 10.1007/978-3-031-72664-4_21
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/978-3-031-72664-4_21
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/978-3-031-72664-4_21
+      \endverb
+    \endentry
+    \entry{Aira2025CVPR_EOGS}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=1371b57d5df29aeac07caa3bc9cb255b}{%
+           family={Aira},
+           familyi={A\bibinitperiod},
+           given={Luca\bibnamedelima Savant},
+           giveni={L\bibinitperiod\bibinitdelim S\bibinitperiod}}}%
+        {{hash=a20c329018b61f5350dea7c0487fbc42}{%
+           family={Facciolo},
+           familyi={F\bibinitperiod},
+           given={Gabriele},
+           giveni={G\bibinitperiod}}}%
+        {{hash=ffe57f932bba083696fc4ca589afa05e}{%
+           family={Ehret},
+           familyi={E\bibinitperiod},
+           given={Thibaud},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{4ccd2e8fea4fe46b7dda34ff4f3ca373}
+      \strng{fullhash}{e388f13f2b380e3adb9ecb002b368fb2}
+      \strng{fullhashraw}{e388f13f2b380e3adb9ecb002b368fb2}
+      \strng{bibnamehash}{e388f13f2b380e3adb9ecb002b368fb2}
+      \strng{authorbibnamehash}{e388f13f2b380e3adb9ecb002b368fb2}
+      \strng{authornamehash}{4ccd2e8fea4fe46b7dda34ff4f3ca373}
+      \strng{authorfullhash}{e388f13f2b380e3adb9ecb002b368fb2}
+      \strng{authorfullhashraw}{e388f13f2b380e3adb9ecb002b368fb2}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{month}{6}
+      \field{title}{Gaussian Splatting for Efficient Satellite Image Photogrammetry}
+      \field{year}{2025}
+      \field{pages}{5959\bibrangedash 5969}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/cvpr52734.2025.00559
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/cvpr52734.2025.00559
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/cvpr52734.2025.00559
+      \endverb
+    \endentry
+    \entry{li20243DV_watersplatting}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=ca693f7e057bf95f94efac3a068a499e}{%
+           family={Li},
+           familyi={L\bibinitperiod},
+           given={Huapeng},
+           giveni={H\bibinitperiod}}}%
+        {{hash=dd246d86bb3e421049b3c343f13300d6}{%
+           family={Song},
+           familyi={S\bibinitperiod},
+           given={Wenxuan},
+           giveni={W\bibinitperiod}}}%
+        {{hash=24d0dcd99baafa2254c14f99dfa4db7c}{%
+           family={Xu},
+           familyi={X\bibinitperiod},
+           given={Tianao},
+           giveni={T\bibinitperiod}}}%
+        {{hash=77c36ecf913cec1ce9d719bdab223b9b}{%
+           family={Elsig},
+           familyi={E\bibinitperiod},
+           given={Alexandre},
+           giveni={A\bibinitperiod}}}%
+        {{hash=a2675375508108d51b45b1025e1b0a55}{%
+           family={Kulhanek},
+           familyi={K\bibinitperiod},
+           given={Jonas},
+           giveni={J\bibinitperiod}}}%
+      }
+      \strng{namehash}{09c4bb837f5a87c60a96478e1577dc5e}
+      \strng{fullhash}{c8f9d8291117c07fbb4bacd402478b24}
+      \strng{fullhashraw}{c8f9d8291117c07fbb4bacd402478b24}
+      \strng{bibnamehash}{c8f9d8291117c07fbb4bacd402478b24}
+      \strng{authorbibnamehash}{c8f9d8291117c07fbb4bacd402478b24}
+      \strng{authornamehash}{09c4bb837f5a87c60a96478e1577dc5e}
+      \strng{authorfullhash}{c8f9d8291117c07fbb4bacd402478b24}
+      \strng{authorfullhashraw}{c8f9d8291117c07fbb4bacd402478b24}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{journaltitle}{3DV}
+      \field{title}{{W}ater{S}platting: Fast Underwater {3D} Scene Reconstruction using Gaussian Splatting}
+      \field{year}{2025}
+    \endentry
+    \entry{Zwicker2001_EWA-volume-splatting}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=c41ccc3cf2ea31ff1e05daba8641db60}{%
+           family={Zwicker},
+           familyi={Z\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+        {{hash=1aca1b7972e439ab78c1be202ff76b55}{%
+           family={Pfister},
+           familyi={P\bibinitperiod},
+           given={H.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=823e12bc2a36da27f93bd8ba6b4eb09a}{%
+           family={Baar},
+           familyi={B\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod},
+           prefix={van},
+           prefixi={v\bibinitperiod}}}%
+        {{hash=6a2ec2a0bcd4603513dc8cdf173acdeb}{%
+           family={Gross},
+           familyi={G\bibinitperiod},
+           given={M.},
+           giveni={M\bibinitperiod}}}%
+      }
+      \strng{namehash}{50590bd7d1805b85572372f47ed9cfb8}
+      \strng{fullhash}{33fa30f85e7c0a7b8ed3995c5a390e5a}
+      \strng{fullhashraw}{33fa30f85e7c0a7b8ed3995c5a390e5a}
+      \strng{bibnamehash}{33fa30f85e7c0a7b8ed3995c5a390e5a}
+      \strng{authorbibnamehash}{33fa30f85e7c0a7b8ed3995c5a390e5a}
+      \strng{authornamehash}{50590bd7d1805b85572372f47ed9cfb8}
+      \strng{authorfullhash}{33fa30f85e7c0a7b8ed3995c5a390e5a}
+      \strng{authorfullhashraw}{33fa30f85e7c0a7b8ed3995c5a390e5a}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings Visualization, 2001. VIS '01.}
+      \field{title}{EWA volume splatting}
+      \field{year}{2001}
+      \field{pages}{29\bibrangedash 538}
+      \range{pages}{510}
+      \verb{doi}
+      \verb 10.1109/VISUAL.2001.964490
+      \endverb
+      \keyw{Rendering (computer graphics);Surface fitting}
+    \endentry
+    \entry{Zhou2004_SSIM}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=f244e8ae5eff7776cf2b4b5b84ad8c4a}{%
+           family={Wang},
+           familyi={W\bibinitperiod},
+           given={Zhou},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=6192fbf30c45211fdfc67652236bec72}{%
+           family={Bovik},
+           familyi={B\bibinitperiod},
+           given={A.C.},
+           giveni={A\bibinitperiod}}}%
+        {{hash=84051ed6c4d99d3ccc763a9bfdfd28a8}{%
+           family={Sheikh},
+           familyi={S\bibinitperiod},
+           given={H.R.},
+           giveni={H\bibinitperiod}}}%
+        {{hash=071228688c89a654d8f1b7ca8d022a6f}{%
+           family={Simoncelli},
+           familyi={S\bibinitperiod},
+           given={E.P.},
+           giveni={E\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Institute of Electrical}%
+        {Electronics Engineers (IEEE)}%
+      }
+      \strng{namehash}{ec7f3703fbd419b313e0a329e6241059}
+      \strng{fullhash}{4eadc44b73c932989cbd36a77d356aab}
+      \strng{fullhashraw}{4eadc44b73c932989cbd36a77d356aab}
+      \strng{bibnamehash}{4eadc44b73c932989cbd36a77d356aab}
+      \strng{authorbibnamehash}{4eadc44b73c932989cbd36a77d356aab}
+      \strng{authornamehash}{ec7f3703fbd419b313e0a329e6241059}
+      \strng{authorfullhash}{4eadc44b73c932989cbd36a77d356aab}
+      \strng{authorfullhashraw}{4eadc44b73c932989cbd36a77d356aab}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1941-0042}
+      \field{journaltitle}{IEEE Transactions on Image Processing}
+      \field{month}{4}
+      \field{number}{4}
+      \field{title}{Image quality assessment: from error visibility to structural similarity}
+      \field{volume}{13}
+      \field{year}{2004}
+      \field{pages}{600\bibrangedash 612}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1109/tip.2003.819861
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/tip.2003.819861
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/tip.2003.819861
+      \endverb
+    \endentry
+    \entry{Barron2022CVPR_Mip-NeRF360}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=562f3254a241932db4a6d44a97473ec5}{%
+           family={Barron},
+           familyi={B\bibinitperiod},
+           given={Jonathan\bibnamedelima T.},
+           giveni={J\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=a3567364ab52973659adf74ee0c6e6f3}{%
+           family={Mildenhall},
+           familyi={M\bibinitperiod},
+           given={Ben},
+           giveni={B\bibinitperiod}}}%
+        {{hash=0d0af9b888707d306a6dab79b427493b}{%
+           family={Verbin},
+           familyi={V\bibinitperiod},
+           given={Dor},
+           giveni={D\bibinitperiod}}}%
+        {{hash=b503d22b8c86fb9dfd477d2f70a59650}{%
+           family={Srinivasan},
+           familyi={S\bibinitperiod},
+           given={Pratul\bibnamedelima P.},
+           giveni={P\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=157d821a2f0829e6758eb6c188684a09}{%
+           family={Hedman},
+           familyi={H\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{8b843d0da79226f35ee369acd6645d1e}
+      \strng{fullhash}{17082a2f8360e7c34868e12b18e9c3fb}
+      \strng{fullhashraw}{17082a2f8360e7c34868e12b18e9c3fb}
+      \strng{bibnamehash}{17082a2f8360e7c34868e12b18e9c3fb}
+      \strng{authorbibnamehash}{17082a2f8360e7c34868e12b18e9c3fb}
+      \strng{authornamehash}{8b843d0da79226f35ee369acd6645d1e}
+      \strng{authorfullhash}{17082a2f8360e7c34868e12b18e9c3fb}
+      \strng{authorfullhashraw}{17082a2f8360e7c34868e12b18e9c3fb}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
+      \field{month}{6}
+      \field{title}{Mip-NeRF 360: Unbounded Anti-Aliased Neural Radiance Fields}
+      \field{year}{2022}
+      \verb{doi}
+      \verb 10.1109/cvpr52688.2022.00539
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/cvpr52688.2022.00539
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/cvpr52688.2022.00539
+      \endverb
+    \endentry
   \enddatalist
 \endrefsection
 \endinput

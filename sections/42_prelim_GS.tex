@@ -5,3 +5,70 @@
 \subsubsection{3D Gaussian Splatting}\label{sec:3DGS}
 
 
+3D Gaussian Splatting (3DGS) は、新規視点合成において最先端（SOTA）の結果を達成している近年の手法である \parencite{Kerbl2023ToG_3DGS}。
+その特徴は、フォトリアリスティックかつ高忠実度な3次元シーンのキャプチャ能力、高速な学習時間、そしてリアルタイムレンダリングにある。
+明示的な（Explicit）3次元表現である3DGSは、Visual-SLAM \parencite{Yan2024CVPR_GS-SLAM,Zheng2025CVPR_WildGS-SLAM,Matsuki2024CVPR_GaussianSplattingSLAM}、アバター生成 \parencite{Moreau2024CVPR_HumanGaussianSplatting,Shao2024CVPR_GaussianAvatar}、フィードフォワード型3次元再構成 \parencite{Chen2024ECCV_MVSplatting} など、幅広いタスクへの適用に成功している。
+その可能性はさらに広がり、衛星画像からの数値表層モデル（DSM）生成 \parencite{Aira2025CVPR_EOGS}、自動運転、そして水中3次元再構成 \parencite{li20243DV_watersplatting} といった様々な実世界アプリケーションへと拡張されている。
+
+% [TODO] ラスタライズとレイトレーシングの違い。3DGS のSurvey論文にいい感じの図が合った気がする
+
+3DGSのパイプラインは主に、レンダリングを行うフォワードパスと、最適化を行うバックワードパスの2つの段階で構成される。
+フォワードパスでは、3次元ガウス分布（3D Gaussians）の集合をラスタライズして画像を合成する。
+各ガウス分布は、
+中心位置 $\bm{p} \in \mathbb{R}^3$、
+不透明度 $\alpha \in [0, 1]$、
+球面調和関数（SH）によって表現される視点依存の色係数 $\bm{c}(\bm{p}, \bm{t}_i) \in \mathbb{R}^{3}$、
+および3次元共分散行列 $\bm{\Sigma}^{\mathrm{3D}} \in \mathbb{R}^{3 \times 3}$ 
+という、最適化可能なパラメータセットによって定義される。
+共分散行列 $\bm{\Sigma}^{\mathrm{3D}}$ は、スケーリングベクトル $\bm{s} \in \mathbb{R}^3$ から構成されるスケーリング対角行列 $\bm{S} \in \mathbb{R}^{3 \times 3}$ と、回転クォータニオン（回転行列 $\bm{R} \in SO(3)$ として表現）を用いて以下のように構成される：
+\begin{equation}\label{eq:3dgs-sigma_RssR}
+  \bm{\Sigma}^{\mathrm{3D}} = \bm{R} \bm{S} \bm{S}^\top \bm{R}^\top
+\end{equation}
+点 $\bm{x} \in \mathbb{R}^3$ に対する対応する非正規化ガウス分布関数は以下で与えられる：
+\begin{equation}\label{eq:3dgs-G(x)}
+  G(\bm{x}) = 
+    \exp \left( -\frac{1}{2} (\bm{x} - \bm{p})^T \left({\bm{\Sigma}^{3D}}\right)^{-1} (\bm{x} - \bm{p}) \right)
+\end{equation}
+フォワードパスにおいて、あるカメラ視点からの画像をレンダリングするために、これらのガウス分布はまず外部パラメータ行列 $[\bm{W} | \bm{t}]$ を用いてワールド座標系からカメラ座標系へと変換される。
+ここで、$\bm{W}_\mathrm{view} \in \mathbb{R}^{3 \times 3}$ は視点回転行列、
+$\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
+ガウス分布の中心位置 $\bm{p}$ と3次元共分散行列は以下のように更新される：
+\begin{align*}
+  &\bm{p}_\mathrm{cam} = \bm{W}\bm{p} + \bm{t} \\
+  &\bm{\Sigma}^{3D}_\mathrm{cam} = \bm{W} \bm{\Sigma}^{3D} \bm{W}^\top
+\end{align*} 
+\cite{Zwicker2001_EWA-volume-splatting} の提案した射影手法に従い、カメラ空間における3次元共分散行列 $\Sigma_{cam}^{3D}$ は2次元画像平面へと射影される。
+これは透視投影の一次近似（アフィン近似）のヤコビ行列 $\bm{J}$ を用いて行われ、2次元共分散行列 $\bm{\Sigma}^{\mathrm{2D}}$ が得られる：
+\begin{equation}\label{eq:3dgs-affine-projection}
+\Sigma^\mathrm{2D} = \bm{J} \Sigma^{\mathrm{3D}}_\mathrm{cam} \bm{J}^\top
+\end{equation}
+各ピクセルの最終的なRGB値 $\bm{\Gamma} \in \mathbb{R}^{3}$ は、射影されたガウス分布をアルファブレンディングすることでレンダリングされる。
+ピクセルと重なるガウス分布の集合は、まず深度に基づいて手前から奥へとソートされ、視点依存色が以下のように累積される：
+\begin{align}\label{eq:3dgs-alpha-blending}
+  \bm{\Gamma}(\bm{x}) = \sum_{k=1}^{K} \bm{c}_k \alpha^{\text{pixel}}_k \prod_{j=1}^{k-1} (1-\alpha^{\text{pixel}}_j) \\
+  \quad \text{where} \quad \alpha^{\text{pixel}}_k = \alpha_k G_k^{\mathrm{2D}} \notag
+\end{align}
+ここで、$k$ はピクセルに重なる整列されたガウス分布の集合のインデックスである。
+
+バックワードパスでは、最適化により測光誤差（Photometric loss）を最小化する。
+これは $\mathcal{L}_1 (\Gamma, \Gamma_{gt})$ 損失と D-SSIM 損失 $\mathcal{L}_\mathrm{D-SSIM} (\Gamma, \Gamma_{gt})$ \parencite{Zhou2004_SSIM} の加重和である：
+\begin{equation}\label{eq:loss-function}
+  \mathcal{L} = (1 - \lambda) \mathcal{L}_1 + \lambda \mathcal{L}_\mathrm{D-SSIM}
+\end{equation}
+したがって、最適化問題は以下のように定式化される：
+\begin{equation}\label{eq:optimization}
+  \underset{p, R, s, c, \alpha}{\textrm{argmin}} \quad \mathcal{L} = \mathcal{L}(\bm{\Gamma}, \bm{\Gamma_{gt}}) 
+\end{equation}
+これらの定式化により、パイプライン全体が完全微分可能となり、パラメータ $\Theta = \{\bm{p}, \bm{R}, \bm{s}, \bm{c}, \alpha\}$ は勾配降下法によって最適化可能となる。
+% Adam \parencite{Adam} を用いた~ と言っていたがこれは、Implplementationで言及すること
+その最適化に要する学習時間は、30kのイテレーションによって1時間以内となり、当時NVSのSotaであったMip-NeRF360 \parencite{Barron2022CVPR_Mip-NeRF360} に比較して10倍以上の高速化を達成した。
+加えて、Ray-Tracingに比較し、既存のGPU描画パイプラインの性能を引き出すTile-Basedレンダリングによって、100 fps以上のリアルタイムレンダリングを実現したことで、インタラクティブなSceneの可視化が可能となった。
+このプロセスを通じて得られた3次元ガウス分布の集合は、3次元シーンを高忠実度で捉えることができる。
+
+
+しかし、このパイプライン全体はピンホールカメラモデルと透視投影に依存しており、光が直線的に進むことを根本的な前提としている。
+この前提は、空気と水の境界での屈折が深刻な幾何学的矛盾を引き起こし、再構成の失敗につながるような、複数の媒質が介在する環境においては成立しない。
+
+この制限にもかかわらず、3DGSはNeRFのような陰的表現（Implicit representations）と比較して、この課題に対処するのに独自に適している。
+これは、ガウスプリミティブの明示的な性質が、直接的な物理モデリングに対して非常に開放的であるためである。
+これにより、屈折の法則を数学的に定式化し、シーン表現の幾何学的パラメータそのものに直接適用することが可能となる。
