@@ -1444,18 +1444,29 @@
       \verb http://dx.doi.org/10.1007/3-540-44480-7_21
       \endverb
     \endentry
-    \entry{fig:Theia-SfM}{online}{}{}
+    \entry{fig:Theia-SfM}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=fcc0ce660086b48f2fa45b85cd8342c1}{%
+           family={Sweeney},
+           familyi={S\bibinitperiod},
+           given={Chris},
+           giveni={C\bibinitperiod}}}%
+      }
+      \strng{namehash}{fcc0ce660086b48f2fa45b85cd8342c1}
+      \strng{fullhash}{fcc0ce660086b48f2fa45b85cd8342c1}
+      \strng{fullhashraw}{fcc0ce660086b48f2fa45b85cd8342c1}
+      \strng{bibnamehash}{fcc0ce660086b48f2fa45b85cd8342c1}
+      \strng{authorbibnamehash}{fcc0ce660086b48f2fa45b85cd8342c1}
+      \strng{authornamehash}{fcc0ce660086b48f2fa45b85cd8342c1}
+      \strng{authorfullhash}{fcc0ce660086b48f2fa45b85cd8342c1}
+      \strng{authorfullhashraw}{fcc0ce660086b48f2fa45b85cd8342c1}
       \field{sortinit}{3}
       \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
+      \field{howpublished}{\url{http://theia-sfm.org}}
       \field{note}{Accessed: 2025-12-18}
-      \field{title}{Theia Vision Library: Structure from Motion}
-      \verb{urlraw}
-      \verb http://theia-sfm.org/sfm.html
-      \endverb
-      \verb{url}
-      \verb http://theia-sfm.org/sfm.html
-      \endverb
+      \field{title}{Theia Multiview Geometry Library : Tutorial \ & Reference}
     \endentry
     \entry{Yan2024CVPR_GS-SLAM}{inproceedings}{}{}
       \name{author}{7}{}{%
@@ -2099,7 +2110,6 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{Kerbl2023_3DGS}
 \endrefsection
 \endinput
 
