@@ -9,6 +9,8 @@
 従来のSfMやMVSといった手法は、画像間の幾何学的対応関係に基づいて3次元構造を推定する。
 しかし、近年注目されているアプローチは、画像生成過程そのものをモデル化し、観測された画像とレンダリングされた画像の差異を最小化するように3次元シーンを最適化する手法である。
 
+\missingfigure{有名なBlenderドラムの画像を用いたタスクのイメージ図を貼る。どっかから引用したい。CV最前線?かな}
+
 
 \subsubsection{微分可能レンダリングによる最適化}
 逆レンダリングを勾配法（Gradient Descent）によって解くためには、レンダリングプロセスが微分可能（Differentiable）である必要がある。
@@ -37,9 +39,12 @@ Appearanceには当然、Geometryの情報も含まれているため、Appearan
 \subsubsection{Neural Radiance Fields (NeRF)}
 微分可能レンダリングの代表例が NeRF (Neural Radiance Fields) である。
 
+\missingfigure{NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}
 
 NeRFでは、シーンをボクセルやポリゴンといった明示的な幾何構造ではなく、多層パーセプトロン（MLP）を用いた「連続的な輝度場（Radiance Field）」として表現する。
 これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードするExplicit Representationではなく、関数を介して表現するImplicit Representationの一種である。
+
+\missingfigure{NeRFのMLPの構造も図で載せたい。引用できる}
 
 具体的には、空間上の座標 $(x, y, z)$ と視線方向 $(\theta, \phi)$ を入力とし、その点における放射輝度（RGB）と体積密度（$\sigma$）を出力する関数 $f_\Theta$ を学習する。
 この表現を用いて、以下の Volumetric Renderingによりピクセル値を算出する。

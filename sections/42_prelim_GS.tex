@@ -4,13 +4,16 @@
 
 \subsubsection{3D Gaussian Splatting}\label{sec:3DGS}
 
+\missingfigure{3DGSの図。3DGSのパイプラインの図}
+
+\missingfigure{NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}
 
 3D Gaussian Splatting (3DGS) は、新規視点合成において最先端(SOTA)の結果を達成している近年の手法である \parencite{Kerbl2023ToG_3DGS}。
 その特徴は、フォトリアリスティックかつ高忠実度な3次元シーンのキャプチャ能力、高速な学習時間、そしてリアルタイムレンダリングにある。
 明示的な(Explicit)3次元表現である3DGSは、Visual-SLAM \parencite{Yan2024CVPR_GS-SLAM,Zheng2025CVPR_WildGS-SLAM,Matsuki2024CVPR_GaussianSplattingSLAM}、アバター生成 \parencite{Moreau2024CVPR_HumanGaussianSplatting,Shao2024CVPR_GaussianAvatar}、フィードフォワード型3次元再構成 \parencite{Chen2024ECCV_MVSplatting} など、幅広いタスクへの適用に成功している。
 その可能性はさらに広がり、衛星画像からの数値表層モデル(DSM)生成 \parencite{Aira2025CVPR_EOGS}、自動運転、そして水中3次元再構成 \parencite{li20243DV_watersplatting} といった様々な実世界アプリケーションへと拡張されている。
 
-% [TODO] ラスタライズとレイトレーシングの違い。3DGS のSurvey論文にいい感じの図が合った気がする
+\missingfigure{GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}
 
 3DGSのパイプラインは主に、レンダリングを行うフォワードパスと、最適化を行うバックワードパスの2つの段階で構成される。
 フォワードパスでは、3次元ガウス分布(3D Gaussians)の集合をラスタライズして画像を合成する。
