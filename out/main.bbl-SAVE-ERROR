@@ -1466,7 +1466,7 @@
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{http://theia-sfm.org}}
       \field{note}{Accessed: 2025-12-18}
-      \field{title}{Theia Multiview Geometry Library : Tutorial \ & Reference}
+      \field{title}{Theia Multiview Geometry Library: Tutorial \& Reference}
     \endentry
     \entry{Yan2024CVPR_GS-SLAM}{inproceedings}{}{}
       \name{author}{7}{}{%

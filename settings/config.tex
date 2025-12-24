@@ -41,7 +41,7 @@
 \usepackage{caption}
 \usepackage{enumitem}
 \usepackage{url}
-\usepackage[colorinlistoftodos, shadow]{todonotes} % TODO用。Writing以外の思いついたEditingタスクを瞬時に外部化し、ワーキングメモリを解放
+\usepackage[colorinlistoftodos]{todonotes} % TODO用。Writing以外の思いついたEditingタスクを瞬時に外部化し、ワーキングメモリを解放
 
 % --- 参考文献設定 (Biber + BibLaTeX) ---
 % 従来の \usepackage{cite} や thebibliography環境 の代わり
@@ -125,14 +125,15 @@
 
 % --- TODO用コマンド ---
 % 要修正：赤（論理の飛躍、間違いなど）
-\newcommand{\fix}[1]{\todo[color=red!40, bordercolor=red, size=\small]{#1}}
+\newcommand{\fix}[1]{\todo[inline, color=red!40, bordercolor=red, size=\small]{#1}}
 % 要確認・出典：青（事実確認、引用もと探し）
-\newcommand{\checkref}[1]{\todo[color=blue!30, bordercolor=blue, size=\small]{#1}}
+\newcommand{\checkref}[1]{\todo[inline, color=blue!30, bordercolor=blue, size=\small]{#1}}
 % 表現・推敲：緑（英語の言い回し、日本語のニュアンス）
-\newcommand{\rewrite}[1]{\todo[color=green!40, bordercolor=green, size=\small]{#1}}
+\newcommand{\rewrite}[1]{\todo[inline, color=green!40, bordercolor=green, size=\small]{#1}}
 % 自分へのメモ：黄色（デフォルト）
-\newcommand{\note}[1]{\todo[size=\small]{#1}}
-
+\newcommand{\note}[1]{\todo[inline, size=\small]{#1}}
+% 小林先生のコメント
+\newcommand{\comment}[1]{\todo[inline, color=green!40, bordercolor=gray, size=\small]{#1}}
 
 
 % --- デバッグモード設定 (目に優しい黒背景) ---
@@ -149,3 +150,7 @@
         \color{white}
     }{}
 }
+
+% --- 雑設定 ---]
+
+\AtBeginDocument{\RenewCommandCopy\qty\SI} % siunitx と physics の競合回避 
