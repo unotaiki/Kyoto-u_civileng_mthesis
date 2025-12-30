@@ -22,8 +22,9 @@ Image Sensorから得た視覚情報から、人間や他の生物と同じよ�
 \subsection{Structure from Motion}
 SfMは、複数の視点から撮影された画像群に基づき、カメラの内部・外部パラメータ（三次元的な動き）と、シーンの疎な（Sparse）3次元構造を同時に推定する手法である。
 Tomasi-Kanadeによる行列分解法に始まる。
-HartleyやZissermanら(2000年代)によって幾何学的理論の基礎が確立された。 (VGGTのYoutubeの対談動画で取り上げられていた。もう少し詳しくは、Harley先生たちの本を参照。
+HartleyやZissermanら(2000年代)によって幾何学的理論の基礎が確立された。 (VGGTのYoutubeの対談動画で取り上げられていた。もう少し詳しくは、Harley先生たちの本を参照。)
 2016年に発表された COLMAP は、高い精度と汎用性、そしてOpen Sourceのプロジェクトとしての完成度から現在でもアカデミック分野でデファクトスタンダードとして広く利用されている。
+\checkref{COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}
 また、COLMAPにより出力される、正確なカメラ内部パラメータ(Intrinsic)と外部パラメータ(Extrinsic)は、歪みのない画像(Undistorted Images)は、後述するDense Reconstruction や 新規視点合成タスク のための入力データとして、重要なパイプラインの一角を担っている。
 
 In a typical incremental SfM pipeline, keypoints are firstly detected and matched across frames using feature detectors and descriptors such as SIFT \parencite{Lowe2004_SIFT}.
@@ -41,9 +42,37 @@ Triangulation is subsequently applied to obtain additional 3D points from featur
 \end{figure}
 
 \subsection{Multi-View Stereo}
-一方、SfMが推定した疎な点群に対し、画素単位で密な復元を行うのが Multi-View Stereo (MVS) である。
+SfMなどによって得られたカメラパラメータが既知の多視点画像郡から、各画素単位で密な深度推定により、高密度な三次元復元を行うのが Multi-View Stereo (MVS) である。
+SfMの出力三次元情報が疎な(Sparse)点群であるのに対して、MVSは物体表面の密な(Dense)な三次元点群やメッシュ(Mesh)を推定することから、MVSはDense 3D Reconstruction (密な三次元再構成)のタスクを行っていると言える。
 PatchMatch法などのアルゴリズムを用い、各フレームにおける深度（Depth）や法線（Normal）の一貫性を最適化することで、精緻な幾何構造を構築する。
-より詳しく解説したい。\cite{Furukawa2010_PatchMVS,Furukawa2015_MVS}
+より詳しく解説したい。
+ここれは、\cite{Furukawa2010_PatchMVS}が提案した、Patch-based Multi-View Stereo (PMVS)と、\cite{Schnberger2016ECCV_PatchMatchStereo}が提案した、PatchMatch Stereoを代表して解説する。
+
+% --- PMVS ---
+\textbf{PMVS}: 
+
+\cite{Furukawa2010_PatchMVS}が提案した、Patch-based Multi-View Stereoの手法であり、現在まで続く物体表面の形状を密に3次元推定するための先駆的かつ代表的な手法である。
+基本的な考えは、｢物体表面をパッチ(短形長方形)の集合で表現･推定｣することである。
+あるパッチ$\bm{s}$は、以下のパラメータを持つ:
+\rewrite{パッチはpと表すのが適当に思えるが、後にGaussian中心もpと表しているので、ここではsと書いている。Gaussian中心は$\bm{\mu}$と書くのが良いのかもしれない。
+→ パッチはb(ブロック)と書くことにした。sはScaleと混同する}
+
+\begin{enumerate}
+  \item \textbf{中心座標} $\bm{p_b} \in \mathbb{R}^3$: 三次元空間上の位置。
+  \item \textbf{法線} $\bm{n_b} \in \mathbb{R}^3$: パッチの法線。
+  \item \textbf{参照画像} $R_b$: パッチ$\bm{b}$を最も正面から捉える入力画像。
+  \item \textbf{可視画像集合} $V_b$: パッチ$\bm{b}$を捉える入力画像のリスト。
+\end{enumerate}
+
+PMVSの処理は、大きく分けて、｢Initialization(初期化)｣、｢Expansion(拡張)｣、｢Filtering(フィルタリング)｣の三つのステージの反復だよ。
+
+Initialization: SfMと同様に、各画像から特徴点検出･マッチングを行う\cite{Lowe2004_SIFT,Harris}。
+\checkref{Harrisコーナー検出やDoGに関して、SfMの欄で説明しておくべき}
+ここから得られる疎な点群をSeed Patchとして、初期の法線とともに最初のパッチ郡を生成するよ。
+前処理としてカメラパラメータの取得にSfMを用いている場合、これらの特徴点と、Triangulation(三角測量)によって得られる疎な三次元点群はそのまま使用できる。
+\note{初期の法線はカメラ方向などから推定するらしいがどのように推定する? 元論文の式(5)}
+
+Expansion: PMVSでは、｢表面がある場所の隣には滑らかに連続する別の表面がある｣という世界を構成する三次元形状に関するPrior(前提知識)を仮定し、既存のパッチの周囲に新しいパッチを増殖させていく。
 
 
 \subsection{Feed Forward 3D Reconstruction}

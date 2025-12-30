@@ -21,11 +21,15 @@
 \contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 既に書いてある内容で大丈夫だと思います。浅水域に対してこれまでの深浅測量の主流の応用が難しいこと、写真測量の可能性と、克服すべき点、あと限界などもうまく書ければ。音響と写真測量のメリットデメリットを表にできるといいかもしれません。}{7}{section*.31}%
 \contentsline {todo}{Figure: 音響と写真測量のメリットデメリットの表}{7}{section*.31}%
 \contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 気体－液体屈折について。これも既に書いてある内容で大丈夫だと思います。また、ここからは方法でも詳しく説明する部分なので、イントロでどこまで書くか。浅水域の写真測量において克服すべき点の１つであること、屈折とはどういう現象か、これまで写真測量でどういう風に対処されてきたか、測量を向上するために何が足りないか・何を考えるべきか}{8}{section*.32}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 本筋とは直接繋がらないから、、消すかどうか?}{10}{section*.39}%
-\contentsline {todo}{Figure: Feed Forwardを表す図。と思ったが、これは本筋とほとんど関係ないんだよね}{11}{section*.39}%
-\contentsline {todo}{Figure: 有名なBlenderドラムの画像を用いたタスクのイメージ図を貼る。どっかから引用したい。CV最前線?かな}{11}{section.40}%
-\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{12}{Item.44}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{12}{Item.44}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{14}{section.45}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{14}{section.45}%
-\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{14}{section.45}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{9}{section*.36}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ パッチはpと表すのが適当に思えるが、後にGaussian中心もpと表しているので、ここではsと書いている。Gaussian中心は$\bm {\mu }$と書くのが良いのかもしれない。→ パッチはb(ブロック)と書くことにした。sはScaleと混同する}{10}{section*.39}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Harrisコーナー検出やDoGに関して、SfMの欄で説明しておくべき}{11}{section*.44}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 初期の法線はカメラ方向などから推定するらしいがどのように推定する? 元論文の式(5)}{11}{section*.45}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 本筋とは直接繋がらないから、、消すかどうか?}{11}{section*.47}%
+\contentsline {todo}{Figure: Feed Forwardを表す図。と思ったが、これは本筋とほとんど関係ないんだよね}{12}{section*.47}%
+\contentsline {todo}{Figure: 有名なBlenderドラムの画像を用いたタスクのイメージ図を貼る。どっかから引用したい。CV最前線?かな}{12}{section.48}%
+\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{13}{Item.52}%
+\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{13}{Item.52}%
+\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{15}{section.53}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{15}{section.53}%
+\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{15}{section.53}%
