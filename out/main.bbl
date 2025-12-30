@@ -1468,61 +1468,6 @@
       \field{note}{Accessed: 2025-12-18}
       \field{title}{Theia Multiview Geometry Library: Tutorial \& Reference}
     \endentry
-    \entry{Schnberger2016ECCV_PatchMatchStereo}{inbook}{}{}
-      \name{author}{4}{}{%
-        {{hash=85c10679ad8f08c2b0ea65e5de627728}{%
-           family={Schönberger},
-           familyi={S\bibinitperiod},
-           given={Johannes\bibnamedelima L.},
-           giveni={J\bibinitperiod\bibinitdelim L\bibinitperiod}}}%
-        {{hash=5f1753342eeb31f586476075441283c4}{%
-           family={Zheng},
-           familyi={Z\bibinitperiod},
-           given={Enliang},
-           giveni={E\bibinitperiod}}}%
-        {{hash=4af0c62bceb93c143845555052179bc8}{%
-           family={Frahm},
-           familyi={F\bibinitperiod},
-           given={Jan-Michael},
-           giveni={J\bibinithyphendelim M\bibinitperiod}}}%
-        {{hash=501629493a5ead2d23ee597103478ce8}{%
-           family={Pollefeys},
-           familyi={P\bibinitperiod},
-           given={Marc},
-           giveni={M\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Springer International Publishing}%
-      }
-      \strng{namehash}{d480188def317b00b258c99797133e90}
-      \strng{fullhash}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \strng{fullhashraw}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \strng{bibnamehash}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \strng{authorbibnamehash}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \strng{authornamehash}{d480188def317b00b258c99797133e90}
-      \strng{authorfullhash}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \strng{authorfullhashraw}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Computer Vision - ECCV 2016}
-      \field{isbn}{9783319464879}
-      \field{issn}{1611-3349}
-      \field{title}{Pixelwise View Selection for Unstructured Multi-View Stereo}
-      \field{year}{2016}
-      \field{pages}{501\bibrangedash 518}
-      \range{pages}{18}
-      \verb{doi}
-      \verb 10.1007/978-3-319-46487-9_31
-      \endverb
-      \verb{urlraw}
-      \verb http://dx.doi.org/10.1007/978-3-319-46487-9_31
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.1007/978-3-319-46487-9_31
-      \endverb
-    \endentry
     \entry{Yan2024CVPR_GS-SLAM}{inproceedings}{}{}
       \name{author}{7}{}{%
         {{hash=8eb55777a3e1a9f56e4ec1ac63295521}{%
@@ -1739,8 +1684,8 @@
       \strng{authornamehash}{5951491ea1890c94292fc700adba0663}
       \strng{authorfullhash}{c8ad9624cf0f856fa33f6a8a6e506c76}
       \strng{authorfullhashraw}{c8ad9624cf0f856fa33f6a8a6e506c76}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -1813,8 +1758,8 @@
       \strng{authornamehash}{d9668dbb73566d1aa055ed322f12bb9b}
       \strng{authorfullhash}{d86ec4ce841bcef744626741a3e34d6f}
       \strng{authorfullhashraw}{d86ec4ce841bcef744626741a3e34d6f}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2165,7 +2110,7 @@
       \endverb
     \endentry
   \enddatalist
-  \missing{Harris}
+  \missing{Schnberger2016ECCV_PatchMatchStereo}
 \endrefsection
 \endinput
 

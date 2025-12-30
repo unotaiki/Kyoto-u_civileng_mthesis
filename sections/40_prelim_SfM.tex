@@ -53,26 +53,77 @@ PatchMatch法などのアルゴリズムを用い、各フレームにおける�
 
 \cite{Furukawa2010_PatchMVS}が提案した、Patch-based Multi-View Stereoの手法であり、現在まで続く物体表面の形状を密に3次元推定するための先駆的かつ代表的な手法である。
 基本的な考えは、｢物体表面をパッチ(短形長方形)の集合で表現･推定｣することである。
-あるパッチ$\bm{s}$は、以下のパラメータを持つ:
+あるパッチ$B$は、以下のパラメータを持つ:
 \rewrite{パッチはpと表すのが適当に思えるが、後にGaussian中心もpと表しているので、ここではsと書いている。Gaussian中心は$\bm{\mu}$と書くのが良いのかもしれない。
-→ パッチはb(ブロック)と書くことにした。sはScaleと混同する}
+→ パッチはB(ブロック)と書くことにした。sはScaleと混同する}
 
-\begin{enumerate}
-  \item \textbf{中心座標} $\bm{p_b} \in \mathbb{R}^3$: 三次元空間上の位置。
-  \item \textbf{法線} $\bm{n_b} \in \mathbb{R}^3$: パッチの法線。
-  \item \textbf{参照画像} $R_b$: パッチ$\bm{b}$を最も正面から捉える入力画像。
-  \item \textbf{可視画像集合} $V_b$: パッチ$\bm{b}$を捉える入力画像のリスト。
-\end{enumerate}
+\begin{itemize}
+  \item \textbf{中心座標} $\bm{p_B} \in \mathbb{R}^3$: パッチ$B$の中心の三次元空間上の位置。
+  \item \textbf{法線} $\bm{n_B} \in \mathbb{R}^3$: パッチ$B$の法線。
+  \item \textbf{参照画像} $R_B$: パッチ$B$を最も正面から捉える入力画像。
+  \item \textbf{可視画像集合} $V_B$: パッチ$B$を捉える入力画像のリスト。
+\end{itemize}
 
 PMVSの処理は、大きく分けて、｢Initialization(初期化)｣、｢Expansion(拡張)｣、｢Filtering(フィルタリング)｣の三つのステージの反復だよ。
 
-Initialization: SfMと同様に、各画像から特徴点検出･マッチングを行う\cite{Lowe2004_SIFT,Harris}。
+Initialization: SfMと同様に、各画像から特徴点検出･マッチングを行う\cite{Lowe2004_SIFT}。
 \checkref{Harrisコーナー検出やDoGに関して、SfMの欄で説明しておくべき}
 ここから得られる疎な点群をSeed Patchとして、初期の法線とともに最初のパッチ郡を生成するよ。
 前処理としてカメラパラメータの取得にSfMを用いている場合、これらの特徴点と、Triangulation(三角測量)によって得られる疎な三次元点群はそのまま使用できる。
 \note{初期の法線はカメラ方向などから推定するらしいがどのように推定する? 元論文の式(5)}
 
 Expansion: PMVSでは、｢表面がある場所の隣には滑らかに連続する別の表面がある｣という世界を構成する三次元形状に関するPrior(前提知識)を仮定し、既存のパッチの周囲に新しいパッチを増殖させていく。
+\begin{enumerate}
+  \item \textbf{隣接探索(Identifying Cells for Expansion)}: 既存のパッチ$B$を画像上に投影した際に、その隣の領域にパッチがない場合新しいパッチ$B'$を生成する。
+  \item \textbf{パラメータ継承} 新しいパッチ$B'$の深度と法線は$B$の親パッチのものを受け継ぎ初期化される。
+  \item \textbf{最適化} パッチ位置$\bm{p_B'}$と法線$\bm{n_B'}$を、そのパッチを複数画像間での画素値･色の整合性(Photometric Consistency)を最大化するように最適化する。
+\end{enumerate}
+これにより、初期化時にパッチが存在しなかった領域にも徐々に面が張り出していき、密な復元が可能になる。
+Photometricな一貫性を担保するために、｢参照画像$R_B$から見たパッチ$B$の模様｣と｢可視画像集合$V_B$におけるパッチ$B$の模様｣を比較する。
+各パッチ$B$に対するPhotometric測定関数は以下のように表される:
+\begin{equation}
+  g(p) = \frac{1}{|V(B) \setminus R(B) |} \sum_{I \in V(B), I \neq R(B)} \text{NCC}(B, I, R(B))
+\end{equation}
+ここで、$NCC(B, I_1, I_2)$は、Computer Visionで一般的に用いられるパッチ間の類似度を測定するための指標である、画像$I_1$と$I_2$の間の正規化相互相関(Normalized Cross-Correlation)であり、以下のように表される:
+\begin{equation}
+  NCC(I_1, I_2) = \frac{\sum_{i,j} (I_1(i,j) - \bar{I_1})(I_2(i,j) - \bar{I_2})}{\sqrt{\sum_{i,j} (I_1(i,j) - \bar{I_1})^2 \sum_{i,j} (I_2(i,j) - \bar{I_2})^2}}
+\end{equation}
+ただし、$\bar{I_1}$と$\bar{I_2}$は、画像$I_1$と$I_2$の平均画素値である。
+\note{合っているか確認。正直、式を明示的に示す必要もない気がする。}
+
+この時、単に画像を比較するのではなく、パッチの法線 $n(B)$ を考慮して画像をホモグラフィ変換（射影変換）し、「正面から見た形」に補正してから比較します。
+このスコアが高くなるように、共役勾配法などの最適化手法を用いて、パッチの 位置 $p(B)$ と 法線 $n(B)$ を反復的に修正するよ。
+\note{共役勾配法とは?\url{https://en.wikipedia.org/wiki/Conjugate_gradient_method}}
+
+Filtering: 拡張により誤って増殖したパッチやノイズを除去するよ。
+あるカメラから見て、手前にあるパッチが奥のパッチを隠している場合、奥のパッチは幾何的に矛盾しているため削除するよ。
+また、ごく少数のカメラからしか見えていいないパッチや、$NCC$スコアが低いパッチも削除するよ。
+
+
+% --- PatchMatch Stereo ---
+\textbf{PatchMatch Stereo}: 
+PMVSが「確信度の高い種（Seed）を育てていく」のに対し、PatchMatch Stereoは「ランダムな推測から始め、隣接画素の良い推測結果を伝播（Propagate）させて全体を収束させる」という、全く逆のアプローチを取る。
+
+これは元々、画像編集（Inpainting）のためにBarnesらが2009年に提案したアルゴリズムを、Bleyerらが2011年にStereoに、そして\cite{Schnberger2016ECCV_PatchMatchStereo}が2016年にMVSへと拡張したよ。
+
+\checkref{理解する。本当にそうか?あと、論文と}
+参照画像上のすべての画素 $\Gamma$ に対して、局所的な接平面（Local Tangent Plane）を推定する.
+\note{Local Tangent Planeとは? またLocal Tangent Plane仮説とはどういうPrior?}
+単なる「深度 $d$」のスカラー値推定ではなく、「深度 $d$ + 法線 $\mathbf{n}$」を推定するのが最大の特徴です。
+これにより、斜めの面（Slanted surface）に対しても高いフォトメトリック整合性を確保できます。
+画素 $\Gamma$ における平面パラメータ $\theta_\Gamma$ は以下のように定義される: $\theta_\Gamma = \{ d_\Gamma, \mathbf{n}_\Gamma \}$。
+ここで、$d_\Gamma$ は深さ、$\mathbf{n}_\Gamma$ は法線ベクトルです。
+この平面仮説を用いると、カメラ内部行列$K$を用いて、参照画像の画素 $\Gamma$ をソース画像へ投影する際のホモグラフィ $H_\Gamma$ が誘導されます（Plane-induced Homography）。
+\begin{equation}
+H_\Gamma = \mathbf{K} \left( \mathbf{R} - \frac{\mathbf{t} \mathbf{n}_\Gamma^T}{d_\Gamma} \right) \mathbf{K}^{-1}
+\end{equation}
+\note{ソース画像とは何?}
+この $H_\Gamma$ を用いてパッチを変形させることで、視点変更に伴うパースペクティブ歪みを考慮した正確なマッチングコスト計算が可能になる。
+
+Initialization（ランダム初期化）: 全ての画素に対して、深度と法線を完全なランダム値で初期化する。
+
+Propagation（伝播）:「空間的一貫性（Spatial Consistency）」**を利用します。「ある画素の正しい平面パラメータは、その隣接画素の平面パラメータと似ている可能性が高い」という仮定に基づき、隣接画素のパラメータを自分のものとしてテスト。
+画像を左上から右下へ、次は右下から左上へと走査します。比較: 現在の画素 $\Gamma$ のコストと、隣接画素（例えば左 $p_l$ と上 $p_u$）のパラメータ $\theta_{pl}, \theta_{pu}$ を $p$ に適用した時のコストを比較します。更新: もし隣接画素のパラメータの方がコストが低ければ、そのパラメータを自分のものとして採用（コピー）します。これにより、画像の端にある「正解に近い値」が、反復ごとに画像全体へ波紋のように広がっていきます。Step 3: View Selection（ビュー選択）COLMAPの実装（Pixelwise View Selection for Unstructured Multi-View Stereo）において重要なのが、画素ごとに最適なソース画像を選択する点です。全画像を使うのではなく、その画素の法線やオクルージョンを考慮し、フォトメトリックに最も信頼できるソース画像群を動的に選び出し、スコアを計算します。これによりロバスト性が飛躍的に向上します。Step 4: Refinement（摂動と微調整）Propagationだけでは、既存の値をコピーするだけで、新たな値（Sub-pixel精度）が生まれません。そこで、現在のパラメータ $\theta_p$ に微小なランダムノイズ（摂動）を加え、コストが下がるなら更新します。反復が進むにつれてノイズの範囲（探索半径）を小さくしていくことで、局所解へ収束させます。
 
 
 \subsection{Feed Forward 3D Reconstruction}
