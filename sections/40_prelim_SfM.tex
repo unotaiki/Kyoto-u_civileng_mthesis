@@ -54,6 +54,15 @@ SfMの出力三次元情報が疎な(Sparse)点群であるのに対して、MVS
 
 \subsubsection{Patch-based Multi-View Stereo (PMVS)}
 
+\begin{figure}
+  \centering
+  \captionsetup{justification=raggedright}
+  \includegraphics[width=0.8\linewidth]{figure/40_prelim/PMVS.png}
+  \caption{PMVS Pipeline。 \cite{fig:Theia-SfM}から引用。 
+  左から右にかけてそれぞれの画像は、(1) 入力された多視点画像の一例; (2) 検出された特徴点; (3) 初期マッチング後のパッチ; (4) 拡張とフィルタリング後のパッチ; (5) メッシュモデル.}
+  \label{fig:pmvs_pipeline}
+\end{figure}
+
 \cite{Furukawa2010_PMVS} によって提案された Patch-based Multi-View Stereo (PMVS) は、物体表面を微小な平面パッチの集合としてモデル化し、これを拡張・最適化することで密な3次元形状を復元する手法である。
 本手法は、特徴点マッチングによる疎な初期復元から出発し、信頼度の高いパッチを周囲に拡張(Expand)していくアプローチをとる、物体表面の形状を密に3次元推定するための先駆的かつ代表的な手法である。
 \checkref{cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}
@@ -100,94 +109,120 @@ PMVSの処理は、特徴点からの初期化(Initialization)の後、以下の
 \end{enumerate}
 
 以上のプロセスを収束するまで繰り返すことで、初期の疎な点群は徐々に密度を増し、最終的に物体表面全体を覆う密な点群が得られる。
-\cite{Furukawa2010_PMVS} の手法は、大域的な最適化を行うPatchMatch Stereo等と比較して局所的な貪欲法に近い性質を持つが、拡張ステップによる表面の連続性利用が強力であり、密な復元を実現するための歴史的に重要な手法である。
+\cite{Furukawa2010_PMVS} の手法は、大域的な最適化を行うPatchMatch Stereo等と比較して局所的な貪欲法に近い性質を持ち、計算コストが高いが、拡張ステップによる表面の連続性利用が強力であり、密な復元を実現するための歴史的に重要な手法である。
 
 
 % --- PatchMatch Stereo ---
-\textbf{PatchMatch Stereo}: 
-PMVSが「確信度の高い種（Seed）を育てていく」のに対し、PatchMatch Stereoは「ランダムな推測から始め、隣接画素の良い推測結果を伝播（Propagate）させて全体を収束させる」という、全く逆のアプローチを取る。
+\subsection{PatchMatch Stereo}
 
-これは元々、画像編集（Inpainting）のためにBarnesらが2009年に提案したアルゴリズムを、Bleyerらが2011年にStereoに、そして\cite{Schnberger2016ECCV_PatchMatchStereo}が2016年にMVSへと拡張したよ。
+PMVSが、信頼できる「種（Seed）」から局所的に表面を拡張していくアプローチであるのに対し、\cite{Bleyer2011BMVC_PatchMatchStereo} が提案した PatchMatch Stereo は、画像上のすべての画素に対して、個別の3次元平面パラメータ（深度と法線）を推定する手法である。
 
-\checkref{理解する。本当にそうか?あと、論文と}
-参照画像上のすべての画素 $\Gamma$ に対して、局所的な接平面（Local Tangent Plane）を推定する.
-\note{Local Tangent Planeとは? またLocal Tangent Plane仮説とはどういうPrior?}
-単なる「深度 $d$」のスカラー値推定ではなく、「深度 $d$ + 法線 $\mathbf{n}$」を推定するのが最大の特徴です。
-これにより、斜めの面（Slanted surface）に対しても高いフォトメトリック整合性を確保できます。
-画素 $\Gamma$ における平面パラメータ $\theta_\Gamma$ は以下のように定義される: $\theta_\Gamma = \{ d_\Gamma, \mathbf{n}_\Gamma \}$。
-ここで、$d_\Gamma$ は深さ、$\mathbf{n}_\Gamma$ は法線ベクトルです。
-この平面仮説を用いると、カメラ内部行列$K$を用いて、参照画像の画素 $\Gamma$ をソース画像へ投影する際のホモグラフィ $H_\Gamma$ が誘導されます（Plane-induced Homography）。
+従来の局所ステレオマッチング手法は、マッチングウィンドウ内の深度が一定である（カメラに対して平行な平面：Fronto-parallel window）と仮定することが一般的であった。
+しかし、この仮定は傾いた面や曲面において成立せず、再構成精度の低下や「階段状」のアーティファクトを生む原因となっていた。
+これに対し、Bleyerらは各画素のウィンドウを3次元空間内の傾いた平面（Slanted Support Window）としてモデル化した。
+しかし、各画素に対して最適な平面パラメータ（深度および法線の向き）を決定しようとすると、その探索空間は連続値であり無限大となるため、従来の総当たり的な探索や離散ラベルを用いる手法（Graph Cutsなど）は適用できない。
+
+この問題を解決するために導入されたのが、Barnesらによる最近傍探索アルゴリズム "PatchMatch" の概念をステレオ視に応用した推論フレームワークである。
+\note{元論文をよりしっかり読み込む。正しいか?}
+
+\textbf{平面モデルとマッチングコスト}:
+左画像の各画素 $\Gamma$ に対し、3次元平面 $f_\Gamma$ を割り当てる。
+平面 $f_\Gamma$ は3つのパラメータ $(a_{f_\Gamma}, b_{f_\Gamma}, c_{f_\Gamma})$ を持ち、画素 $\Gamma$ の座標 $(\Gamma_x, \Gamma_y)$ における深度 $d_\Gamma$ は以下の式で表される。
 \begin{equation}
-H_\Gamma = \mathbf{K} \left( \mathbf{R} - \frac{\mathbf{t} \mathbf{n}_\Gamma^T}{d_\Gamma} \right) \mathbf{K}^{-1}
+    d_\Gamma = a_{f_\Gamma} \Gamma_x + b_{f_\Gamma} \Gamma_y + c_{f_\Gamma}
 \end{equation}
-\note{ソース画像とは何?}
-この $H_\Gamma$ を用いてパッチを変形させることで、視点変更に伴うパースペクティブ歪みを考慮した正確なマッチングコスト計算が可能になる。
-
-Initialization（ランダム初期化）: 全ての画素に対して、深度と法線を完全なランダム値で初期化する。
-
-Propagation（伝播）:「空間的一貫性（Spatial Consistency）」**を利用します。「ある画素の正しい平面パラメータは、その隣接画素の平面パラメータと似ている可能性が高い」という仮定に基づき、隣接画素のパラメータを自分のものとしてテスト。
-画像を左上から右下へ、次は右下から左上へと走査します。比較: 現在の画素 $\Gamma$ のコストと、隣接画素（例えば左 $p_l$ と上 $p_u$）のパラメータ $\theta_{pl}, \theta_{pu}$ を $p$ に適用した時のコストを比較します。更新: もし隣接画素のパラメータの方がコストが低ければ、そのパラメータを自分のものとして採用（コピー）します。これにより、画像の端にある「正解に近い値」が、反復ごとに画像全体へ波紋のように広がっていきます。Step 3: View Selection（ビュー選択）COLMAPの実装（Pixelwise View Selection for Unstructured Multi-View Stereo）において重要なのが、画素ごとに最適なソース画像を選択する点です。全画像を使うのではなく、その画素の法線やオクルージョンを考慮し、フォトメトリックに最も信頼できるソース画像群を動的に選び出し、スコアを計算します。これによりロバスト性が飛躍的に向上します。Step 4: Refinement（摂動と微調整）Propagationだけでは、既存の値をコピーするだけで、新たな値（Sub-pixel精度）が生まれません。そこで、現在のパラメータ $\theta_p$ に微小なランダムノイズ（摂動）を加え、コストが下がるなら更新します。反復が進むにつれてノイズの範囲（探索半径）を小さくしていくことで、局所解へ収束させます。
-
-
-\textbf{PatchMatch Stereo}:
-PMVSが、信頼度の高い特徴点からパッチを空間的に拡張(Expand)していく「局所的な成長法」であるのに対し、PatchMatch Stereoは、画像全体でランダムに初期化された幾何パラメータを、近傍画素間の空間的連続性を利用して伝播(Propagate)させ、大域的に最適化するアプローチをとる。
-Barnesらによる画像補完アルゴリズムをステレオマッチングに応用したBleyerらの手法を発展させ、Schönbergerら \cite{Schnberger2016ECCV_PatchMatchStereo} は、非構造化画像群(Unstructured Images)に対してロバストな画素ごとの視点選択(Pixelwise View Selection)を組み込んだMVSアルゴリズムを提案した。
-
-\subsubsection*{局所接平面近似と誘導ホモグラフィ}
-従来のステレオマッチングでは、マッチングウィンドウをカメラに対して平行(Fronto-parallel)であると仮定することが多かった。しかし、この仮定は地面や壁などの斜めの面(Slanted Surface)において成立せず、マッチング精度を低下させる。
-PatchMatch Stereoでは、参照画像上の画素 $l$ における幾何形状を、深度 $\theta_l$ と法線 $\mathbf{n}_l \in \mathbb{R}^3$ ($||\mathbf{n}_l||=1$) で定義される**局所接平面(Local Tangent Plane)**としてパラメータ化する [cite: 105]。
-
-この平面仮説に基づき、参照画像(Reference)上のパッチをソース画像(Source) $m$ へ投影する変換は、以下の平面誘導ホモグラフィ(Plane-induced Homography) $H_l^m$ によって記述される [cite: 105]。
+このモデルにより、画素ごとに異なる法線を持つ傾いた平面を表現でき、サブピクセル精度の深度推定が可能となる。
+最適化の目的は、各画素 $\Gamma$ において、アグリゲーションコスト $m(\Gamma, f_\Gamma)$ を最小化する平面 $f_\Gamma$ を、無限の候補空間 $\mathcal{F}$ から見つけ出すことである。
 \begin{equation}
-    H_l^m = \mathbf{K}^m \left( \mathbf{R}^m - \frac{\mathbf{t}^m \mathbf{n}_l^T}{d_l} \right) \mathbf{K}^{-1}
+    f_\Gamma = \operatorname*{argmin}_{f \in \mathcal{F}} m(\Gamma, f_\Gamma)
 \end{equation}
-ここで、$\mathbf{K}, \mathbf{K}^m$ はそれぞれ参照・ソースカメラの内部パラメータ行列、$\mathbf{R}^m, \mathbf{t}^m$ は参照カメラからソースカメラへの相対回転および並進ベクトル、$d_l$ は平面までの垂直距離である。
-この $H_l^m$ を用いてパッチを変形させることで、視点変化に伴う透視投影歪みを考慮した、高精度なPhotometric Consistencyの評価が可能となる [cite: 110]。
 
-\subsubsection*{推論アルゴリズム}
-PatchMatch MVSは、以下のステップを反復することで、各画素の深度 $\theta_l$ と法線 $\mathbf{n}_l$ を推定する。
+\textbf{ランダム探索と伝播による推論}: 
+PatchMatch Stereoの核心は、ランダムな初期化状態から、空間的・視点的な相関を利用して「良い解」を画像全体に伝播(Propagate)させるプロセスにある。
+アルゴリズムは、以下のステップを反復することで収束する。
 
 \begin{enumerate}
-    \item \textbf{Initialization (初期化)}:
-    各画素に対し、深度と法線をランダムな値で初期化する。あるいは、SfMで得られた疎な点群が存在する場合、それを初期値として利用することで収束を早めることが可能である [cite: 108]。
+    \item \textbf{Random Initialization (ランダム初期化)}:
+    初期状態では、すべての画素に対し、ランダムなパラメータを持つ平面（ランダムな深度と法線ベクトル）を割り当てる。
 
-    \item \textbf{Propagation (伝播)}:
-    「隣接する画素は、同じ3次元平面上に位置する可能性が高い」という空間的一貫性(Spatial Consistency)を利用する。
-    画像上をスキャン（例：左上から右下へ）し、現在の画素 $l$ のパラメータと、隣接画素（例：左および上）のパラメータを用いてマッチングコストを計算・比較する。もし隣接画素のパラメータを用いた方がコストが低ければ、現在の画素の値を隣接画素の値で更新する。この処理により、画像の局所的な領域で正しい推定値が得られれば、それが波及的に全体へ伝播していく [cite: 117]。
-    Schönbergerらの手法では、単にパラメータをコピーするだけでなく、法線情報を用いて隣接画素の平面を現在の画素位置まで延長し、その交点の深度を候補とする幾何学的な伝播を行うことで、曲面への追従性を向上させている [cite: 117]。
+    \item \textbf{Spatial Propagation (空間伝播)}:
+    「隣接する画素は、同じ平面上に乗っている可能性が高い」という仮定を利用する。
+    画像走査順序に従い、現在の画素 $\Gamma$ とその近傍画素 $\Gamma'$（例えば左上の画素）を比較する。
+    もし、近傍画素 $\Gamma'$ の持つ平面 $f_{\Gamma'}$ を画素 $\Gamma$ に適用した際のマッチングコストが、現在の平面 $f_\Gamma$ よりも低くなるならば、画素 $\Gamma$ は平面 $f_{\Gamma'}$ を自身の新たな推定値として採用し、コピーする。
+    これにより、画像の一部で偶然「正解に近い平面」が見つかれば、その平面情報は波紋のように隣接画素へと広がり、領域全体が正しい平面で埋め尽くされていく。
 
-    \item \textbf{View Selection (視点選択)}:
-    非構造化データセットでは、ある画素にとって最適なソース画像が、隣接画素にとっても最適とは限らない（オクルージョン等のため）。
-    Schönbergerら \cite{Schnberger2016ECCV_PatchMatchStereo} は、以下の幾何学的な事前分布(Geometric Priors)を導入し、画素ごとに最適なソース画像を確率的に選択する [cite: 7, 169]。
-    \begin{itemize}
-        \item \textbf{Triangulation Prior}: ベースラインが短すぎない（三角測量の精度が確保できる）画像を優先する [cite: 171]。
-        \item \textbf{Resolution Prior}: 参照画像と解像度（画素密度）が近い画像を優先する [cite: 182]。
-        \item \textbf{Incident Prior}: 推定された法線に対し、正対に近い角度で撮影されている画像を優先する [cite: 192]。
-    \end{itemize}
-    これらの事前分布と、現在の幾何推定値に基づくPhotometric Consistencyを統合した確率モデル（Generalized EMアルゴリズム）を用いることで、ロバストな推定を実現している [cite: 202]。
+    \item \textbf{View Propagation (視点間伝播)}:
+    ステレオ特有の拡張として、左右画像間の一貫性を利用する。
+    左画像の画素 $\Gamma$ の対応点である右画像の画素 $\Gamma'$ が、より適切な平面パラメータを持っている場合、それを左画像座標系へ変換して取り込む。これにより、オクルージョン領域外での整合性が強力に担保される。
 
-    \item \textbf{Refinement (微調整)}:
-    伝播ステップだけではパラメータの離散的なコピーしか行われないため、Sub-pixel精度の推定を行うために、現在のパラメータ $\theta_l, \mathbf{n}_l$ に微小なランダム摂動(Perturbation)を加えてテストし、コストが改善すれば更新する [cite: 126]。
+    \item \textbf{Plane Refinement (平面の微調整)}:
+    伝播のみでは、既存の平面パラメータのコピーしか行われないため、真値へ到達できない。そこで、現在の平面パラメータに微小なランダム摂動（Perturbation）を加え、コストが改善するかをテストする。反復が進むにつれて摂動の範囲を指数関数的に狭めていくことで、サブピクセルレベルでの高精度な収束を実現する。
 \end{enumerate}
 
-以上のプロセスを経ることで、初期のランダムな状態から、幾何学的・光学的に整合性の取れた密な深度・法線マップが得られる。
+\missingfigure{イシグロが良く示している収束を示す図を追加}
 
+この手法の利点は、巨大なコストボリューム（Cost Volume）をメモリ上に構築する必要がないため、高解像度画像や大きな視差範囲に対してもメモリ効率が良い点にある。
+また、連続空間での最適化を行うため、離散化に伴う量子化誤差が発生せず、極めて滑らかな曲面や急峻な傾斜面の復元に成功している。
+
+\note{Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}
+
+\cite{Bleyer2011BMVC_PatchMatchStereo}は、基本的に2枚の画像（ステレオペア）間でのマッチングを前提としている。
+しかし、実際のSfM/MVSパイプラインでは、数十から数千枚の画像（Multi-View）が入力され、かつそれらがインターネット上の写真のように撮影条件がバラバラな「非構造化（Unstructured）」データである場合もある。
+\fix{このとき、画像間でのパッチ選択は非効率!?!?}
+この課題に対し、\cite{Schonberger2016ECCV_PatchMatchStereo} は、PatchMatch Stereoのフレームワークを多視点へ拡張する際、「画素ごとの視点選択 (Pixelwise View Selection)」という概念を導入することで解決を図った。
+
+多視点ステレオにおける最大の課題は、ある参照画像の画素 $\Gamma$ を復元するために、「どのソース画像を使うべきか」が画素ごとに異なる点である。
+画像全体で一律にソース画像を選んでしまうと、オクルージョンや解像度の不一致により、特定の画素ではマッチングが破綻してしまう。
+COLMAPでは、以下の3つの幾何学的事前分布 (Geometric Priors) を確率モデルに組み込み、各画素 $\Gamma$ が自分自身にとって最適なソース画像を動的に選択しながら推論を行う。
+
+\begin{enumerate}
+    \item \textbf{Triangulation Prior}: 
+    十分なベースラインを持ち、三角測量の精度が保証される角度（Triangulation Angle）で撮影された画像を優先する。
+    角度が小さすぎる（視点が近すぎる）画像は深度推定の不確定性が高いため除外される。
+    
+    \item \textbf{Resolution Prior}: 
+    参照画像とソース画像で、対象を捉えている解像度（画素密度）が類似している画像を優先する。極端に解像度が異なる画像間でのマッチングは、エイリアシング等の問題を引き起こすためである。
+    
+    \item \textbf{Incident Prior}: 
+    推定された法線ベクトルに対し、カメラ視線が正対に近い（斜めすぎない）画像を優先する。これにより、極端な浅い角度から撮影された信頼性の低い画像の影響を排除する。
+\end{enumerate}
+
+Schönbergerらは、これらの幾何学的尺度とフォトメトリックな整合性を統合した確率的グラフィカルモデルを構築し、PatchMatchの反復プロセスの中で「深度・法線の推定」と「最適なソース画像の選択」を同時に最適化する手法を確立した。
+これにより、COLMAPは極めてノイズの多い非構造化データセットに対しても、Robustな密な三次元再構成を可能にした。
+
+\fix{一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}
 
 \subsection{Feed Forward 3D Reconstruction}
-\note{本筋とは直接繋がらないから、、消すかどうか?}
-近年（2023-2025年現在、大規模データセットを用いた深層学習、特に Transformer アーキテクチャの導入により、従来の幾何学的手法を代替・補完する「フィードフォワード型」の手法が急速に台頭している。
-従来手法が、Optimization-basedの手法であるのに対し、Feed Forwardの手法は、Data-drivenの手法である。
+\checkref{\url{https://gemini.google.com/app/d37c008e08350238}}
 
-Depth Anything\cite{}: 膨大な画像データから学習された 3D Priors を活用することで、未知のシーンに対しても極めて精緻な単眼深度推定を実現している。
+本研究の本筋である最適化ベース（Optimization-based）の手法とは対照的に、近年（2023-2025年）、大規模データセットとDeep Learning、特にTransformerアーキテクチャの発展により、幾何学的計算を推論（Inference）として解く「フィードフォワード型（Feed-Forward）」の手法が急速に台頭している。
+従来の手法（SfM/MVSやNeRF/3DGS）が、入力シーンごとにパラメータを反復的に更新して解を探索するのに対し、フィードフォワード型の手法は、学習済みの膨大な事前知識（Priors）を用いて、単一の順伝播処理のみで3次元構造を回帰するデータ駆動型（Data-driven）のアプローチである。
 
-DUSt3R / MASt3R\cite{}: 従来の SfM/MVS のような複雑なパイプライン（特徴点抽出、マッチング、 bundle adjustment 等）を介さず、2枚の画像から直接 Point Map を回帰する。これにより、カメラパラメータを事前に与えることなく、エンドツーエンドでの3次元形状およびカメラ姿勢の推定が可能となった。
+このアプローチの代表例として、以下の手法が挙げられる。
 
-VGGT\cite{}: Best Paper Award at CVPR 2025.
+\begin{itemize} 
+  \item \textbf{Depth Anything} \cite{yang2024depthanything}: 6200万枚以上の画像から学習された基盤モデル（Foundation Model）であり、DINOv2\cite{}バックボーンを活用することで、テクスチャのない領域や未知のシーンに対しても極めてロバストな単眼深度推定を実現している。
+  しかし、出力はスケール不確定性を伴う2.5次元表現に留まり、多視点間での厳密な幾何学的整合性は保証されない。
+  
+  \item \textbf{DUSt3R / MASt3R} \cite{wang2024dust3r, leroy2025mast3r}: 従来のSfMパイプライン（特徴点抽出、マッチング、バンドル調整）を完全に排除し、2枚の画像から直接「ポイントマップ（Point Map）」を回帰する手法である。
+  これにより、カメラパラメータを事前に与えることなく（Unposed）、エンドツーエンドでの3次元形状およびPoint Mapからのカメラ姿勢の逆推定が可能となった。
+  特にMASt3Rは、~。
+  \checkref{MASt3R ってそんな手法だっけ?}
+  
+  \item \textbf{VGGT (Visual Geometry Grounded Transformer)} \cite{wang2025vggt}: CVPR 2025にてBest Paper Awardを受賞した、現時点での到達点といえる手法である。
+  VGGTは、任意の枚数の画像を入力とし、カメラパラメータ、深度、点群、そして追跡情報（Tracks）の全てを同時に推論する。
 
-現在、大規模モデルによるデータ駆動型のアプローチへと大きなパラダイムシフトを迎えている。
+\end{itemize}
 
-SfM、MVSなどはGeometric Opticsを前提とし、光線が直進するという普遍的で強い過程を前提に構築されており、
-Feed Forward手法は、屈折のあるSceneが学習データには不足しており、屈折のあるSceneを正確な一貫性を持って復元できるかは疑問だ? 
-(動画生成AIが流体や重力、光の反射といった物理法則を理解しつつある側面を考えると、いずれは屈折のあるSceneも学習データに含まれるようになるかもしれない。)
+これらの手法は、計算速度とロバスト性において革新的であるが、本研究が扱う「物理的に正確な表面再構成」の観点からは明確な限界も存在する。
+フィードフォワード手法はその性質上、学習データに深く性能を依存する。
 
-\missingfigure{Feed Forwardを表す図。と思ったが、これは本筋とほとんど関係ないんだよね}
+そのため、屈折（Refraction）や透明物体（Transparency）を含むシーンにおいて、これらの手法は破綻しやすい。
+学習データ（ScanNet等）に透明物体が十分に、かつ物理的に正確なアノテーションと共に含まれていないため、フィードフォワードモデルはガラス表面を背景と混同したり、深度を平滑化してしまう傾向がある。
+\fix{根拠薄し}
+対して、本研究で用いるGaussian Splatting等の最適化ベース手法は、屈折率（IoR）やスネルの法則を明示的にモデル化することで、こうした物理現象を正確に逆算することが可能である。
+
+しかし、動画生成AIが流体や光の反射といった物理法則をデータから獲得しつつある現状 \cite{quan2025transparent} を鑑みると、将来的にはフィードフォワード手法も十分なデータスケールによって屈折を「学習」する可能性は否定できない。
+現時点では、幾何学的整合性と物理的忠実性を担保するためには、依然として物理モデルに基づく最適化が不可欠である。
+
+\missingfigure{Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。} 

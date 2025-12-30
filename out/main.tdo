@@ -22,19 +22,20 @@
 \contentsline {todo}{Figure: 音響と写真測量のメリットデメリットの表}{7}{section*.31}%
 \contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 気体－液体屈折について。これも既に書いてある内容で大丈夫だと思います。また、ここからは方法でも詳しく説明する部分なので、イントロでどこまで書くか。浅水域の写真測量において克服すべき点の１つであること、屈折とはどういう現象か、これまで写真測量でどういう風に対処されてきたか、測量を向上するために何が足りないか・何を考えるべきか}{8}{section*.32}%
 \contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{9}{section*.36}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ パッチはpと表すのが適当に思えるが、後にGaussian中心もpと表しているので、ここではsと書いている。Gaussian中心は$\bm {\mu }$と書くのが良いのかもしれない。→ パッチはB(ブロック)と書くことにした。sはScaleと混同する}{10}{section*.39}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Harrisコーナー検出やDoGに関して、SfMの欄で説明しておくべき}{11}{section*.40}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 初期の法線はカメラ方向などから推定するらしいがどのように推定する? 元論文の式(5)}{11}{section*.41}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 合っているか確認。正直、式を明示的に示す必要もない気がする。}{12}{section*.45}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 共役勾配法とは?\url {https://en.wikipedia.org/wiki/Conjugate_gradient_method}}{12}{section*.46}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 理解する。本当にそうか?あと、論文と}{12}{section*.47}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Local Tangent Planeとは? またLocal Tangent Plane仮説とはどういうPrior?}{12}{section*.48}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ソース画像とは何?}{12}{section*.49}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 本筋とは直接繋がらないから、、消すかどうか?}{13}{section*.51}%
-\contentsline {todo}{Figure: Feed Forwardを表す図。と思ったが、これは本筋とほとんど関係ないんだよね}{13}{section*.51}%
-\contentsline {todo}{Figure: 有名なBlenderドラムの画像を用いたタスクのイメージ図を貼る。どっかから引用したい。CV最前線?かな}{14}{section.52}%
-\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{15}{Item.56}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{15}{Item.56}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{16}{section.57}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{16}{section.57}%
-\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{17}{section.57}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{11}{section*.40}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{12}{section*.45}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{13}{section*.47}%
+\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{14}{Item.51}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{14}{section*.52}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{14}{section*.53}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{15}{section*.57}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{15}{section*.59}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{15}{section*.60}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{16}{section*.61}%
+\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{16}{section*.61}%
+\contentsline {todo}{Figure: 有名なBlenderドラムの画像を用いたタスクのイメージ図を貼る。どっかから引用したい。CV最前線?かな}{16}{section.62}%
+\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{17}{Item.66}%
+\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{17}{Item.66}%
+\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{19}{section.67}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{19}{section.67}%
+\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{19}{section.67}%
