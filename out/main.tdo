@@ -9,33 +9,3 @@
 \contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ これまでどんな問題に導入されてきたか、浅水域の写真測量の気体-液体屈折においてなぜ有効だと思われるか、イントロの中でも簡単に説明ができればいいと思いました。見る角度によって変化するものに対応とか、点を確率的なものに考えることで0-1の離散的ではなくより連続的な値が求められる?など。それが、結果としてはどうだったか、最後に考察で議論もしてもらいたいところです。}{3}{section*.14}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 日本語版の図を作成}{3}{section*.15}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ + Field Work と実環境での検証、としてわけても良い}{4}{section*.18}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ 子供に説明するような、だよ口調で論理の構造を作ってから、適切な文章に書き直す方式。書き直しはGeminiも有効に使う}{5}{section*.20}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 基本的には、Goodnoteに下書きしたのを写している。手書きしないと、スムーズにOutputできない。}{5}{section*.21}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ecotoneの概念を例に上げ、研究の適用先と意義を先に明確にする}{5}{section*.23}%
-\contentsline {todo}{Figure: ecotoneの概念が分かるような参考の写真。陸から川底を取った写真(植生付き)、海岸線やサンゴ礁。(海の写真とかはどこから引用するんだろう)}{5}{section*.23}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 研究の意義で説明した部分な削り、応用先に対比させるように記述}{5}{section*.25}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 最近読んだ深海の地図をつくる? みたいな本を参照したいよ}{5}{section*.26}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Introからのコピペなので、より詳しく説明する}{6}{section*.27}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ SARも多少は}{6}{section*.28}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Close-Range Photogrammetry and 3D Imaging という、2020年くらいの大作が無料でGoogle Books上で読めた。}{6}{section*.30}%
-\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 既に書いてある内容で大丈夫だと思います。浅水域に対してこれまでの深浅測量の主流の応用が難しいこと、写真測量の可能性と、克服すべき点、あと限界などもうまく書ければ。音響と写真測量のメリットデメリットを表にできるといいかもしれません。}{7}{section*.31}%
-\contentsline {todo}{Figure: 音響と写真測量のメリットデメリットの表}{7}{section*.31}%
-\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 気体－液体屈折について。これも既に書いてある内容で大丈夫だと思います。また、ここからは方法でも詳しく説明する部分なので、イントロでどこまで書くか。浅水域の写真測量において克服すべき点の１つであること、屈折とはどういう現象か、これまで写真測量でどういう風に対処されてきたか、測量を向上するために何が足りないか・何を考えるべきか}{8}{section*.32}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{9}{section*.36}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{11}{section*.40}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{12}{section*.45}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{13}{section*.47}%
-\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{14}{Item.51}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{14}{section*.52}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{14}{section*.53}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{15}{section*.57}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{15}{section*.59}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{15}{section*.60}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{16}{section*.61}%
-\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{16}{section*.61}%
-\contentsline {todo}{Figure: 有名なBlenderドラムの画像を用いたタスクのイメージ図を貼る。どっかから引用したい。CV最前線?かな}{16}{section.62}%
-\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{17}{Item.66}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{17}{Item.66}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{19}{section.67}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{19}{section.67}%
-\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{19}{section.67}%

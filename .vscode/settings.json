@@ -97,9 +97,10 @@
             "name": "biber",
             "command": "biber",
             "args": [
-                "--input-directory=out",
-                "--output-directory=out",
-                "%DOCFILE%"
+                // "--input-directory=out",
+                // "--output-directory=out",
+                // "%DOCFILE%",
+                "%OUTDIR%/%DOCFILE%"
             ]
         },
         {

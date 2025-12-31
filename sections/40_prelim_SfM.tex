@@ -48,6 +48,8 @@ SfMの出力三次元情報が疎な(Sparse)点群であるのに対して、MVS
 本節では、パッチベース手法の古典であるPMVS \cite{Furukawa2010_PatchMVS} の概念を概観した後、現在のデファクトスタンダードなパイプライン（COLMAP \cite{Schnberger2016ECCV_PatchMatchStereo}）の基礎となっているPatchMatch Stereoについて詳述する。
 
 
+\missingfigure{MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}
+
 
 % --- PMVS ---
 \textbf{PMVS}: 
@@ -192,8 +194,13 @@ Schönbergerらは、これらの幾何学的尺度とフォトメトリック�
 
 \fix{一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}
 
+
+
+
 \subsection{Feed Forward 3D Reconstruction}
 \checkref{\url{https://gemini.google.com/app/d37c008e08350238}}
+
+\note{DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}
 
 本研究の本筋である最適化ベース（Optimization-based）の手法とは対照的に、近年（2023-2025年）、大規模データセットとDeep Learning、特にTransformerアーキテクチャの発展により、幾何学的計算を推論（Inference）として解く「フィードフォワード型（Feed-Forward）」の手法が急速に台頭している。
 従来の手法（SfM/MVSやNeRF/3DGS）が、入力シーンごとにパラメータを反復的に更新して解を探索するのに対し、フィードフォワード型の手法は、学習済みの膨大な事前知識（Priors）を用いて、単一の順伝播処理のみで3次元構造を回帰するデータ駆動型（Data-driven）のアプローチである。
