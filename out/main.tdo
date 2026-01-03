@@ -35,10 +35,10 @@
 \contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{15}{section*.61}%
 \contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{16}{section*.62}%
 \contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{16}{section*.62}%
-\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{17}{section.63}%
+\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{16}{section.63}%
 \contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{17}{section*.65}%
 \contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{18}{Item.69}%
 \contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{18}{Item.69}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{20}{section.70}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{20}{section.70}%
+\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{19}{section.70}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{19}{section.70}%
 \contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{20}{section.70}%
