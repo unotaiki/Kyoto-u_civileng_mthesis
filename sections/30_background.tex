@@ -15,17 +15,87 @@
 この空白が生じる物理的・運用的な理由は明確である。
 従来の船舶を用いた音響測深技術では、座礁のリスクや効率の低下により極浅水域への接近が困難である一方、陸上測量の手法(人手とトータルステーションを用いた直接測量)では、水深や流速による危険性が高く、広範囲のデータ取得が不可能であるためである。   
 
-\missingfigure{ホワイトリボンの概念が分かるような参考の写真。}
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figure/30_/white-ribbon.png}
+  \caption{
+    White Ribbonの実例。
+    \cite{Mcmahon2012_white-ribbon-figure}より引用。
+    \cite{GEBCO}の提供するGridded Bathymetry Dataによる海洋沿岸の水深測量図。
+    白い領域は浅水域のため測量不能。
+  }
+  \label{fig:white-ribbon-figure}
+\end{figure}
 
 \note{ここを水深測量の概要に据える}
 
+\section{水深測量の概要}\label{sec:bathymetry-method}
+
+\subsection{音響測深}
+現在、水深測量（Bathymetry）の標準となっているのは、マルチビーム音響測深機（Multibeam Echosounder: MBES）である。
+MBESは船底から扇状に音波を発射し、走査線上の多数の点の水深を同時に計測することで、面的な地形図を作成する。
+深海域においては、一度の航行で数キロメートル幅の海底をスキャンできるため、Seabed 2030のようなプロジェクトの中核技術となっている。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.27\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figure/30_/sonar_1.jpg}
+    \caption*{(a) マルチビームソナーの概念図}
+  \end{subfigure}
+  \begin{subfigure}{0.30\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figure/30_/sonar_2.jpg}
+    \caption*{(b) マルチビームソナーによる水深測量図}
+  \end{subfigure}
+  \begin{subfigure}{0.30\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figure/30_/sonar_usv.png}
+    \caption*{(c) 無人水上艇(USV)による水深測量例}
+  \end{subfigure}
+  \caption{
+    マルチビームソナー。
+    \cite{fig:sonar,Giordano2015_sonar-bathymetry}より引用。
+  }
+  \label{fig:sonar-figure}
+\end{figure}
+
+
+浅水域においてはMBESの効率は劇的に低下する。
+MBESの走査幅（Swath Width: $SW$）は、水深（$D$）と指向角（$\theta$:約120度〜150度）に幾何学的に依存するからである。
+\begin{equation}\label{eq:swath-width}
+  SW = 2D \tan \left( \frac{\theta}{2} \right)
+\end{equation}
+水深 1000 mであれば 3000 m以上の幅を一度に測れるが、浅水河川のような水深 1 m 〜 2 mの環境では、走査幅はわずか 3 m 〜 8 m 程度にしかならない。
+浅水河川を測量するためには、探査船は数十回もの往復（測線）を繰り返さねばならず、時間的・金銭的コストが増大する。
+
+加えて、浅水域においては、調査船は、座礁リスクのために船体の喫水より浅い場所には物理的に侵入できない。
+座礁リスクを低減するため、近年では、小型の無人水上艇(Unmanned Surface Vehicle: USV)を用いた水深測量も注目されている\cite{Giordano2015_sonar-bathymetry,Kurowski2019_survey-USV}。
+これにより、河川や海岸線付近の浅水域の水深測量に応用されるが、水上艇の制御が難しく、走査幅の狭さにより、広範の測量を行うには依然、時間的･人的コストが高くなる。
+また、砂州などの陸域を含めた測量は不可能であり、別途、UAVによる写真測量などが必要になる。
+\note{UAVは自動化により楽に撮影できるが、USVは水の流れの中での制御が難しかった(GPSに基づいて自動的にやってくれるものあるかも)。}
+\note{後述するエコトーンに自然につなげたい。}
 
 
 
 
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figure/30_/Kujawa2025_RS-bathymetry-methods.png}
+  \caption{
+    \cite{
+    リモートセンシングによる浅水域水深測量のためのイメージングおよび測距技術。
+    Kujawa2025_survey-shallow-bathymetry}より引用。
+    (a) リモートセンシング技術の分類
+    (b) 空間的範囲・分解能・カバレッジの関係
+  }
+  \label{fig:remote-sensing-bathymetry-method}
+\end{figure}
 
-\section{研究の意義}
+
+
+\section{研究の意義}\label{sec:application-of-research}
 
 一方、浅水域は、人間社会の経済活動、防災、そして生態系保全において決定的な役割を果たす領域であり、その重要性をエコトーンと河川地形の変状モニタリングの観点から説明する。
 
@@ -94,97 +164,3 @@
 
 
 
-
-
-
-
-% ================= ドラフト
-
-\section{水深測量の概要}\label{sec:bathymetry}
-
-\note{研究の意義で説明した部分な削り、応用先に対比させるように記述}
-水深写真測量は重要だよ。
-地球の7割が水域だよ。
-にも関わらず、水底の詳細な地形データを観測する水深測量は大変で、海底のことは、宇宙や月のことよりも分からないと言われがちだよ。
-近年Seabed 2030のような活動によって、地球の全域を測量しようとする気運が高まっているよ。\checkref{最近読んだ深海の地図をつくる? みたいな本を参照したいよ}
-それらはマルチビームソナーによる深浅測量によって行われるよ。
-これは音響測深とも呼ばれるように、水中の音波を用いて水深を測量する手法であるよ。
-(一般的なセンシングで用いられる電磁波は、真空や薄い空気中では伝搬し情報を伝えられるが、水中では媒質が水であるため、その水中で減衰しにくい情報を使用するしかないのだ。的なことをかっこよく述べていよ)
-昔は鎖を下ろして、航海という人類の活動の基盤の一つで、船の座礁などのリスクを管理する重要な海の地図だけど、それを作るのはたいへんやった。(歴史)
-昔は、地点ごとに鎖を下ろして、深さを図るなど、一地点で半日かかりだった。(って本に書いてたけど、何を参照しよう)。
-その後、シングルソナー
-マルチビームにより、面的な測量が可能になった。
-マルチビームが最も一般的なBathymetryの手法だよ。(Bathymetryもまたハイドロなんとかって分野に含まれる一つらしいが、うまく水に関する工学や自然科学の体系をわかっていないや)
-近年では、小型の無人水上艇(Unmanned Surface Vehicle: USV)を用いた水深測量が注目されているが\cite{Giordano2015_sonar-bathymetry,Kurowski2019_survey-USV}、マルチビームの指向角の制限により、浅水域においては走査幅(Swath Width)が狭く、面的な測量を行うには時間的コストが高くなるという、非効率性の問題も生じる。
-\note{Introからのコピペなので、より詳しく説明する}
-
-一方、浅水域は、より人間社会に密接に影響を与えるよ。(人間は陸に住むしな)
-洪水の影響を予測するためには、河川の形状データを用いて流体シミュレーションするし、
-伝統的河川治水方法(聖牛)を用いた河川マネジメントでは、増水のたびに変わる河川の地形を知りたいよ。(テンマの論文を引用! 具体的に想定するケースを明確に)
-また、生態系にはその生物の住む3次元的地形が密接に関連するよね。(こういう構造をシた場所だと産卵しやすいとか、外敵から身を守りやすいとか)
-あと、Geomorphologyとかの学問でも重要でしょう。(体系的知識がないのでうまくまとめたい。Geologyも)
-このように浅水域は海でも川でも、湖でも重要だよ。(特に共同の関連で私は川を念頭においているが、)
-
-こうした浅水域を測量するのはとっても大変だよ。
-日本では、5年以内に一度、日本全国の川の水深測量を行う必要があるよ。
-人が実際に入って、棒尺で測定するのを本当にやるけど、危険で、空間解像度は低いし、アホほどTime Consumingだし、コストもばか。
-
-浅水域では、深海とは異なり(深海ほど低くなくても)、電磁波(光)が完全に散乱、吸収されることなく、情報を残してくれるので、Remote Sensingのテクニックが使えるよ! \cite{He2024_survey-shallow-bathymetry}
-近年では、ALBが導入され、人に変わって測量できるよ。日本でも5年だか2年に1回だか図るよ(ここらの河川マネジメントの資料は以前Notionにまとめた。)
-LiDARはLight Detection and Rangingの略で、光を用いて距離を測量するPassiveなRemote Sensingだよ。
-水中で減衰しにくい緑とか青の波長域を照射し、水面で跳ね返るものと水中に潜って行くものを捉えることで、水底の形状を測量できるよ。
-深さもそこそこ行けるようになってきているよ。
-密度も正確性も、申し分ないけど、航空機の飛行コストや機材の高価さによって、継続的な高周期のモニタリングは難しいよ。
-Passive なRemote Sensingとして、
-他にもSateliteベース(プラットフォーム)で、マルチスペクトルと、水中での波長の減衰率の差から測量する手法もあるけど、どうしても経験に頼ったり、Cite-Dependencyが強かったり明示的なモデル化をもとに水中の3次元形状を推定することはできないよ。
-そこそこ深い場所を大規模に、は、有効だけど、より浅い地域を高解像度に、正確には、向かないんじゃないかな(ちゃんと論文を読んだことがないので、正確か分からない。しっかり厳しく、調査して教えてほしいな? Survey論文にいろいろ書いていたよ。)
-Sarを使う手法もあるけど全然わからないや。
-\checkref{SARも多少は}
-
-\missingfigure{UAV測量、船の測量の棲み分け図。Goodnoteに下書きが}
-
-
-\section{Photogrammetric Bathymetry}\label{sec:photogrammetric-bathymetry}
-
-そこで、着目するのは、写真測量だよ。
-Computer Vision技術の発達とドローンの普及によって正確な測量が誰でもできるようになったよ(商用ソフトウェア、OpenSourceいっぱいあるね。近接写真測量の枠組みで話しているよ)
-UAV(+ RTKGPS)は、効率性、機材の安価さ、手軽な測量による高周期のモニタリングが可能だよ。
-\checkref{Close-Range Photogrammetry and 3D Imaging という、2020年くらいの大作が無料でGoogle Books上で読めた。}
-\url{https://books.google.co.jp/books?hl=en&lr=&id=L1DaEAAAQBAJ&oi=fnd&pg=PR5&dq=two+medium+photogrammetry&ots=7eT6ZRjJSx&sig=KJSIY_3Tdha35c5oIQRWRj1HVIs&redir_esc=y#v=onepage&q&f=false}
-% \url{https://books.google.co.jp/books?hl=en&lr=&id=L1DaEAAAQBAJ&oi=fnd&pg=PR5&dq=two+medium+photogrammetry&ots=7eT6ZRjJSx&sig=KJSIY_3Tdha35c5oIQRWRj1HVIs&redir_esc=y#v=onepage&q&f=false}
-
-\checkref{\url{https://www.notion.so/Photommetric-Bathymetry-2e002f0efa178010b4f3f365fdea4f29}.}
-\note{
-  そもそもPhotogrammetric BathymetryでちゃんとしたCodeが公開されているのが、R-SfMのみ。これも動かんし。
-  ちゃんとCodeとワークフローをGithubで公開するだけでも価値がすごいある、といえば良い。RefNerfが大規模な実環境ではきついはずだし。
-  A Review of Image- and LiDAR-Based Mapping of Shallow Water Scenarios。によるとそこそこ公開されていた。
-}
-地上において、UAVによる写真測量は、広く実社会に普及しているよ。
-例えば、純粋な測量用途だけでなく、デジタルツインやメタバースといった3Dデータ活用の重要性が広く認識されつるある中で、災害状況把握、森林マネジメント、など様々な分野で利用されるよ\cite{Bemis2014_UAV-photogrammetry,Gomez2016_UAV-photogrammetry-disaster,Iglhaut2019_UAV-photogrammetry-forestry}。
-
-水深測量に関しては、古い歴史があるよ。(1960年代などから、やってる人がいるよ。引用したいけどわからん)
-
-\kobayashi{既に書いてある内容で大丈夫だと思います。浅水域に対してこれまでの深浅測量の主流の応用が難しいこと、写真測量の可能性と、克服すべき点、あと限界などもうまく書ければ。音響と写真測量のメリットデメリットを表にできるといいかもしれません。}
-\missingfigure{音響と写真測量のメリットデメリットの表}
-
-% === Introduction === からのメモ
-
-% [TODO] 最も伝統的な水深測量は人 (Bathymetryの歴史で紹介)
-伝統的な船舶搭載型マルチビームソナー(深浅測量･音響測深)は、一定の深度がある海域においては標準的な手法であるが、水深が極めて浅い河川や海岸線付近においては、船舶の座礁リスクなどの航行不可領域の存在により、その運用は著しく制限される。
-近年では、小型の無人水上艇(Unmanned Surface Vehicle: USV)を用いた水深測量が注目されているが\cite{Giordano2015_sonar-bathymetry,Kurowski2019_survey-USV}、マルチビームの指向角の制限により、浅水域においては走査幅(Swath Width)が狭く、面的な測量を行うには時間的コストが高くなるという、非効率性の問題も生じる。
-一方で、航空機搭載レーザ測深（ALB: Airborne LiDAR Bathymetry）は\cite{Saylam2018_ALB}、広域かつ高精度な計測が可能であるが、導入および運用コストが極めて高く、高頻度なモニタリングには不向きであるという経済的な障壁が存在する。
-
-
-こうした背景の中、近年急速に普及したドローンなどの無人航空機（UAV: Unmanned Aerial Vehicle）を用いた写真測量(Photogrammetry)は、低コストかつ高解像度、高頻度なデータ取得が可能であることから、次世代の浅瀬測量技術として大きな期待を集めている。
-UAVにより空撮された多視点画像から、Structure-from-Motion (SfM) \cite{schoenberger2016_colmap}、および Multi-View Stereo (MVS) \cite{Furukawa2010_PatchMVS,Furukawa2015_MVS}を用いて3次元形状を復元するアプローチは、陸部においては既に広い用途で実用化されている\cite{Bemis2014_UAV-photogrammetry,Gomez2016_UAV-photogrammetry-disaster,Iglhaut2019_UAV-photogrammetry-forestry}。
-これらの技術を水中に適用する場合、その手法は空中からの水深写真測量(Photogrammetric Bathymetry)と呼ばれ、空中から撮像した多視点画像からの水中の三次元再構成問題と捉えることができる。
-水深写真測量には、光の反射や、水中での光の散乱･吸収による減衰、波による被写体の歪みなどの課題が存在するが、中でも最も根本的で重要な課題として取り組まれてきたのが光の屈折(Refraction)である。
-
-\cite{Woodget2014_PhotograBathy-multiply-n}は、SfMソフトの出力結果に単に「屈折率」を掛け合わせるというシンプルな補正を行うことで、ドローン（UAV）画像を用いた水中写真測量の可能性を実証しました。
-これに対し \cite{Dietrich2016_multi-angle-correction} は、見かけ上の点が視点によって異なること（視角依存性）を考慮し、画素ごとの光線の角度に基づいて3次元点を推定する「多角的な屈折補正」を提案しました。しかし、この手法はあくまで深さ（鉛直）方向のズレを補正するだけであり、水平方向の歪みについては無視されていました。
-そこで \cite{Makris2024_refractive-aware-sfm} は、計算が終わった後に補正したり何度も計算を繰り返したりするのではなく、SfMの処理プロセス（パイプライン）そのものに屈折モデルを直接組み込むことに成功しました。
-このR-SfMは正確なカメラ位置推定と、疎な3次元点群を提供する。
-しかし、深層学習を用いた補間手法\cite{Alevizos2022_DL-shallow-bathymetry}を用いる必要があり、学習データ不足とフィールド依存性という問題がある。
-(もう少しPhotogrammetric Bathymetryに関してはSurveyするよ)
-
-\kobayashi{気体－液体屈折について。これも既に書いてある内容で大丈夫だと思います。また、ここからは方法でも詳しく説明する部分なので、イントロでどこまで書くか。浅水域の写真測量において克服すべき点の１つであること、屈折とはどういう現象か、これまで写真測量でどういう風に対処されてきたか、測量を向上するために何が足りないか・何を考えるべきか}
