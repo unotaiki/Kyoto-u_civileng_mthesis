@@ -55,8 +55,8 @@
       \strng{authornamehash}{ae000383dc1fc489ca742ab0029eadeb}
       \strng{authorfullhash}{90e625ab2759349bb0698835b7e6baad}
       \strng{authorfullhashraw}{90e625ab2759349bb0698835b7e6baad}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2772-4115}
@@ -100,8 +100,8 @@
       \strng{authornamehash}{d577a2c7e5120dd110be2ef4106e19fb}
       \strng{authorfullhash}{d577a2c7e5120dd110be2ef4106e19fb}
       \strng{authorfullhashraw}{d577a2c7e5120dd110be2ef4106e19fb}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2071-1050}
@@ -157,8 +157,8 @@
       \strng{authornamehash}{94dcfbfa4f63fa473e1586ce9efb1773}
       \strng{authorfullhash}{ce4e42df1f434e554b471a69ae4833d8}
       \strng{authorfullhashraw}{ce4e42df1f434e554b471a69ae4833d8}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1099-0755}
@@ -219,8 +219,8 @@
       \strng{authornamehash}{7a1b71e3d9c9e892c73235bd0deadf1e}
       \strng{authorfullhash}{e8909b7385cdb695b6ee943bedcd6b01}
       \strng{authorfullhashraw}{e8909b7385cdb695b6ee943bedcd6b01}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1424-8220}
@@ -278,8 +278,8 @@
       \strng{authornamehash}{176f735e710e19ea62b840bafd3eeff6}
       \strng{authorfullhash}{6cc65f29163ab8e7a77b639761ce155f}
       \strng{authorfullhashraw}{6cc65f29163ab8e7a77b639761ce155f}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2405-8963}
@@ -340,8 +340,8 @@
       \strng{authornamehash}{6d03ed3e6c22b92c1113a4163e49677f}
       \strng{authorfullhash}{eb796e35a4597a3f94d08c0a53037559}
       \strng{authorfullhashraw}{eb796e35a4597a3f94d08c0a53037559}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1366-5901}
@@ -384,8 +384,8 @@
       \strng{authornamehash}{3a4b1342454668721b1324a50fbe5111}
       \strng{authorfullhash}{3a4b1342454668721b1324a50fbe5111}
       \strng{authorfullhashraw}{3a4b1342454668721b1324a50fbe5111}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -417,8 +417,8 @@
       \strng{authornamehash}{0aab0e5a2280e34eb2a53a4b1e7e0575}
       \strng{authorfullhash}{0aab0e5a2280e34eb2a53a4b1e7e0575}
       \strng{authorfullhashraw}{0aab0e5a2280e34eb2a53a4b1e7e0575}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0162-8828}
@@ -464,8 +464,8 @@
       \strng{authornamehash}{79d34165c70fb349e24c9076c753e161}
       \strng{authorfullhash}{79d34165c70fb349e24c9076c753e161}
       \strng{authorfullhashraw}{79d34165c70fb349e24c9076c753e161}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{isbn}{9781601988379}
@@ -530,8 +530,8 @@
       \strng{authornamehash}{9093ad82b3ae023db36b3cd7c1019ff6}
       \strng{authorfullhash}{2f61f931e2e6b296be2867cb1d9c26d2}
       \strng{authorfullhashraw}{2f61f931e2e6b296be2867cb1d9c26d2}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0191-8141}
@@ -577,8 +577,8 @@
       \strng{authornamehash}{b3a78cd5039185771f9ab7c4445dc66c}
       \strng{authorfullhash}{b3a78cd5039185771f9ab7c4445dc66c}
       \strng{authorfullhashraw}{b3a78cd5039185771f9ab7c4445dc66c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2197-8670}
@@ -643,8 +643,8 @@
       \strng{authornamehash}{1bf21ba7d1c189c84f11b1445e3a4f72}
       \strng{authorfullhash}{83509d0e1eb72e59a79876219a602a63}
       \strng{authorfullhashraw}{83509d0e1eb72e59a79876219a602a63}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2198-6436}
@@ -695,8 +695,8 @@
       \strng{authornamehash}{c3dc9f4e81bbc3f7a929f20f7554bba7}
       \strng{authorfullhash}{d093759af5fb771030933fd9fa54a6c8}
       \strng{authorfullhashraw}{d093759af5fb771030933fd9fa54a6c8}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Photogrammetric Engineering and Remote Sensing}
@@ -741,8 +741,8 @@
       \strng{authornamehash}{0dae5bf2edea38199fbaf98c8f66c851}
       \strng{authorfullhash}{0e67e432c2f4a2574d00ddf8a4a6ca7c}
       \strng{authorfullhashraw}{0e67e432c2f4a2574d00ddf8a4a6ca7c}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1096-9837}
@@ -1136,6 +1136,257 @@
       \verb http://dx.doi.org/10.1145/3592433
       \endverb
     \endentry
+    \entry{Seabed2030}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=c45863cdf96f375b7b632feaf57f5866}{%
+           family={2030},
+           familyi={2\bibinitperiod},
+           given={Seabed},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{c45863cdf96f375b7b632feaf57f5866}
+      \strng{fullhash}{c45863cdf96f375b7b632feaf57f5866}
+      \strng{fullhashraw}{c45863cdf96f375b7b632feaf57f5866}
+      \strng{bibnamehash}{c45863cdf96f375b7b632feaf57f5866}
+      \strng{authorbibnamehash}{c45863cdf96f375b7b632feaf57f5866}
+      \strng{authornamehash}{c45863cdf96f375b7b632feaf57f5866}
+      \strng{authorfullhash}{c45863cdf96f375b7b632feaf57f5866}
+      \strng{authorfullhashraw}{c45863cdf96f375b7b632feaf57f5866}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.seabed2030.org/}}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{Seabed 2030 Homepage}
+    \endentry
+    \entry{NipponFoundation}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=401083ec450b40792b22ee1db2ff1c84}{%
+           family={日本財団},
+           familyi={日\bibinitperiod}}}%
+      }
+      \strng{namehash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{fullhash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{fullhashraw}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{bibnamehash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{authorbibnamehash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{authornamehash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{authorfullhash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{authorfullhashraw}{401083ec450b40792b22ee1db2ff1c84}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.nippon-foundation.or.jp/}}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{日本財団ホームページ}
+    \endentry
+    \entry{GEBCO}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=18ec91be0b2ac109f8d752932071347a}{%
+           family={GEBCO},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{fullhash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{fullhashraw}{18ec91be0b2ac109f8d752932071347a}
+      \strng{bibnamehash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{authorbibnamehash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{authornamehash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{authorfullhash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{authorfullhashraw}{18ec91be0b2ac109f8d752932071347a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.gebco.net/}}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{GEBCO Homepage}
+    \endentry
+    \entry{Ecotone}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=f7324303d539cfb4bf6dd9ccca730c58}{%
+           family={Research\bibnamedelima Databases},
+           familyi={R\bibinitperiod\bibinitdelim D\bibinitperiod},
+           given={Discovery\bibnamedelima Service},
+           giveni={D\bibinitperiod\bibinitdelim S\bibinitperiod},
+           suffix={EBooks},
+           suffixi={E\bibinitperiod}}}%
+      }
+      \strng{namehash}{f7324303d539cfb4bf6dd9ccca730c58}
+      \strng{fullhash}{f7324303d539cfb4bf6dd9ccca730c58}
+      \strng{fullhashraw}{f7324303d539cfb4bf6dd9ccca730c58}
+      \strng{bibnamehash}{f7324303d539cfb4bf6dd9ccca730c58}
+      \strng{authorbibnamehash}{f7324303d539cfb4bf6dd9ccca730c58}
+      \strng{authornamehash}{f7324303d539cfb4bf6dd9ccca730c58}
+      \strng{authorfullhash}{f7324303d539cfb4bf6dd9ccca730c58}
+      \strng{authorfullhashraw}{f7324303d539cfb4bf6dd9ccca730c58}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.ebsco.com/research-starters/environmental-sciences/ecotone}}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{Ecotone}
+    \endentry
+    \entry{Casalini2019_geo-ecological_patagonia_land}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=cd422af6c9f6704d13744f4409e2d1cc}{%
+           family={Casalini},
+           familyi={C\bibinitperiod},
+           given={Ana\bibnamedelima I.},
+           giveni={A\bibinitperiod\bibinitdelim I\bibinitperiod}}}%
+        {{hash=b8284e26c08b31b5012d8f056e0f9144}{%
+           family={Bouza},
+           familyi={B\bibinitperiod},
+           given={Pablo\bibnamedelima J.},
+           giveni={P\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+        {{hash=127783f5ad7f1b75ce82a895da500a76}{%
+           family={Bisigato},
+           familyi={B\bibinitperiod},
+           given={Alejandro\bibnamedelima J.},
+           giveni={A\bibinitperiod\bibinitdelim J\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier BV}%
+      }
+      \strng{namehash}{f359b888163614f2c2b6b6d049e9f299}
+      \strng{fullhash}{7c96896fe362a8e5a75dddf36c2cecdf}
+      \strng{fullhashraw}{7c96896fe362a8e5a75dddf36c2cecdf}
+      \strng{bibnamehash}{7c96896fe362a8e5a75dddf36c2cecdf}
+      \strng{authorbibnamehash}{7c96896fe362a8e5a75dddf36c2cecdf}
+      \strng{authornamehash}{f359b888163614f2c2b6b6d049e9f299}
+      \strng{authorfullhash}{7c96896fe362a8e5a75dddf36c2cecdf}
+      \strng{authorfullhashraw}{7c96896fe362a8e5a75dddf36c2cecdf}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0341-8162}
+      \field{journaltitle}{CATENA}
+      \field{month}{3}
+      \field{title}{Geomorphology, soil and vegetation patterns in an arid ecotone}
+      \field{volume}{174}
+      \field{year}{2019}
+      \field{pages}{353\bibrangedash 361}
+      \range{pages}{9}
+      \verb{doi}
+      \verb 10.1016/j.catena.2018.11.026
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/j.catena.2018.11.026
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/j.catena.2018.11.026
+      \endverb
+    \endentry
+    \entry{Perry2018_geo-ecological_coral-reefs}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=ff5a540c807f7d30a65d6656afde5f36}{%
+           family={Perry},
+           familyi={P\bibinitperiod},
+           given={Chris\bibnamedelima T.},
+           giveni={C\bibinitperiod\bibinitdelim T\bibinitperiod}}}%
+        {{hash=bec65604d5fdb663c1a57c2aa13dfc17}{%
+           family={Alvarez-Filip},
+           familyi={A\bibinithyphendelim F\bibinitperiod},
+           given={Lorenzo},
+           giveni={L\bibinitperiod}}}%
+      }
+      \name{editor}{1}{}{%
+        {{hash=b28bab880d1cff4ce141778e6cad2cb6}{%
+           family={Graham},
+           familyi={G\bibinitperiod},
+           given={Nicholas},
+           giveni={N\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Wiley}%
+      }
+      \strng{namehash}{83dad2cc59c402bbbf204f07bc6b37d7}
+      \strng{fullhash}{83dad2cc59c402bbbf204f07bc6b37d7}
+      \strng{fullhashraw}{83dad2cc59c402bbbf204f07bc6b37d7}
+      \strng{bibnamehash}{83dad2cc59c402bbbf204f07bc6b37d7}
+      \strng{authorbibnamehash}{83dad2cc59c402bbbf204f07bc6b37d7}
+      \strng{authornamehash}{83dad2cc59c402bbbf204f07bc6b37d7}
+      \strng{authorfullhash}{83dad2cc59c402bbbf204f07bc6b37d7}
+      \strng{authorfullhashraw}{83dad2cc59c402bbbf204f07bc6b37d7}
+      \strng{editorbibnamehash}{b28bab880d1cff4ce141778e6cad2cb6}
+      \strng{editornamehash}{b28bab880d1cff4ce141778e6cad2cb6}
+      \strng{editorfullhash}{b28bab880d1cff4ce141778e6cad2cb6}
+      \strng{editorfullhashraw}{b28bab880d1cff4ce141778e6cad2cb6}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1365-2435}
+      \field{journaltitle}{Functional Ecology}
+      \field{month}{12}
+      \field{number}{6}
+      \field{title}{Changing geo‐ecological functions of coral reefs in the Anthropocene}
+      \field{volume}{33}
+      \field{year}{2018}
+      \field{pages}{976\bibrangedash 988}
+      \range{pages}{13}
+      \verb{doi}
+      \verb 10.1111/1365-2435.13247
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1111/1365-2435.13247
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1111/1365-2435.13247
+      \endverb
+    \endentry
+    \entry{fig:Ecotone}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=d598e4f3c1cf7c7ab49a68cd979ccc9e}{%
+           family={INSIGHTSIAS},
+           familyi={I\bibinitperiod}}}%
+      }
+      \strng{namehash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
+      \strng{fullhash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
+      \strng{fullhashraw}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
+      \strng{bibnamehash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
+      \strng{authorbibnamehash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
+      \strng{authornamehash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
+      \strng{authorfullhash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
+      \strng{authorfullhashraw}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.insightsonindia.com/environment/basic-concepts-of-ecosystem/ecotone-ecological-niche/ecotone/}}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{Basic Concepts of Ecosystem: Ecotone}
+    \endentry
+    \entry{river-survey-milt}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=77e7e0da59bc2c9aef1ed480b894dab9}{%
+           family={河川保全企画室},
+           familyi={河\bibinitperiod},
+           given={国土交通省\bibnamedelima 水管理・国土保全局河川環境課},
+           giveni={国\bibinitperiod\bibinitdelim 水\bibinitperiod}}}%
+      }
+      \strng{namehash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{fullhash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{fullhashraw}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{bibnamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{authorbibnamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{authornamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{authorfullhash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{authorfullhashraw}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.mlit.go.jp/river/shishin_guideline/kasen/pdf/sokuryo_youryo.pdf}}
+      \field{month}{4}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{河川定期縦横断測量業務実施要領・同解説}
+      \field{year}{2018}
+    \endentry
     \entry{He2024_survey-shallow-bathymetry}{article}{}{}
       \name{author}{4}{}{%
         {{hash=86f1b0caff50a226bd19f712714525d8}{%
@@ -1259,6 +1510,47 @@
       \verb http://dx.doi.org/10.3390/rs14174160
       \endverb
     \endentry
+    \entry{Kujawa2025_survey-shallow-bathymetry}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=613b3ee90e51f0c40ea5166efe5da859}{%
+           family={Kujawa},
+           familyi={K\bibinitperiod},
+           given={Paulina},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4870d096bff30f35cd7f7f14485e000c}{%
+           family={Remondino},
+           familyi={R\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{fullhash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{fullhashraw}{23f161262a8b22a285ee56b82c02b455}
+      \strng{bibnamehash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{authorbibnamehash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{authornamehash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{authorfullhash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{authorfullhashraw}{23f161262a8b22a285ee56b82c02b455}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2072-4292}
+      \field{journaltitle}{Remote Sensing}
+      \field{number}{12}
+      \field{title}{A Review of Image- and LiDAR-Based Mapping of Shallow Water Scenarios}
+      \field{volume}{17}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.3390/rs17122086
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2072-4292/17/12/2086
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2072-4292/17/12/2086
+      \endverb
+    \endentry
     \entry{Lowe2004_SIFT}{article}{}{}
       \name{author}{1}{}{%
         {{hash=83f4643381c1cc2c483b4210498fedb0}{%
@@ -1279,8 +1571,8 @@
       \strng{authornamehash}{83f4643381c1cc2c483b4210498fedb0}
       \strng{authorfullhash}{83f4643381c1cc2c483b4210498fedb0}
       \strng{authorfullhashraw}{83f4643381c1cc2c483b4210498fedb0}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1573-1405}
@@ -1322,8 +1614,8 @@
       \strng{authornamehash}{d0465e31872bd5a1d01ac67d592146e9}
       \strng{authorfullhash}{d0465e31872bd5a1d01ac67d592146e9}
       \strng{authorfullhashraw}{d0465e31872bd5a1d01ac67d592146e9}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0162-8828}
@@ -1369,8 +1661,8 @@
       \strng{authornamehash}{fd6cd035a6e3f6ec978ad866925826c7}
       \strng{authorfullhash}{fd6cd035a6e3f6ec978ad866925826c7}
       \strng{authorfullhashraw}{fd6cd035a6e3f6ec978ad866925826c7}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Readings in Computer Vision}
@@ -1423,8 +1715,8 @@
       \strng{authornamehash}{36a5e31de7a1be65ff51f08258616698}
       \strng{authorfullhash}{30e48d2aaee2a1fda71a42c2cf87706f}
       \strng{authorfullhashraw}{30e48d2aaee2a1fda71a42c2cf87706f}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Vision Algorithms: Theory and Practice}
@@ -1460,8 +1752,8 @@
       \strng{authornamehash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhashraw}{fcc0ce660086b48f2fa45b85cd8342c1}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{http://theia-sfm.org}}
@@ -1497,8 +1789,8 @@
       \strng{authornamehash}{c1e5b0158ddb37b00d4f2a4fd2d47010}
       \strng{authorfullhash}{aae8f6d850b0cf17ca0a149c54e63e45}
       \strng{authorfullhashraw}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Procedings of the British Machine Vision Conference 2011}
@@ -1621,8 +1913,8 @@
       \strng{authornamehash}{4cd9f80f9c0a6011d36c6da40974de58}
       \strng{authorfullhash}{9deb5a118d969e2f12ddfefd58af2519}
       \strng{authorfullhashraw}{9deb5a118d969e2f12ddfefd58af2519}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -1682,8 +1974,8 @@
       \strng{authornamehash}{a9c06d9c8dc53b499cee381e94a723a0}
       \strng{authorfullhash}{6a2fd2f7256af35f3de368895ed15158}
       \strng{authorfullhashraw}{6a2fd2f7256af35f3de368895ed15158}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -1724,8 +2016,8 @@
       \strng{authornamehash}{a6514dccec078c9745e7c9767fec8de7}
       \strng{authorfullhash}{8b27c087d4af28ede739310fa8f96e44}
       \strng{authorfullhashraw}{8b27c087d4af28ede739310fa8f96e44}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -1788,8 +2080,8 @@
       \strng{authornamehash}{5951491ea1890c94292fc700adba0663}
       \strng{authorfullhash}{c8ad9624cf0f856fa33f6a8a6e506c76}
       \strng{authorfullhashraw}{c8ad9624cf0f856fa33f6a8a6e506c76}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -1862,8 +2154,8 @@
       \strng{authornamehash}{d9668dbb73566d1aa055ed322f12bb9b}
       \strng{authorfullhash}{d86ec4ce841bcef744626741a3e34d6f}
       \strng{authorfullhashraw}{d86ec4ce841bcef744626741a3e34d6f}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -1936,8 +2228,8 @@
       \strng{authornamehash}{12ecfbee9677d4965da6f805b5017c84}
       \strng{authorfullhash}{49902cf46e160313ed5cca415623d1e0}
       \strng{authorfullhashraw}{49902cf46e160313ed5cca415623d1e0}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Computer Vision – ECCV 2024}
@@ -1987,8 +2279,8 @@
       \strng{authornamehash}{4ccd2e8fea4fe46b7dda34ff4f3ca373}
       \strng{authorfullhash}{e388f13f2b380e3adb9ecb002b368fb2}
       \strng{authorfullhashraw}{e388f13f2b380e3adb9ecb002b368fb2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}

@@ -1,50 +1,57 @@
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ACRSかISPRSの内容を翻訳しているだけ。最後にどこまでできたか踏まえて書く。内容も増えるはず。}{2}{section*.1}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 全体的に説明が簡潔すぎて、ボリューム感が足りない。エコトーンなど、研究の立ち位置を追加。GSに関しても増強。IntroとPrelimをきれいに書いて、方法までやってから書くべし。}{1}{section*.4}%
-\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 浅水域が存在量的にも重要だというふうにも見えるのですが、なぜこれまで測量が進んでこなかったのかをうまく説明できる流れにするのは難しそうなので、どちらかというと端っこでこれまで見逃されてきた、後回しにされてきたけれど、実は水と陸のエコトーンの部分にあたって生態的にも人の資源や観光利用において重要な場所であるというふうなことは書いていけないでしょうか。浅水域の定義みたいなものがあればいいと思いました。深さの範囲とか、川岸、湿地、砂浜、干潟などがそういう場所にあたると思います。浅水域の重要性をイメージできる画像もあれば。}{1}{section*.6}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ エコトーンの文脈でより詳細に。まず、20inrtoの研究の意義でしっかり書いてから要約的にまとめる}{1}{section*.7}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ここは、20introの関連研究で詳細に説明}{1}{section*.8}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ こないでIpadで読んだ、PBレンダリングの記事で分かりやすくまとめられていた。図を引用しても良いと思う。ちなみに \url {https://imadr.me/pbr/} ちなみにGeometrical Opticsに屈折は含まれるためこの表現は適切ではない}{2}{section*.10}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Yudhaさんなどの手法が回帰}{2}{section*.11}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Survey論文でも引用しとく}{2}{section*.12}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ GSの簡潔な説明。Explicitで高速。編集可能性や解釈可能背が高い。詳細は42prelimGSで詳細に説明。ラスタライズで屈折を表現するのは難しいが、うまくやったぞ。}{3}{section*.14}%
-\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ これまでどんな問題に導入されてきたか、浅水域の写真測量の気体-液体屈折においてなぜ有効だと思われるか、イントロの中でも簡単に説明ができればいいと思いました。見る角度によって変化するものに対応とか、点を確率的なものに考えることで0-1の離散的ではなくより連続的な値が求められる?など。それが、結果としてはどうだったか、最後に考察で議論もしてもらいたいところです。}{3}{section*.15}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 日本語版の図を作成}{3}{section*.16}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ + Field Work と実環境での検証、としてわけても良い}{4}{section*.19}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ 子供に説明するような、だよ口調で論理の構造を作ってから、適切な文章に書き直す方式。書き直しはGeminiも有効に使う}{5}{section*.21}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 基本的には、Goodnoteに下書きしたのを写している。手書きしないと、スムーズにOutputできない。}{5}{section*.22}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ｢｣や()の全角、半角の不統一は後でまとめて置換する}{1}{section*.5}%
+\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 浅水域が存在量的にも重要だというふうにも見えるのですが、なぜこれまで測量が進んでこなかったのかをうまく説明できる流れにするのは難しそうなので、どちらかというと端っこでこれまで見逃されてきた、後回しにされてきたけれど、実は水と陸のエコトーンの部分にあたって生態的にも人の資源や観光利用において重要な場所であるというふうなことは書いていけないでしょうか。浅水域の定義みたいなものがあればいいと思いました。深さの範囲とか、川岸、湿地、砂浜、干潟などがそういう場所にあたると思います。浅水域の重要性をイメージできる画像もあれば。}{1}{section*.7}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ エコトーンの文脈でより詳細に。まず、20inrtoの研究の意義でしっかり書いてから要約的にまとめる}{1}{section*.8}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ここは、20introの関連研究で詳細に説明}{1}{section*.9}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ こないでIpadで読んだ、PBレンダリングの記事で分かりやすくまとめられていた。図を引用しても良いと思う。ちなみに \url {https://imadr.me/pbr/} ちなみにGeometrical Opticsに屈折は含まれるためこの表現は適切ではない}{2}{section*.11}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Yudhaさんなどの手法が回帰}{2}{section*.12}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Survey論文でも引用しとく}{2}{section*.13}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ GSの簡潔な説明。Explicitで高速。編集可能性や解釈可能背が高い。詳細は42prelimGSで詳細に説明。ラスタライズで屈折を表現するのは難しいが、うまくやったぞ。}{3}{section*.15}%
+\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ これまでどんな問題に導入されてきたか、浅水域の写真測量の気体-液体屈折においてなぜ有効だと思われるか、イントロの中でも簡単に説明ができればいいと思いました。見る角度によって変化するものに対応とか、点を確率的なものに考えることで0-1の離散的ではなくより連続的な値が求められる?など。それが、結果としてはどうだったか、最後に考察で議論もしてもらいたいところです。}{3}{section*.16}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 日本語版の図を作成}{3}{section*.17}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ + Field Work と実環境での検証、としてわけても良い}{4}{section*.20}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ 子供に説明するような、だよ口調で論理の構造を作ってから、適切な文章に書き直す方式。書き直しはGeminiも有効に使う}{5}{section*.22}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 基本的には、Goodnoteに下書きしたのを写している。手書きしないと、スムーズにOutputできない。}{5}{section*.23}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ecotoneの概念を例に上げ、研究の適用先と意義を先に明確にする}{5}{section*.24}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Introで書いた文章。地球表面の大部分を覆う水域、特に沿岸部や河川などの浅水域(Shallow Water)は、人間社会の経済活動、防災、生態系保全において極めて重要な役割を果たしている。河川管理における氾濫原の地形変状把握\blx@tocontentsinit {0}\cite {Fujii2024_seigyu}、沿岸域管理\blx@tocontentsinit {0}\cite {Pasquali2021_coastal-zone-management}、生態系の生息環境評価\blx@tocontentsinit {0}\cite {Thomson2001_habitat-assessment}など、水底の詳細な地形データを観測する水深測量(Bathymetry)は非常に重要である。しかしながら、これらの領域は従来の測量技術では取得が困難な空白地帯となりがちであった。}{5}{section*.25}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ここで、光が辺り水底まで届く浅水域と制限できるのは、Photogrammetric Bathymetryにおける水底が視認可能であるという制約と合致、研究のLimitationを軽減できるよ}{5}{section*.26}%
-\contentsline {todo}{Figure: ecotoneの概念が分かるような参考の写真。陸から川底を取った写真(植生付き)、海岸線やサンゴ礁。(海の写真とかはどこから引用するんだろう)}{5}{section*.26}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 研究の意義で説明した部分な削り、応用先に対比させるように記述}{5}{section*.29}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 最近読んだ深海の地図をつくる? みたいな本を参照したいよ}{6}{section*.30}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Introからのコピペなので、より詳しく説明する}{6}{section*.31}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ SARも多少は}{7}{section*.32}%
-\contentsline {todo}{Figure: UAV測量、船の測量の棲み分け図。Goodnoteに下書きが}{7}{section*.32}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Close-Range Photogrammetry and 3D Imaging という、2020年くらいの大作が無料でGoogle Books上で読めた。}{7}{section*.34}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://www.notion.so/Photommetric-Bathymetry-2e002f0efa178010b4f3f365fdea4f29}.}{7}{section*.35}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ そもそもPhotogrammetric BathymetryでちゃんとしたCodeが公開されているのが、R-SfMのみ。これも動かんし。ちゃんとCodeとワークフローをGithubで公開するだけでも価値がすごいある、といえば良い。RefNerfが大規模な実環境ではきついはずだし。A Review of Image- and LiDAR-Based Mapping of Shallow Water Scenarios。によるとそこそこ公開されていた。}{7}{section*.36}%
-\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 既に書いてある内容で大丈夫だと思います。浅水域に対してこれまでの深浅測量の主流の応用が難しいこと、写真測量の可能性と、克服すべき点、あと限界などもうまく書ければ。音響と写真測量のメリットデメリットを表にできるといいかもしれません。}{8}{section*.37}%
-\contentsline {todo}{Figure: 音響と写真測量のメリットデメリットの表}{8}{section*.37}%
-\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 気体－液体屈折について。これも既に書いてある内容で大丈夫だと思います。また、ここからは方法でも詳しく説明する部分なので、イントロでどこまで書くか。浅水域の写真測量において克服すべき点の１つであること、屈折とはどういう現象か、これまで写真測量でどういう風に対処されてきたか、測量を向上するために何が足りないか・何を考えるべきか}{9}{section*.38}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{10}{section*.42}%
-\contentsline {todo}{Figure: MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}{11}{subsection.44}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{12}{section*.46}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{13}{section*.51}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{14}{section*.53}%
-\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{15}{Item.57}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{15}{section*.58}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{15}{section*.59}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{16}{section*.63}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{16}{section*.65}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}{16}{section*.66}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{16}{section*.67}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{17}{section*.68}%
-\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{17}{section*.68}%
-\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{17}{section.69}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{18}{section*.71}%
-\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{19}{Item.75}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{19}{Item.75}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{20}{section.76}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{20}{section.76}%
-\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{21}{section.76}%
+\contentsline {todo}{Figure: ホワイトリボンの概念が分かるような参考の写真。}{5}{section*.24}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ここを水深測量の概要に据える}{5}{section*.25}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 陸域は説得力がない}{6}{section*.27}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ エコトーンにおける三次元計測の重要性。エコトーンの3次元地形が重要であることを示した例を挙げる。}{6}{section*.28}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ まず、水深測量におけるリモートセンシングの価値を説明したほうがきれいか。。。?。Seabed2030 の後に水深測量の概要と。}{6}{section*.29}%
+\contentsline {todo}{Figure: ecotoneの概念が分かるような実写の写真。陸から川底を取った写真(植生付き)、海岸線やサンゴ礁。(海の写真とかはどこから引用するんだろう)}{6}{section*.29}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 長い論文はうざいから、簡潔に書こうと思う。なんだが、長くなろうとしている。重要な要素は網羅的に触れるが、主題でないことは深堀りしすぎない。}{6}{section*.31}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 要は空間解像度、時間解像度が小さすぎる}{7}{section*.32}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 研究の意義で説明した部分な削り、応用先に対比させるように記述}{7}{section*.35}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 最近読んだ深海の地図をつくる? みたいな本を参照したいよ}{8}{section*.36}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Introからのコピペなので、より詳しく説明する}{8}{section*.37}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ SARも多少は}{9}{section*.38}%
+\contentsline {todo}{Figure: UAV測量、船の測量の棲み分け図。Goodnoteに下書きが}{9}{section*.38}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Close-Range Photogrammetry and 3D Imaging という、2020年くらいの大作が無料でGoogle Books上で読めた。}{9}{section*.40}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://www.notion.so/Photommetric-Bathymetry-2e002f0efa178010b4f3f365fdea4f29}.}{9}{section*.41}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ そもそもPhotogrammetric BathymetryでちゃんとしたCodeが公開されているのが、R-SfMのみ。これも動かんし。ちゃんとCodeとワークフローをGithubで公開するだけでも価値がすごいある、といえば良い。RefNerfが大規模な実環境ではきついはずだし。A Review of Image- and LiDAR-Based Mapping of Shallow Water Scenarios。によるとそこそこ公開されていた。}{9}{section*.42}%
+\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 既に書いてある内容で大丈夫だと思います。浅水域に対してこれまでの深浅測量の主流の応用が難しいこと、写真測量の可能性と、克服すべき点、あと限界などもうまく書ければ。音響と写真測量のメリットデメリットを表にできるといいかもしれません。}{10}{section*.43}%
+\contentsline {todo}{Figure: 音響と写真測量のメリットデメリットの表}{10}{section*.43}%
+\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 気体－液体屈折について。これも既に書いてある内容で大丈夫だと思います。また、ここからは方法でも詳しく説明する部分なので、イントロでどこまで書くか。浅水域の写真測量において克服すべき点の１つであること、屈折とはどういう現象か、これまで写真測量でどういう風に対処されてきたか、測量を向上するために何が足りないか・何を考えるべきか}{11}{section*.44}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ いろいろなPhotogrammetric Bathymetry手法を達観。表で表すと見やすいか。。。}{11}{section*.46}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{13}{section*.51}%
+\contentsline {todo}{Figure: MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}{14}{subsection.53}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{15}{section*.55}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{16}{section*.60}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{17}{section*.62}%
+\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{18}{Item.66}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{18}{section*.67}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{18}{section*.68}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{19}{section*.72}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{19}{section*.74}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}{19}{section*.75}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{19}{section*.76}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{20}{section*.77}%
+\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{20}{section*.77}%
+\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{20}{section.78}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{21}{section*.80}%
+\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{22}{Item.84}%
+\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{22}{Item.84}%
+\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{23}{section.85}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{23}{section.85}%
+\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{24}{section.85}%
