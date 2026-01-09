@@ -65,6 +65,7 @@ MBESは船底から扇状に音波を発射し、走査線上の多数の点の�
 
 浅水域においてはMBESの効率は劇的に低下する。
 MBESの走査幅（Swath Width: $SW$）は、水深（$D$）と指向角（$\theta$:約120度〜150度）に幾何学的に依存するからである。
+\rewrite{MBESであってる?}
 \begin{equation}\label{eq:swath-width}
   SW = 2D \tan \left( \frac{\theta}{2} \right)
 \end{equation}
@@ -79,15 +80,12 @@ MBESの走査幅（Swath Width: $SW$）は、水深（$D$）と指向角（$\the
 \note{後述するエコトーンに自然につなげたい。}
 
 
-
-
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.95\textwidth]{figure/30_/Kujawa2025_RS-bathymetry-methods.png}
   \caption{
-    \cite{
     リモートセンシングによる浅水域水深測量のためのイメージングおよび測距技術。
-    Kujawa2025_survey-shallow-bathymetry}より引用。
+    \cite{Kujawa2025_survey-shallow-bathymetry}より引用。
     (a) リモートセンシング技術の分類
     (b) 空間的範囲・分解能・カバレッジの関係
   }
@@ -96,14 +94,69 @@ MBESの走査幅（Swath Width: $SW$）は、水深（$D$）と指向角（$\the
 
 
 
-\section{研究の意義}\label{sec:application-of-research}
+\subsection{Airborne LiDAR Bathymetry}
+LiDARはLight Detection and Rangingの略で、光を用いて距離を測量する手法である。
+主体的に電磁波を照射するためActive Remote Sensingと呼ばれる手法の一種である。
+(Imaging は Passiveだぞ!)。
+\note{LiDARの簡単な概要。}
+
+中でも、航空レーザ測深（Airborne LiDAR Bathymetry: ALB）は、航空機から水を透過しやすい緑色レーザ（波長532nm付近）を照射し、水面と水底からの反射時間差で水深を求める技術である\cite{Saylam2018_ALB}。
+\note{NotionにALBの資料をまとめたことあり}
+\note{何mくらいまで測れるか。}
+近年では、日本全国の一級河川において河川管理や河川改修計画を目的とした、定期横断測量にも活用が進められている。
+\checkref{テンマいわく。}
+
+しかし、ALBは、高精度かつ高密度、広範を測量可能な手法であるが、以下のような欠点もある。
+\itemize{
+  \item 導入・運用コスト: 有人航空機またはそれ相応のUAVと専用のLiDAR機器を搭載するため、莫大なコストがかかる。(1000万円~)
+  5年に1度の定期測量には適しているが、洪水のたびに飛ばすような機動的な運用は経済的に困難である。 
+  \item 光学手法である以上、濁った水ではレーザが散乱・減衰し、水底まで届かない。
+}
+
+\missingfigure{Passive Remote SensingとActive Remote Sensingの図。}
+\missingfigure{各手法のPros & Cons をTableにする。}
+
+
+\subsection{Satellite Derived Multi-Spectral Bathymetry}
+衛星由来水深（Satellite Derived Bathymetry: SDB）は、LandsatやSentinel-2などのマルチスペクトル衛星画像を用い、光の水中減衰率から水深を推定する手法である\cite{He2024_survey-shallow-bathymetry}。
+\checkref{Survey論文が合ったはず。}
+Lyzengaの式やStumpfの比演算アルゴリズム、近年では機械学習を用いた手法が開発されている。
+\note{もう一行詳細を述べる。式を示すか言葉で、か}
+
+SDBは広域性や低コスト性において優れているが、河川環境への適用には限界がある。
+\begin{itemize}
+  \item 空間解像度: Sentinel-2の解像度は10mであり 、中小河川では1ピクセルの中に水域、陸域、植生が混在する「ミクセル（Mixed Pixel）」問題が発生し、精度が著しく低下する。   
+  \item 現地依存性（Site-Dependency）: SDBは経験的なモデルであり、精度を出すためには現地での実測水深データによるキャリブレーション（補正）が不可欠である。
+  また、底質の反射率（アルベド）の不均一性や水質の影響を受けやすい。
+\end{itemize}
+
+\subsection{人力測量}
+日本で依然として主流である、人が川に入ってポールやレッド（測鉛）で測る手法、あるいはボートからのシングルビーム測深は、「危険（Danger）」、「疎（Sparse）」、「遅い（Slow）」。
+点や線でのデータ取得となるため、断面と断面の間にある地形変化は完全に無視される。
+
+
+\subsection{Photogrammetric Bathymetry}
+
+
+\section{研究の応用先}\label{sec:application-of-research}
 
 一方、浅水域は、人間社会の経済活動、防災、そして生態系保全において決定的な役割を果たす領域であり、その重要性をエコトーンと河川地形の変状モニタリングの観点から説明する。
 
 河川･沿岸管理においては、洪水の流下能力を決定する重要な断面であり、津波や高潮に対する第一の防衛線として機能する。
+日本では、そのため、5年以内に一度、日本全国の一級河川を対称に大規模な水深測量を行う必要がある。
 さらに、生態学的観点においては、陸域と水域が交錯するこの浅瀬こそが、生物多様性のホットスポットである「エコトーン（Ecotone）」を形成している。
 
-\subsubsection{研究の意義の例: エコトーン}
+\subsection{定期横断測量}
+結構人力であることを説明??
+\checkref{\url{https://www.kkr.mlit.go.jp/plan/happyou/thesises/2017/pdf05/shingijutsu-13.pdf}
+全国の一級河川においては河川管理や河川改修計画を目的とした，定期横断測量を実施して
+いる。
+しかし、測量間隔においては200m毎とされており、横断測量を実施する箇所以外の地形
+情報については得られない。
+また従来手法の作業性として、水部の計測手法は、船舶による作業であるため、急流河川においては作業に危険が伴うことや、計測器が測線上に位置しているかを絶えず確認しながらの慎重な作業となり、一測線の計測に時間を要するといった課題もある。}
+
+
+\subsubsection{研究の応用先の例: エコトーン}
 20世紀初頭に提唱された「エコトーン（Ecotone）」という概念は、二つの異なる植物群落や生態系が接し、移行する境界領域を指す\cite{Ecotone}。
 浅水域は、陸域から水域へと移行する水際線（Littoral Zone）を含む領域として現れる。
 この領域は、陸と水の両方の環境要因が作用することで、双方の生物種が混在し、高い生物多様性を誇る「エッジ効果（Edge Effect）」が発現する場として知られる\cite{}。
@@ -136,8 +189,10 @@ MBESの走査幅（Swath Width: $SW$）は、水深（$D$）と指向角（$\the
 \end{figure}
   
   
+
+
   
-\subsubsection{研究の意義: 聖牛による河川地形の時系列変化}
+\subsubsection{研究の応用先の例: 聖牛による河川地形の時系列変化}
 \note{長い論文はうざいから、簡潔に書こうと思う。なんだが、長くなろうとしている。重要な要素は網羅的に触れるが、主題でないことは深堀りしすぎない。}
   
 河川工学においては、浅水域の高解像度3次元データの必要性は、防災とインフラ維持管理の観点からより切実なものとなる。
