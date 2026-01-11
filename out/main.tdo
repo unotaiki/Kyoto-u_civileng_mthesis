@@ -13,46 +13,43 @@
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ + Field Work と実環境での検証、としてわけても良い}{4}{section*.20}%
 \contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ 子供に説明するような、だよ口調で論理の構造を作ってから、適切な文章に書き直す方式。書き直しはGeminiも有効に使う}{5}{section*.22}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 基本的には、Goodnoteに下書きしたのを写している。手書きしないと、スムーズにOutputできない。}{5}{section*.23}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ecotoneの概念を例に上げ、研究の適用先と意義を先に明確にする}{5}{section*.24}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ここを水深測量の概要に据える}{5}{section*.26}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ もっといい感じに並べたい}{5}{section*.30}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ MBESであってる?}{5}{section*.31}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ UAVは自動化により楽に撮影できるが、USVは水の流れの中での制御が難しかった(GPSに基づいて自動的にやってくれるものあるかも)。}{7}{section*.32}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 後述するエコトーンに自然につなげたい。}{7}{section*.33}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ LiDARの簡単な概要。}{7}{section*.36}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ NotionにALBの資料をまとめたことあり}{7}{section*.37}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 何mくらいまで測れるか。}{7}{section*.38}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ テンマいわく。}{8}{section*.39}%
-\contentsline {todo}{Figure: Passive Remote SensingとActive Remote Sensingの図。}{8}{section*.39}%
-\contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{8}{section*.39}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Survey論文が合ったはず。}{8}{section*.41}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ もう一行詳細を述べる。式を示すか言葉で、か}{8}{section*.42}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://www.kkr.mlit.go.jp/plan/happyou/thesises/2017/pdf05/shingijutsu-13.pdf} 全国の一級河川においては河川管理や河川改修計画を目的とした，定期横断測量を実施している。しかし、測量間隔においては200m毎とされており、横断測量を実施する箇所以外の地形情報については得られない。また従来手法の作業性として、水部の計測手法は、船舶による作業であるため、急流河川においては作業に危険が伴うことや、計測器が測線上に位置しているかを絶えず確認しながらの慎重な作業となり、一測線の計測に時間を要するといった課題もある。}{9}{section*.47}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 陸域は説得力がない}{10}{section*.48}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ エコトーンにおける三次元計測の重要性。エコトーンの3次元地形が重要であることを示した例を挙げる。}{10}{section*.49}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ まず、水深測量におけるリモートセンシングの価値を説明したほうがきれいか。。。?。Seabed2030 の後に水深測量の概要と。}{10}{section*.50}%
-\contentsline {todo}{Figure: ecotoneの概念が分かるような実写の写真。陸から川底を取った写真(植生付き)、海岸線やサンゴ礁。(海の写真とかはどこから引用するんだろう)}{10}{section*.50}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 長い論文はうざいから、簡潔に書こうと思う。なんだが、長くなろうとしている。重要な要素は網羅的に触れるが、主題でないことは深堀りしすぎない。}{10}{section*.52}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 要は空間解像度、時間解像度が小さすぎる}{11}{section*.53}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ いろいろなPhotogrammetric Bathymetry手法を達観。表で表すと見やすいか。。。}{12}{section*.56}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{15}{section*.61}%
-\contentsline {todo}{Figure: MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}{16}{subsection.63}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{16}{section*.65}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{17}{section*.70}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{18}{section*.72}%
-\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{19}{Item.76}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{19}{section*.77}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{19}{section*.78}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{20}{section*.82}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{20}{section*.84}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}{20}{section*.85}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{21}{section*.86}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{21}{section*.87}%
-\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{21}{section*.87}%
-\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{22}{section.88}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{23}{section*.90}%
-\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{24}{Item.94}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{24}{Item.94}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{25}{section.95}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{25}{section.95}%
-\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{25}{section.95}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://www.kkr.mlit.go.jp/plan/happyou/thesises/2017/pdf05/shingijutsu-13.pdf} 全国の一級河川においては河川管理や河川改修計画を目的とした，定期横断測量を実施している。しかし、測量間隔においては200m毎とされており、横断測量を実施する箇所以外の地形情報については得られない。また従来手法の作業性として、水部の計測手法は、船舶による作業であるため、急流河川においては作業に危険が伴うことや、計測器が測線上に位置しているかを絶えず確認しながらの慎重な作業となり、一測線の計測に時間を要するといった課題もある。}{6}{section*.26}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 陸域は説得力がない。浅水域を挙げて参考文献を探す}{6}{section*.27}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ よりエコトーンにおける三次元計測の重要性を調査した研究を引用し、説得力を上げる。}{6}{section*.28}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 長い論文はうざいから、簡潔に書こうと思う。なんだが、長くなろうとしている。重要な要素は網羅的に触れるが、主題でないことは深堀りしすぎない。}{8}{section*.31}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 要は空間解像度、時間解像度が小さすぎる}{8}{section*.32}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ MBESであってる?}{9}{section*.37}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ UAVは自動化により楽に撮影できるが、USVは水の流れの中での制御が難しかった(GPSに基づいて自動的にやってくれるものあるかも)。}{9}{section*.38}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 後述するエコトーンに自然につなげたい。}{9}{section*.39}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ LiDARの簡単な概要。}{9}{section*.42}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ NotionにALBの資料をまとめたことあり}{10}{section*.43}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 何mくらいまで測れるか。}{10}{section*.44}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ テンマいわく。}{10}{section*.45}%
+\contentsline {todo}{Figure: Passive Remote SensingとActive Remote Sensingの図。}{10}{section*.45}%
+\contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{10}{section*.45}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Survey論文が合ったはず。}{11}{section*.47}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ もう一行詳細を述べる。式を示すか言葉で、か}{11}{section*.48}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 図を引用しても良いと思う。ちなみに \url {https://imadr.me/pbr/} ちなみにGeometrical Opticsに屈折は含まれるためこの表現は適切ではない}{12}{section*.51}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 関連研究に進む}{12}{section*.52}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ いろいろなPhotogrammetric Bathymetry手法を達観。表で表すと見やすいか。。。}{12}{section*.54}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{15}{section*.59}%
+\contentsline {todo}{Figure: MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}{16}{subsection.61}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{16}{section*.63}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{17}{section*.68}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{18}{section*.70}%
+\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{19}{Item.74}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{19}{section*.75}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{19}{section*.76}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{20}{section*.80}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{20}{section*.82}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}{20}{section*.83}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{21}{section*.84}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{21}{section*.85}%
+\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{21}{section*.85}%
+\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{22}{section.86}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{23}{section*.88}%
+\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{24}{Item.92}%
+\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{24}{Item.92}%
+\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{25}{section.93}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{25}{section.93}%
+\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{25}{section.93}%

@@ -1245,127 +1245,6 @@
       \verb 10.1073/pnas.1206378109
       \endverb
     \endentry
-    \entry{fig:sonar}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=25ffcaabf4e45ec255e4bbcaac6bf965}{%
-           family={Co.},
-           familyi={C\bibinitperiod},
-           given={LCC\bibnamedelima Constructions},
-           giveni={L\bibinitperiod\bibinitdelim C\bibinitperiod}}}%
-      }
-      \strng{namehash}{25ffcaabf4e45ec255e4bbcaac6bf965}
-      \strng{fullhash}{25ffcaabf4e45ec255e4bbcaac6bf965}
-      \strng{fullhashraw}{25ffcaabf4e45ec255e4bbcaac6bf965}
-      \strng{bibnamehash}{25ffcaabf4e45ec255e4bbcaac6bf965}
-      \strng{authorbibnamehash}{25ffcaabf4e45ec255e4bbcaac6bf965}
-      \strng{authornamehash}{25ffcaabf4e45ec255e4bbcaac6bf965}
-      \strng{authorfullhash}{25ffcaabf4e45ec255e4bbcaac6bf965}
-      \strng{authorfullhashraw}{25ffcaabf4e45ec255e4bbcaac6bf965}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://www.landconstructions.com/hydrographic-survey/}}
-      \field{note}{Accessed: 2026-01-06}
-      \field{title}{LCC Constructions Co. Homepage: Hydrographic Survey}
-    \endentry
-    \entry{Kujawa2025_survey-shallow-bathymetry}{article}{}{}
-      \name{author}{2}{}{%
-        {{hash=613b3ee90e51f0c40ea5166efe5da859}{%
-           family={Kujawa},
-           familyi={K\bibinitperiod},
-           given={Paulina},
-           giveni={P\bibinitperiod}}}%
-        {{hash=4870d096bff30f35cd7f7f14485e000c}{%
-           family={Remondino},
-           familyi={R\bibinitperiod},
-           given={Fabio},
-           giveni={F\bibinitperiod}}}%
-      }
-      \strng{namehash}{23f161262a8b22a285ee56b82c02b455}
-      \strng{fullhash}{23f161262a8b22a285ee56b82c02b455}
-      \strng{fullhashraw}{23f161262a8b22a285ee56b82c02b455}
-      \strng{bibnamehash}{23f161262a8b22a285ee56b82c02b455}
-      \strng{authorbibnamehash}{23f161262a8b22a285ee56b82c02b455}
-      \strng{authornamehash}{23f161262a8b22a285ee56b82c02b455}
-      \strng{authorfullhash}{23f161262a8b22a285ee56b82c02b455}
-      \strng{authorfullhashraw}{23f161262a8b22a285ee56b82c02b455}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{2072-4292}
-      \field{journaltitle}{Remote Sensing}
-      \field{number}{12}
-      \field{title}{A Review of Image- and LiDAR-Based Mapping of Shallow Water Scenarios}
-      \field{volume}{17}
-      \field{year}{2025}
-      \verb{doi}
-      \verb 10.3390/rs17122086
-      \endverb
-      \verb{urlraw}
-      \verb https://www.mdpi.com/2072-4292/17/12/2086
-      \endverb
-      \verb{url}
-      \verb https://www.mdpi.com/2072-4292/17/12/2086
-      \endverb
-    \endentry
-    \entry{He2024_survey-shallow-bathymetry}{article}{}{}
-      \name{author}{4}{}{%
-        {{hash=86f1b0caff50a226bd19f712714525d8}{%
-           family={He},
-           familyi={H\bibinitperiod},
-           given={Jinchen},
-           giveni={J\bibinitperiod}}}%
-        {{hash=c9e415f4af84ee5f5da25bf9160cb9eb}{%
-           family={Zhang},
-           familyi={Z\bibinitperiod},
-           given={Shuhang},
-           giveni={S\bibinitperiod}}}%
-        {{hash=ac436fae058a11f0581ec301425b5285}{%
-           family={Cui},
-           familyi={C\bibinitperiod},
-           given={Xiaodong},
-           giveni={X\bibinitperiod}}}%
-        {{hash=5100c76ef1e2288a5166eab4fce15e60}{%
-           family={Feng},
-           familyi={F\bibinitperiod},
-           given={Wei},
-           giveni={W\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {Elsevier BV}%
-      }
-      \strng{namehash}{14e4b70d270e28b00420e1b2e3320ac9}
-      \strng{fullhash}{11782c867f2c48938f23c495392a2ef3}
-      \strng{fullhashraw}{11782c867f2c48938f23c495392a2ef3}
-      \strng{bibnamehash}{11782c867f2c48938f23c495392a2ef3}
-      \strng{authorbibnamehash}{11782c867f2c48938f23c495392a2ef3}
-      \strng{authornamehash}{14e4b70d270e28b00420e1b2e3320ac9}
-      \strng{authorfullhash}{11782c867f2c48938f23c495392a2ef3}
-      \strng{authorfullhashraw}{11782c867f2c48938f23c495392a2ef3}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{issn}{0012-8252}
-      \field{journaltitle}{Earth-Science Reviews}
-      \field{month}{11}
-      \field{title}{Remote sensing for shallow bathymetry: A systematic review}
-      \field{volume}{258}
-      \field{year}{2024}
-      \field{pages}{104957}
-      \range{pages}{1}
-      \verb{doi}
-      \verb 10.1016/j.earscirev.2024.104957
-      \endverb
-      \verb{urlraw}
-      \verb http://dx.doi.org/10.1016/j.earscirev.2024.104957
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.1016/j.earscirev.2024.104957
-      \endverb
-    \endentry
     \entry{Ecotone}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=f7324303d539cfb4bf6dd9ccca730c58}{%
@@ -1384,8 +1263,8 @@
       \strng{authornamehash}{f7324303d539cfb4bf6dd9ccca730c58}
       \strng{authorfullhash}{f7324303d539cfb4bf6dd9ccca730c58}
       \strng{authorfullhashraw}{f7324303d539cfb4bf6dd9ccca730c58}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://www.ebsco.com/research-starters/environmental-sciences/ecotone}}
@@ -1421,8 +1300,8 @@
       \strng{authornamehash}{f359b888163614f2c2b6b6d049e9f299}
       \strng{authorfullhash}{7c96896fe362a8e5a75dddf36c2cecdf}
       \strng{authorfullhashraw}{7c96896fe362a8e5a75dddf36c2cecdf}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0341-8162}
@@ -1478,8 +1357,8 @@
       \strng{editornamehash}{b28bab880d1cff4ce141778e6cad2cb6}
       \strng{editorfullhash}{b28bab880d1cff4ce141778e6cad2cb6}
       \strng{editorfullhashraw}{b28bab880d1cff4ce141778e6cad2cb6}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1365-2435}
@@ -1515,8 +1394,8 @@
       \strng{authornamehash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
       \strng{authorfullhash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
       \strng{authorfullhashraw}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://www.insightsonindia.com/environment/basic-concepts-of-ecosystem/ecotone-ecological-niche/ecotone/}}
@@ -1539,8 +1418,8 @@
       \strng{authornamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
       \strng{authorfullhash}{77e7e0da59bc2c9aef1ed480b894dab9}
       \strng{authorfullhashraw}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://www.mlit.go.jp/river/shishin_guideline/kasen/pdf/sokuryo_youryo.pdf}}
@@ -1548,6 +1427,103 @@
       \field{note}{Accessed: 2026-01-06}
       \field{title}{河川定期縦横断測量業務実施要領・同解説}
       \field{year}{2018}
+    \endentry
+    \entry{Kujawa2025_survey-shallow-bathymetry}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=613b3ee90e51f0c40ea5166efe5da859}{%
+           family={Kujawa},
+           familyi={K\bibinitperiod},
+           given={Paulina},
+           giveni={P\bibinitperiod}}}%
+        {{hash=4870d096bff30f35cd7f7f14485e000c}{%
+           family={Remondino},
+           familyi={R\bibinitperiod},
+           given={Fabio},
+           giveni={F\bibinitperiod}}}%
+      }
+      \strng{namehash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{fullhash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{fullhashraw}{23f161262a8b22a285ee56b82c02b455}
+      \strng{bibnamehash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{authorbibnamehash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{authornamehash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{authorfullhash}{23f161262a8b22a285ee56b82c02b455}
+      \strng{authorfullhashraw}{23f161262a8b22a285ee56b82c02b455}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2072-4292}
+      \field{journaltitle}{Remote Sensing}
+      \field{number}{12}
+      \field{title}{A Review of Image- and LiDAR-Based Mapping of Shallow Water Scenarios}
+      \field{volume}{17}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.3390/rs17122086
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2072-4292/17/12/2086
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2072-4292/17/12/2086
+      \endverb
+    \endentry
+    \entry{He2024_survey-shallow-bathymetry}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=86f1b0caff50a226bd19f712714525d8}{%
+           family={He},
+           familyi={H\bibinitperiod},
+           given={Jinchen},
+           giveni={J\bibinitperiod}}}%
+        {{hash=c9e415f4af84ee5f5da25bf9160cb9eb}{%
+           family={Zhang},
+           familyi={Z\bibinitperiod},
+           given={Shuhang},
+           giveni={S\bibinitperiod}}}%
+        {{hash=ac436fae058a11f0581ec301425b5285}{%
+           family={Cui},
+           familyi={C\bibinitperiod},
+           given={Xiaodong},
+           giveni={X\bibinitperiod}}}%
+        {{hash=5100c76ef1e2288a5166eab4fce15e60}{%
+           family={Feng},
+           familyi={F\bibinitperiod},
+           given={Wei},
+           giveni={W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Elsevier BV}%
+      }
+      \strng{namehash}{14e4b70d270e28b00420e1b2e3320ac9}
+      \strng{fullhash}{11782c867f2c48938f23c495392a2ef3}
+      \strng{fullhashraw}{11782c867f2c48938f23c495392a2ef3}
+      \strng{bibnamehash}{11782c867f2c48938f23c495392a2ef3}
+      \strng{authorbibnamehash}{11782c867f2c48938f23c495392a2ef3}
+      \strng{authornamehash}{14e4b70d270e28b00420e1b2e3320ac9}
+      \strng{authorfullhash}{11782c867f2c48938f23c495392a2ef3}
+      \strng{authorfullhashraw}{11782c867f2c48938f23c495392a2ef3}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0012-8252}
+      \field{journaltitle}{Earth-Science Reviews}
+      \field{month}{11}
+      \field{title}{Remote sensing for shallow bathymetry: A systematic review}
+      \field{volume}{258}
+      \field{year}{2024}
+      \field{pages}{104957}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1016/j.earscirev.2024.104957
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1016/j.earscirev.2024.104957
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1016/j.earscirev.2024.104957
+      \endverb
     \endentry
     \entry{Lowe2004_SIFT}{article}{}{}
       \name{author}{1}{}{%
