@@ -13,20 +13,18 @@
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ + Field Work と実環境での検証、としてわけても良い}{4}{section*.20}%
 \contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ 子供に説明するような、だよ口調で論理の構造を作ってから、適切な文章に書き直す方式。書き直しはGeminiも有効に使う}{5}{section*.22}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 基本的には、Goodnoteに下書きしたのを写している。手書きしないと、スムーズにOutputできない。}{5}{section*.23}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://www.kkr.mlit.go.jp/plan/happyou/thesises/2017/pdf05/shingijutsu-13.pdf} 全国の一級河川においては河川管理や河川改修計画を目的とした，定期横断測量を実施している。しかし、測量間隔においては200m毎とされており、横断測量を実施する箇所以外の地形情報については得られない。また従来手法の作業性として、水部の計測手法は、船舶による作業であるため、急流河川においては作業に危険が伴うことや、計測器が測線上に位置しているかを絶えず確認しながらの慎重な作業となり、一測線の計測に時間を要するといった課題もある。}{6}{section*.26}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 陸域は説得力がない。浅水域を挙げて参考文献を探す}{6}{section*.27}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ よりエコトーンにおける三次元計測の重要性を調査した研究を引用し、説得力を上げる。}{6}{section*.28}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 長い論文はうざいから、簡潔に書こうと思う。なんだが、長くなろうとしている。重要な要素は網羅的に触れるが、主題でないことは深堀りしすぎない。}{8}{section*.31}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 要は空間解像度、時間解像度が小さすぎる}{8}{section*.32}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ MBESであってる?}{9}{section*.37}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ UAVは自動化により楽に撮影できるが、USVは水の流れの中での制御が難しかった(GPSに基づいて自動的にやってくれるものあるかも)。}{9}{section*.38}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 後述するエコトーンに自然につなげたい。}{9}{section*.39}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ LiDARの簡単な概要。}{9}{section*.42}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 陸域は説得力がない。もっとストレートな研究を探す。エコトーンというワードだと出てこないかも。Geomorphologyとかで調べる}{7}{section*.29}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 植生 = フォトリアルな見た目 から判別というニュアンスを含め GSのNVSタスクの有用性を後に説明したい}{8}{section*.30}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ MBESであってる?}{8}{section*.36}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ UAVは自動化により楽に撮影できるが、USVは水の流れの中での制御が難しかった(GPSに基づいて自動的にやってくれるものあるかも)。}{10}{section*.37}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 後述するエコトーンに自然につなげたい。}{10}{section*.38}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://www.kkr.mlit.go.jp/plan/happyou/thesises/2017/pdf05/shingijutsu-13.pdf}}{10}{section*.41}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ LiDARの簡単な概要。}{10}{section*.42}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ NotionにALBの資料をまとめたことあり}{10}{section*.43}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 何mくらいまで測れるか。}{10}{section*.44}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ テンマいわく。}{10}{section*.45}%
-\contentsline {todo}{Figure: Passive Remote SensingとActive Remote Sensingの図。}{10}{section*.45}%
-\contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{10}{section*.45}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ テンマいわく。}{11}{section*.45}%
+\contentsline {todo}{Figure: Passive Remote SensingとActive Remote Sensingの図。}{11}{section*.45}%
+\contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{11}{section*.45}%
 \contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Survey論文が合ったはず。}{11}{section*.47}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ もう一行詳細を述べる。式を示すか言葉で、か}{11}{section*.48}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 図を引用しても良いと思う。ちなみに \url {https://imadr.me/pbr/} ちなみにGeometrical Opticsに屈折は含まれるためこの表現は適切ではない}{12}{section*.51}%

@@ -1136,6 +1136,50 @@
       \verb http://dx.doi.org/10.1145/3592433
       \endverb
     \endentry
+    \entry{NipponFoundation}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=401083ec450b40792b22ee1db2ff1c84}{%
+           family={日本財団},
+           familyi={日\bibinitperiod}}}%
+      }
+      \strng{namehash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{fullhash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{fullhashraw}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{bibnamehash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{authorbibnamehash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{authornamehash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{authorfullhash}{401083ec450b40792b22ee1db2ff1c84}
+      \strng{authorfullhashraw}{401083ec450b40792b22ee1db2ff1c84}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.nippon-foundation.or.jp/}}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{日本財団ホームページ}
+    \endentry
+    \entry{GEBCO}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=18ec91be0b2ac109f8d752932071347a}{%
+           family={GEBCO},
+           familyi={G\bibinitperiod}}}%
+      }
+      \strng{namehash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{fullhash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{fullhashraw}{18ec91be0b2ac109f8d752932071347a}
+      \strng{bibnamehash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{authorbibnamehash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{authornamehash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{authorfullhash}{18ec91be0b2ac109f8d752932071347a}
+      \strng{authorfullhashraw}{18ec91be0b2ac109f8d752932071347a}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.gebco.net/}}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{GEBCO Homepage}
+    \endentry
     \entry{Seabed2030}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=c45863cdf96f375b7b632feaf57f5866}{%
@@ -1159,6 +1203,44 @@
       \field{howpublished}{\url{https://www.seabed2030.org/}}
       \field{note}{Accessed: 2026-01-06}
       \field{title}{Seabed 2030 Homepage}
+    \endentry
+    \entry{Trethewey2025_book-bathymetry}{book}{}{}
+      \name{author}{2}{}{%
+        {{hash=4ec7049ab767e35f6822791f1ca9e20d}{%
+           family={Trethewey},
+           familyi={T\bibinitperiod},
+           given={Laura},
+           giveni={L\bibinitperiod}}}%
+        {{hash=33fa350ff8d44bea4e2a11ead3bf7cb7}{%
+           family={尼丁},
+           familyi={尼\bibinitperiod},
+           given={千津子},
+           giveni={千\bibinitperiod}}}%
+      }
+      \list{language}{1}{%
+        {jpn}%
+      }
+      \list{location}{1}{%
+        {東京}%
+      }
+      \list{publisher}{1}{%
+        {柏書房}%
+      }
+      \strng{namehash}{a18fab5866f9897d534216c164639bc7}
+      \strng{fullhash}{a18fab5866f9897d534216c164639bc7}
+      \strng{fullhashraw}{a18fab5866f9897d534216c164639bc7}
+      \strng{bibnamehash}{a18fab5866f9897d534216c164639bc7}
+      \strng{authorbibnamehash}{a18fab5866f9897d534216c164639bc7}
+      \strng{authornamehash}{a18fab5866f9897d534216c164639bc7}
+      \strng{authorfullhash}{a18fab5866f9897d534216c164639bc7}
+      \strng{authorfullhashraw}{a18fab5866f9897d534216c164639bc7}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{isbn}{9784760156467}
+      \field{title}{深海の地図をつくる : 五大洋の底をめぐる命がけの競争}
+      \field{year}{2025}
     \endentry
     \entry{Mcmahon2012_white-ribbon-figure}{article}{}{}
       \name{author}{3}{}{%
@@ -1201,27 +1283,55 @@
       \verb 10.1073/pnas.1206378109
       \endverb
     \endentry
-    \entry{GEBCO}{misc}{}{}
+    \entry{river-survey-milt}{misc}{}{}
       \name{author}{1}{}{%
-        {{hash=18ec91be0b2ac109f8d752932071347a}{%
-           family={GEBCO},
-           familyi={G\bibinitperiod}}}%
+        {{hash=77e7e0da59bc2c9aef1ed480b894dab9}{%
+           family={河川保全企画室},
+           familyi={河\bibinitperiod},
+           given={国土交通省\bibnamedelima 水管理・国土保全局河川環境課},
+           giveni={国\bibinitperiod\bibinitdelim 水\bibinitperiod}}}%
       }
-      \strng{namehash}{18ec91be0b2ac109f8d752932071347a}
-      \strng{fullhash}{18ec91be0b2ac109f8d752932071347a}
-      \strng{fullhashraw}{18ec91be0b2ac109f8d752932071347a}
-      \strng{bibnamehash}{18ec91be0b2ac109f8d752932071347a}
-      \strng{authorbibnamehash}{18ec91be0b2ac109f8d752932071347a}
-      \strng{authornamehash}{18ec91be0b2ac109f8d752932071347a}
-      \strng{authorfullhash}{18ec91be0b2ac109f8d752932071347a}
-      \strng{authorfullhashraw}{18ec91be0b2ac109f8d752932071347a}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \strng{namehash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{fullhash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{fullhashraw}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{bibnamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{authorbibnamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{authornamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{authorfullhash}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \strng{authorfullhashraw}{77e7e0da59bc2c9aef1ed480b894dab9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://www.gebco.net/}}
+      \field{howpublished}{\url{https://www.mlit.go.jp/river/shishin_guideline/kasen/pdf/sokuryo_youryo.pdf}}
+      \field{month}{4}
       \field{note}{Accessed: 2026-01-06}
-      \field{title}{GEBCO Homepage}
+      \field{title}{河川定期縦横断測量業務実施要領・同解説}
+      \field{year}{2018}
+    \endentry
+    \entry{fig:manual_river_survey}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=74add9d4273722d43d6c6f91b89f5de9}{%
+           family={長山学史},
+           familyi={長\bibinitperiod}}}%
+      }
+      \strng{namehash}{74add9d4273722d43d6c6f91b89f5de9}
+      \strng{fullhash}{74add9d4273722d43d6c6f91b89f5de9}
+      \strng{fullhashraw}{74add9d4273722d43d6c6f91b89f5de9}
+      \strng{bibnamehash}{74add9d4273722d43d6c6f91b89f5de9}
+      \strng{authorbibnamehash}{74add9d4273722d43d6c6f91b89f5de9}
+      \strng{authornamehash}{74add9d4273722d43d6c6f91b89f5de9}
+      \strng{authorfullhash}{74add9d4273722d43d6c6f91b89f5de9}
+      \strng{authorfullhashraw}{74add9d4273722d43d6c6f91b89f5de9}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.daiichi-consul.com/works/測量・調査-works/4371}}
+      \field{month}{9}
+      \field{note}{Accessed: 2026-01-11}
+      \field{title}{株式会社 第一コンサルタンツ: 1級河川縦横断測量関連}
+      \field{year}{2017}
     \endentry
     \entry{Ecotone}{misc}{}{}
       \name{author}{1}{}{%
@@ -1241,8 +1351,8 @@
       \strng{authornamehash}{f7324303d539cfb4bf6dd9ccca730c58}
       \strng{authorfullhash}{f7324303d539cfb4bf6dd9ccca730c58}
       \strng{authorfullhashraw}{f7324303d539cfb4bf6dd9ccca730c58}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://www.ebsco.com/research-starters/environmental-sciences/ecotone}}
@@ -1278,8 +1388,8 @@
       \strng{authornamehash}{f359b888163614f2c2b6b6d049e9f299}
       \strng{authorfullhash}{7c96896fe362a8e5a75dddf36c2cecdf}
       \strng{authorfullhashraw}{7c96896fe362a8e5a75dddf36c2cecdf}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0341-8162}
@@ -1335,8 +1445,8 @@
       \strng{editornamehash}{b28bab880d1cff4ce141778e6cad2cb6}
       \strng{editorfullhash}{b28bab880d1cff4ce141778e6cad2cb6}
       \strng{editorfullhashraw}{b28bab880d1cff4ce141778e6cad2cb6}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1365-2435}
@@ -1372,39 +1482,13 @@
       \strng{authornamehash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
       \strng{authorfullhash}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
       \strng{authorfullhashraw}{d598e4f3c1cf7c7ab49a68cd979ccc9e}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{https://www.insightsonindia.com/environment/basic-concepts-of-ecosystem/ecotone-ecological-niche/ecotone/}}
       \field{note}{Accessed: 2026-01-06}
       \field{title}{Basic Concepts of Ecosystem: Ecotone}
-    \endentry
-    \entry{river-survey-milt}{misc}{}{}
-      \name{author}{1}{}{%
-        {{hash=77e7e0da59bc2c9aef1ed480b894dab9}{%
-           family={河川保全企画室},
-           familyi={河\bibinitperiod},
-           given={国土交通省\bibnamedelima 水管理・国土保全局河川環境課},
-           giveni={国\bibinitperiod\bibinitdelim 水\bibinitperiod}}}%
-      }
-      \strng{namehash}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \strng{fullhash}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \strng{fullhashraw}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \strng{bibnamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \strng{authorbibnamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \strng{authornamehash}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \strng{authorfullhash}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \strng{authorfullhashraw}{77e7e0da59bc2c9aef1ed480b894dab9}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{howpublished}{\url{https://www.mlit.go.jp/river/shishin_guideline/kasen/pdf/sokuryo_youryo.pdf}}
-      \field{month}{4}
-      \field{note}{Accessed: 2026-01-06}
-      \field{title}{河川定期縦横断測量業務実施要領・同解説}
-      \field{year}{2018}
     \endentry
     \entry{Kujawa2025_survey-shallow-bathymetry}{article}{}{}
       \name{author}{2}{}{%
@@ -1481,8 +1565,8 @@
       \strng{authornamehash}{14e4b70d270e28b00420e1b2e3320ac9}
       \strng{authorfullhash}{11782c867f2c48938f23c495392a2ef3}
       \strng{authorfullhashraw}{11782c867f2c48938f23c495392a2ef3}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0012-8252}
@@ -1667,8 +1751,8 @@
       \strng{authornamehash}{36a5e31de7a1be65ff51f08258616698}
       \strng{authorfullhash}{30e48d2aaee2a1fda71a42c2cf87706f}
       \strng{authorfullhashraw}{30e48d2aaee2a1fda71a42c2cf87706f}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Vision Algorithms: Theory and Practice}
@@ -1704,8 +1788,8 @@
       \strng{authornamehash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhashraw}{fcc0ce660086b48f2fa45b85cd8342c1}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{http://theia-sfm.org}}
@@ -1741,8 +1825,8 @@
       \strng{authornamehash}{c1e5b0158ddb37b00d4f2a4fd2d47010}
       \strng{authorfullhash}{aae8f6d850b0cf17ca0a149c54e63e45}
       \strng{authorfullhashraw}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Procedings of the British Machine Vision Conference 2011}
@@ -1795,8 +1879,8 @@
       \strng{authornamehash}{d480188def317b00b258c99797133e90}
       \strng{authorfullhash}{062e89ae846b98c55f3cb2ea57b0d11c}
       \strng{authorfullhashraw}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Computer Vision - ECCV 2016}
@@ -2180,8 +2264,8 @@
       \strng{authornamehash}{12ecfbee9677d4965da6f805b5017c84}
       \strng{authorfullhash}{49902cf46e160313ed5cca415623d1e0}
       \strng{authorfullhashraw}{49902cf46e160313ed5cca415623d1e0}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Computer Vision – ECCV 2024}
@@ -2231,8 +2315,8 @@
       \strng{authornamehash}{4ccd2e8fea4fe46b7dda34ff4f3ca373}
       \strng{authorfullhash}{e388f13f2b380e3adb9ecb002b368fb2}
       \strng{authorfullhashraw}{e388f13f2b380e3adb9ecb002b368fb2}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2287,8 +2371,8 @@
       \strng{authornamehash}{09c4bb837f5a87c60a96478e1577dc5e}
       \strng{authorfullhash}{c8f9d8291117c07fbb4bacd402478b24}
       \strng{authorfullhashraw}{c8f9d8291117c07fbb4bacd402478b24}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{3DV}
@@ -2328,8 +2412,8 @@
       \strng{authornamehash}{50590bd7d1805b85572372f47ed9cfb8}
       \strng{authorfullhash}{33fa30f85e7c0a7b8ed3995c5a390e5a}
       \strng{authorfullhashraw}{33fa30f85e7c0a7b8ed3995c5a390e5a}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings Visualization, 2001. VIS '01.}
@@ -2377,8 +2461,8 @@
       \strng{authornamehash}{ec7f3703fbd419b313e0a329e6241059}
       \strng{authorfullhash}{4eadc44b73c932989cbd36a77d356aab}
       \strng{authorfullhashraw}{4eadc44b73c932989cbd36a77d356aab}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1941-0042}
@@ -2439,8 +2523,8 @@
       \strng{authornamehash}{8b843d0da79226f35ee369acd6645d1e}
       \strng{authorfullhash}{17082a2f8360e7c34868e12b18e9c3fb}
       \strng{authorfullhashraw}{17082a2f8360e7c34868e12b18e9c3fb}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
