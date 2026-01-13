@@ -19,26 +19,28 @@
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 何mくらいまで測れるか。}{10}{section*.38}%
 \contentsline {todo}{Figure: Passive Remote SensingとActive Remote Sensingの図。}{10}{section*.38}%
 \contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{10}{section*.38}%
-\contentsline {todo}{Figure: 図で屈折が既存の光の直進性やPinholeモデルを成立させなくことを示す}{11}{subsection.41}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ いろいろなPhotogrammetric Bathymetry手法を達観。表で表すと見やすいか。。。}{12}{section*.43}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{14}{section*.48}%
-\contentsline {todo}{Figure: MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}{15}{subsection.50}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{16}{section*.52}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{17}{section*.57}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{18}{section*.59}%
-\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{19}{Item.63}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{19}{section*.64}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{19}{section*.65}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{20}{section*.69}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{20}{section*.71}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}{20}{section*.72}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{20}{section*.73}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{21}{section*.74}%
-\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{21}{section*.74}%
-\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{21}{section.75}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{22}{section*.77}%
-\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{23}{Item.81}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{23}{Item.81}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{24}{section.82}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{24}{section.82}%
-\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{25}{section.82}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ SDBに関して特化したSurvey論文があったように思える}{11}{section*.40}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Lyzenga法やStumpf法などの引用}{11}{section*.41}%
+\contentsline {todo}{Figure: 図で屈折が既存の光の直進性やPinholeモデルを成立させなくことを示す}{12}{subsection.43}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ いろいろなPhotogrammetric Bathymetry手法を達観。表で表すと見やすいか。。。}{12}{section*.45}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{14}{section*.50}%
+\contentsline {todo}{Figure: MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}{15}{subsection.52}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{16}{section*.54}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{17}{section*.59}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{18}{section*.61}%
+\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{19}{Item.65}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{19}{section*.66}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{19}{section*.67}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{20}{section*.71}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{20}{section*.73}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}{20}{section*.74}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{20}{section*.75}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{21}{section*.76}%
+\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{21}{section*.76}%
+\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{21}{section.77}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{22}{section*.79}%
+\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{23}{Item.83}%
+\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{23}{Item.83}%
+\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{24}{section.84}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{24}{section.84}%
+\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{25}{section.84}%
