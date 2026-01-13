@@ -137,6 +137,64 @@
 \newcommand{\kobayashi}[1]{\todo[inline, color=gray!40, bordercolor=gray, size=\small]{#1}}
 
 
+% --- 図
+\newcommand{\IncludeThreeImages}[9][3cm]{% [デフォルト高さは3cm]
+  \begin{figure}[htbp]
+    \centering
+    % --- 1枚目 ---
+    \begin{subfigure}[t]{0.32\textwidth}
+      \centering
+      \includegraphics[height=#1, keepaspectratio]{#2}
+      \caption{#3} % 自動で(a)が入ります
+    \end{subfigure}
+    \hfill
+    % --- 2枚目 ---
+    \begin{subfigure}[t]{0.32\textwidth}
+      \centering
+      \includegraphics[height=#1, keepaspectratio]{#4}
+      \caption{#5}
+    \end{subfigure}
+    \hfill
+    % --- 3枚目 ---
+    \begin{subfigure}[t]{0.32\textwidth}
+      \centering
+      \includegraphics[height=#1, keepaspectratio]{#6}
+      \caption{#7}
+    \end{subfigure}
+    % --- 全体設定 ---
+    \caption{#8}
+    \label{#9}
+  \end{figure}
+}
+% \IncludeThreeImages[4cm]
+%   {img1.jpg}{キャプション1}
+%   {img2.jpg}{キャプション2}
+%   {img3.jpg}{キャプション3}
+%   {全体キャプション}
+%   {fig:test}
+\newcommand{\IncludeTwoImages}[7][4cm]{% [デフォルト高さは3cm]
+  \begin{figure}[htbp]
+    \centering
+    % --- 1枚目 ---
+    \begin{subfigure}[t]{0.45\textwidth}
+      \centering
+      \includegraphics[height=#1, keepaspectratio]{#2}
+      \caption{#3} % 自動で(a)が入ります
+    \end{subfigure}
+    \hspace{0.5cm}
+    % --- 2枚目 ---
+    \begin{subfigure}[t]{0.45\textwidth}
+      \centering
+      \includegraphics[height=#1, keepaspectratio]{#4}
+      \caption{#5}
+    \end{subfigure}
+    % --- 全体設定 ---
+    \caption{#6}
+    \label{#7}
+  \end{figure}
+}
+
+
 % --- デバッグモード設定 (目に優しい黒背景) ---
 % \submissionmode は main.tex で定義する
 \newcommand{\debugnote}{

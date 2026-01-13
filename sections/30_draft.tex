@@ -95,3 +95,353 @@ UAVにより空撮された多視点画像から、Structure-from-Motion (SfM) \
 (もう少しPhotogrammetric Bathymetryに関してはSurveyするよ)
 
 \kobayashi{気体－液体屈折について。これも既に書いてある内容で大丈夫だと思います。また、ここからは方法でも詳しく説明する部分なので、イントロでどこまで書くか。浅水域の写真測量において克服すべき点の１つであること、屈折とはどういう現象か、これまで写真測量でどういう風に対処されてきたか、測量を向上するために何が足りないか・何を考えるべきか}
+
+
+
+% ==== 第二原稿 (手法を先に説明して、その後に、応用先を説明した)
+%!TEX root = ../main.tex
+\chapter{研究背景と関連研究}\label{chap:background}
+
+\rewrite{子供に説明するような、だよ口調で論理の構造を作ってから、適切な文章に書き直す方式。書き直しはGeminiも有効に使う}
+\note{基本的には、Goodnoteに下書きしたのを写している。手書きしないと、スムーズにOutputできない。}
+
+
+\note{ecotoneの概念を例に上げ、研究の適用先と意義を先に明確にする}
+地球全体において、地表のおよそ7割は、海や河川といった水域が占める。
+にも関わらず、その水面下の地形を正確に把握することは難しく、｢人類は月よりも、深海のことをよく知らない｣という言葉が、海洋科学や水路測量の分野でしばしば用いられる。
+近年、2023年までに地球上の海を100パーセント網羅する海底地形図を完成させることを目標とした｢Seabed 2030｣\cite{Seabed2030}が、日本財団\cite{NipponFoundation}とGEBCO(General Bathymetric Chart of the Oceans)\cite{GEBCO}により立ち上げられ、急速に高精度の海底地形図の測量が進んでいる。
+しかし、依然として取得が困難な「データの空白地帯」が存在する。
+それが、沿岸部や河川における「浅水域(Shallow Water Area)」であり、水路測量において、これらの領域は｢ホワイトリボン(White Ribbon)｣となる。
+これは、海図や河川図において、陸域の測量データと深部の水深データとの間に挟まれ、データが存在しないために白く描かれる帯状の領域を指す。
+この空白が生じる物理的・運用的な理由は明確である。
+従来の船舶を用いた音響測深技術では、座礁のリスクや効率の低下により極浅水域への接近が困難である一方、陸上測量の手法(人手とトータルステーションを用いた直接測量)では、水深や流速による危険性が高く、広範囲のデータ取得が不可能であるためである。   
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.6\textwidth]{figure/30_/white-ribbon.png}
+  \caption{
+    White Ribbonの実例。
+    \cite{Mcmahon2012_white-ribbon-figure}より引用。
+    \cite{GEBCO}の提供するGridded Bathymetry Dataによる海洋沿岸の水深測量図。
+    白い領域は浅水域のため測量不能。
+  }
+  \label{fig:white-ribbon-figure}
+\end{figure}
+
+\note{ここを水深測量の概要に据える}
+
+\section{水深測量の概要}\label{sec:bg_bathymetry-method-overview}
+
+\subsection{音響測深}\label{subsec:bg_bathymetry-sonar}
+現在、水深測量（Bathymetry）の標準となっているのは、マルチビーム音響測深機（Multibeam Echosounder: MBES）である。
+MBESは船底から扇状に音波を発射し、走査線上の多数の点の水深を同時に計測することで、面的な地形図を作成する。
+深海域においては、一度の航行で数キロメートル幅の海底をスキャンできるため、Seabed 2030のようなプロジェクトの中核技術となっている。
+
+\begin{figure}[htbp]
+  \centering
+  \begin{subfigure}{0.27\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figure/30_/sonar_1.jpg}
+    \caption*{(a) マルチビームソナーの概念図}
+  \end{subfigure}
+  \begin{subfigure}{0.30\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figure/30_/sonar_2.jpg}
+    \caption*{(b) マルチビームソナーによる水深測量図}
+  \end{subfigure}
+  \begin{subfigure}{0.30\textwidth}
+    \centering
+    \includegraphics[width=\textwidth]{figure/30_/sonar_usv.png}
+    \caption*{(c) 無人水上艇(USV)による水深測量例}
+  \end{subfigure}
+  \caption{
+    マルチビームソナー。
+    \cite{Giordano2015_sonar-bathymetry}より引用。
+  }
+  \label{fig:sonar-figure}
+\end{figure}
+\note{もっといい感じに並べたい}
+
+
+浅水域においてはMBESの効率は劇的に低下する。
+MBESの走査幅（Swath Width: $SW$）は、水深（$D$）と指向角（$\theta$:約120度〜150度）に幾何学的に依存するからである。
+\rewrite{MBESであってる?}
+\begin{equation}\label{eq:swath-width}
+  SW = 2D \tan \left( \frac{\theta}{2} \right)
+\end{equation}
+水深 1000 mであれば 3000 m以上の幅を一度に測れるが、浅水河川のような水深 1 m 〜 2 mの環境では、走査幅はわずか 3 m 〜 8 m 程度にしかならない。
+浅水河川を測量するためには、探査船は数十回もの往復（測線）を繰り返さねばならず、時間的・金銭的コストが増大する。
+
+加えて、浅水域においては、調査船は、座礁リスクのために船体の喫水より浅い場所には物理的に侵入できない。
+座礁リスクを低減するため、近年では、小型の無人水上艇(Unmanned Surface Vehicle: USV)を用いた水深測量も注目されている\cite{Giordano2015_sonar-bathymetry,Kurowski2019_survey-USV}。
+これにより、河川や海岸線付近の浅水域の水深測量に応用されるが、水上艇の制御が難しく、走査幅の狭さにより、広範の測量を行うには依然、時間的･人的コストが高くなる。
+また、砂州などの陸域を含めた測量は不可能であり、別途、UAVによる写真測量などが必要になる。
+\note{UAVは自動化により楽に撮影できるが、USVは水の流れの中での制御が難しかった(GPSに基づいて自動的にやってくれるものあるかも)。}
+\note{後述するエコトーンに自然につなげたい。}
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figure/30_/Kujawa2025_RS-bathymetry-methods.png}
+  \caption{
+    リモートセンシングによる浅水域水深測量のためのイメージングおよび測距技術。
+    \cite{Kujawa2025_survey-shallow-bathymetry}より引用。
+    (a) リモートセンシング技術の分類
+    (b) 空間的範囲・分解能・カバレッジの関係
+  }
+  \label{fig:remote-sensing-bathymetry-method}
+\end{figure}
+
+
+
+\subsection{Airborne LiDAR Bathymetry}\label{subsec:bg_bathymetry-airborne-lidar}
+LiDARはLight Detection and Rangingの略で、光を用いて距離を測量する手法である。
+主体的に電磁波を照射するためActive Remote Sensingと呼ばれる手法の一種である。
+(Imaging は Passiveだぞ!)。
+\note{LiDARの簡単な概要。}
+
+中でも、航空レーザ測深（Airborne LiDAR Bathymetry: ALB）は、航空機から水を透過しやすい緑色レーザ（波長532nm付近）を照射し、水面と水底からの反射時間差で水深を求める技術である\cite{Saylam2018_ALB}。
+\note{NotionにALBの資料をまとめたことあり}
+\note{何mくらいまで測れるか。}
+近年では、日本全国の一級河川において河川管理や河川改修計画を目的とした、定期横断測量にも活用が進められている。
+\checkref{テンマいわく。}
+
+しかし、ALBは、高精度かつ高密度、広範を測量可能な手法であるが、以下のような欠点もある。
+\itemize{
+  \item 導入・運用コスト: 有人航空機またはそれ相応のUAVと専用のLiDAR機器を搭載するため、莫大なコストがかかる。(1000万円~)
+  5年に1度の定期測量には適しているが、洪水のたびに飛ばすような機動的な運用は経済的に困難である。 
+  \item 光学手法である以上、濁った水ではレーザが散乱・減衰し、水底まで届かない。
+}
+
+\missingfigure{Passive Remote SensingとActive Remote Sensingの図。}
+\missingfigure{各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}
+
+
+\subsection{Satellite Derived Multi-Spectral Bathymetry}\label{subsec:bg_bathymetry-satellite-derived}
+衛星由来水深（Satellite Derived Bathymetry: SDB）は、LandsatやSentinel-2などのマルチスペクトル衛星画像を用い、光の水中減衰率から水深を推定する手法である\cite{He2024_survey-shallow-bathymetry}。
+\checkref{Survey論文が合ったはず。}
+Lyzengaの式やStumpfの比演算アルゴリズム、近年では機械学習を用いた手法が開発されている。
+\note{もう一行詳細を述べる。式を示すか言葉で、か}
+
+SDBは広域性や低コスト性において優れているが、河川環境への適用には限界がある。
+\begin{itemize}
+  \item 空間解像度: Sentinel-2の解像度は10mであり 、中小河川では1ピクセルの中に水域、陸域、植生が混在する「ミクセル（Mixed Pixel）」問題が発生し、精度が著しく低下する。   
+  \item 現地依存性（Site-Dependency）: SDBは経験的なモデルであり、精度を出すためには現地での実測水深データによるキャリブレーション（補正）が不可欠である。
+  また、底質の反射率（アルベド）の不均一性や水質の影響を受けやすい。
+\end{itemize}
+
+\subsection{人力測量}\label{subsec:bg_bathymetry-manual-survey}
+日本で定期横断測量にて未だ実施される、人が川に入ってポールやレッド（測鉛）で測る手法は、「危険（Danger）」、「疎（Sparse）」、「遅い（Slow）」である。
+点や線でのデータ取得となるため、断面と断面の間にある地形変化は完全に無視される。
+
+
+\subsection{Photogrammetric Bathymetry}\label{subsec:bg_photogrammetric-bathymetry-overview}
+近年急速に普及したドローンなどの無人航空機（UAV: Unmanned Aerial Vehicle）を用いた写真測量(Photogrammetry)は、低コストかつ高解像度、高頻度なデータ取得が可能であることから、次世代の浅瀬測量技術として大きな期待を集めている。
+UAVにより空撮された多視点画像から、Structure-from-Motion (SfM) \cite{schoenberger2016_colmap}、および Multi-View Stereo (MVS) \cite{Furukawa2010_PatchMVS,Furukawa2015_MVS}を用いて3次元形状を復元するアプローチは、陸部においては既に広い用途で実用化されている\cite{Bemis2014_UAV-photogrammetry,Gomez2016_UAV-photogrammetry-disaster,Iglhaut2019_UAV-photogrammetry-forestry}。
+これらの技術を水中に適用する場合、その手法は空中からの水深写真測量(Photogrammetric Bathymetry)と呼ばれ、空中から撮像した多視点画像からの水中の三次元再構成問題と捉えることができる。
+水深写真測量には、光の反射や、水中での光の散乱･吸収による減衰、波による被写体の歪みなどの課題が存在するが、中でも最も根本的で重要な課題として取り組まれてきたのが光の屈折(Refraction)である。
+
+
+既存の写真測量アルゴリズムの大部分は、幾何光学(Geometrical Optics)を前提としている。
+\note{図を引用しても良いと思う。ちなみに \url{https://imadr.me/pbr/} ちなみにGeometrical Opticsに屈折は含まれるためこの表現は適切ではない}
+すなわち、撮像(Image Sensing)のプロセスにおいて、観測対象となる被写体から発せられる光は、被写体からカメラ中心まで直進することを仮定する。
+しかし、UAVによる水中撮影においては、光は水中から空気中へ進む際に、水面と異なる媒質の境界でスネルの法則(Snell's Law)に従って屈折する。
+この物理現象によって、カメラから見た被写体の｢見かけの位置｣(Apparent Appearance)は、実際の位置よりも浅く、近く、歪ませる。
+屈折の影響を無視し、既存の写真測量アルゴリズムを適用する場合、水深が実際よりも浅く評価される。
+
+こうした問題を克服するために、屈折を考慮した3次元測量のアルゴリズムが提案されている。
+\note{関連研究に進む}
+
+
+\section{研究の応用先}\label{sec:bg_application}
+
+一方、浅水域は、人間社会の経済活動、防災、そして生態系保全において決定的な役割を果たす領域であり、その重要性をエコトーンと河川地形の変状モニタリングの観点から説明する。
+
+河川･沿岸管理においては、洪水の流下能力を決定する重要な断面であり、津波や高潮に対する第一の防衛線として機能する。
+日本では、そのため、5年以内に一度、日本全国の一級河川を対称に大規模な水深測量を行う必要がある。
+さらに、生態学的観点においては、陸域と水域が交錯するこの浅瀬こそが、生物多様性のホットスポットである「エコトーン（Ecotone）」を形成している。
+
+\subsubsection{定期横断測量}\label{subsec:bg_appli_japan-river-survey}
+結構人力であることを説明??
+\checkref{\url{https://www.kkr.mlit.go.jp/plan/happyou/thesises/2017/pdf05/shingijutsu-13.pdf}
+全国の一級河川においては河川管理や河川改修計画を目的とした，定期横断測量を実施して
+いる。
+しかし、測量間隔においては200m毎とされており、横断測量を実施する箇所以外の地形
+情報については得られない。
+また従来手法の作業性として、水部の計測手法は、船舶による作業であるため、急流河川においては作業に危険が伴うことや、計測器が測線上に位置しているかを絶えず確認しながらの慎重な作業となり、一測線の計測に時間を要するといった課題もある。}
+
+
+\subsubsection{研究の応用先の例: エコトーン}\label{subsec:bg_appli_ecotone}
+20世紀初頭に提唱された「エコトーン（Ecotone）」という概念は、二つの異なる植物群落や生態系が接し、移行する境界領域を指す\cite{Ecotone}。
+浅水域は、陸域から水域へと移行する水際線（Littoral Zone）を含む領域として現れる。
+この領域は、陸と水の両方の環境要因が作用することで、双方の生物種が混在し、高い生物多様性を誇る「エッジ効果（Edge Effect）」が発現する場として知られる\cite{}。
+
+\cite{Casalini2019_geo-ecological_patagonia_land}は、乾燥地帯のエコトーンにおける植生が、旧河道などの局所的な地形に依存していることを示した。
+\checkref{陸域は説得力がない}
+\cite{Perry2018_geo-ecological_coral-reefs}は、珊瑚礁の形状が、生物侵食速度や生物多様性といった生態学的プロセスに与える影響を示した。
+\fix{エコトーンにおける三次元計測の重要性。エコトーンの3次元地形が重要であることを示した例を挙げる。}
+
+ここで、重要なのは、浅水域エコトーンの生物学的豊かさは、太陽光の到達に依存していることだ。
+光合成が可能となる十分な光が届く水深帯は｢有光層 (Photic Zone) ｣と呼ばれ、水生植物や付着藻類の基礎生産を支えている。
+この、生態学的定義は、リモートセンシングの工学的要件と驚くべき符合を見せる。
+生態学的要件としては、豊かな植生や底生生物が生息するエコトーンには、水底まで光が届く必要がある一方で、
+後述する写真測量学的要件としては、 光が水底で反射し、センサーに戻ってくる必要がある。
+写真測量が抱える「濁度や深さによって水底が見えない場所は測れない」という制約も、大丈夫。
+深すぎて光が届かない場所は、そこは従来の音響測深が有効な領域である。
+本研究が対象とする光と生命が交錯する浅水域は、エコトーンとして観測価値が高く、そこでは光学的計測は合理的かつ自然なアプローチとなる。
+
+
+\missingfigure{ecotoneの概念が分かるような実写の写真。陸から川底を取った写真(植生付き)、海岸線やサンゴ礁。(海の写真とかはどこから引用するんだろう)}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.80\textwidth]{figure/30_/Ecotone_illustration.png}
+  \caption{
+    \cite{fig:Ecotone}より引用。
+    エコトーンの模式図。
+    陸域と水域の境界にあたるエコトーンは浅水域となる。}
+  \label{fig:ecotone-illustration}
+\end{figure}
+  
+  
+
+
+  
+\subsubsection{研究の応用先の例: 聖牛による河川地形の時系列変化}\label{subsec:bg_appli_seigyu-morphological-change}
+\note{長い論文はうざいから、簡潔に書こうと思う。なんだが、長くなろうとしている。重要な要素は網羅的に触れるが、主題でないことは深堀りしすぎない。}
+  
+河川工学においては、浅水域の高解像度3次元データの必要性は、防災とインフラ維持管理の観点からより切実なものとなる。
+急峻な地形と台風などにより豪雨が定期的ももたらされる地帯という特性を持つ日本では、河川地形の変動が激しく、河川法に基づいた厳格な管理が求められている 。
+河川管理者は、河道計画の策定や流下能力の確認のために、定期的な測量を実施している。国土交通省の基準では、一級河川において概ね5年に1回の頻度で「河川定期縦横断測量」が行われている\cite{river-survey-milt}。
+しかし、200 mピッチ等の間隔で実施される線的な断面測量では、断面間の局所的な洗掘や堆積を見逃すリスクがある。
+また、5年というサイクルは、出水のたびに地形が激変する日本の河川においては時間分解能が低すぎるという課題がある。
+\note{要は空間解像度、時間解像度が小さすぎる}
+
+この課題が顕著に現れるのが、伝統的河川工法である「聖牛」などの影響評価である。
+聖牛は、丸太を組み上げた四面体のような形状をシた構造物であり、河川砂州部に複数設置することで、河川環境を制御する日本古来の河川工法である。
+近年では「Nature-Based Solutions (NbS)」として再評価する動きがあり、
+\cite{Fujii2024_seigyu}は、聖牛が洪水によって傾斜し、流木を捕捉し、最終的に堆積物に埋没していくプロセスそのものが、流速低減や生息地形成というNbSとしての機能を有していることを示した。
+\cite{Fujii2024_seigyu}では\cref{fig:seigyu-morphological-change}のように、京都の木津川における6年間に渡るモニタリングによって、対象の砂州が単調な地形から、水路や池が点在する複雑な地形へと変化する過程をUAVによる写真測量で定量的に捉えた。
+
+このように、防災および生態系保全の両面から注目される浅水域において、その地形的変化を、「非接触」かつ「高解像度」に、そして｢高頻度｣でモニタリングする技術が求められている。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figure/30_/2024Fujii_morphological-change-by-seigyu.jpg}
+  \caption{\cite{Fujii2024_seigyu}より引用。聖牛による河川地形の時系列変化。解析のためには広範を陸域･水域含め高解像度で三次元計測する技術が求められる。}
+  \label{fig:seigyu-morphological-change}
+\end{figure}
+
+
+
+
+% ===== 水深測量の概要
+\section{水深測量の概要}\label{sec:bg_bathymetry-method-overview}
+
+\subsection{音響測深}\label{subsec:bg_bathymetry-sonar}
+現在、水深測量（Bathymetry）の標準となっているのは、マルチビーム音響測深機（Multibeam Echosounder: MBES）である。
+MBESは船底から扇状に音波を発射し、走査線上の多数の点の水深を同時に計測することで、面的な地形図を作成する。
+深海域においては、一度の航行で数キロメートル幅の海底をスキャンできるため、Seabed 2030のようなプロジェクトの中核技術となっている。
+
+\IncludeThreeImages[3cm]
+  {figure/30_/sonar_1.jpg}{マルチビームソナーの概念図}
+  {figure/30_/sonar_2.jpg}{マルチビームソナーによる水深測量図}
+  {figure/30_/sonar_usv.png}{無人水上艇(USV)による水深測量例}
+  {
+  マルチビームソナーによる水深測量。
+  \cite{Giordano2015_sonar-bathymetry}より引用。
+  }
+  {fig:sonar-figure}
+
+
+
+浅水域においてはMBESの効率は劇的に低下する。
+MBESの走査幅（Swath Width: $SW$）は、水深（$D$）と指向角（$\theta$:約120度〜150度）に幾何学的に依存するからである。
+\rewrite{MBESであってる?}
+\begin{equation}\label{eq:swath-width}
+  SW = 2D \tan \left( \frac{\theta}{2} \right)
+\end{equation}
+水深 1000 mであれば 3000 m以上の幅を一度に測れるが、浅水河川のような水深 1 m 〜 2 mの環境では、走査幅はわずか 3 m 〜 8 m 程度にしかならない。
+浅水河川を測量するためには、探査船は数十回もの往復（測線）を繰り返さねばならず、時間的・金銭的コストが増大する。
+
+加えて、浅水域においては、調査船は、座礁リスクのために船体の喫水より浅い場所には物理的に侵入できない。
+座礁リスクを低減するため、近年では、小型の無人水上艇(Unmanned Surface Vehicle: USV)を用いた水深測量も注目されている\cite{Giordano2015_sonar-bathymetry,Kurowski2019_survey-USV}。
+これにより、河川や海岸線付近の浅水域の水深測量に応用されるが、水上艇の制御が難しく、走査幅の狭さにより、広範の測量を行うには依然、時間的･人的コストが高くなる。
+また、砂州などの陸域を含めた測量は不可能であり、別途、UAVによる写真測量などが必要になる。
+\note{UAVは自動化により楽に撮影できるが、USVは水の流れの中での制御が難しかった(GPSに基づいて自動的にやってくれるものあるかも)。}
+\note{後述するエコトーンに自然につなげたい。}
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.95\textwidth]{figure/30_/Kujawa2025_RS-bathymetry-methods.png}
+  \caption{
+    リモートセンシングによる浅水域水深測量のためのイメージングおよび測距技術。
+    \newline
+    \cite{Kujawa2025_survey-shallow-bathymetry}より引用。
+    (a) リモートセンシング技術の分類
+    (b) 空間的範囲・分解能・カバレッジの関係
+  }
+  \label{fig:remote-sensing-bathymetry-method}
+\end{figure}
+
+
+
+
+\subsection{Airborne LiDAR Bathymetry}\label{subsec:bg_bathymetry-airborne-lidar}
+\checkref{\url{https://www.kkr.mlit.go.jp/plan/happyou/thesises/2017/pdf05/shingijutsu-13.pdf}}
+LiDARはLight Detection and Rangingの略で、光を用いて距離を測量する手法である。
+主体的に電磁波を照射するためActive Remote Sensingと呼ばれる手法の一種である。
+(Imaging は Passiveだぞ!)。
+\note{LiDARの簡単な概要。}
+
+中でも、航空レーザ測深（Airborne LiDAR Bathymetry: ALB）は、航空機から水を透過しやすい緑色レーザ（波長532nm付近）を照射し、水面と水底からの反射時間差で水深を求める技術である\cite{Saylam2018_ALB}。
+
+近年では、日本全国の一級河川において河川管理や河川改修計画を目的とした、定期横断測量にも活用が進められている。
+\checkref{テンマいわく。}
+
+しかし、ALBは、高精度かつ高密度、広範を測量可能な手法であるが、以下のような欠点もある。
+\itemize{
+  \item 導入・運用コスト: 有人航空機またはそれ相応のUAVと専用のLiDAR機器を搭載するため、莫大なコストがかかる。(1000万円~)
+  5年に1度の定期測量には適しているが、洪水のたびに飛ばすような機動的な運用は経済的に困難である。 
+  \item 光学手法である以上、濁った水ではレーザが散乱・減衰し、水底まで届かない。
+}
+
+
+
+
+\subsection{Satellite Derived Multi-Spectral Bathymetry}\label{subsec:bg_bathymetry-satellite-derived}
+衛星由来水深（Satellite Derived Bathymetry: SDB）は、LandsatやSentinel-2などのマルチスペクトル衛星画像を用い、光の水中減衰率から水深を推定する手法である\cite{He2024_survey-shallow-bathymetry}。
+\checkref{Survey論文が合ったはず。}
+Lyzengaの式やStumpfの比演算アルゴリズム、近年では機械学習を用いた手法が開発されている。
+\note{もう一行詳細を述べる。式を示すか言葉で、か}
+
+SDBは広域性や低コスト性において優れているが、河川環境への適用には限界がある。
+\begin{itemize}
+  \item 空間解像度: Sentinel-2の解像度は10mであり 、中小河川では1ピクセルの中に水域、陸域、植生が混在する「ミクセル（Mixed Pixel）」問題が発生し、精度が著しく低下する。   
+  \item 現地依存性（Site-Dependency）: SDBは経験的なモデルであり、精度を出すためには現地での実測水深データによるキャリブレーション（補正）が不可欠である。
+  また、底質の反射率（アルベド）の不均一性や水質の影響を受けやすい。
+\end{itemize}
+
+\subsection{人力測量}\label{subsec:bg_bathymetry-manual-survey}
+日本で定期横断測量にて未だ実施される、人が川に入ってポールやレッド（測鉛）で測る手法は、「危険（Danger）」、「疎（Sparse）」、「遅い（Slow）」である。
+点や線でのデータ取得となるため、断面と断面の間にある地形変化は完全に無視される。
+
+
+\subsection{Photogrammetric Bathymetry}\label{subsec:bg_photogrammetric-bathymetry-overview}
+近年急速に普及したドローンなどの無人航空機（UAV: Unmanned Aerial Vehicle）を用いた写真測量(Photogrammetry)は、低コストかつ高解像度、高頻度なデータ取得が可能であることから、次世代の浅瀬測量技術として大きな期待を集めている。
+UAVにより空撮された多視点画像から、Structure-from-Motion (SfM) \cite{schoenberger2016_colmap}、および Multi-View Stereo (MVS) \cite{Furukawa2010_PatchMVS,Furukawa2015_MVS}を用いて3次元形状を復元するアプローチは、陸部においては既に広い用途で実用化されている\cite{Bemis2014_UAV-photogrammetry,Gomez2016_UAV-photogrammetry-disaster,Iglhaut2019_UAV-photogrammetry-forestry}。
+これらの技術を水中に適用する場合、その手法は空中からの水深写真測量(Photogrammetric Bathymetry)と呼ばれ、空中から撮像した多視点画像からの水中の三次元再構成問題と捉えることができる。
+水深写真測量には、光の反射や、水中での光の散乱･吸収による減衰、波による被写体の歪みなどの課題が存在するが、中でも最も根本的で重要な課題として取り組まれてきたのが光の屈折(Refraction)である。
+
+
+既存の写真測量アルゴリズムの大部分は、幾何光学(Geometrical Optics)を前提としている。
+\note{図を引用しても良いと思う。ちなみに \url{https://imadr.me/pbr/} ちなみにGeometrical Opticsに屈折は含まれるためこの表現は適切ではない}
+すなわち、撮像(Image Sensing)のプロセスにおいて、観測対象となる被写体から発せられる光は、被写体からカメラ中心まで直進することを仮定する。
+しかし、UAVによる水中撮影においては、光は水中から空気中へ進む際に、水面と異なる媒質の境界でスネルの法則(Snell's Law)に従って屈折する。
+この物理現象によって、カメラから見た被写体の｢見かけの位置｣(Apparent Appearance)は、実際の位置よりも浅く、近く、歪ませる。
+屈折の影響を無視し、既存の写真測量アルゴリズムを適用する場合、水深が実際よりも浅く評価される。
+
+こうした問題を克服するために、屈折を考慮した3次元測量のアルゴリズムが提案されている。
+\note{関連研究に進む}
