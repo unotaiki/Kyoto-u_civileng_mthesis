@@ -2040,6 +2040,80 @@
       \verb http://dx.doi.org/10.1007/978-3-319-46487-9_31
       \endverb
     \endentry
+    \entry{Liao2025ACMSurv_NeRF}{article}{}{}
+      \name{author}{7}{}{%
+        {{hash=0eede453ba0ff5f9246c4940576c4063}{%
+           family={Liao},
+           familyi={L\bibinitperiod},
+           given={Yun},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=d7340a39a4e23da542cf3edc77e68a57}{%
+           family={Di},
+           familyi={D\bibinitperiod},
+           given={Yide},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=bf8821420565328b3085cef67e44b2af}{%
+           family={Zhou},
+           familyi={Z\bibinitperiod},
+           given={Hao},
+           giveni={H\bibinitperiod}}}%
+        {{hash=d170ea7e842d37f07d6575b734350f9d}{%
+           family={Zhu},
+           familyi={Z\bibinitperiod},
+           given={Kaijun},
+           giveni={K\bibinitperiod}}}%
+        {{hash=412751ebfc916d0c611afaf00848070e}{%
+           family={Lu},
+           familyi={L\bibinitperiod},
+           given={Mingyu},
+           giveni={M\bibinitperiod}}}%
+        {{hash=920673474a5a7c9d5dfaee34907f519a}{%
+           family={Duan},
+           familyi={D\bibinitperiod},
+           given={Qing},
+           giveni={Q\bibinitperiod}}}%
+        {{hash=479c5be40fb868ba1ce6f7e7dedc379e}{%
+           family={Liu},
+           familyi={L\bibinitperiod},
+           given={Junhui},
+           giveni={J\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {New York, NY, USA}%
+      }
+      \list{publisher}{1}{%
+        {Association for Computing Machinery}%
+      }
+      \strng{namehash}{e72c352970f78c36648ce1c8e639a2f1}
+      \strng{fullhash}{b7faf04d2852742fb4ea63abf0331db6}
+      \strng{fullhashraw}{b7faf04d2852742fb4ea63abf0331db6}
+      \strng{bibnamehash}{b7faf04d2852742fb4ea63abf0331db6}
+      \strng{authorbibnamehash}{b7faf04d2852742fb4ea63abf0331db6}
+      \strng{authornamehash}{e72c352970f78c36648ce1c8e639a2f1}
+      \strng{authorfullhash}{b7faf04d2852742fb4ea63abf0331db6}
+      \strng{authorfullhashraw}{b7faf04d2852742fb4ea63abf0331db6}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{0360-0300}
+      \field{journaltitle}{ACM Comput. Surv.}
+      \field{month}{9}
+      \field{number}{2}
+      \field{title}{A Survey on Neural Radiance Fields}
+      \field{volume}{58}
+      \field{year}{2025}
+      \verb{doi}
+      \verb 10.1145/3758085
+      \endverb
+      \verb{urlraw}
+      \verb https://doi.org/10.1145/3758085
+      \endverb
+      \verb{url}
+      \verb https://doi.org/10.1145/3758085
+      \endverb
+      \keyw{View synthesis,neural radiance Fields,scene representation,volume rendering}
+    \endentry
     \entry{Yan2024CVPR_GS-SLAM}{inproceedings}{}{}
       \name{author}{7}{}{%
         {{hash=8eb55777a3e1a9f56e4ec1ac63295521}{%
@@ -2455,8 +2529,8 @@
       \strng{authornamehash}{4ccd2e8fea4fe46b7dda34ff4f3ca373}
       \strng{authorfullhash}{e388f13f2b380e3adb9ecb002b368fb2}
       \strng{authorfullhashraw}{e388f13f2b380e3adb9ecb002b368fb2}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2511,8 +2585,8 @@
       \strng{authornamehash}{09c4bb837f5a87c60a96478e1577dc5e}
       \strng{authorfullhash}{c8f9d8291117c07fbb4bacd402478b24}
       \strng{authorfullhashraw}{c8f9d8291117c07fbb4bacd402478b24}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{3DV}
@@ -2552,8 +2626,8 @@
       \strng{authornamehash}{50590bd7d1805b85572372f47ed9cfb8}
       \strng{authorfullhash}{33fa30f85e7c0a7b8ed3995c5a390e5a}
       \strng{authorfullhashraw}{33fa30f85e7c0a7b8ed3995c5a390e5a}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings Visualization, 2001. VIS '01.}
@@ -2601,8 +2675,8 @@
       \strng{authornamehash}{ec7f3703fbd419b313e0a329e6241059}
       \strng{authorfullhash}{4eadc44b73c932989cbd36a77d356aab}
       \strng{authorfullhashraw}{4eadc44b73c932989cbd36a77d356aab}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1941-0042}
@@ -2663,8 +2737,8 @@
       \strng{authornamehash}{8b843d0da79226f35ee369acd6645d1e}
       \strng{authorfullhash}{17082a2f8360e7c34868e12b18e9c3fb}
       \strng{authorfullhashraw}{17082a2f8360e7c34868e12b18e9c3fb}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}

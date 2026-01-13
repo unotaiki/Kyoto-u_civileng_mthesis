@@ -67,14 +67,44 @@ Appearanceには当然、Geometryの情報も含まれているため、Appearan
 
 
 \subsubsection{Neural Radiance Fields (NeRF)}
+\url{https://dl.acm.org/doi/10.1145/3758085}
+\cite{Liao2025ACMSurv_NeRF}からまとめる。
 微分可能レンダリングの代表例が NeRF (Neural Radiance Fields) である。
 
 \missingfigure{NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=raggedright}
+    \includegraphics[width=0.8\linewidth]{figure/40_prelim/NeRF_overview.png}
+    \caption{NeRFによるシーン表現と微分可能レンダリングの処理の概念図。 
+    \cite{Mildenhall2021ECCV_NeRF}}から引用。 
+    (a) カメラ光線に沿って、5次元座標(位置および視線方向)をサンプリング。
+    (b) それらをMLPに入力し、色とvolume densityを出力させます。
+    (c) ボリュームレンダリングを用い、画像を生成する。
+    (d) 合成された画像と実際に観測されたGT画像との間の誤差を最小化することによって、シーン表現の最適化を行う。
+    \label{fig:nerf_overview}
+\end{figure}
+
+
 
 NeRFでは、シーンをボクセルやポリゴンといった明示的な幾何構造ではなく、多層パーセプトロン（MLP）を用いた「連続的な輝度場（Radiance Field）」として表現する。
 これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードするExplicit Representationではなく、関数を介して表現するImplicit Representationの一種である。
 
 \missingfigure{NeRFのMLPの構造も図で載せたい。引用できる}
+
+\begin{figure}
+    \centering
+    \captionsetup{justification=raggedright}
+    \includegraphics[width=0.6\linewidth]{figure/40_prelim/NeRF_architecture.png}
+    \caption{NeRFのネットワークアーキテクチャ。 
+    \cite{Mildenhall2021ECCV_NeRF}}から引用。 
+    ネットワークアーキテクチャの詳細。
+    入力となる5次元座標のうち、位置 $\mathbf{x}$ は8層の全結合層によって処理され、体積密度 $\sigma$ と256次元の特徴ベクトルを出力する。
+    この特徴ベクトルは視線方向 $\mathbf{d}$ と結合され、続く1層の全結合層を経て、視点依存（view-dependent）のRGB色が出力される。
+    全ての層において活性化関数としてReLUを使用する。    
+    \label{fig:nerf_architecture}
+\end{figure}
 
 具体的には、空間上の座標 $(x, y, z)$ と視線方向 $(\theta, \phi)$ を入力とし、その点における放射輝度（RGB）と体積密度（$\sigma$）を出力する関数 $f_\Theta$ を学習する。
 この表現を用いて、以下の Volumetric Renderingによりピクセル値を算出する。

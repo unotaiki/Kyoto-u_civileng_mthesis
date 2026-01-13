@@ -40,7 +40,7 @@
 \contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{21}{section.77}%
 \contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{22}{section*.79}%
 \contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{23}{Item.83}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{23}{Item.83}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{24}{section.84}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{24}{section.84}%
-\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{25}{section.84}%
+\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{23}{figure.caption.84}%
+\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{25}{section.86}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{25}{section.86}%
+\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{26}{section.86}%
