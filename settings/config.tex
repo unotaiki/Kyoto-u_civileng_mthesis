@@ -43,8 +43,14 @@
 \usepackage{url}
 \usepackage{tabularx}   % For adjustable column widths
 \usepackage{ragged2e}   % For better text alignment
-\usepackage[colorinlistoftodos]{todonotes} % TODO用。Writing以外の思いついたEditingタスクを瞬時に外部化し、ワーキングメモリを解放
 
+% algorithm2e: アルゴリズムを書くためのパッケージ
+\usepackage[ruled,vlined]{algorithm2e}
+% ruled: 罫線を表示
+% vlined: ブロックの縦線を表示
+\SetKwComment{Comment}{// }{}
+
+\usepackage[colorinlistoftodos]{todonotes} % TODO用。Writing以外の思いついたEditingタスクを瞬時に外部化し、ワーキングメモリを解放
 % --- 参考文献設定 (Biber + BibLaTeX) ---
 % 従来の \usepackage{cite} や thebibliography環境 の代わり
 \usepackage[backend=biber, style=phys, sorting=none]{biblatex} % style=numeric → style=physics
