@@ -4,11 +4,10 @@
 
 \subsubsection{3D Gaussian Splatting}\label{sec:3DGS}
 
-\missingfigure{3DGSの図。3DGSのパイプラインの図}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.6\textwidth]{figure/40_prelim/3dgs_pipeline.png}
+  \includegraphics[width=0.9\textwidth]{figure/40_prelim/3dgs_pipeline.png}
   \caption{
     Gaussian Splattingのパイプライン。
     \cite{Kerbl2023ToG_3DGS}より引用。
@@ -38,7 +37,17 @@
 その可能性はさらに広がり、衛星画像からの数値表層モデル(DSM)生成 \parencite{Aira2025CVPR_EOGS}、自動運転、そして水中3次元再構成 \parencite{li20243DV_watersplatting} といった様々な実世界アプリケーションへと拡張されている。
 \fix{自動運転}
 
-\missingfigure{GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figure/40_prelim/compare_pc-elip-render.png}
+  \caption{
+    点群と楕円体のレンダリング結果の比較。
+    (a) 点群のレンダリング結果。
+    (b) 楕円体のレンダリング結果。
+    (c) 最終的な3DGSのアルファブレンディングによるレンダリング結果。
+    }
+    \label{fig:compare_pc-elip-render}
+\end{figure}
 
 3DGSのパイプラインは主に、レンダリングを行うフォワードパスと、最適化を行うバックワードパスの2つの段階で構成される。
 フォワードパスでは、3次元ガウス分布(3D Gaussians)の集合を、ラスタライズにより画像平面に投影することで画像を合成する。
@@ -91,7 +100,6 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
 これらの定式化により、パイプライン全体が完全微分可能となり、パラメータ $\Theta = \{\bm{p}, \bm{R}, \bm{s}, \bm{c}, \alpha\}$ はAdamを用いた勾配降下法\parencite{Adam}によって最適化可能となる。
 (\cref{fig:3dgs_pipeline}B)
 
-\note{ADCの説明を追加}
 これらの勾配降下法のみでは、特に観測視点が少ない箇所(Few Shot Area)などで、シーンの適切な一貫性に欠ける局所最適解に陥りやすい。
 これを解決するために3DGSではAdaptive Density Control(ADC)というヒューリスティックな手法が導入されている。
 あるGaussianに関して、その2D平面や3D空間における位置に対する誤差勾配$\frac{\partial \mathcal{L}}{\partial \bm{p}}$が大きい場合、そのGaussianは幾何的な誤差の大きいものであるという推察に基づいて
@@ -317,6 +325,20 @@ $\alpha_{min}$ は最小不透明度ハイパーパラメータである。
 
 \missingfigure{依然、木津川で再構成した際のアーティストを示す}
 \missingfigure{Regularizationの効果を表す図を2DGSから引用}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figure/40_prelim/2dgs_regulatization.png}
+  \caption{
+    2DGSの正則化項の効果。
+    左から順に、入力画像、法線整合性正則化なしの表面法線、深度歪み正則化なしの表面法線、そして両方の正則化を適用した2DGSの結果である。
+    法線整合性正則化を適用しない場合、表面の法線方向にノイズが生じる。
+    一方、深度歪み正則化を省略すると、法線マップがぼやけたものとなる。
+    両方の正則化を併用することで、鋭く滑らかな表面形状を正確に再構成できている。
+    }
+    \label{fig:2dgs_regulatization}
+\end{figure}
+
+
 
 \begin{equation}
   \mathcal{L}_d = \sum_{i, j} \omega_i \omega_j |z_i - z_j|

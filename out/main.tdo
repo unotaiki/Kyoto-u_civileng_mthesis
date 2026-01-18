@@ -41,10 +41,10 @@
 \contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{22}{section*.79}%
 \contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{23}{Item.83}%
 \contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{23}{figure.caption.84}%
-\contentsline {todo}{Figure: 3DGSの図。3DGSのパイプラインの図}{25}{section.86}%
 \contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{25}{figure.caption.88}%
 \contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 自動運転}{26}{section*.89}%
-\contentsline {todo}{Figure: GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}{26}{section*.89}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ADCの説明を追加}{28}{section*.90}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ MCMCの説明も。?。これらのヒューリスティックスはデータセットや初期値に対して依存するため、それを克服するようなMCMCといった手法も考案されている。}{28}{section*.91}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Here, τk denotes the average 2D positional gradient magnitude, ok the opacity, and max(sk) the maximum scaling factor of a Gaussian gk. Pdense denotes the percent dense hyperparameter and Tgrad the gradient threshold hyperparameter. escene is the precomputed scene extent and omin the predetermined minimum opacity.}{29}{section*.112}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ローパスフィルタまでは説明しなくても良い。(3DGSでも説明していないから)。MipSplatting説明しないといけない}{31}{section*.96}%
+\contentsline {todo}{Figure: 依然、木津川で再構成した際のアーティストを示す}{31}{section*.96}%
+\contentsline {todo}{Figure: Regularizationの効果を表す図を2DGSから引用}{31}{section*.96}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ メッシュの抽出にはTSDF Fusionを用いている。}{32}{section*.98}%
