@@ -4,25 +4,16 @@
 \note{Color Correctionというよりも、 `Radiometric Correction'という方が適切でニュアンスが伝わりやすいと思い変えた
 }
 
-% \missingfigure{屈折による色の減衰を説明する図}
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width=0.7\textwidth]{figure/50_method/}
-%   \caption{
-%     }
-%     \label{fig:color-correction-3DGS}
-% \end{figure}
-
 
 \note{Blenderでは、どのRGB補正が使われ画像が出力されるか確認}
 
 空気水面間の屈折境界面を通して3次元シーンを観測する場合、Gaussianの幾何学的な変動に加え、放射輝度（Radiance）の変化に伴う「見かけの暗化」が生じる。
 これは、フレネル反射や水中での散乱・吸収減衰を無視したとしても、幾何光学的な光束$\Phi$の広がり（Etendue; エタンデュ）の変化に起因して発生する現象である。
-Snellの法則（式\cref{eq:snell}）およびその微分式\cref{}より、以下の関係式が導かれる。
+Snellの法則（式\cref{eq:snell}）およびその微分式\cref{eq:dtheta_r/dtheta_i}より、以下の関係式が導かれる。
 \begin{equation}
   n^2 \cos \theta_i \sin \theta_i d \theta_i = n^2 \cos \theta_r \sin \theta_r d \theta_r
 \end{equation}
-ここで、微小面積要素$dA$および方位角の微小変化$d\psi$を考慮し、微小立体角$d\omega = \sin\theta d\theta d\psi$との関係を用いると、エテンデュ保存則\parencite{etendue}として知られる以下の関係が得られる。
+ここで、微小面積要素$dA$および方位角の微小変化$d\psi$を考慮し、微小立体角$d\omega = \sin\theta d\theta d\psi$との関係を用いると、エタンデュ保存則\parencite{etendue}として知られる以下の関係が得られる。
 \begin{equation}\label{eq:etendue_preservation}
   \cos\theta_i d\omega_i dA = n^2 \cos\theta_r d\omega_r dA
 \end{equation}

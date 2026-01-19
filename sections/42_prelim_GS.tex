@@ -117,7 +117,7 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
     \cite{Kerbl2023ToG_3DGS}より引用。
     Gaussianに流れる位置誤差勾配が大きい場合、サイズが小さいGaussianに対しては、複製、サイズが大きいGaussianに対しては、分割を行うことで、適切なサイズのGaussianでシーンを満たす。
     }
-    \label{fig:3dgs_pipeline}
+    \label{fig:3dgs_adc}
 \end{figure}
 
 \begin{algorithm}[H]\label{alg:3dgs-adc}
@@ -353,6 +353,6 @@ $\alpha_{min}$ は最小不透明度ハイパーパラメータである。
 \end{equation}
 
 最終的な損失関数は、3DGSのPhotometric lossに加え、これらの正則化項を加重和したものである。
-これらの幾何学的制約により、2DGSはノイズの少ない詳細なメッシュ抽出が可能となり、かつ3DGSと同等のレンダリング速度と画質を維持している。
+これらの幾何学的制約により、2DGSはNoiseの少ない詳細なメッシュ抽出が可能となり、かつ3DGSと同等のレンダリング速度と画質を維持している。
 
 \note{メッシュの抽出にはTSDF Fusionを用いている。}

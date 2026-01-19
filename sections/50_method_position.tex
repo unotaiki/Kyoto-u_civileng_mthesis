@@ -36,6 +36,7 @@
 水面が平坦かつ静穏であると仮定した場合、屈折現象は視線方向に対して回転対称性を有する。
 したがって、幾何学的計算を簡略化するため、3次元座標を動径方向距離 $r = \sqrt{x^2 + y^2}$ を用いて2次元の$rz$平面へと射影して議論を行う。
 既存手法\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n,Dietrich2016_multi-angle-correction,Makris2024_refractive-aware-sfm}では考慮されていないが、あるカメラ位置からの水中の一点はある見かけの位置に位置に一意にマッピングされる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}。
+詳細な導出は\cref{sec:apendix-apparent-depth}を参照。
 
 屈折を考慮した際、カメラから観測されるGaussianの見かけの中心位置（Apparent position）を$\bm{p'} = (x', y', z')$とし、$rz$平面上での座標を$(r', z')$とする。
 カメラから$\bm{p'}$へ向かう光線（Ray）と水面との交点を$(s, 0)$ ($0 \leq s < r$)と定義する。

@@ -3008,6 +3008,58 @@
       \verb http://dx.doi.org/10.1590/1806-9126-rbef-2024-0417
       \endverb
     \endentry
+    \entry{etendue}{article}{}{}
+      \name{author}{3}{}{%
+        {{hash=6c3b97b8162d6a06c1834391ce4ad074}{%
+           family={Winston},
+           familyi={W\bibinitperiod},
+           given={Roland},
+           giveni={R\bibinitperiod}}}%
+        {{hash=fe0d75ce3b59f9e2a0444e0c1d9573e5}{%
+           family={Jiang},
+           familyi={J\bibinitperiod},
+           given={Lun},
+           giveni={L\bibinitperiod}}}%
+        {{hash=4c5d35db040b6a6d0c6e34c778a15450}{%
+           family={Ricketts},
+           familyi={R\bibinitperiod},
+           given={Melissa},
+           giveni={M\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Optica Publishing Group}%
+      }
+      \strng{namehash}{8b54fbcf34e7977b0ff6fc6e217eb6a7}
+      \strng{fullhash}{0ca74b8755284fa26987b3ca3724d063}
+      \strng{fullhashraw}{0ca74b8755284fa26987b3ca3724d063}
+      \strng{bibnamehash}{0ca74b8755284fa26987b3ca3724d063}
+      \strng{authorbibnamehash}{0ca74b8755284fa26987b3ca3724d063}
+      \strng{authornamehash}{8b54fbcf34e7977b0ff6fc6e217eb6a7}
+      \strng{authorfullhash}{0ca74b8755284fa26987b3ca3724d063}
+      \strng{authorfullhashraw}{0ca74b8755284fa26987b3ca3724d063}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1943-8206}
+      \field{journaltitle}{Advances in Optics and Photonics}
+      \field{month}{5}
+      \field{number}{2}
+      \field{title}{Nonimaging optics: a tutorial}
+      \field{volume}{10}
+      \field{year}{2018}
+      \field{pages}{484}
+      \range{pages}{1}
+      \verb{doi}
+      \verb 10.1364/aop.10.000484
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1364/aop.10.000484
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1364/aop.10.000484
+      \endverb
+    \endentry
   \enddatalist
   \missing{Furukawa2010_PMVS}
   \missing{Schnberger2016ECCV_PatchMatchStereo}
