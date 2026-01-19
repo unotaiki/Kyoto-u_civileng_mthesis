@@ -2,17 +2,15 @@
 \chapter{背景理論}\label{chap:prelim_3d-reconstruction-from-images}
 
 \section{画像に基づく3次元復元 (3D Reconstruction from Images)}\label{sec:prelim_3d-reconstruction-from-images}
-画像を用いた測量は写真測量(Photogrammetry)と呼ばれ、古い歴史あり。
-\url{https://duplicate-3d.com/rd/2025-09-11-photogrammetry-history/} この記事を参考に。
-もともとは専門的な技能を持った人が、専用の機械(?)を用いて作成。
-
-画像のデジタル化、イメージセンサの発明によりコンピュータビジョン（Computer Vision, CV）が始まる。
-Image Sensorから得た視覚情報から、人間や他の生物と同じようにComputerやMachineにSceneを理解させる。
+画像を用いた測量は写真測量（Photogrammetry）と呼ばれ、19世紀半ばに航空写真測量の技術として確立されて以来、長い歴史を持つ。
+初期の写真測量は、専門的な技能を持つ技術者が専用の測量機器を用いて手動で行うものであったが、画像のデジタル化とイメージセンサの発明により、コンピュータビジョン（Computer Vision, CV）の分野として発展した。
+コンピュータビジョンは、画像センサから得られた視覚情報を処理し、人間や他の生物と同様に、コンピュータや機械がシーンを理解することを目指す学問分野である。
 
 画像センサ（Image Sensor）が捉える情報は、本質的には3次元シーンから2次元平面への射影（Projection）である。
 この過程において、3次元空間の奥行き情報は1次元分欠落し、情報の「縮退」が発生する。
 3次元復元の主眼は、この失われた次元を幾何学的制約や事前知識（Priors）を用いて補完し、元のシーンの構造を逆問題として解くことにある。
-3次元情報は生物が自己が生きる世界を認識、理解するうえで必須の情報であり、ロボットの自己位置推定、環境認識などにも多大なニーズがあり、Computer Visionの主要タスクとして数多くの研究がなされ、今もめちゃくちゃレッドオーシャン。
+3次元情報は、生物が自己が生きる世界を認識・理解するうえで必須の情報であり、ロボットの自己位置推定（SLAM: Simultaneous Localization and Mapping）や環境認識などにも多大なニーズがある。
+そのため、Computer Visionの主要タスクとして数多くの研究が行われており、非常に活発な研究領域である。
 
 古くから、単眼画像から形状を推定する手法として、輝度やテクスチャ、影などの手掛かりを利用する \textit{Shape from X}（$X \in \{\text{shading, Silhouette, Texture, Focus, etc.}\}$）の研究が行われてきた。
 しかし、より頑健な復元を行うためには、視点移動を伴う複数枚の画像、あるいは動画（Image sequence）を用いて幾何的な整合性を元に手法が主流となった。
@@ -20,18 +18,15 @@ Image Sensorから得た視覚情報から、人間や他の生物と同じよ�
 このSfMを起点とする、3D Vision for Geometry手法の発達、高度なUIを備えた商用ソフト(Pix4D, Metashape, etc.)の出現、オープンソース化により、今日ではPhotogrammetry技術は広く一般に普及した。
 
 \subsection{Structure from Motion}
-SfMは、複数の視点から撮影された画像群に基づき、カメラの内部・外部パラメータ（三次元的な動き）と、シーンの疎な（Sparse）3次元構造を同時に推定する手法である。
-Tomasi-Kanadeによる行列分解法に始まる。
-HartleyやZissermanら(2000年代)によって幾何学的理論の基礎が確立された。 (VGGTのYoutubeの対談動画で取り上げられていた。もう少し詳しくは、Harley先生たちの本を参照。)
-2016年に発表された COLMAP は、高い精度と汎用性、そしてOpen Sourceのプロジェクトとしての完成度から現在でもアカデミック分野でデファクトスタンダードとして広く利用されている。
-\checkref{COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}
-また、COLMAPにより出力される、正確なカメラ内部パラメータ(Intrinsic)と外部パラメータ(Extrinsic)は、歪みのない画像(Undistorted Images)は、後述するDense Reconstruction や 新規視点合成タスク のための入力データとして、重要なパイプラインの一角を担っている。
+SfMは、複数の視点から撮影された画像群に基づき、カメラの内部パラメータ（Intrinsic Parameters）・外部パラメータ（Extrinsic Parameters、すなわちカメラの三次元的な位置と姿勢）と、シーンの疎な（Sparse）3次元構造を同時に推定する手法である。
+SfMの理論的基礎は、Tomasi-Kanadeによる行列分解法\cite{Tomasi1992_FactorizationMethod}に始まり、HartleyとZissermanによって多視点幾何学（Multiple View Geometry）の理論体系\cite{Hartley2004_MultipleViewGeometry}として確立された。
+2016年に発表されたCOLMAP \cite{schoenberger2016_colmap}は、高い精度と汎用性、そしてオープンソースプロジェクトとしての完成度から、現在でもアカデミック分野におけるデファクトスタンダードとして広く利用されている。
+COLMAPにより出力される正確なカメラ内部パラメータと外部パラメータ、および歪み補正済み画像（Undistorted Images）は、後述する密な三次元再構成（Dense Reconstruction）や新規視点合成（Novel View Synthesis）タスクのための入力データとして、重要なパイプラインの一角を担っている。
 
-In a typical incremental SfM pipeline, keypoints are firstly detected and matched across frames using feature detectors and descriptors such as SIFT \parencite{Lowe2004_SIFT}.
-Fundamental matrix $F$ between two images is then calculated, commonly via eight-points algorithm \parencite{Hartley1997_8PointAlgorithm} combined with random sample consensus (RANSAC) \parencite{Fischler1987_RANSAC}, which lead to camera pose recovery through singular value decomposition.
-New camera poses are iteratively registered via Perspective-n-Point algorithms, which align estimated 3D points with 2D features in new frames.
-Triangulation is subsequently applied to obtain additional 3D points from feature correspondences, and bundle adjustment (BA) \parencite{Triggs2000_BA} is finally performed to minimize reprojection error, refining both camera parameters and 3D points. 
-画像を貼るぞい!!!http://theia-sfm.org/sfm.html
+一般的なインクリメンタルSfMパイプラインでは、まずSIFTなどの特徴量検出器および記述子\parencite{Lowe2004_SIFT}を用いて、画像間でキーポイント（特徴点）の検出およびマッチングを行う。
+その後、2画像間の基本行列$F$を、8点アルゴリズム\parencite{Hartley1997_8PointAlgorithm}およびRANSAC\parencite{Fischler1987_RANSAC}を組み合わせて推定し、特異値分解（SVD）によるカメラ姿勢の復元へと繋げる。
+新たなカメラ姿勢は、Perspective-n-Point（PnP）アルゴリズムにより、既に推定された3次元点と新規画像内の2次元特徴点との対応付きで逐次的に登録する。
+対応点情報から三角測量（Triangulation）によって追加の3次元点群を求め、最後にバンドル調整（Bundle Adjustment, BA）\parencite{Triggs2000_BA}によって再投影誤差を最小化することで、カメラパラメータおよび3次元点群の両者を同時に高精度に最適化する。
 
 \begin{figure}[htbp]
   \centering
@@ -43,17 +38,10 @@ Triangulation is subsequently applied to obtain additional 3D points from featur
 
 \subsection{Multi-View Stereo}
 \note{無駄に力入れて書きすぎ。MVSとかほとんど本題じゃない。むしろSfMを頑張って記述するべきだった。(いい勉強になったが)、Appendixに回した方がいいげ}
-SfMなどによって得られたカメラパラメータが既知の多視点画像郡から、各画素単位で密な深度推定により、高密度な三次元復元を行うのが Multi-View Stereo (MVS) である。
+SfMなどによって得られたカメラパラメータが既知の多視点画像群から、各画素単位で密な深度推定により、高密度な三次元復元を行うのが Multi-View Stereo (MVS) である。
 SfMの出力三次元情報が疎な(Sparse)点群であるのに対して、MVSは物体表面の密な(Dense)な三次元点群やメッシュ(Mesh)を推定することから、MVSは Dense 3D Reconstruction (密な三次元再構成)のタスクを行っていると言える。
 これを達成するため、各画素における深度(Depth)や法線(Normal)といった幾何パラメータを、画像間の整合性(Photometric Consistency)に基づいて最適化する手法がとられる。
-本節では、パッチベース手法の古典であるPMVS \cite{Furukawa2010_PatchMVS} の概念を概観した後、現在のデファクトスタンダードなパイプライン（COLMAP \cite{Schnberger2016ECCV_PatchMatchStereo}）の基礎となっているPatchMatch Stereoについて詳述する。
-
-
-\missingfigure{MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}
-
-
-% --- PMVS ---
-\textbf{PMVS}: 
+本節では、パッチベース手法の古典であるPMVS \cite{Furukawa2010_PatchMVS}の概念を概観した後、現在のデファクトスタンダードなパイプライン（COLMAP \cite{Schonberger2016ECCV_PatchMatchStereo}）の基礎となっているPatchMatch Stereoについて詳述する。
 
 \subsubsection{Patch-based Multi-View Stereo (PMVS)}
 
@@ -83,9 +71,9 @@ PMVSの処理は、特徴点からの初期化(Initialization)の後、以下の
 
 \begin{enumerate}
     \item \textbf{Initialization (初期化)}:
-    SfMと同様に、各画像から特徴点検出･マッチングを行う\cite{Lowe2004_SIFT}。
-    ここから得られる疎な点群をSeed Patchとして、初期の法線とともに最初のパッチ郡を生成するよ。
-    前処理としてカメラパラメータの取得にSfMを用いている場合、これらの特徴点と、Triangulation(三角測量)によって得られる疎な三次元点群はそのまま使用できる。
+    SfMと同様に、各画像から特徴点検出・マッチングを行う\cite{Lowe2004_SIFT}。
+    ここから得られる疎な点群をSeed Patchとして、初期の法線とともに最初のパッチ群を生成する。
+    前処理としてカメラパラメータの取得にSfMを用いている場合、これらの特徴点と、三角測量（Triangulation）によって得られる疎な三次元点群はそのまま使用できる。
 
     \item \textbf{Expansion (拡張)}:
     物体の表面が滑らかに連続しているという仮定に基づき、パッチをシーンの表面に沿うように増殖させていく。
@@ -106,8 +94,8 @@ PMVSの処理は、特徴点からの初期化(Initialization)の後、以下の
     \begin{equation}
       g(p) = \frac{1}{|V(B) \setminus R(B) |} \sum_{I \in V(B), I \neq R(B)} \text{g}(B, I, R(B))
     \end{equation}
-    ここで,$\text{g}(B, I_1, I_2)$は、パッチ$B$に対する、画像$I_1$と$I_2$の間のPhotometric Discrepancyを測定するための関数であり、NCCなどを使用することができる。
-    \rewrite{Photometric Discrepancyを日本語で説明すると、}
+    ここで、$\text{g}(B, I_1, I_2)$は、パッチ$B$に対する、画像$I_1$と$I_2$の間のフォトメトリック不一致度（Photometric Discrepancy）を測定するための関数であり、正規化相互相関（NCC）などを使用することができる。
+    フォトメトリック不一致度は、同一の3次元パッチを異なる視点から観測した際の画素値の差異を定量化する指標である。
     この際、パッチの法線 $\mathbf{n}(p)$ を考慮して各画像をホモグラフィ変換することで、視点による透視歪みを補正し、より正確なマッチングを実現している。
 \end{enumerate}
 
@@ -125,8 +113,7 @@ PMVSが、信頼できる「種（Seed）」から局所的に表面を拡張し
 これに対し、Bleyerらは各画素のウィンドウを3次元空間内の傾いた平面（Slanted Support Window）としてモデル化した。
 しかし、各画素に対して最適な平面パラメータ（深度および法線の向き）を決定しようとすると、その探索空間は連続値であり無限大となるため、従来の総当たり的な探索や離散ラベルを用いる手法（Graph Cutsなど）は適用できない。
 
-この問題を解決するために導入されたのが、Barnesらによる最近傍探索アルゴリズム "PatchMatch" の概念をステレオ視に応用した推論フレームワークである。
-\note{元論文をよりしっかり読み込む。正しいか?}
+この問題を解決するために導入されたのが、Barnesらによる最近傍探索アルゴリズム "PatchMatch"の概念をステレオ視に応用した推論フレームワークである。
 
 \textbf{平面モデルとマッチングコスト}:
 左画像の各画素 $\Gamma$ に対し、3次元平面 $f_\Gamma$ を割り当てる。
@@ -162,17 +149,13 @@ PatchMatch Stereoの核心は、ランダムな初期化状態から、空間的
     伝播のみでは、既存の平面パラメータのコピーしか行われないため、真値へ到達できない。そこで、現在の平面パラメータに微小なランダム摂動（Perturbation）を加え、コストが改善するかをテストする。反復が進むにつれて摂動の範囲を指数関数的に狭めていくことで、サブピクセルレベルでの高精度な収束を実現する。
 \end{enumerate}
 
-\missingfigure{イシグロが良く示している収束を示す図を追加}
 
 この手法の利点は、巨大なコストボリューム（Cost Volume）をメモリ上に構築する必要がないため、高解像度画像や大きな視差範囲に対してもメモリ効率が良い点にある。
 また、連続空間での最適化を行うため、離散化に伴う量子化誤差が発生せず、極めて滑らかな曲面や急峻な傾斜面の復元に成功している。
 
-\note{Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}
-
 \cite{Bleyer2011BMVC_PatchMatchStereo}は、基本的に2枚の画像（ステレオペア）間でのマッチングを前提としている。
 しかし、実際のSfM/MVSパイプラインでは、数十から数千枚の画像（Multi-View）が入力され、かつそれらがインターネット上の写真のように撮影条件がバラバラな「非構造化（Unstructured）」データである場合もある。
-\fix{このとき、画像間でのパッチ選択は非効率!?!?}
-この課題に対し、\cite{Schonberger2016ECCV_PatchMatchStereo} は、PatchMatch Stereoのフレームワークを多視点へ拡張する際、「画素ごとの視点選択 (Pixelwise View Selection)」という概念を導入することで解決を図った。
+この課題に対し、\cite{Schonberger2016ECCV_PatchMatchStereo}は、PatchMatch Stereoのフレームワークを多視点へ拡張する際、「画素ごとの視点選択（Pixelwise View Selection）」という概念を導入することで解決を図った。
 
 多視点ステレオにおける最大の課題は、ある参照画像の画素 $\Gamma$ を復元するために、「どのソース画像を使うべきか」が画素ごとに異なる点である。
 画像全体で一律にソース画像を選んでしまうと、オクルージョンや解像度の不一致により、特定の画素ではマッチングが破綻してしまう。
@@ -191,17 +174,15 @@ COLMAPでは、以下の3つの幾何学的事前分布 (Geometric Priors) を�
 \end{enumerate}
 
 Schönbergerらは、これらの幾何学的尺度とフォトメトリックな整合性を統合した確率的グラフィカルモデルを構築し、PatchMatchの反復プロセスの中で「深度・法線の推定」と「最適なソース画像の選択」を同時に最適化する手法を確立した。
-これにより、COLMAPは極めてノイズの多い非構造化データセットに対しても、Robustな密な三次元再構成を可能にした。
+これにより、COLMAPは極めてノイズの多い非構造化データセットに対しても、ロバストな密な三次元再構成を可能にした。
 
-\fix{一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}
+一方、これらの手法は幾何光学（Geometric Optics）による光の直進性を仮定しているが、これは屈折のあるシーンでは成立しない。
+また、反射（Reflection）を含むシーンにおいても、従来の手法は一般的に困難を抱えている。
 
 
 
 
 \subsection{Feed Forward 3D Reconstruction}
-\checkref{\url{https://gemini.google.com/app/d37c008e08350238}}
-
-\note{DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}
 
 本研究の本筋である最適化ベース（Optimization-based）の手法とは対照的に、近年（2023-2025年）、大規模データセットとDeep Learning、特にTransformerアーキテクチャの発展により、幾何学的計算を推論（Inference）として解く「フィードフォワード型（Feed-Forward）」の手法が急速に台頭している。
 従来の手法（SfM/MVSやNeRF/3DGS）が、入力シーンごとにパラメータを反復的に更新して解を探索するのに対し、フィードフォワード型の手法は、学習済みの膨大な事前知識（Priors）を用いて、単一の順伝播処理のみで3次元構造を回帰するデータ駆動型（Data-driven）のアプローチである。
@@ -209,13 +190,11 @@ Schönbergerらは、これらの幾何学的尺度とフォトメトリック�
 このアプローチの代表例として、以下の手法が挙げられる。
 
 \begin{itemize} 
-  \item \textbf{Depth Anything} \cite{yang2024depthanything}: 6200万枚以上の画像から学習された基盤モデル（Foundation Model）であり、DINOv2\cite{}バックボーンを活用することで、テクスチャのない領域や未知のシーンに対しても極めてロバストな単眼深度推定を実現している。
+  \item \textbf{Depth Anything} \cite{yang2024depthanything}: 6200万枚以上の画像から学習された基盤モデル（Foundation Model）であり、DINOv2バックボーンを活用することで、テクスチャのない領域や未知のシーンに対しても極めてロバストな単眼深度推定を実現している。
   しかし、出力はスケール不確定性を伴う2.5次元表現に留まり、多視点間での厳密な幾何学的整合性は保証されない。
   
   \item \textbf{DUSt3R / MASt3R} \cite{wang2024dust3r, leroy2025mast3r}: 従来のSfMパイプライン（特徴点抽出、マッチング、バンドル調整）を完全に排除し、2枚の画像から直接「ポイントマップ（Point Map）」を回帰する手法である。
   これにより、カメラパラメータを事前に与えることなく（Unposed）、エンドツーエンドでの3次元形状およびPoint Mapからのカメラ姿勢の逆推定が可能となった。
-  特にMASt3Rは、~。
-  \checkref{MASt3R ってそんな手法だっけ?}
   
   \item \textbf{VGGT (Visual Geometry Grounded Transformer)} \cite{wang2025vggt}: CVPR 2025にてBest Paper Awardを受賞した、現時点での到達点といえる手法である。
   VGGTは、任意の枚数の画像を入力とし、カメラパラメータ、深度、点群、そして追跡情報（Tracks）の全てを同時に推論する。
@@ -226,11 +205,8 @@ Schönbergerらは、これらの幾何学的尺度とフォトメトリック�
 フィードフォワード手法はその性質上、学習データに深く性能を依存する。
 
 そのため、屈折（Refraction）や透明物体（Transparency）を含むシーンにおいて、これらの手法は破綻しやすい。
-学習データ（ScanNet等）に透明物体が十分に、かつ物理的に正確なアノテーションと共に含まれていないため、フィードフォワードモデルはガラス表面を背景と混同したり、深度を平滑化してしまう傾向がある。
-\fix{根拠薄し}
-対して、本研究で用いるGaussian Splatting等の最適化ベース手法は、屈折率（IoR）やスネルの法則を明示的にモデル化することで、こうした物理現象を正確に逆算することが可能である。
+一般的な学習データセット（ScanNet等）には透明物体が十分に、かつ物理的に正確なアノテーションと共に含まれていないため、フィードフォワードモデルはガラス表面を背景と混同したり、深度を平滑化してしまう傾向がある。
+対して、本研究で用いるGaussian Splatting等の最適化ベース手法は、屈折率（Index of Refraction: IoR）やスネルの法則を明示的にモデル化することで、こうした物理現象を正確に逆算することが可能である。
 
-しかし、動画生成AIが流体や光の反射といった物理法則をデータから獲得しつつある現状 \cite{quan2025transparent} を鑑みると、将来的にはフィードフォワード手法も十分なデータスケールによって屈折を「学習」する可能性は否定できない。
-現時点では、幾何学的整合性と物理的忠実性を担保するためには、依然として物理モデルに基づく最適化が不可欠である。
-
-\missingfigure{Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。} 
+しかし、動画生成AIが流体や光の反射といった物理法則をデータから獲得しつつある現状 \cite{quan2025transparent}を鑑みると、将来的にはフィードフォワード手法も十分なデータスケールによって屈折を「学習」する可能性は否定できない。
+現時点では、幾何学的整合性と物理的忠実性を担保するためには、依然として物理モデルに基づく最適化が不可欠である。 
