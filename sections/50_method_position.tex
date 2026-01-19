@@ -3,83 +3,30 @@
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{figure/50_method/rz.png}
+  \includegraphics[width=1.0\textwidth]{figure/50_method/overview.png}
   \caption{
-    rz平面における見かけの位置と実際の位置の関係。
-    実際の位置が青色のGaussianプリミティブで表される場合、見かけのGaussianは赤色の位置で表される。
+    屈折補正型Gaussian Splattingの概要。
+    本手法では、3次元シーンをGaussianプリミティブの集合で表現し、各カメラ視点ごとに「見かけ空間」へと変換する。
+    具体的には、位置・スケール・不透明度の各パラメータを屈折を考慮した微分可能変換によって補正し、水面における光の屈折現象を物理的にモデル化する。
+    変換後のGaussianをレンダリングし、屈折による歪みを含む入力画像と比較することで、再構成誤差を逆伝播させて元のGaussianパラメータを最適化する。
+    これにより、屈折の影響を排除した3次元モデルの復元と、フォトリアリスティックな新規視点合成を実現する。
     }
-    \label{fig:rz}
+    \label{fig:method-overview}
 \end{figure}
 
 
 
 
-\section{Position Correction (位置の補正)}\label{sec:position-correction}
+\section{3D Covariance $\Sigma^{3D}$ Correction (3D共分散の補正)}\label{sec:3Dsigma-correction}
 
-\begin{figure}[htbp]
-  \centering
-  \includegraphics[width=0.7\textwidth]{figure/50_method/rz.png}
-  \caption{
-    rz平面における見かけの位置と実際の位置の関係。
-    実際の位置が青色のGaussianプリミティブで表される場合、見かけのGaussianは赤色の位置で表される。
-    }
-    \label{fig:rz}
-\end{figure}
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.7\textwidth]{figure/50_method/}
+%   \caption{
 
-本手法では、空気と水面の境界における光の屈折を考慮し、水中の3次元Gaussianのパラメータを、見かけの位置に補正する。
-\fix{
-  今までの説明から、なぜ屈折を考慮した見た目(Photometric)を再現することで、屈折の影響を除去した正当な3次元形状を復元することが可能となるか。
-  Analysis-by-Synthesisの観点から説明する。
-}
-まず、カメラ座標系を定義する。カメラ中心を$z$軸上の$(0, 0, H)$、水面を$xy$平面（$z=0$）、水面法線ベクトルを$\mathbf{n} = (0, 0, 1)$とする。
-ここで、水中の任意のGaussianの中心位置を$\bm{p} = (x, y, z)$ ($z < 0$)とする。
-水面が平坦かつ静穏であると仮定した場合、屈折現象は視線方向に対して回転対称性を有する。
-したがって、幾何学的計算を簡略化するため、3次元座標を動径方向距離 $r = \sqrt{x^2 + y^2}$ を用いて2次元の$rz$平面へと射影して議論を行う。
-既存手法\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n,Dietrich2016_multi-angle-correction,Makris2024_refractive-aware-sfm}では考慮されていないが、あるカメラ位置からの水中の一点はある見かけの位置に位置に一意にマッピングされる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}。
-
-屈折を考慮した際、カメラから観測されるGaussianの見かけの中心位置（Apparent position）を$\bm{p'} = (x', y', z')$とし、$rz$平面上での座標を$(r', z')$とする。
-カメラから$\bm{p'}$へ向かう光線（Ray）と水面との交点を$(s, 0)$ ($0 \leq s < r$)と定義する。
-また、入射角（水中）を$\theta_r$、屈折角（空気中）を$\theta_i$とし、水の屈折率を$n$（空気の屈折率は1）とすると、スネルの法則より次式が成立する。
-\note{どちらを入射角、屈折角と呼ぶか悩ましい。RayーTracing的に視線をベースに考えると空気中が入射角だし、実際のRadianceを考えると水中が入射角である}
-\begin{equation}\label{eq:snell}
-  \sin \theta_i = n \sin \theta_r
-\end{equation}
-幾何学的拘束条件およびスネルの法則より、交点$s$は以下の$s$に関する4次方程式の解$0\leq s < r$として決定される\cite{nassar1994_ApparentDepth}。
-\begin{equation}\label{eq:quartic-s}
-  \begin{split}
-    (1-n^2)s^4 &+ 2(n^2-1)rs^3 \\
-    &+ ((1-n^2)r^2 - n^2H^2 + z^2)s^2 \\
-    &+ 2n^2H^2rs - n^2H^2r^2 = 0
-  \end{split}
-\end{equation}
-\note{ACRSで誤っていた数式を修正済}
-この方程式の物理的に妥当な解$s$は、Newton法あるいはFerrariの公式を用いることで数値的に算出可能である。
-\note{Implementationは後述だが、収束の速さからNewtonを使用}
-
-交点$s$が求まれば、幾何学的な位置関係およびスネルの法則の微分関係（$\triangle IPC, \triangle IP'C', \triangle I'P'C'$における微小変化）を用いることで、見かけの位置$(r', z')$は$\theta_i$および$\theta_r$の関数として以下の閉形式で導出される。
-\note{詳細な導出はAppendixで。ACRSで記述しているのでそれを翻訳}
-\begin{subequations}\label{eq:apparent-position}
-  \begin{empheq}[left=\empheqlbrace]{align}
-    r' &= r + (n^2 -1) \cdot z \cdot \tan^3 \theta_r \label{eq:r'} \\
-    z' &= \frac{1}{n} \cdot \frac{{\cos \theta_i}^3}{{\cos \theta_r}^3} \cdot z \label{eq:z'}
-\end{empheq}
-\end{subequations}
-ここで$z < 0$および$n > 1$,（$\theta_i > \theta_r$）であることから、$r' < r$かつ$|z'| < |z|$が常に成立する。
-これは、水中の物体が屈折の影響により、実位置よりも「浅く」、かつ「光軸（直下）寄りに」観測されるという物理現象と合致する。
-なお、カメラ直下（Nadir view: $r=0$）の特異点においては、上式は$z'=z/n$となり、これは従来の航空写真測量等で用いられる近似式\cite{Woodget2014_PhotograBathy-multiply-n}と一致する。
-
-提案手法を3D Gaussian Splattingの学習プロセスに組み込むためには、この座標変換が微分可能でなければならない。
-すなわち、実空間上の位置$\bm{p}$に対する見かけの位置$\bm{p'}$の勾配（Jacobian）が必要となる:
-\begin{equation}\label{eq:Jacobian}
-  J_{app} = \frac{\partial \bm{p'}}{\partial \bm{p}} \in \mathbb{R}^{3 \times 3}
-\end{equation}
-
-\note{実装は後述だが、中心差分法でなく、陰関数定理を用いた。そのため、水面高さや屈折率に対しても勾配を流し、屈折率やカメラ位置も最適化対象にすることができる}
-本研究では、解析的な導出による計算コストと実装の複雑さを回避するため、中心差分法（Central finite differences）を用いた数値微分によりJacobianを算出する。
-例えば、$x$成分に対する偏微分は次式で近似される。
-\begin{equation}
-  \frac{\partial x'}{\partial x} \approx \frac{p'_x(x+\Delta x) - p'_x(x-\Delta x)}{2\Delta x}
-\end{equation}
-この微分可能な「位置補正」モジュールにより、単に屈折率と水面高さを与えるだけで、歪んだ観測画像から屈折の影響を除去した正当な3次元形状を復元することが可能となる。
+%     }
+%     \label{fig:}
+% \end{figure}
 
 
+前節で述べた位置補正 $\bm{p} \to \bm{p'}$ は非線形な変換であり、カメラから見た「見かけの空間（Apparent space）」は、実空間に対して非一様に歪み、圧縮された空間となる（\figureref{fig:space_compression_by_view}）。特に、入射角が大きい領域や深度が深い領域ほど、光路の屈折による空間圧縮効果は顕著となる。もし、Gaussianの中心位置のみを補正し、その形状（スケール$\bm{s}$および回転$\bm{R}$）を実空間の定義のまま描画に用いた場合、圧縮された見かけの空間に対してGaussianが相対的に肥大化して投影されることとなる。これは、レンダリング画像において不自然なボケ（Blurring）や、境界面の意図しない膨張といった視覚的アーティファクトを引き起こす要因となる（\figureref{fig:artifact-w/o-scale-correction}参照）。したがって、幾何学的に正確なレンダリングを行うためには、Gaussianの形状を決定する分散共分散行列（Covariance matrix）に対しても、空間の歪みに応じた補正が必要となる。ここで、各Gaussianプリミティブは十分に小さいと仮定し、その中心$\bm{p}$近傍における屈折変換を、Jacobian $J_{app}$（式\ref{eq:Jacobian}）を用いた局所的な線形近似（Affine変換）として扱う。実空間におけるGaussianの3次元分散共分散行列を$\Sigma^{3D}$とすると、多変量正規分布の線形変換の性質に基づき、見かけの空間における分散共分散行列$\Sigma^{3D}_{app}$は次式で導出される。\begin{equation}\label{eq:covariance-correction}\Sigma^{3D}{app} = J{app} \Sigma^{3D} J_{app}^\top\end{equation}この$\Sigma^{3D}{app}$は、屈折によって歪んだ局所空間におけるGaussianの適切な形状と配向を表現している。最終的なレンダリングプロセスでは、通常の3DGSと同様に、この補正された共分散行列$\Sigma^{3D}{app}$に対してView Transformationおよび射影変換（EWA Splatting等）を適用し、画像平面上での2次元共分散行列を算出する。これにより、水面屈折特有の非線形な歪みを考慮しつつ、高品質かつアーティファクトの少ない水中シーンの再現が可能となる。
