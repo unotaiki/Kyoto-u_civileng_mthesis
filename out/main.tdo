@@ -14,46 +14,43 @@
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 浅水域を具体的に定義する文章を挿入。水底が視認可能な水域で、現実的には透明度が高く水面が穏やかな水域。具体的には、淡水では~2m、海水では~5m程度が現実的。}{5}{section*.22}%
 \contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 陸域は説得力がない。もっとストレートな研究を探す。エコトーンというワードだと出てこないかも。Geomorphologyとかで調べる}{8}{section*.28}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 植生 = フォトリアルな見た目 から判別というニュアンスを含め GSのNVSタスクの有用性を後に説明したい}{8}{section*.29}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ NotionにALBの資料をまとめたことあり}{10}{section*.36}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 何mくらいまで測れるか。}{10}{section*.37}%
-\contentsline {todo}{Figure: Passive Remote SensingとActive Remote Sensingの図。}{10}{section*.37}%
-\contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{10}{section*.37}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ SDBに関して特化したSurvey論文があったように思える}{11}{section*.39}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Lyzenga法やStumpf法などの引用}{11}{section*.40}%
-\contentsline {todo}{Figure: 図で屈折が既存の光の直進性やPinholeモデルを成立させなくことを示す}{12}{subsection.42}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ いろいろなPhotogrammetric Bathymetry手法を達観。表で表すと見やすいか。。。}{12}{section*.44}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{14}{section*.49}%
-\contentsline {todo}{Figure: MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}{15}{subsection.51}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{16}{section*.53}%
-\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{17}{section*.58}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{18}{section*.60}%
-\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{19}{Item.64}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{19}{section*.65}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{19}{section*.66}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{20}{section*.70}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{20}{section*.72}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}{20}{section*.73}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{20}{section*.74}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{21}{section*.75}%
-\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{21}{section*.75}%
-\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{21}{section.76}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{22}{section*.78}%
-\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{23}{Item.82}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{23}{figure.caption.83}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{25}{figure.caption.87}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 自動運転}{26}{section*.88}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ MCMCの説明も。?。これらのヒューリスティックスはデータセットや初期値に対して依存するため、それを克服するようなMCMCといった手法も考案されている。}{28}{section*.90}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ローパスフィルタまでは説明しなくても良い。(3DGSでも説明していないから)。MipSplatting説明しないといけない}{31}{section*.95}%
-\contentsline {todo}{Figure: 依然、木津川で再構成した際のアーティストを示す}{31}{section*.95}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ メッシュの抽出にはTSDF Fusionを用いている。}{32}{section*.97}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 今までの説明から、なぜ屈折を考慮した見た目(Photometric)を再現することで、屈折の影響を除去した正当な3次元形状を復元することが可能となるか。Analysis-by-Synthesisの観点から説明する。}{33}{section*.103}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ どちらを入射角、屈折角と呼ぶか悩ましい。RayーTracing的に視線をベースに考えると空気中が入射角だし、実際のRadianceを考えると水中が入射角である}{34}{section*.104}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ACRSで誤っていた数式を修正済}{34}{section*.106}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Implementationは後述だが、収束の速さからNewtonを使用}{34}{section*.107}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 詳細な導出はAppendixで。ACRSで記述しているのでそれを翻訳}{35}{section*.108}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 実装は後述だが、中心差分法でなく、陰関数定理を用いた。そのため、水面高さや屈折率に対しても勾配を流し、屈折率やカメラ位置も最適化対象にすることができる}{35}{section*.110}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 3DGSに対する補正と2DGSに対する補正双方を描く}{35}{section*.112}%
-\contentsline {todo}{Figure: それぞれのCorrectionを適用した場合、屈折無しで学習したモデルがどのように真値の屈折あり画像に近づいていくか見せる。Lake1とかを使うといいかも。}{35}{figure.caption.113}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ $J_app$の導出をAppendixに載せたい。実装でも結局明示的に算出しているから}{36}{section*.115}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Color Correctionというよりも、 `Radiometric Correction'という方が適切でニュアンスが伝わりやすいと思い変えた}{37}{section*.119}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Blenderでは、どのRGB補正が使われ画像が出力されるか確認}{37}{section*.120}%
+\contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{10}{figure.caption.37}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ SDBに関して特化したSurvey論文があったように思える}{10}{section*.39}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Lyzenga法やStumpf法などの引用}{10}{section*.40}%
+\contentsline {todo}{Figure: 図で屈折が既存の光の直進性やPinholeモデルを成立させなくことを示す}{13}{subsection.42}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ COLMAPでは、Pixel wiseなんちゃらで、MVSの新規研究も実装されている}{15}{section*.47}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 無駄に力入れて書きすぎ。MVSとかほとんど本題じゃない。むしろSfMを頑張って記述するべきだった。(いい勉強になったが)、Appendixに回した方がいいげ}{16}{section*.50}%
+\contentsline {todo}{Figure: MVSがSfMに続くパイプラインで構成されていることを示す図。フィックスターズの表す図を参考に}{16}{section*.50}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{17}{section*.52}%
+\contentsline {todo}{\fcolorbox {green}{green!40}{\textcolor {green!40}{o}}\ Photometric Discrepancyを日本語で説明すると、}{18}{section*.57}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 元論文をよりしっかり読み込む。正しいか?}{19}{section*.59}%
+\contentsline {todo}{Figure: イシグロが良く示している収束を示す図を追加}{20}{Item.63}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Pixel wise View Selectionが、この手法をいかにMVSへ拡張したか説明する。}{20}{section*.64}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ このとき、画像間でのパッチ選択は非効率!?!?}{20}{section*.65}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 一方、Geometric Opticsによる光の直進性を仮定するが、これは屈折のあるSceneでは成立しない。(Reflectionも一般的に苦手)}{21}{section*.69}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ \url {https://gemini.google.com/app/d37c008e08350238}}{21}{section*.71}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ DINO などの深層学習ベースの特徴抽出を解説。自分の提案手法の前処理にも、水面マスクにDinoを使用する}{21}{section*.72}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ MASt3R ってそんな手法だっけ?}{21}{section*.73}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 根拠薄し}{22}{section*.74}%
+\contentsline {todo}{Figure: Optimization-based手法とFeed-Forward手法の処理フロー比較図：Iterativeなループを持つ前者と、Single Passで完結する後者の対比。また、透明物体に対する挙動の違い（透過してしまうか、屈折を考慮するか）の概念図。}{22}{section*.74}%
+\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{22}{section.75}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{23}{section*.77}%
+\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{24}{Item.81}%
+\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{24}{figure.caption.82}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{26}{figure.caption.86}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 自動運転}{27}{section*.87}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ MCMCの説明も。?。これらのヒューリスティックスはデータセットや初期値に対して依存するため、それを克服するようなMCMCといった手法も考案されている。}{29}{section*.89}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ローパスフィルタまでは説明しなくても良い。(3DGSでも説明していないから)。MipSplatting説明しないといけない}{32}{section*.94}%
+\contentsline {todo}{Figure: 依然、木津川で再構成した際のアーティストを示す}{32}{section*.94}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ メッシュの抽出にはTSDF Fusionを用いている。}{33}{section*.96}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 今までの説明から、なぜ屈折を考慮した見た目(Photometric)を再現することで、屈折の影響を除去した正当な3次元形状を復元することが可能となるか。Analysis-by-Synthesisの観点から説明する。}{34}{section*.102}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ どちらを入射角、屈折角と呼ぶか悩ましい。RayーTracing的に視線をベースに考えると空気中が入射角だし、実際のRadianceを考えると水中が入射角である}{35}{section*.103}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ACRSで誤っていた数式を修正済}{35}{section*.105}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Implementationは後述だが、収束の速さからNewtonを使用}{35}{section*.106}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 詳細な導出はAppendixで。ACRSで記述しているのでそれを翻訳}{36}{section*.107}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 実装は後述だが、中心差分法でなく、陰関数定理を用いた。そのため、水面高さや屈折率に対しても勾配を流し、屈折率やカメラ位置も最適化対象にすることができる}{36}{section*.109}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 3DGSに対する補正と2DGSに対する補正双方を描く}{36}{section*.111}%
+\contentsline {todo}{Figure: それぞれのCorrectionを適用した場合、屈折無しで学習したモデルがどのように真値の屈折あり画像に近づいていくか見せる。Lake1とかを使うといいかも。}{36}{figure.caption.112}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ $J_app$の導出をAppendixに載せたい。実装でも結局明示的に算出しているから}{37}{section*.114}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Color Correctionというよりも、 `Radiometric Correction'という方が適切でニュアンスが伝わりやすいと思い変えた}{38}{section*.118}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Blenderでは、どのRGB補正が使われ画像が出力されるか確認}{38}{section*.119}%

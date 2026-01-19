@@ -1,0 +1,107 @@
+%!TEX root = ../main.tex
+\section{関連研究}
+
+\note{
+  いろいろなPhotogrammetric Bathymetry手法を達観。
+  表で表すと見やすいか。。。
+}
+
+
+
+\url{https://www.notion.so/Photommetric-Bathymetry-2e002f0efa178010b4f3f365fdea4f29}
+\cite{Kujawa2025_survey-shallow-bathymetry}からの引用。
+
+\begin{table}[htbp]
+  \centering
+  \small % Reduces font size slightly to fit more content
+  \caption{Comparison of Refraction Correction Approaches for Bathymetric Remote Sensing}
+  \label{tab:refraction_methods}
+  \renewcommand{\arraystretch}{1.5} % Increases row height for readability
+  
+  % Define column types:
+  % l = left align (auto width)
+  % X = auto-wrap paragraph (variable width)
+  \begin{tabularx}{\textwidth}{@{} l >{\RaggedRight}X >{\RaggedRight}X @{}}
+  \toprule
+  \textbf{Reference} & \textbf{Methodological Workflow} & \textbf{Limitations \& Performance} \\ 
+  \midrule
+  
+  % Row 1: Woodget et al.
+  \textbf{Woodget et al. \cite{Woodget2014_PhotograBathy-multiply-n}} & 
+  \textbf{Simple Refraction Correction (Nadir)}
+  \begin{itemize}[leftmargin=*, nosep, after=\vspace{\baselineskip}]
+      \item Creates a Water Surface Model (WSM) from orthophotos and Digital Elevation Models (DEMs).
+      \item Estimates apparent depth: (DEM Base $-$ WSM).
+      \item Applies Snell's law with pure water refractive index (1.34).
+      \item Corrects DEM by applying the difference between estimated and corrected depths.
+  \end{itemize} & 
+  \textbf{Limitations:}
+  \begin{itemize}[leftmargin=*, nosep]
+      \item Assumes a flat water surface.
+      \item Reduced effectiveness at depths $>$ 0.4--0.7\,m.
+  \end{itemize} 
+  \vspace{4pt} \textit{Note: Implementation details in [50].} \\ 
+  \midrule
+  
+  % Row 2: Dietrich
+  \textbf{Dietrich et al. \cite{Dietrich2016_multi-angle-correction}} & 
+  \textbf{Geometric Refraction (Multi-camera)}
+  \begin{itemize}[leftmargin=*, nosep, after=\vspace{\baselineskip}]
+      \item Uses SfM processing to find ground coordinates of IFOV and camera corners.
+      \item Reconstructs water surface via GNSS edge measurement and point cloud digitization.
+      \item Calculates apparent depth and angle of incidence (Snell's Law) per point.
+      \item Derives true depth geometrically based on the shift between true and apparent positions.
+  \end{itemize} & 
+  \textbf{Performance:}
+  \begin{itemize}[leftmargin=*, nosep]
+      \item Accuracy: $\pm$0.01\,m (0.02\% flight alt).
+      \item Precision: 0.06--0.08\,m.
+  \end{itemize}
+  \vspace{4pt}
+  \textbf{Limitations:}
+  \begin{itemize}[leftmargin=*, nosep]
+      \item Requires flat surface and precise camera orientation.
+      \item Best for clear, shallow water (min. turbidity).
+  \end{itemize} 
+  \textit{Tool: pyBathySfM.} \\ 
+  \midrule
+  
+  % Row 3: Agrafiotis et al.
+  \textbf{Agrafiotis et al. \cite{Agrafiotis2020_refractiveCorrection}} & 
+  \textbf{Image-based Refraction Correction}
+  \begin{itemize}[leftmargin=*, nosep, after=\vspace{\baselineskip}]
+      \item Generates dense point clouds via SfM-MVS from UAS data.
+      \item Recovers depth using \textit{DepthLearn} machine learning technique [26,53].
+      \item Corrects raw images for refraction using transformation and resampling.
+      \item Reprocesses corrected images to generate a refraction-free 3D coastal model.
+  \end{itemize} & 
+  \textbf{Limitations:}
+  \begin{itemize}[leftmargin=*, nosep]
+      \item Relies on calm environmental conditions and clear water.
+      \item Requires textured seabed (homogeneous areas challenge SfM-MVS).
+  \end{itemize} \\ 
+  \midrule
+  
+  % Row 4: Mandlburger et al.
+  \textbf{Mandlburger et al. \cite{Mandlburger2021_BathyNet}} & 
+  \textbf{BathyNet (Deep Neural Network)}
+  \begin{itemize}[leftmargin=*, nosep, after=\vspace{\baselineskip}]
+      \item Classifies Airborne LiDAR Bathymetry (ALB) points to generate a Digital Water Surface Model (DWSM).
+      \item Corrects ALB bottom points for refraction and travel time.
+      \item Intersects DWSM rays with DTM to determine oblique water distance.
+      \item Trains a U-Net CNN using RGBC multispectral info and calculated distances.
+  \end{itemize} & 
+  \textbf{Performance:}
+  \begin{itemize}[leftmargin=*, nosep]
+      \item Bias accuracy: $<$ 15\,cm.
+      \item Std. Dev: $\approx$ 40\,cm.
+  \end{itemize}
+  \vspace{4pt}
+  \textbf{Limitations:}
+  \begin{itemize}[leftmargin=*, nosep]
+      \item Dependent on high-quality reference data (ALB).
+      \item Limited generalizability (tested in clear lakes).
+  \end{itemize} \\ 
+  \bottomrule
+  \end{tabularx}
+\end{table}

@@ -42,6 +42,7 @@ Triangulation is subsequently applied to obtain additional 3D points from featur
 \end{figure}
 
 \subsection{Multi-View Stereo}
+\note{無駄に力入れて書きすぎ。MVSとかほとんど本題じゃない。むしろSfMを頑張って記述するべきだった。(いい勉強になったが)、Appendixに回した方がいいげ}
 SfMなどによって得られたカメラパラメータが既知の多視点画像郡から、各画素単位で密な深度推定により、高密度な三次元復元を行うのが Multi-View Stereo (MVS) である。
 SfMの出力三次元情報が疎な(Sparse)点群であるのに対して、MVSは物体表面の密な(Dense)な三次元点群やメッシュ(Mesh)を推定することから、MVSは Dense 3D Reconstruction (密な三次元再構成)のタスクを行っていると言える。
 これを達成するため、各画素における深度(Depth)や法線(Normal)といった幾何パラメータを、画像間の整合性(Photometric Consistency)に基づいて最適化する手法がとられる。

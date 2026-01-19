@@ -1243,6 +1243,42 @@
       \field{title}{深海の地図をつくる : 五大洋の底をめぐる命がけの競争}
       \field{year}{2025}
     \endentry
+    \entry{Mason2008_colouring-the-white-ribbon}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=df390fff4f96badd3768027757998280}{%
+           family={Mason},
+           familyi={M\bibinitperiod},
+           given={Travis},
+           giveni={T\bibinitperiod}}}%
+        {{hash=3af512f86c6a6bf0e47eaa20fb139c11}{%
+           family={Rainbow},
+           familyi={R\bibinitperiod},
+           given={Ben},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d1cfdb186dbf32ba6d3d4b10b5dce6aa}{%
+           family={McVey},
+           familyi={M\bibinitperiod},
+           given={Stuart},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{3f0c0b8f9f3571dce3d6be2515fc9055}
+      \strng{fullhash}{9c064ab32dfab28565555c942c40f40e}
+      \strng{fullhashraw}{9c064ab32dfab28565555c942c40f40e}
+      \strng{bibnamehash}{9c064ab32dfab28565555c942c40f40e}
+      \strng{authorbibnamehash}{9c064ab32dfab28565555c942c40f40e}
+      \strng{authornamehash}{3f0c0b8f9f3571dce3d6be2515fc9055}
+      \strng{authorfullhash}{9c064ab32dfab28565555c942c40f40e}
+      \strng{authorfullhashraw}{9c064ab32dfab28565555c942c40f40e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.hydro-international.com/content/article/colouring-the-white-ribbon}}
+      \field{month}{1}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{TColouring the 'White Ribbon'}
+      \field{year}{2008}
+    \endentry
     \entry{Mcmahon2012_white-ribbon-figure}{article}{}{}
       \name{author}{3}{}{%
         {{hash=5745f710d1153be8c5d3cd6c31af699d}{%
@@ -1269,8 +1305,8 @@
       \strng{authornamehash}{15d960fc1541e26ebb862e51de5d52fa}
       \strng{authorfullhash}{9c5e3c92d460314ef52a9b9fdc89bd70}
       \strng{authorfullhashraw}{9c5e3c92d460314ef52a9b9fdc89bd70}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Proceedings of the National Academy of Sciences of the United States of America}
@@ -1492,6 +1528,32 @@
       \field{note}{Accessed: 2026-01-06}
       \field{title}{Basic Concepts of Ecosystem: Ecotone}
     \endentry
+    \entry{asia_survey_ALB}{misc}{}{}
+      \name{author}{1}{}{%
+        {{hash=5f991fad7d7dc88f77b0b10da36618de}{%
+           family={株式会社},
+           familyi={株\bibinitperiod},
+           given={アジア航測},
+           giveni={ア\bibinitperiod}}}%
+      }
+      \strng{namehash}{5f991fad7d7dc88f77b0b10da36618de}
+      \strng{fullhash}{5f991fad7d7dc88f77b0b10da36618de}
+      \strng{fullhashraw}{5f991fad7d7dc88f77b0b10da36618de}
+      \strng{bibnamehash}{5f991fad7d7dc88f77b0b10da36618de}
+      \strng{authorbibnamehash}{5f991fad7d7dc88f77b0b10da36618de}
+      \strng{authornamehash}{5f991fad7d7dc88f77b0b10da36618de}
+      \strng{authorfullhash}{5f991fad7d7dc88f77b0b10da36618de}
+      \strng{authorfullhashraw}{5f991fad7d7dc88f77b0b10da36618de}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.mlit.go.jp/tec/i-construction/pdf/matching_180516_siryou_1.pdf}}
+      \field{month}{5}
+      \field{note}{Accessed: 2026-01-19}
+      \field{title}{空から陸と水深を測る 「航空レーザ測深ALB」}
+      \field{year}{2018}
+    \endentry
     \entry{milt_river_3d_application_manual}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=77e7e0da59bc2c9aef1ed480b894dab9}{%
@@ -1518,6 +1580,57 @@
       \field{note}{Accessed: 2026-01-11}
       \field{title}{河川管理用三次元データ活用マニュアル （案）}
       \field{year}{2020}
+    \endentry
+    \entry{Janga2023_RS-AI-Earth-Sciences}{article}{}{}
+      \name{author}{4}{}{%
+        {{hash=77ae00ec6d27ddac97f5846d137ae06b}{%
+           family={Janga},
+           familyi={J\bibinitperiod},
+           given={Bhargavi},
+           giveni={B\bibinitperiod}}}%
+        {{hash=b4d6481fa355e80b414bef73d30affbe}{%
+           family={Asamani},
+           familyi={A\bibinitperiod},
+           given={Gokul\bibnamedelima Prathin},
+           giveni={G\bibinitperiod\bibinitdelim P\bibinitperiod}}}%
+        {{hash=40da32ed9b0e2abf027cf9c29b57f833}{%
+           family={Sun},
+           familyi={S\bibinitperiod},
+           given={Ziheng},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=fe75f1be52e2d8429cf63a10997cc0d2}{%
+           family={Cristea},
+           familyi={C\bibinitperiod},
+           given={Nicoleta},
+           giveni={N\bibinitperiod}}}%
+      }
+      \strng{namehash}{305791ca26e2042d61472ef9d49970b0}
+      \strng{fullhash}{0c6e2e8c00778d4da3733d23b643b859}
+      \strng{fullhashraw}{0c6e2e8c00778d4da3733d23b643b859}
+      \strng{bibnamehash}{0c6e2e8c00778d4da3733d23b643b859}
+      \strng{authorbibnamehash}{0c6e2e8c00778d4da3733d23b643b859}
+      \strng{authornamehash}{305791ca26e2042d61472ef9d49970b0}
+      \strng{authorfullhash}{0c6e2e8c00778d4da3733d23b643b859}
+      \strng{authorfullhashraw}{0c6e2e8c00778d4da3733d23b643b859}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{2072-4292}
+      \field{journaltitle}{Remote Sensing}
+      \field{number}{16}
+      \field{title}{A Review of Practical AI for Remote Sensing in Earth Sciences}
+      \field{volume}{15}
+      \field{year}{2023}
+      \verb{doi}
+      \verb 10.3390/rs15164112
+      \endverb
+      \verb{urlraw}
+      \verb https://www.mdpi.com/2072-4292/15/16/4112
+      \endverb
+      \verb{url}
+      \verb https://www.mdpi.com/2072-4292/15/16/4112
+      \endverb
     \endentry
     \entry{He2024_survey-shallow-bathymetry}{article}{}{}
       \name{author}{4}{}{%
@@ -1648,8 +1761,8 @@
       \strng{authorfullhash}{0fdef06221cc2eb6daad1288f774f568}
       \strng{authorfullhashraw}{0fdef06221cc2eb6daad1288f774f568}
       \field{extraname}{2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Although aerial image-based bathymetric mapping can provide, unlike acoustic or LiDAR (Light Detection and Ranging) sensors, both water depth and visual information, water refraction poses significant challenges for accurate depth estimation. In order to tackle this challenge, we propose an image correction methodology, which first exploits recent machine learning procedures that recover depth from image-based dense point clouds and then corrects refraction on the original imaging dataset. This way, the structure from motion (SfM) and multi-view stereo (MVS) processing pipelines are executed on a refraction-free set of aerial datasets, resulting in highly accurate bathymetric maps. Performed experiments and validation were based on datasets acquired during optimal sea state conditions and derived from four different test-sites characterized by excellent sea bottom visibility and textured seabed. Results demonstrated the high potential of our approach, both in terms of bathymetric accuracy, as well as texture and orthoimage quality.}
@@ -1704,8 +1817,8 @@
       \strng{authornamehash}{e78abd90f30a00f14f585e739ed63488}
       \strng{authorfullhash}{47dd02a17699c9a365c582a486996ce5}
       \strng{authorfullhashraw}{47dd02a17699c9a365c582a486996ce5}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2512-2819}
@@ -1725,6 +1838,60 @@
       \endverb
       \verb{url}
       \verb http://dx.doi.org/10.1007/s41064-021-00142-3
+      \endverb
+    \endentry
+    \entry{Zhan2023CVPR_NeRFrac}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=ee4cdff51e32ab724eb6a4bd97e22dfc}{%
+           family={Zhan},
+           familyi={Z\bibinitperiod},
+           given={Yifan},
+           giveni={Y\bibinitperiod}}}%
+        {{hash=5a4589fa248159d306ff82787f49fa72}{%
+           family={Nobuhara},
+           familyi={N\bibinitperiod},
+           given={Shohei},
+           giveni={S\bibinitperiod}}}%
+        {{hash=d58a96d8e7f4077a6a147b6b5d37a5b4}{%
+           family={Nishino},
+           familyi={N\bibinitperiod},
+           given={Ko},
+           giveni={K\bibinitperiod}}}%
+        {{hash=5bd64e0d5231c6f7a972360273e7b57d}{%
+           family={Zheng},
+           familyi={Z\bibinitperiod},
+           given={Yinqiang},
+           giveni={Y\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {IEEE}%
+      }
+      \strng{namehash}{dc11af03181710e6fa973a23fcd8c69e}
+      \strng{fullhash}{8a9dce86939c1cb43841aeb60dec1938}
+      \strng{fullhashraw}{8a9dce86939c1cb43841aeb60dec1938}
+      \strng{bibnamehash}{8a9dce86939c1cb43841aeb60dec1938}
+      \strng{authorbibnamehash}{8a9dce86939c1cb43841aeb60dec1938}
+      \strng{authornamehash}{dc11af03181710e6fa973a23fcd8c69e}
+      \strng{authorfullhash}{8a9dce86939c1cb43841aeb60dec1938}
+      \strng{authorfullhashraw}{8a9dce86939c1cb43841aeb60dec1938}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{2023 IEEE/CVF International Conference on Computer Vision (ICCV)}
+      \field{month}{10}
+      \field{title}{NeRFrac: Neural Radiance Fields through Refractive Surface}
+      \field{year}{2023}
+      \field{pages}{18356\bibrangedash 18366}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1109/iccv51070.2023.01687
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1109/iccv51070.2023.01687
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1109/iccv51070.2023.01687
       \endverb
     \endentry
     \entry{Lowe2004_SIFT}{article}{}{}
@@ -1747,8 +1914,8 @@
       \strng{authornamehash}{83f4643381c1cc2c483b4210498fedb0}
       \strng{authorfullhash}{83f4643381c1cc2c483b4210498fedb0}
       \strng{authorfullhashraw}{83f4643381c1cc2c483b4210498fedb0}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1573-1405}
@@ -1790,8 +1957,8 @@
       \strng{authornamehash}{d0465e31872bd5a1d01ac67d592146e9}
       \strng{authorfullhash}{d0465e31872bd5a1d01ac67d592146e9}
       \strng{authorfullhashraw}{d0465e31872bd5a1d01ac67d592146e9}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0162-8828}
@@ -1837,8 +2004,8 @@
       \strng{authornamehash}{fd6cd035a6e3f6ec978ad866925826c7}
       \strng{authorfullhash}{fd6cd035a6e3f6ec978ad866925826c7}
       \strng{authorfullhashraw}{fd6cd035a6e3f6ec978ad866925826c7}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Readings in Computer Vision}
@@ -1891,8 +2058,8 @@
       \strng{authornamehash}{36a5e31de7a1be65ff51f08258616698}
       \strng{authorfullhash}{30e48d2aaee2a1fda71a42c2cf87706f}
       \strng{authorfullhashraw}{30e48d2aaee2a1fda71a42c2cf87706f}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Vision Algorithms: Theory and Practice}
@@ -1928,8 +2095,8 @@
       \strng{authornamehash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhashraw}{fcc0ce660086b48f2fa45b85cd8342c1}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{http://theia-sfm.org}}
@@ -1965,8 +2132,8 @@
       \strng{authornamehash}{c1e5b0158ddb37b00d4f2a4fd2d47010}
       \strng{authorfullhash}{aae8f6d850b0cf17ca0a149c54e63e45}
       \strng{authorfullhashraw}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Procedings of the British Machine Vision Conference 2011}
@@ -2019,8 +2186,8 @@
       \strng{authornamehash}{d480188def317b00b258c99797133e90}
       \strng{authorfullhash}{062e89ae846b98c55f3cb2ea57b0d11c}
       \strng{authorfullhashraw}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Computer Vision - ECCV 2016}
@@ -2092,8 +2259,8 @@
       \strng{authornamehash}{e72c352970f78c36648ce1c8e639a2f1}
       \strng{authorfullhash}{b7faf04d2852742fb4ea63abf0331db6}
       \strng{authorfullhashraw}{b7faf04d2852742fb4ea63abf0331db6}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{0360-0300}
@@ -2135,8 +2302,8 @@
       \strng{authornamehash}{f8001df6310338eca1fdaaf0f52d5a8a}
       \strng{authorfullhash}{f8001df6310338eca1fdaaf0f52d5a8a}
       \strng{authorfullhashraw}{f8001df6310338eca1fdaaf0f52d5a8a}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{ArXiv}
@@ -2199,8 +2366,8 @@
       \strng{authornamehash}{4cd9f80f9c0a6011d36c6da40974de58}
       \strng{authorfullhash}{9deb5a118d969e2f12ddfefd58af2519}
       \strng{authorfullhashraw}{9deb5a118d969e2f12ddfefd58af2519}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2260,8 +2427,8 @@
       \strng{authornamehash}{a9c06d9c8dc53b499cee381e94a723a0}
       \strng{authorfullhash}{6a2fd2f7256af35f3de368895ed15158}
       \strng{authorfullhashraw}{6a2fd2f7256af35f3de368895ed15158}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2302,8 +2469,8 @@
       \strng{authornamehash}{a6514dccec078c9745e7c9767fec8de7}
       \strng{authorfullhash}{8b27c087d4af28ede739310fa8f96e44}
       \strng{authorfullhashraw}{8b27c087d4af28ede739310fa8f96e44}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2366,8 +2533,8 @@
       \strng{authornamehash}{5951491ea1890c94292fc700adba0663}
       \strng{authorfullhash}{c8ad9624cf0f856fa33f6a8a6e506c76}
       \strng{authorfullhashraw}{c8ad9624cf0f856fa33f6a8a6e506c76}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2440,8 +2607,8 @@
       \strng{authornamehash}{d9668dbb73566d1aa055ed322f12bb9b}
       \strng{authorfullhash}{d86ec4ce841bcef744626741a3e34d6f}
       \strng{authorfullhashraw}{d86ec4ce841bcef744626741a3e34d6f}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2514,8 +2681,8 @@
       \strng{authornamehash}{12ecfbee9677d4965da6f805b5017c84}
       \strng{authorfullhash}{49902cf46e160313ed5cca415623d1e0}
       \strng{authorfullhashraw}{49902cf46e160313ed5cca415623d1e0}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Computer Vision – ECCV 2024}
@@ -2565,8 +2732,8 @@
       \strng{authornamehash}{4ccd2e8fea4fe46b7dda34ff4f3ca373}
       \strng{authorfullhash}{e388f13f2b380e3adb9ecb002b368fb2}
       \strng{authorfullhashraw}{e388f13f2b380e3adb9ecb002b368fb2}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2621,8 +2788,8 @@
       \strng{authornamehash}{09c4bb837f5a87c60a96478e1577dc5e}
       \strng{authorfullhash}{c8f9d8291117c07fbb4bacd402478b24}
       \strng{authorfullhashraw}{c8f9d8291117c07fbb4bacd402478b24}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{3DV}
@@ -2662,8 +2829,8 @@
       \strng{authornamehash}{50590bd7d1805b85572372f47ed9cfb8}
       \strng{authorfullhash}{33fa30f85e7c0a7b8ed3995c5a390e5a}
       \strng{authorfullhashraw}{33fa30f85e7c0a7b8ed3995c5a390e5a}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Proceedings Visualization, 2001. VIS '01.}
@@ -2711,8 +2878,8 @@
       \strng{authornamehash}{ec7f3703fbd419b313e0a329e6241059}
       \strng{authorfullhash}{4eadc44b73c932989cbd36a77d356aab}
       \strng{authorfullhashraw}{4eadc44b73c932989cbd36a77d356aab}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{1941-0042}
@@ -2755,8 +2922,8 @@
       \strng{authornamehash}{a09df9f123146b8e2c7f1134c9496932}
       \strng{authorfullhash}{a09df9f123146b8e2c7f1134c9496932}
       \strng{authorfullhashraw}{a09df9f123146b8e2c7f1134c9496932}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{arXiv preprint arXiv:1412.6980}
@@ -3062,7 +3229,9 @@
     \endentry
   \enddatalist
   \missing{Furukawa2010_PMVS}
+  \missing{Makris2024_RSfM}
   \missing{Schnberger2016ECCV_PatchMatchStereo}
+  \missing{Zhan2023_NeRFrac}
   \missing{leroy2025mast3r}
   \missing{quan2025transparent}
   \missing{wang2024dust3r}
