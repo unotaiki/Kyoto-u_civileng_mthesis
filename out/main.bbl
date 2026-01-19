@@ -1243,6 +1243,42 @@
       \field{title}{深海の地図をつくる : 五大洋の底をめぐる命がけの競争}
       \field{year}{2025}
     \endentry
+    \entry{Mason2008_colouring-the-white-ribbon}{misc}{}{}
+      \name{author}{3}{}{%
+        {{hash=df390fff4f96badd3768027757998280}{%
+           family={Mason},
+           familyi={M\bibinitperiod},
+           given={Travis},
+           giveni={T\bibinitperiod}}}%
+        {{hash=3af512f86c6a6bf0e47eaa20fb139c11}{%
+           family={Rainbow},
+           familyi={R\bibinitperiod},
+           given={Ben},
+           giveni={B\bibinitperiod}}}%
+        {{hash=d1cfdb186dbf32ba6d3d4b10b5dce6aa}{%
+           family={McVey},
+           familyi={M\bibinitperiod},
+           given={Stuart},
+           giveni={S\bibinitperiod}}}%
+      }
+      \strng{namehash}{3f0c0b8f9f3571dce3d6be2515fc9055}
+      \strng{fullhash}{9c064ab32dfab28565555c942c40f40e}
+      \strng{fullhashraw}{9c064ab32dfab28565555c942c40f40e}
+      \strng{bibnamehash}{9c064ab32dfab28565555c942c40f40e}
+      \strng{authorbibnamehash}{9c064ab32dfab28565555c942c40f40e}
+      \strng{authornamehash}{3f0c0b8f9f3571dce3d6be2515fc9055}
+      \strng{authorfullhash}{9c064ab32dfab28565555c942c40f40e}
+      \strng{authorfullhashraw}{9c064ab32dfab28565555c942c40f40e}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{howpublished}{\url{https://www.hydro-international.com/content/article/colouring-the-white-ribbon}}
+      \field{month}{1}
+      \field{note}{Accessed: 2026-01-06}
+      \field{title}{TColouring the 'White Ribbon'}
+      \field{year}{2008}
+    \endentry
     \entry{Mcmahon2012_white-ribbon-figure}{article}{}{}
       \name{author}{3}{}{%
         {{hash=5745f710d1153be8c5d3cd6c31af699d}{%
@@ -1269,8 +1305,8 @@
       \strng{authornamehash}{15d960fc1541e26ebb862e51de5d52fa}
       \strng{authorfullhash}{9c5e3c92d460314ef52a9b9fdc89bd70}
       \strng{authorfullhashraw}{9c5e3c92d460314ef52a9b9fdc89bd70}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{journaltitle}{Proceedings of the National Academy of Sciences of the United States of America}
@@ -1648,8 +1684,8 @@
       \strng{authorfullhash}{0fdef06221cc2eb6daad1288f774f568}
       \strng{authorfullhashraw}{0fdef06221cc2eb6daad1288f774f568}
       \field{extraname}{2}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Although aerial image-based bathymetric mapping can provide, unlike acoustic or LiDAR (Light Detection and Ranging) sensors, both water depth and visual information, water refraction poses significant challenges for accurate depth estimation. In order to tackle this challenge, we propose an image correction methodology, which first exploits recent machine learning procedures that recover depth from image-based dense point clouds and then corrects refraction on the original imaging dataset. This way, the structure from motion (SfM) and multi-view stereo (MVS) processing pipelines are executed on a refraction-free set of aerial datasets, resulting in highly accurate bathymetric maps. Performed experiments and validation were based on datasets acquired during optimal sea state conditions and derived from four different test-sites characterized by excellent sea bottom visibility and textured seabed. Results demonstrated the high potential of our approach, both in terms of bathymetric accuracy, as well as texture and orthoimage quality.}
