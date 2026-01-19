@@ -1,16 +1,51 @@
 %!TEX root = ../main.tex
 \chapter{提案手法}\label{chap:method}
 
-\section{3D Covariance $\Sigma^{3D}$ Correction (3D共分散の補正)}\label{sec:3Dsigma-correction}
+\section{3D Covariance $\Sigma^{3D}$ Correction (3D共分散補正)}\label{sec:3Dsigma-correction}
 
-% \begin{figure}[htbp]
-%   \centering
-%   \includegraphics[width=0.7\textwidth]{figure/50_method/}
-%   \caption{
+\note{3DGSに対する補正と2DGSに対する補正双方を描く}
 
-%     }
-%     \label{fig:}
-% \end{figure}
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figure/50_method/space_compression.png}
+  \caption{
+    カメラ視点から観測される空間圧縮のイメージ例。
+    カメラ位置に応じて空間が非線形に歪む様子を示している。
+    着色された各グリッドは、カメラ座標系（黒線）での空間格子が屈折効果によってどのように圧縮されるかを表す。
+    }
+    \label{fig:space_compression_by_view}
+\end{figure}
 
 
-前節で述べた位置補正 $\bm{p} \to \bm{p'}$ は非線形な変換であり、カメラから見た「見かけの空間（Apparent space）」は、実空間に対して非一様に歪み、圧縮された空間となる（\figureref{fig:space_compression_by_view}）。特に、入射角が大きい領域や深度が深い領域ほど、光路の屈折による空間圧縮効果は顕著となる。もし、Gaussianの中心位置のみを補正し、その形状（スケール$\bm{s}$および回転$\bm{R}$）を実空間の定義のまま描画に用いた場合、圧縮された見かけの空間に対してGaussianが相対的に肥大化して投影されることとなる。これは、レンダリング画像において不自然なボケ（Blurring）や、境界面の意図しない膨張といった視覚的アーティファクトを引き起こす要因となる（\figureref{fig:artifact-w/o-scale-correction}参照）。したがって、幾何学的に正確なレンダリングを行うためには、Gaussianの形状を決定する分散共分散行列（Covariance matrix）に対しても、空間の歪みに応じた補正が必要となる。ここで、各Gaussianプリミティブは十分に小さいと仮定し、その中心$\bm{p}$近傍における屈折変換を、Jacobian $J_{app}$（式\ref{eq:Jacobian}）を用いた局所的な線形近似（Affine変換）として扱う。実空間におけるGaussianの3次元分散共分散行列を$\Sigma^{3D}$とすると、多変量正規分布の線形変換の性質に基づき、見かけの空間における分散共分散行列$\Sigma^{3D}_{app}$は次式で導出される。\begin{equation}\label{eq:covariance-correction}\Sigma^{3D}{app} = J{app} \Sigma^{3D} J_{app}^\top\end{equation}この$\Sigma^{3D}{app}$は、屈折によって歪んだ局所空間におけるGaussianの適切な形状と配向を表現している。最終的なレンダリングプロセスでは、通常の3DGSと同様に、この補正された共分散行列$\Sigma^{3D}{app}$に対してView Transformationおよび射影変換（EWA Splatting等）を適用し、画像平面上での2次元共分散行列を算出する。これにより、水面屈折特有の非線形な歪みを考慮しつつ、高品質かつアーティファクトの少ない水中シーンの再現が可能となる。
+
+前節で述べた位置補正 $\bm{p} \to \bm{p'}$ は非線形な変換であり、カメラから見た「見かけの空間（Apparent space）」は、実空間に対して非一様に歪み、圧縮された空間となる（\cref{fig:space_compression_by_view}。
+特に、入射角が大きい領域や深度が深い領域ほど、光路の屈折による空間圧縮効果は顕著となる。
+もし、Gaussianの中心位置のみを補正し、その形状（スケール$\bm{s}$および回転$\bm{R}$）を実空間のまま補正せずに用いた場合、圧縮された見かけの空間に対してGaussianが相対的に肥大化して投影されることとなる。
+\missingfigure{それぞれのCorrectionを適用した場合、屈折無しで学習したモデルがどのように真値の屈折あり画像に近づいていくか見せる。Lake1とかを使うといいかも。}
+これは、レンダリング画像において不自然なぼやけや、境界面の意図しない膨張といった視覚的アーティファクトを引き起こす要因となる(\cref{fig:artifact-w/o-scale-correction})。
+したがって、幾何学的に正確なレンダリングを行うためには、Gaussianの形状を決定する分散共分散行列（Covariance matrix）に対しても、空間の歪みに応じた補正が必要となる。
+
+\subsection{Covariance Correction for 3DGS}\label{sec:3Dsigma-correction-3DGS}
+ここで、各Gaussianプリミティブは十分に小さいと仮定し、その中心$\bm{p}$近傍における屈折変換を、Jacobian $J_{app}$（式\ref{eq:Jacobian}）を用いた局所的な線形近似（Affine変換）として扱う。
+\note{$J_app$の導出をAppendixに載せたい。実装でも結局明示的に算出しているから}
+実空間におけるGaussianの3次元分散共分散行列を$\Sigma^{3D}$とすると、多変量正規分布の線形変換の性質に基づき、見かけの空間における分散共分散行列$\Sigma^{3D}_{app}$は次式で導出される。
+\begin{equation}\label{eq:covariance-correction}
+  \Sigma^{3D}_{app} = J_{app} \cdot \Sigma^{3D} \cdot J_{app}^\top
+\end{equation}
+この$\Sigma^{3D}_{app}$は、屈折によって歪んだ局所空間におけるGaussianの適切な形状と配向を表現している。
+最終的なレンダリングプロセスでは、通常の3DGSと同様に、この補正された共分散行列$\Sigma^{3D}{app}$に対して射影変換(\cref{eq:3dgs-affine-projection})を適用し、画像平面上での2次元共分散行列を算出する。
+これにより、水面屈折特有の非線形な歪みを考慮しつつ、高品質かつアーティファクトの少ない水中シーンの再現が可能となる。
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\textwidth]{figure/50_method/artifact-wo-scale-correction.png}
+  \caption{
+    スケール補正を行わない場合のアーティファクトの例。\\
+    (左) 屈折面を考慮せず、真値画像で学習した3DGSモデルのレンダリング結果。\\
+    (右) 位置補正のみを適用し、スケール補正を行わない場合のレンダリング結果。
+    赤枠で囲った領域は、入射角が大きい部分を拡大して示している。
+    }
+    \label{fig:artifact-w/o-scale-correction}
+\end{figure}
+
+\subsection{Covariance Correction for 2DGS}\label{sec:3Dsigma-correction-2DGS}
