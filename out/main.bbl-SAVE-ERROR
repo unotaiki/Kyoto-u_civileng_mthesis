@@ -2763,6 +2763,60 @@
       \field{title}{Adam: A method for stochastic optimization}
       \field{year}{2014}
     \endentry
+    \entry{Grubert2025VISAPP_improve-ADC}{inproceedings}{}{}
+      \name{author}{4}{}{%
+        {{hash=4cb904e9cf7c76cd31feb514c362d3d6}{%
+           family={Grubert},
+           familyi={G\bibinitperiod},
+           given={Glenn},
+           giveni={G\bibinitperiod}}}%
+        {{hash=7c59313e543fd435c672d81b9e838ce4}{%
+           family={Barthel},
+           familyi={B\bibinitperiod},
+           given={Florian},
+           giveni={F\bibinitperiod}}}%
+        {{hash=33183f0c3a660d39cb900e2a91ad0500}{%
+           family={Hilsmann},
+           familyi={H\bibinitperiod},
+           given={Anna},
+           giveni={A\bibinitperiod}}}%
+        {{hash=3733615b0de90d45eae517c044259fd8}{%
+           family={Eisert},
+           familyi={E\bibinitperiod},
+           given={Peter},
+           giveni={P\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {SCITEPRESS - Science}%
+        {Technology Publications}%
+      }
+      \strng{namehash}{cc1be445f41867ec831e6cab44f2979e}
+      \strng{fullhash}{b2d34b7e20ab9f6c4184fe2b36f90188}
+      \strng{fullhashraw}{b2d34b7e20ab9f6c4184fe2b36f90188}
+      \strng{bibnamehash}{b2d34b7e20ab9f6c4184fe2b36f90188}
+      \strng{authorbibnamehash}{b2d34b7e20ab9f6c4184fe2b36f90188}
+      \strng{authornamehash}{cc1be445f41867ec831e6cab44f2979e}
+      \strng{authorfullhash}{b2d34b7e20ab9f6c4184fe2b36f90188}
+      \strng{authorfullhashraw}{b2d34b7e20ab9f6c4184fe2b36f90188}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Proceedings of the 20th International Joint Conference on Computer Vision, Imaging and Computer Graphics Theory and Applications}
+      \field{title}{Improving Adaptive Density Control for 3D Gaussian Splatting}
+      \field{year}{2025}
+      \field{pages}{610\bibrangedash 621}
+      \range{pages}{12}
+      \verb{doi}
+      \verb 10.5220/0013308500003912
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.5220/0013308500003912
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.5220/0013308500003912
+      \endverb
+    \endentry
     \entry{Barron2022CVPR_Mip-NeRF360}{inproceedings}{}{}
       \name{author}{5}{}{%
         {{hash=562f3254a241932db4a6d44a97473ec5}{%
@@ -2802,8 +2856,8 @@
       \strng{authornamehash}{8b843d0da79226f35ee369acd6645d1e}
       \strng{authorfullhash}{17082a2f8360e7c34868e12b18e9c3fb}
       \strng{authorfullhashraw}{17082a2f8360e7c34868e12b18e9c3fb}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{2022 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}
@@ -2818,6 +2872,66 @@
       \endverb
       \verb{url}
       \verb http://dx.doi.org/10.1109/cvpr52688.2022.00539
+      \endverb
+    \endentry
+    \entry{Huang2024SIGGRAPH_2DGS}{inproceedings}{}{}
+      \name{author}{5}{}{%
+        {{hash=d0498424e0fecb79aa60550c7cc0df9b}{%
+           family={Huang},
+           familyi={H\bibinitperiod},
+           given={Binbin},
+           giveni={B\bibinitperiod}}}%
+        {{hash=77ad6a98e896f6b857909d1bae06149f}{%
+           family={Yu},
+           familyi={Y\bibinitperiod},
+           given={Zehao},
+           giveni={Z\bibinitperiod}}}%
+        {{hash=96b649a41b8352920e0fbbb9d2dbabe7}{%
+           family={Chen},
+           familyi={C\bibinitperiod},
+           given={Anpei},
+           giveni={A\bibinitperiod}}}%
+        {{hash=06133052ac3c14a188601b82783cd4f7}{%
+           family={Geiger},
+           familyi={G\bibinitperiod},
+           given={Andreas},
+           giveni={A\bibinitperiod}}}%
+        {{hash=216e8481daed51755ccf212c6e70fec6}{%
+           family={Gao},
+           familyi={G\bibinitperiod},
+           given={Shenghua},
+           giveni={S\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {ACM}%
+      }
+      \strng{namehash}{2312d605d7c9176db6b63a4227ba96f2}
+      \strng{fullhash}{da013ac0bde616ddbeaeb5c3ed474c63}
+      \strng{fullhashraw}{da013ac0bde616ddbeaeb5c3ed474c63}
+      \strng{bibnamehash}{da013ac0bde616ddbeaeb5c3ed474c63}
+      \strng{authorbibnamehash}{da013ac0bde616ddbeaeb5c3ed474c63}
+      \strng{authornamehash}{2312d605d7c9176db6b63a4227ba96f2}
+      \strng{authorfullhash}{da013ac0bde616ddbeaeb5c3ed474c63}
+      \strng{authorfullhashraw}{da013ac0bde616ddbeaeb5c3ed474c63}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers}
+      \field{month}{7}
+      \field{series}{SIGGRAPH ’24}
+      \field{title}{2D Gaussian Splatting for Geometrically Accurate Radiance Fields}
+      \field{year}{2024}
+      \field{pages}{1\bibrangedash 11}
+      \range{pages}{11}
+      \verb{doi}
+      \verb 10.1145/3641519.3657428
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1145/3641519.3657428
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1145/3641519.3657428
       \endverb
     \endentry
   \enddatalist
