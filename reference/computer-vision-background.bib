@@ -1,5 +1,34 @@
 
 # 既存手法
+# Transformer model
+@inproceedings{Jose2025CVPR_DINOv2-Text,
+  title     = {DINOv2 Meets Text: A Unified Framework for Image- and Pixel-Level Vision-Language Alignment},
+  url       = {http://dx.doi.org/10.1109/cvpr52734.2025.02319},
+  doi       = {10.1109/cvpr52734.2025.02319},
+  booktitle = {2025 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  publisher = {IEEE},
+  author    = {Jose, Cijo and Moutakanni, Théo and Kang, Dahyun and Baldassarre, Federico and Darcet, Timothée and Xu, Hu and Li, Daniel and Szafraniec, Marc and Ramamonjisoa, Michaël and Oquab, Maxime and Siméoni, Oriane and Vo, Huy V. and Labatut, Patrick and Bojanowski, Piotr},
+  year      = {2025},
+  month     = jun,
+  pages     = {24905–24916}
+}
+@misc{Oquab2023_DINOv2,
+  title={DINOv2: Learning Robust Visual Features without Supervision},
+  author={Oquab, Maxime and Darcet, Timothée and Moutakanni, Theo and Vo, Huy V. and Szafraniec, Marc and Khalidov, Vasil and Fernandez, Pierre and Haziza, Daniel and Massa, Francisco and El-Nouby, Alaaeldin and Howes, Russell and Huang, Po-Yao and Xu, Hu and Sharma, Vasu and Li, Shang-Wen and Galuba, Wojciech and Rabbat, Mike and Assran, Mido and Ballas, Nicolas and Synnaeve, Gabriel and Misra, Ishan and Jegou, Herve and Mairal, Julien and Labatut, Patrick and Joulin, Armand and Bojanowski, Piotr},
+  journal={arXiv:2304.07193},
+  year={2023}
+}
+@misc{Simeoni2025_DINOv3,
+  title         = {{DINOv3}},
+  author        = {Sim{\'e}oni, Oriane and Vo, Huy V. and Seitzer, Maximilian and Baldassarre, Federico and Oquab, Maxime and Jose, Cijo and Khalidov, Vasil and Szafraniec, Marc and Yi, Seungeun and Ramamonjisoa, Micha{\"e}l and Massa, Francisco and Haziza, Daniel and Wehrstedt, Luca and Wang, Jianyuan and Darcet, Timoth{\'e}e and Moutakanni, Th{\'e}o and Sentana, Leonel and Roberts, Claire and Vedaldi, Andrea and Tolan, Jamie and Brandt, John and Couprie, Camille and Mairal, Julien and J{\'e}gou, Herv{\'e} and Labatut, Patrick and Bojanowski, Piotr},
+  year          = {2025},
+  eprint        = {2508.10104},
+  archiveprefix = {arXiv},
+  primaryclass  = {cs.CV},
+  url           = {https://arxiv.org/abs/2508.10104}
+}
+
+
 # Attenuation
 @inproceedings{Akkaynak2019CVPR_Sea-Thru,
   title     = {Sea-Thru: A Method for Removing Water From Underwater Images},
@@ -216,6 +245,39 @@
   author    = {Triggs, Bill and McLauchlan, Philip F. and Hartley, Richard I. and Fitzgibbon, Andrew W.},
   year      = {2000},
   pages     = {298--372}
+}
+
+
+# Meshing
+@inproceedings{Curless1996SIGGRAPH_TSDF,
+  series     = {SIGGRAPH96},
+  title      = {A volumetric method for building complex models from range images},
+  url        = {http://dx.doi.org/10.1145/237170.237269},
+  doi        = {10.1145/237170.237269},
+  booktitle  = {Proceedings of the 23rd annual conference on Computer graphics and interactive techniques},
+  publisher  = {ACM},
+  author     = {Curless, Brian and Levoy, Marc},
+  year       = {1996},
+  month      = aug,
+  pages      = {303--312},
+  collection = {SIGGRAPH96}
+}
+
+
+@inproceedings{Lorensen1987SIGGRAPH_MarchingCubes,
+  author    = {Lorensen, William E. and Cline, Harvey E.},
+  title     = {Marching cubes: A high resolution 3D surface construction algorithm},
+  year      = {1987},
+  isbn      = {0897912276},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  url       = {https://doi-org.kyoto-u.idm.oclc.org/10.1145/37401.37422},
+  doi       = {10.1145/37401.37422},
+  abstract  = {We present a new algorithm, called marching cubes, that creates triangle models of constant density surfaces from 3D medical data. Using a divide-and-conquer approach to generate inter-slice connectivity, we create a case table that defines triangle topology. The algorithm processes the 3D medical data in scan-line order and calculates triangle vertices using linear interpolation. We find the gradient of the original data, normalize it, and use it as a basis for shading the models. The detail in images produced from the generated surface models is the result of maintaining the inter-slice connectivity, surface data, and gradient information present in the original 3D data. Results from computed tomography (CT), magnetic resonance (MR), and single-photon emission computed tomography (SPECT) illustrate the quality and functionality of marching cubes. We also discuss improvements that decrease processing time and add solid modeling capabilities.},
+  booktitle = {Proceedings of the 14th Annual Conference on Computer Graphics and Interactive Techniques},
+  pages     = {163--169},
+  numpages  = {7},
+  series    = {SIGGRAPH '87}
 }
 
 

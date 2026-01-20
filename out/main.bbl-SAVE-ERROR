@@ -1761,8 +1761,8 @@
       \strng{authorfullhash}{0fdef06221cc2eb6daad1288f774f568}
       \strng{authorfullhashraw}{0fdef06221cc2eb6daad1288f774f568}
       \field{extraname}{2}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{abstract}{Although aerial image-based bathymetric mapping can provide, unlike acoustic or LiDAR (Light Detection and Ranging) sensors, both water depth and visual information, water refraction poses significant challenges for accurate depth estimation. In order to tackle this challenge, we propose an image correction methodology, which first exploits recent machine learning procedures that recover depth from image-based dense point clouds and then corrects refraction on the original imaging dataset. This way, the structure from motion (SfM) and multi-view stereo (MVS) processing pipelines are executed on a refraction-free set of aerial datasets, resulting in highly accurate bathymetric maps. Performed experiments and validation were based on datasets acquired during optimal sea state conditions and derived from four different test-sites characterized by excellent sea bottom visibility and textured seabed. Results demonstrated the high potential of our approach, both in terms of bathymetric accuracy, as well as texture and orthoimage quality.}
@@ -1817,8 +1817,8 @@
       \strng{authornamehash}{e78abd90f30a00f14f585e739ed63488}
       \strng{authorfullhash}{47dd02a17699c9a365c582a486996ce5}
       \strng{authorfullhashraw}{47dd02a17699c9a365c582a486996ce5}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2512-2819}
@@ -1892,6 +1892,94 @@
       \endverb
       \verb{url}
       \verb http://dx.doi.org/10.1109/iccv51070.2023.01687
+      \endverb
+    \endentry
+    \entry{Tomasi1992_FactorizationMethod}{article}{}{}
+      \name{author}{2}{}{%
+        {{hash=5c51dbff8f01c3b5f905da5777a9f5c8}{%
+           family={Tomasi},
+           familyi={T\bibinitperiod},
+           given={Carlo},
+           giveni={C\bibinitperiod}}}%
+        {{hash=45496c6a7530cfbfb4f3218a2602b77e}{%
+           family={Kanade},
+           familyi={K\bibinitperiod},
+           given={Takeo},
+           giveni={T\bibinitperiod}}}%
+      }
+      \list{publisher}{2}{%
+        {Springer Science}%
+        {Business Media LLC}%
+      }
+      \strng{namehash}{b96b89292c9e74c531685ccb8ebcaf51}
+      \strng{fullhash}{b96b89292c9e74c531685ccb8ebcaf51}
+      \strng{fullhashraw}{b96b89292c9e74c531685ccb8ebcaf51}
+      \strng{bibnamehash}{b96b89292c9e74c531685ccb8ebcaf51}
+      \strng{authorbibnamehash}{b96b89292c9e74c531685ccb8ebcaf51}
+      \strng{authornamehash}{b96b89292c9e74c531685ccb8ebcaf51}
+      \strng{authorfullhash}{b96b89292c9e74c531685ccb8ebcaf51}
+      \strng{authorfullhashraw}{b96b89292c9e74c531685ccb8ebcaf51}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1573-1405}
+      \field{journaltitle}{International Journal of Computer Vision}
+      \field{month}{11}
+      \field{number}{2}
+      \field{title}{Shape and motion from image streams under orthography: a factorization method}
+      \field{volume}{9}
+      \field{year}{1992}
+      \field{pages}{137\bibrangedash 154}
+      \range{pages}{18}
+      \verb{doi}
+      \verb 10.1007/bf00129684
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1007/bf00129684
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1007/bf00129684
+      \endverb
+    \endentry
+    \entry{Hartley2004_MultipleViewGeometry}{inbook}{}{}
+      \name{author}{2}{}{%
+        {{hash=a0cea72f57464ff654a3f8362e58503d}{%
+           family={Hartley},
+           familyi={H\bibinitperiod},
+           given={Richard},
+           giveni={R\bibinitperiod}}}%
+        {{hash=c72fc39e94030f67717052309266a44d}{%
+           family={Zisserman},
+           familyi={Z\bibinitperiod},
+           given={Andrew},
+           giveni={A\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {Cambridge University Press}%
+      }
+      \strng{namehash}{0e3dfde06144cdf8ac37a2746457797e}
+      \strng{fullhash}{0e3dfde06144cdf8ac37a2746457797e}
+      \strng{fullhashraw}{0e3dfde06144cdf8ac37a2746457797e}
+      \strng{bibnamehash}{0e3dfde06144cdf8ac37a2746457797e}
+      \strng{authorbibnamehash}{0e3dfde06144cdf8ac37a2746457797e}
+      \strng{authornamehash}{0e3dfde06144cdf8ac37a2746457797e}
+      \strng{authorfullhash}{0e3dfde06144cdf8ac37a2746457797e}
+      \strng{authorfullhashraw}{0e3dfde06144cdf8ac37a2746457797e}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{labelnamesource}{author}
+      \field{booktitle}{Multiple View Geometry in Computer Vision}
+      \field{month}{3}
+      \field{year}{2004}
+      \verb{doi}
+      \verb 10.1017/cbo9780511811685.023
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1017/cbo9780511811685.023
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1017/cbo9780511811685.023
       \endverb
     \endentry
     \entry{Lowe2004_SIFT}{article}{}{}
@@ -2058,8 +2146,8 @@
       \strng{authornamehash}{36a5e31de7a1be65ff51f08258616698}
       \strng{authorfullhash}{30e48d2aaee2a1fda71a42c2cf87706f}
       \strng{authorfullhashraw}{30e48d2aaee2a1fda71a42c2cf87706f}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Vision Algorithms: Theory and Practice}
@@ -2095,62 +2183,13 @@
       \strng{authornamehash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhashraw}{fcc0ce660086b48f2fa45b85cd8342c1}
-      \field{sortinit}{8}
-      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{http://theia-sfm.org}}
       \field{note}{Accessed: 2025-12-18}
       \field{title}{Theia Multiview Geometry Library: Tutorial \& Reference}
-    \endentry
-    \entry{Bleyer2011BMVC_PatchMatchStereo}{inproceedings}{}{}
-      \name{author}{3}{}{%
-        {{hash=ad09255addc8ee5e404f5c0a22d3de4d}{%
-           family={Bleyer},
-           familyi={B\bibinitperiod},
-           given={Michael},
-           giveni={M\bibinitperiod}}}%
-        {{hash=70efa21aa4d24061e93300c8df0a64ad}{%
-           family={Rhemann},
-           familyi={R\bibinitperiod},
-           given={Christoph},
-           giveni={C\bibinitperiod}}}%
-        {{hash=574542c2f7c4308c28c190f314a2de4c}{%
-           family={Rother},
-           familyi={R\bibinitperiod},
-           given={Carsten},
-           giveni={C\bibinitperiod}}}%
-      }
-      \list{publisher}{1}{%
-        {British Machine Vision Association}%
-      }
-      \strng{namehash}{c1e5b0158ddb37b00d4f2a4fd2d47010}
-      \strng{fullhash}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \strng{fullhashraw}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \strng{bibnamehash}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \strng{authorbibnamehash}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \strng{authornamehash}{c1e5b0158ddb37b00d4f2a4fd2d47010}
-      \strng{authorfullhash}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \strng{authorfullhashraw}{aae8f6d850b0cf17ca0a149c54e63e45}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
-      \field{labelnamesource}{author}
-      \field{labeltitlesource}{title}
-      \field{booktitle}{Procedings of the British Machine Vision Conference 2011}
-      \field{series}{BMVC 2011}
-      \field{title}{PatchMatch Stereo - Stereo Matching with Slanted Support Windows}
-      \field{year}{2011}
-      \field{pages}{14.1\bibrangedash 14.11}
-      \range{pages}{-1}
-      \verb{doi}
-      \verb 10.5244/c.25.14
-      \endverb
-      \verb{urlraw}
-      \verb http://dx.doi.org/10.5244/c.25.14
-      \endverb
-      \verb{url}
-      \verb http://dx.doi.org/10.5244/c.25.14
-      \endverb
     \endentry
     \entry{Schonberger2016ECCV_PatchMatchStereo}{inbook}{}{}
       \name{author}{4}{}{%
@@ -2186,8 +2225,8 @@
       \strng{authornamehash}{d480188def317b00b258c99797133e90}
       \strng{authorfullhash}{062e89ae846b98c55f3cb2ea57b0d11c}
       \strng{authorfullhashraw}{062e89ae846b98c55f3cb2ea57b0d11c}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{booktitle}{Computer Vision - ECCV 2016}
@@ -2205,6 +2244,55 @@
       \endverb
       \verb{url}
       \verb http://dx.doi.org/10.1007/978-3-319-46487-9_31
+      \endverb
+    \endentry
+    \entry{Bleyer2011BMVC_PatchMatchStereo}{inproceedings}{}{}
+      \name{author}{3}{}{%
+        {{hash=ad09255addc8ee5e404f5c0a22d3de4d}{%
+           family={Bleyer},
+           familyi={B\bibinitperiod},
+           given={Michael},
+           giveni={M\bibinitperiod}}}%
+        {{hash=70efa21aa4d24061e93300c8df0a64ad}{%
+           family={Rhemann},
+           familyi={R\bibinitperiod},
+           given={Christoph},
+           giveni={C\bibinitperiod}}}%
+        {{hash=574542c2f7c4308c28c190f314a2de4c}{%
+           family={Rother},
+           familyi={R\bibinitperiod},
+           given={Carsten},
+           giveni={C\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {British Machine Vision Association}%
+      }
+      \strng{namehash}{c1e5b0158ddb37b00d4f2a4fd2d47010}
+      \strng{fullhash}{aae8f6d850b0cf17ca0a149c54e63e45}
+      \strng{fullhashraw}{aae8f6d850b0cf17ca0a149c54e63e45}
+      \strng{bibnamehash}{aae8f6d850b0cf17ca0a149c54e63e45}
+      \strng{authorbibnamehash}{aae8f6d850b0cf17ca0a149c54e63e45}
+      \strng{authornamehash}{c1e5b0158ddb37b00d4f2a4fd2d47010}
+      \strng{authorfullhash}{aae8f6d850b0cf17ca0a149c54e63e45}
+      \strng{authorfullhashraw}{aae8f6d850b0cf17ca0a149c54e63e45}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{booktitle}{Procedings of the British Machine Vision Conference 2011}
+      \field{series}{BMVC 2011}
+      \field{title}{PatchMatch Stereo - Stereo Matching with Slanted Support Windows}
+      \field{year}{2011}
+      \field{pages}{14.1\bibrangedash 14.11}
+      \range{pages}{-1}
+      \verb{doi}
+      \verb 10.5244/c.25.14
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.5244/c.25.14
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.5244/c.25.14
       \endverb
     \endentry
     \entry{Liao2025ACMSurv_NeRF}{article}{}{}
@@ -3229,9 +3317,6 @@
     \endentry
   \enddatalist
   \missing{Furukawa2010_PMVS}
-  \missing{Makris2024_RSfM}
-  \missing{Schnberger2016ECCV_PatchMatchStereo}
-  \missing{Zhan2023_NeRFrac}
   \missing{leroy2025mast3r}
   \missing{quan2025transparent}
   \missing{wang2024dust3r}
