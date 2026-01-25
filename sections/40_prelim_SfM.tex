@@ -18,7 +18,8 @@
 このSfMを起点とする、3D Vision for Geometry手法の発達、高度なUIを備えた商用ソフト(Pix4D, Metashape, etc.)の出現、オープンソース化により、今日ではPhotogrammetry技術は広く一般に普及した。
 
 \subsection{Structure from Motion}
-SfMは、複数の視点から撮影された画像群に基づき、カメラの内部パラメータ（Intrinsic Parameters）・外部パラメータ（Extrinsic Parameters、すなわちカメラの三次元的な位置と姿勢）と、シーンの疎な（Sparse）3次元構造を同時に推定する手法である。
+\kobayashi{項目のタイトルが英語と日本語が混在。日本語がある場合はなるべくした方がよいか}
+Structure from Motion (SfM)は、複数の視点から撮影された画像群に基づき、カメラの内部パラメータ（Intrinsic Parameters）・外部パラメータ（Extrinsic Parameters、すなわちカメラの三次元的な位置と姿勢）と、シーンの疎な（Sparse）3次元構造を同時に推定する手法である。
 SfMの理論的基礎は、Tomasi-Kanadeによる行列分解法\cite{Tomasi1992_FactorizationMethod}に始まり、HartleyとZissermanによって多視点幾何学（Multiple View Geometry）の理論体系\cite{Hartley2004_MultipleViewGeometry}として確立された。
 2016年に発表されたCOLMAP \cite{schoenberger2016_colmap}は、高い精度と汎用性、そしてオープンソースプロジェクトとしての完成度から、現在でもアカデミック分野におけるデファクトスタンダードとして広く利用されている。
 COLMAPにより出力される正確なカメラ内部パラメータと外部パラメータ、および歪み補正済み画像（Undistorted Images）は、後述する密な三次元再構成（Dense Reconstruction）や新規視点合成（Novel View Synthesis）タスクのための入力データとして、重要なパイプラインの一角を担っている。

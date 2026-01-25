@@ -1,0 +1,58 @@
+%!TEX root = ../main.tex
+\chapter{Dataset}\label{chap:dataset}
+\section{Field Dataset}\label{sec:field-dataset}
+
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.70\textwidth]{figure/60_data/}
+%   \caption{
+%     }
+%     \label{fig:}
+% \end{figure}
+
+\subsection{Study Area}\label{subsec:study-area}
+実世界における検証に用いたデータセット(Real-world data)は、日本の京都府･宇治市の宇治川中流域におけるデータセットを使用した%(\cref{fig:study-area})。
+データは、2025年11月15日に二箇所においてフィールド調査にて取得した。
+取得されたUAV imagesの特徴的な例は、%\cref{fig:field-data}%
+に示している。
+
+
+\note{
+  * ここでは、撮影エリアでの特徴に終始するぞ。
+  * 水面には水草が浮いているぞ。
+  * 本流ではなく、水たまりになっているSecond Channelにおいて撮影したぞ。
+  * 最大深度は1.5mほどだと推定されるぞ。
+  * Textureも比較的豊富だぞ。
+  * 透明度が高く、波も穏やかだぞ。
+  * 気温や湿度、天気はこの程度だった。(撮影時14度、湿度60\%、快晴)(後に正確に調べ直す)
+}
+
+\missingfigure{
+  撮影エリアの概要\\
+  GISを使って、論文らしい格好いい図を作る。
+  1だけでなく、3でもデータを作りたいから、こだわるのはまた後で。
+}
+
+\subsection{UAV Platform}\label{subsec:uav-platform}
+
+\missingfigure{
+  撮影機材の概要\\
+}
+
+\note{
+  * RTKを使用した。
+  * RTKを使用したのでGCPは設置しなかった
+  * 
+}
+
+\subsection{Data Acquisition}\label{subsec:data-acquisition}
+
+\missingfigure{撮影データの例}
+
+\note{
+  * 偏光レンズを用いたぞ。(これはPlatformに入れるべき話かもしれぬ。)
+  Radiometic Correctionに影響を与えるかもしれないが、どのみち環境光の水面での反射は考慮できていないから、撮影時の河床を鮮明に撮像できることを優先した。
+  * Nadirとオブリークで撮影したぞ。
+  * 検証点を自分で中に入り、設置し、手動で深度を測定したぞ。それぞれの深度は図のように61cm70cmだったぞ。
+
+}
