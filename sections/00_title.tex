@@ -4,15 +4,17 @@
 
 \noindent
 \begin{minipage}[b]{0.78\linewidth} % 左側：テキストブロック（幅78%）
-    \fontsize{12pt}{18pt}\selectfont \gtfamily % {文字サイズ}{行間}
-    京都大学大学院工学研究科 \\
-    社会基盤工学専攻修士論文 \\
-    令和8年2月 \\
-    \vspace{1.5em} % 日本語と英語の間の余白
-    Master's Thesis \\
-    Department of Civil and Earth Resources Engineering \\
-    Graduate School of Engineering \\
-    Kyoto University \\
+    \fontsize{12pt}{18pt}\selectfont \gtfamily % {文字サイズ}{行間} \gtfamily: ゴシック体
+    京都大学大学院工学研究科\\
+    社会基盤工学専攻修士論文\\
+    令和8年2月\\[2.0ex]
+    % 英文タイトル前にやや余白を挿入
+    \normalfont % 英文はゴシック体→ローマン体（可読性向上）
+    \fontsize{12pt}{18pt}\selectfont
+    Master's Thesis\\
+    Department of Civil and Earth Resources Engineering\\
+    Graduate School of Engineering\\
+    Kyoto University\\
     February 2026
 \end{minipage}
 \hfill % 左右の間のバネ
@@ -28,13 +30,16 @@
 \begin{center}
     \vspace{2.5cm}
     \debugnote
-    {\fontsize{18pt}{36pt}\selectfont 
-    Refraction-Aware Gaussian Splatting for Shallow Water Bathymetry from UAV Imagery
+    {\fontsize{18pt}{36pt}\gtfamily\bfseries\selectfont 
+    水面屈折モデルを導入した\\Gaussian Splattingによる河川浅水域の三次元計測
+    } \\[1.0ex]
+    {\fontsize{18pt}{36pt}\bfseries\selectfont 
+    Refraction-Aware Gaussian Splatting \\for Shallow Water Bathymetry from UAV Imagery
     } \\
     \vspace{6.5cm}
     {\fontsize{16pt}{18pt}\selectfont 
-    京都大学大学院 \hspace{1em}工学研究科 \hspace{1em}社会基盤工学専攻 \\ 
-    空間情報学講座\\ 
+    京都大学大学院 \hspace{1em}工学研究科 \\
+    社会基盤工学専攻 \hspace{1em}空間情報学講座\\ 
     宇野\hspace{1em}大輝 \\
     }
 \end{center}
