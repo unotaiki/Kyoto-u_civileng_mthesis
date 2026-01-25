@@ -10,12 +10,31 @@
 %     \label{fig:}
 % \end{figure}
 
+% \begin{figure}[htbp]
+%   \centering
+%   \includegraphics[width=0.70\textwidth]{figure/60_data/study_area_overview.png}
+%   \caption{調査対象地域の概要図。京都府宇治市の宇治川中流域でUAV調査を行った。}
+%   \label{fig:study-area}
+% \end{figure}
+
 \subsection{Study Area}\label{subsec:study-area}
 実世界における検証に用いたデータセット(Real-world data)は、日本の京都府･宇治市の宇治川中流域におけるデータセットを使用した%(\cref{fig:study-area})。
 データは、2025年11月15日に二箇所においてフィールド調査にて取得した。
+% \url{https://www.data.jma.go.jp/stats/etrn/view/10min_s1.php?prec_no=61&block_no=47759&year=2025&month=11&day=15&view=}
 取得されたUAV imagesの特徴的な例は、%\cref{fig:field-data}%
 に示している。
 
+実世界における手法の検証には、京都府宇治市を流れる宇治川中流域にて取得したデータセット（Real-world data）を使用した%(\cref{fig:study-area})
+。
+データの取得は2025年11月15日に実施し、同水域内の異なる2地点を対象とした。
+\note{まだArea3を使用するか決めていない。2が環境が異なる(大きな礫が多い河床)だが、RTK情報がないため厳しい。3は試したいが、影とそれ以外の輝度差の大きい条件}
+撮影時の気象条件は快晴であり、気温は約14$^\circ$C、湿度は約70\%と、光学センサーによる観測に非常に適した環境であった。
+
+本調査では、流速が速い本流ではなく、分派する、または地下から湧き出て水が滞留している副次的な水路を対象とした。
+この水域は波が穏やかで透明度が極めて高く、水底のテクスチャが視認しやすいという特徴を持つ。
+目視による推定最大水深は約1.5mであり、水面の一部には浮草が確認された。
+取得されたUAV画像の特徴的な例は、%\cref{fig:field-data}%
+に示す。
 
 \note{
   * ここでは、撮影エリアでの特徴に終始するぞ。
@@ -28,7 +47,7 @@
 }
 
 \missingfigure{
-  撮影エリアの概要\\
+  撮影エリアの概要
   GISを使って、論文らしい格好いい図を作る。
   1だけでなく、3でもデータを作りたいから、こだわるのはまた後で。
 }
@@ -36,7 +55,7 @@
 \subsection{UAV Platform}\label{subsec:uav-platform}
 
 \missingfigure{
-  撮影機材の概要\\
+  撮影機材の概要
 }
 
 \note{
@@ -45,6 +64,40 @@
   * 
 }
 
+\begin{table}[htbp]
+  \centering
+  \caption{UAVプラットフォームおよびカメラの主要諸元}
+  \label{tab:drone-spec}
+  \begin{tabular}{@{}ll@{}}
+
+    \toprule
+    \textbf{Category} & \textbf{Specification} \\
+    
+    \midrule
+    \textbf{UAV Platform} & \\
+    \quad Model & DJI Mavic 3 Enterprise \\
+    \quad Positioning System & Onboard RTK Module \\
+    
+    \midrule
+    \textbf{Camera Specifications} & \\
+    \quad Image Sensor & 4/3 CMOS \\
+    \quad Effective Pixels & 20 MP \\
+    \quad Max Image Size & 5280 $\times$ 3956 pixels \\
+    \quad Field of View (FOV) & 84$^\circ$ \\
+    \quad Equivalent Focal Length & 24 mm \\
+    \quad Aperture & f/2.8  \\ % -- f/11 だが、撮影時はf/2.8で固定?
+    \quad Focus Range & 1 m to $\infty$ \\
+    \quad Additional Filter & Circular Polarizing (CPL) Filter \\
+    
+    \midrule
+    \textbf{RTK Positioning Accuracy} & \\
+    \quad Horizontal (RMS) & 1 cm + 1 ppm \\
+    \quad Vertical (RMS) & 1.5 cm + 1 ppm \\
+
+    \bottomrule
+  \end{tabular}
+\end{table}
+
 \subsection{Data Acquisition}\label{subsec:data-acquisition}
 
 \missingfigure{撮影データの例}
@@ -52,7 +105,14 @@
 \note{
   * 偏光レンズを用いたぞ。(これはPlatformに入れるべき話かもしれぬ。)
   Radiometic Correctionに影響を与えるかもしれないが、どのみち環境光の水面での反射は考慮できていないから、撮影時の河床を鮮明に撮像できることを優先した。
-  * Nadirとオブリークで撮影したぞ。
+  * Nadirとオブリークで撮影したぞ。https://gemini.google.com/app/42efe917f2e9b646
   * 検証点を自分で中に入り、設置し、手動で深度を測定したぞ。それぞれの深度は図のように61cm70cmだったぞ。
+}
 
+\note{
+  シャッタースピードが固定されておらず、
+  DJI_20251115092203_0002_V.JPG では、1/250で画像が明るくいい感じなのに、
+  DJI_20251115092309_0078_V.JPG では、1/640で画像がかなり全体的に暗くなっている。
+  ISPRS前に補正できないか。良くない。
+  https://gemini.google.com/app/42efe917f2e9b646
 }

@@ -3315,6 +3315,41 @@
       \verb http://dx.doi.org/10.1364/aop.10.000484
       \endverb
     \endentry
+    \entry{blender}{manual}{}{}
+      \name{author}{1}{}{%
+        {{hash=3637fc94258549b9822f36e1d3349483}{%
+           family={Community},
+           familyi={C\bibinitperiod},
+           given={Blender\bibnamedelima Online},
+           giveni={B\bibinitperiod\bibinitdelim O\bibinitperiod}}}%
+      }
+      \list{location}{1}{%
+        {Stichting Blender Foundation, Amsterdam}%
+      }
+      \list{organization}{1}{%
+        {Blender Foundation}%
+      }
+      \strng{namehash}{3637fc94258549b9822f36e1d3349483}
+      \strng{fullhash}{3637fc94258549b9822f36e1d3349483}
+      \strng{fullhashraw}{3637fc94258549b9822f36e1d3349483}
+      \strng{bibnamehash}{3637fc94258549b9822f36e1d3349483}
+      \strng{authorbibnamehash}{3637fc94258549b9822f36e1d3349483}
+      \strng{authornamehash}{3637fc94258549b9822f36e1d3349483}
+      \strng{authorfullhash}{3637fc94258549b9822f36e1d3349483}
+      \strng{authorfullhashraw}{3637fc94258549b9822f36e1d3349483}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{title}{Blender - a 3D modelling and rendering package}
+      \field{year}{2025}
+      \verb{urlraw}
+      \verb http://www.blender.org
+      \endverb
+      \verb{url}
+      \verb http://www.blender.org
+      \endverb
+    \endentry
     \entry{RealityScan}{misc}{}{}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
