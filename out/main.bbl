@@ -1506,6 +1506,68 @@
       \verb http://dx.doi.org/10.1111/1365-2435.13247
       \endverb
     \endentry
+    \entry{Joyce2018_Drone-marine-survey_and_how-to}{article}{}{}
+      \name{author}{5}{}{%
+        {{hash=2b975478f637a4d0c241ea15f791dd90}{%
+           family={Joyce},
+           familyi={J\bibinitperiod},
+           given={K.\bibnamedelimi E.},
+           giveni={K\bibinitperiod\bibinitdelim E\bibinitperiod}}}%
+        {{hash=154f6c77a5306272f85e6388460a98a2}{%
+           family={Duce},
+           familyi={D\bibinitperiod},
+           given={S.},
+           giveni={S\bibinitperiod}}}%
+        {{hash=55717a49eb71a9172a0b6c69043598df}{%
+           family={Leahy},
+           familyi={L\bibinitperiod},
+           given={S.\bibnamedelimi M.},
+           giveni={S\bibinitperiod\bibinitdelim M\bibinitperiod}}}%
+        {{hash=bacd3c97812770a6ccff0c3625857bb6}{%
+           family={Leon},
+           familyi={L\bibinitperiod},
+           given={J.},
+           giveni={J\bibinitperiod}}}%
+        {{hash=543098d5afaff3c450d578f90ac4a76c}{%
+           family={Maier},
+           familyi={M\bibinitperiod},
+           given={S.\bibnamedelimi W.},
+           giveni={S\bibinitperiod\bibinitdelim W\bibinitperiod}}}%
+      }
+      \list{publisher}{1}{%
+        {CSIRO Publishing}%
+      }
+      \strng{namehash}{de1a33099592177844be694503b327b7}
+      \strng{fullhash}{8e30f2bd4d9756eef5b1a7e6a005124d}
+      \strng{fullhashraw}{8e30f2bd4d9756eef5b1a7e6a005124d}
+      \strng{bibnamehash}{8e30f2bd4d9756eef5b1a7e6a005124d}
+      \strng{authorbibnamehash}{8e30f2bd4d9756eef5b1a7e6a005124d}
+      \strng{authornamehash}{de1a33099592177844be694503b327b7}
+      \strng{authorfullhash}{8e30f2bd4d9756eef5b1a7e6a005124d}
+      \strng{authorfullhashraw}{8e30f2bd4d9756eef5b1a7e6a005124d}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labelnamesource}{author}
+      \field{labeltitlesource}{title}
+      \field{issn}{1448-6059}
+      \field{journaltitle}{Marine and Freshwater Research}
+      \field{month}{7}
+      \field{number}{7}
+      \field{title}{Principles and practice of acquiring drone-based image data in marine environments}
+      \field{volume}{70}
+      \field{year}{2018}
+      \field{pages}{95\bibrangedash 963}
+      \range{pages}{869}
+      \verb{doi}
+      \verb 10.1071/mf17380
+      \endverb
+      \verb{urlraw}
+      \verb http://dx.doi.org/10.1071/mf17380
+      \endverb
+      \verb{url}
+      \verb http://dx.doi.org/10.1071/mf17380
+      \endverb
+    \endentry
     \entry{fig:Ecotone}{misc}{}{}
       \name{author}{1}{}{%
         {{hash=d598e4f3c1cf7c7ab49a68cd979ccc9e}{%
@@ -1817,8 +1879,8 @@
       \strng{authornamehash}{e78abd90f30a00f14f585e739ed63488}
       \strng{authorfullhash}{47dd02a17699c9a365c582a486996ce5}
       \strng{authorfullhashraw}{47dd02a17699c9a365c582a486996ce5}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{issn}{2512-2819}
@@ -2183,8 +2245,8 @@
       \strng{authornamehash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhash}{fcc0ce660086b48f2fa45b85cd8342c1}
       \strng{authorfullhashraw}{fcc0ce660086b48f2fa45b85cd8342c1}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labelnamesource}{author}
       \field{labeltitlesource}{title}
       \field{howpublished}{\url{http://theia-sfm.org}}

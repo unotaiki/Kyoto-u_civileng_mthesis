@@ -14,46 +14,45 @@
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 日本語版の図を作成}{3}{section*.19}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ + Field Work と実環境での検証、としてわけても良い}{4}{section*.22}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 浅水域を具体的に定義する文章を挿入。水底が視認可能な水域で、現実的には透明度が高く水面が穏やかな水域。具体的には、淡水では~2m、海水では~5m程度が現実的。}{5}{section*.24}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 陸域は説得力がない。もっとストレートな研究を探す。エコトーンというワードだと出てこないかも。Geomorphologyとかで調べる}{8}{section*.30}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 植生 = フォトリアルな見た目 から判別というニュアンスを含め GSのNVSタスクの有用性を後に説明したい}{8}{section*.31}%
-\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 浅水域で重要な色やテキスチャーによる底質の判断にはレーザーは不向き}{10}{section*.38}%
-\contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{10}{figure.caption.40}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ SDBに関して特化したSurvey論文があったように思える}{10}{section*.42}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Lyzenga法やStumpf法などの引用}{12}{section*.43}%
-\contentsline {todo}{Figure: 図で屈折が既存の光の直進性やPinholeモデルを成立させなくことを示す}{13}{subsection.45}%
-\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 項目のタイトルが英語と日本語が混在。日本語がある場合はなるべくした方がよいか}{15}{section*.50}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 無駄に力入れて書きすぎ。MVSとかほとんど本題じゃない。むしろSfMを頑張って記述するべきだった。(いい勉強になったが)、Appendixに回した方がいいげ}{16}{section*.53}%
-\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{17}{section*.55}%
-\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{22}{section.69}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{22}{section*.71}%
-\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{23}{Item.75}%
-\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{24}{figure.caption.76}%
-\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{25}{figure.caption.80}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 自動運転}{26}{section*.81}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ MCMCの説明も。?。これらのヒューリスティックスはデータセットや初期値に対して依存するため、それを克服するようなMCMCといった手法も考案されている。}{28}{section*.83}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ローパスフィルタまでは説明しなくても良い。(3DGSでも説明していないから)。MipSplatting説明しないといけない}{31}{section*.88}%
-\contentsline {todo}{Figure: 依然、木津川で再構成した際のアーティストを示す}{31}{section*.88}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ メッシュの抽出にはTSDF Fusionを用いている。}{32}{section*.90}%
-\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 今までの説明から、なぜ屈折を考慮した見た目(Photometric)を再現することで、屈折の影響を除去した正当な3次元形状を復元することが可能となるか。Analysis-by-Synthesisの観点から説明する。}{33}{section*.96}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ どちらを入射角、屈折角と呼ぶか悩ましい。RayーTracing的に視線をベースに考えると空気中が入射角だし、実際のRadianceを考えると水中が入射角である}{34}{section*.97}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ACRSで誤っていた数式を修正済}{34}{section*.99}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Implementationは後述だが、収束の速さからNewtonを使用}{34}{section*.100}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 詳細な導出はAppendixで。ACRSで記述しているのでそれを翻訳}{35}{section*.101}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 実装は後述だが、中心差分法でなく、陰関数定理を用いた。そのため、水面高さや屈折率に対しても勾配を流し、屈折率やカメラ位置も最適化対象にすることができる}{35}{section*.103}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 3DGSに対する補正と2DGSに対する補正双方を描く}{35}{section*.105}%
-\contentsline {todo}{Figure: それぞれのCorrectionを適用した場合、屈折無しで学習したモデルがどのように真値の屈折あり画像に近づいていくか見せる。Lake1とかを使うといいかも。}{35}{figure.caption.106}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ $J_app$の導出をAppendixに載せたい。実装でも結局明示的に算出しているから}{36}{section*.108}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Color Correctionというよりも、 `Radiometric Correction'という方が適切でニュアンスが伝わりやすいと思い変えた}{37}{section*.112}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Blenderでは、どのRGB補正が使われ画像が出力されるか確認}{37}{section*.113}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ * 実際の取得画像を示すべき* 新たなBlenderデータセットを完成させ、10種類ほどの多様なデータセットで複合的な検証を行いたかったが、、}{40}{section*.118}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 植生 = フォトリアルな見た目 から判別というニュアンスを含め GSのNVSタスクの有用性を後に説明したい}{8}{section*.30}%
+\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 浅水域で重要な色やテキスチャーによる底質の判断にはレーザーは不向き}{10}{section*.37}%
+\contentsline {todo}{Figure: 各手法のPros \& Cons をTableにする。手法、測定可能深度、空間解像度、浅水域での効率、コスト、頻度、安全性、備考}{10}{figure.caption.39}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ SDBに関して特化したSurvey論文があったように思える}{10}{section*.41}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ Lyzenga法やStumpf法などの引用}{12}{section*.42}%
+\contentsline {todo}{Figure: 図で屈折が既存の光の直進性やPinholeモデルを成立させなくことを示す}{13}{subsection.44}%
+\contentsline {todo}{\fcolorbox {gray}{gray!40}{\textcolor {gray!40}{o}}\ 項目のタイトルが英語と日本語が混在。日本語がある場合はなるべくした方がよいか}{15}{section*.49}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 無駄に力入れて書きすぎ。MVSとかほとんど本題じゃない。むしろSfMを頑張って記述するべきだった。(いい勉強になったが)、Appendixに回した方がいいげ}{16}{section*.52}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ cite{}では、現在の設定では名前が表示されずただ、[8]のように番号のみになるため、別の方法や引用のフォーマットの設定を考える}{17}{section*.54}%
+\contentsline {todo}{Figure: RenderingとInverse Renderingを表す図}{22}{section.68}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ いらないと思う}{22}{section*.70}%
+\contentsline {todo}{Figure: NeRFと3DGSの図。レイトレーシングとラスタライズの違いを表すイメージ。Survey論文に合った。}{23}{Item.74}%
+\contentsline {todo}{Figure: NeRFのMLPの構造も図で載せたい。引用できる}{24}{figure.caption.75}%
+\contentsline {todo}{Figure: NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}{25}{figure.caption.79}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 自動運転}{26}{section*.80}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ MCMCの説明も。?。これらのヒューリスティックスはデータセットや初期値に対して依存するため、それを克服するようなMCMCといった手法も考案されている。}{28}{section*.82}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ローパスフィルタまでは説明しなくても良い。(3DGSでも説明していないから)。MipSplatting説明しないといけない}{31}{section*.87}%
+\contentsline {todo}{Figure: 依然、木津川で再構成した際のアーティストを示す}{31}{section*.87}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ メッシュの抽出にはTSDF Fusionを用いている。}{32}{section*.89}%
+\contentsline {todo}{\fcolorbox {red}{red!40}{\textcolor {red!40}{o}}\ 今までの説明から、なぜ屈折を考慮した見た目(Photometric)を再現することで、屈折の影響を除去した正当な3次元形状を復元することが可能となるか。Analysis-by-Synthesisの観点から説明する。}{33}{section*.95}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ どちらを入射角、屈折角と呼ぶか悩ましい。RayーTracing的に視線をベースに考えると空気中が入射角だし、実際のRadianceを考えると水中が入射角である}{34}{section*.96}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ ACRSで誤っていた数式を修正済}{34}{section*.98}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Implementationは後述だが、収束の速さからNewtonを使用}{34}{section*.99}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 詳細な導出はAppendixで。ACRSで記述しているのでそれを翻訳}{35}{section*.100}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 実装は後述だが、中心差分法でなく、陰関数定理を用いた。そのため、水面高さや屈折率に対しても勾配を流し、屈折率やカメラ位置も最適化対象にすることができる}{35}{section*.102}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 3DGSに対する補正と2DGSに対する補正双方を描く}{35}{section*.104}%
+\contentsline {todo}{Figure: それぞれのCorrectionを適用した場合、屈折無しで学習したモデルがどのように真値の屈折あり画像に近づいていくか見せる。Lake1とかを使うといいかも。}{35}{figure.caption.105}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ $J_app$の導出をAppendixに載せたい。実装でも結局明示的に算出しているから}{36}{section*.107}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Color Correctionというよりも、 `Radiometric Correction'という方が適切でニュアンスが伝わりやすいと思い変えた}{37}{section*.111}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Blenderでは、どのRGB補正が使われ画像が出力されるか確認}{37}{section*.112}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ * 実際の取得画像を示すべき* 新たなBlenderデータセットを完成させ、10種類ほどの多様なデータセットで複合的な検証を行いたかったが、、}{40}{section*.117}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ まだArea3を使用するか決めていない。2が環境が異なる(大きな礫が多い河床)だが、RTK情報がないため厳しい。3は試したいが、影とそれ以外の輝度差の大きい条件}{42}{section*.121}%
 \contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ * ここでは、撮影エリアでの特徴に終始するぞ。* 水面には水草が浮いているぞ。* 本流ではなく、水たまりになっているSecond Channelにおいて撮影したぞ。* 最大深度は1.5mほどだと推定されるぞ。* Textureも比較的豊富だぞ。* 透明度が高く、波も穏やかだぞ。* 気温や湿度、天気はこの程度だった。(撮影時14度、湿度60\%、快晴)(後に正確に調べ直す) }{42}{section*.122}%
 \contentsline {todo}{Figure: 撮影エリアの概要GISを使って、論文らしい格好いい図を作る。1だけでなく、3でもデータを作りたいから、こだわるのはまた後で。}{42}{section*.122}%
-\contentsline {todo}{Figure: 撮影機材の概要}{42}{subsection.123}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ * RTKを使用した。* RTKを使用したのでGCPは設置しなかった* }{42}{section*.124}%
-\contentsline {todo}{Figure: 撮影データの例}{43}{subsection.126}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ * 偏光レンズを用いたぞ。(これはPlatformに入れるべき話かもしれぬ。) Radiometic Correctionに影響を与えるかもしれないが、どのみち環境光の水面での反射は考慮できていないから、撮影時の河床を鮮明に撮像できることを優先した。* Nadirとオブリークで撮影したぞ。* 検証点を自分で中に入り、設置し、手動で深度を測定したぞ。それぞれの深度は図のように61cm70cmだったぞ。}{43}{section*.127}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Field Studyの具体的な詳細は前章ののDatasetで}{44}{section*.132}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 現在Codeも公開されているが、正直いい実装には思えなかった。}{45}{section*.133}%
-\contentsline {todo}{Figure: 実際のマスク作成例。定量も含めて示す}{45}{figure.caption.134}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Automated: Manual labeling for hundreds images is time consuming ! Robustness: robustly across diverse environments. Zero-Shot: Fine-tuning models for each new environment is also time consuming impractical ! Controllability : flexible specification using natural language.“I want to remove those ‘ship and shadow’ ! ”}{46}{section*.135}%
-\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Dinoの説明は、40prelimのForward 3D Reconstructionでシたいと思ったがしないかも}{46}{section*.136}%
+\contentsline {todo}{Figure: 撮影機材の概要}{43}{subsection.123}%
+\contentsline {todo}{\fcolorbox {blue}{blue!30}{\textcolor {blue!30}{o}}\ 根拠となる論文を引っ張ってくる}{43}{section*.124}%
+\contentsline {todo}{Figure: 撮影データの例}{44}{subsection.126}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Field Studyの具体的な詳細は前章ののDatasetで}{45}{section*.131}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ 現在Codeも公開されているが、正直いい実装には思えなかった。}{46}{section*.132}%
+\contentsline {todo}{Figure: 実際のマスク作成例。定量も含めて示す}{46}{figure.caption.133}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Automated: Manual labeling for hundreds images is time consuming ! Robustness: robustly across diverse environments. Zero-Shot: Fine-tuning models for each new environment is also time consuming impractical ! Controllability : flexible specification using natural language.“I want to remove those ‘ship and shadow’ ! ”}{47}{section*.134}%
+\contentsline {todo}{\fcolorbox {black}{orange}{\textcolor {orange}{o}}\ Dinoの説明は、40prelimのForward 3D Reconstructionでシたいと思ったがしないかも}{47}{section*.135}%

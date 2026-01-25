@@ -58,11 +58,13 @@
   撮影機材の概要
 }
 
-\note{
-  * RTKを使用した。
-  * RTKを使用したのでGCPは設置しなかった
-  * 
-}
+画像の取得には、RTK-GPS（Real-Time Kinematic Global Positioning System）を搭載したUAV（Unmanned Aerial Vehicle）プラットフォームを使用した。
+RTK測位を用いることで、センチメートル級の高精度な位置情報が各画像に付与されるため、地上基準点（GCP: Ground Control Points）を現地に設置することなく、高精度なSfM（Structure from Motion）処理が可能となっている。
+\checkref{根拠となる論文を引っ張ってくる}
+
+また、本研究では水底の三次元形状およびテクスチャを鮮明に捉えることを最優先としたため、カメラレンズに円偏光（Circular Polarized Light :CPL）フィルターを装着した。
+これにより、水面における太陽光の反射（Sun Glint）を物理的に抑制している。
+偏光フィルターの使用は取得画像の放射輝度値（Radiance）に影響を与え、厳密なラジオメトリック補正の不確実性を増加させる可能性があるが、本研究の範囲においては水面反射に伴う環境光のモデル化を考慮していないため、水面下の可視性を最大化するアプローチを採用した。
 
 \begin{table}[htbp]
   \centering
@@ -102,17 +104,18 @@
 
 \missingfigure{撮影データの例}
 
-\note{
-  * 偏光レンズを用いたぞ。(これはPlatformに入れるべき話かもしれぬ。)
-  Radiometic Correctionに影響を与えるかもしれないが、どのみち環境光の水面での反射は考慮できていないから、撮影時の河床を鮮明に撮像できることを優先した。
-  * Nadirとオブリークで撮影したぞ。https://gemini.google.com/app/42efe917f2e9b646
-  * 検証点を自分で中に入り、設置し、手動で深度を測定したぞ。それぞれの深度は図のように61cm70cmだったぞ。
-}
+% \note{
+%   * 偏光レンズを用いたぞ。(これはPlatformに入れるべき話かもしれぬ。)cite(Joyce2018Drone-marine-surveyand_how-to)で、偏光レンズの言及あり(ただし曇りの日)
+%   Radiometic Correctionに影響を与えるかもしれないが、どのみち環境光の水面での反射は考慮できていないから、撮影時の河床を鮮明に撮像できることを優先した。
+%   * Nadirとオブリークで撮影したぞ。https://gemini.google.com/app/42efe917f2e9b646
+%   * 検証点を自分で中に入り、設置し、手動で深度を測定したぞ。それぞれの深度は図のように61cm70cmだったぞ。
+%   * 後のWorkflowで解説するが、cite(Joyce2018Drone-marine-surveyandhow-to)によると、水中でのGCP設置は困難であり、SfMによるカメラキャリブレーションの正確性を担保するため、地上を画像内に移せるようにする。
+% }
 
-\note{
-  シャッタースピードが固定されておらず、
-  DJI_20251115092203_0002_V.JPG では、1/250で画像が明るくいい感じなのに、
-  DJI_20251115092309_0078_V.JPG では、1/640で画像がかなり全体的に暗くなっている。
-  ISPRS前に補正できないか。良くない。
-  https://gemini.google.com/app/42efe917f2e9b646
-}
+% \note{
+%   シャッタースピードが固定されておらず、
+%   DJI_20251115092203_0002_V.JPG では、1/250で画像が明るくいい感じなのに、
+%   DJI_20251115092309_0078_V.JPG では、1/640で画像がかなり全体的に暗くなっている。
+%   ISPRS前に補正できないか。良くない。
+%   https://gemini.google.com/app/42efe917f2e9b646
+% }
