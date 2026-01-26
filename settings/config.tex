@@ -203,6 +203,41 @@
   \end{figure}
 }
 
+% -------------------------------------------------
+% 使用: \MinipageTwo[<高さ>]{<画像1>}{<キャプション1>}{<ラベル1>}{<画像2>}{<キャプション2>}{<ラベル2>}{<図全体キャプション>}{<図全体ラベル>}
+% 使用例:
+% \MinipageTwo[4cm]{image1.jpg}{1枚目の画像}{fig:image1}{image2.jpg}{2枚目の画像}{fig:image2}{全体キャプション}{fig:two-minipage-example}
+\newcommand{\MinipageTwo}[9][4cm]{%
+  \begin{figure}[htbp]
+    \centering
+    % --- 1枚目の画像 (左) ---
+    \begin{minipage}[b]{0.45\linewidth}
+      \centering
+      \includegraphics[height=#1, keepaspectratio]{#2}
+      \caption*{#3}
+      \ifx&#4&%
+      \else
+        \label{#4}
+      \fi
+    \end{minipage}
+    \hfill
+    % --- 2枚目の画像 (右) ---
+    \begin{minipage}[b]{0.45\linewidth}
+      \centering
+      \includegraphics[height=#1, keepaspectratio]{#5}
+      \caption*{#6}
+      \ifx&#7&%
+      \else
+        \label{#7}
+      \fi
+    \end{minipage}
+    \caption{#8}
+    \label{#9}
+  \end{figure}
+}
+
+
+
 
 % --- デバッグモード設定 (目に優しい黒背景) ---
 % \submissionmode は main.tex で定義する

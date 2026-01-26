@@ -20,3 +20,5 @@
 *.nav
 *.dvi
 *.synctex.gz
+
+out/*
