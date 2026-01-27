@@ -17,7 +17,7 @@
 この手法、タスクの総称を Structure from Motion (SfM) と呼ぶ。
 このSfMを起点とする、3D Vision for Geometry手法の発達、高度なUIを備えた商用ソフト(Pix4D, Metashape, etc.)の出現、オープンソース化により、今日ではPhotogrammetry技術は広く一般に普及した。
 
-\subsection{Structure from Motion}
+\subsection{Structure from Motion}\label{subsec:sfm}
 \kobayashi{項目のタイトルが英語と日本語が混在。日本語がある場合はなるべくした方がよいか}
 Structure from Motion (SfM)は、複数の視点から撮影された画像群に基づき、カメラの内部パラメータ（Intrinsic Parameters）・外部パラメータ（Extrinsic Parameters、すなわちカメラの三次元的な位置と姿勢）と、シーンの疎な（Sparse）3次元構造を同時に推定する手法である。
 SfMの理論的基礎は、Tomasi-Kanadeによる行列分解法\cite{Tomasi1992_FactorizationMethod}に始まり、HartleyとZissermanによって多視点幾何学（Multiple View Geometry）の理論体系\cite{Hartley2004_MultipleViewGeometry}として確立された。
@@ -37,7 +37,7 @@ COLMAPにより出力される正確なカメラ内部パラメータと外部�
   \label{fig:sfm_pipeline}
 \end{figure}
 
-\subsection{Multi-View Stereo}
+\subsection{Multi-View Stereo}\label{subsec:mvs}
 \note{無駄に力入れて書きすぎ。MVSとかほとんど本題じゃない。むしろSfMを頑張って記述するべきだった。(いい勉強になったが)、Appendixに回した方がいいげ}
 SfMなどによって得られたカメラパラメータが既知の多視点画像群から、各画素単位で密な深度推定により、高密度な三次元復元を行うのが Multi-View Stereo (MVS) である。
 SfMの出力三次元情報が疎な(Sparse)点群であるのに対して、MVSは物体表面の密な(Dense)な三次元点群やメッシュ(Mesh)を推定することから、MVSは Dense 3D Reconstruction (密な三次元再構成)のタスクを行っていると言える。

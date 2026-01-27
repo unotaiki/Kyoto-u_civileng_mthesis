@@ -42,7 +42,7 @@
 
 
 
-\subsubsection{微分可能レンダリングによる最適化}
+\subsection{微分可能レンダリングによる最適化}
 逆レンダリングを勾配法（Gradient Descent）によって解くためには、レンダリングプロセスが微分可能（Differentiable）である必要がある。
 (なんで勾配法で解く必要があるのか土木人に分かるように説明してあげないと。DLの発達とその最適化手法の根底にあることを言及)
 微分可能レンダリング（Differentiable Rendering, DR）の枠組みでは、以下のループによって3次元シーンが最適化される。
@@ -57,7 +57,7 @@
 この手法は、幾何学的な特徴点のみならず、画像内の全画素の情報を最適化に利用できる
 従来のBundle Adjustmentも2次元画像座標上の特徴点を介して、3次元シーンを構成する点群を再投影誤差を介し最小化するという点で、微分可能レンダリングの一種と捉えることができる。
 
-\subsubsection{Novel View Synthesis}
+\subsection{Novel View Synthesis}\label{subsec:nvs}
 従来のSfMやMVSの手法はGeometric Reconstructionとして、主に幾何情報の復元に焦点を当てていた。
 実際のSceneは幾何情報(Geometry)に加え、照明(illumination)、テクスチャ(texture)、BRDFなどでモデル化される表面特性などを含む。
 新規視点合成というタスクでは、ポーズを付与した画像から、その視点外からの新視点の画像を推定するタスクである。
@@ -66,7 +66,7 @@ Appearanceには当然、Geometryの情報も含まれているため、Appearan
 図を挿入して上げるぞ。(CGのレンダリングプロセスと、ベン図)
 
 
-\subsubsection{Neural Radiance Fields (NeRF)}
+\subsection{Neural Radiance Fields (NeRF)}
 \url{https://dl.acm.org/doi/10.1145/3758085}
 \cite{Liao2025ACMSurv_NeRF}からまとめる。
 微分可能レンダリングの代表例が NeRF (Neural Radiance Fields) である。

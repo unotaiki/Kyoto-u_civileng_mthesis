@@ -1,0 +1,75 @@
+%!TEX root = ../main.tex
+\section{Implementation of RA-GS}\label{sec:implementation}
+
+\note{手法をRA-GSと呼称することをMethodologyで宣言しておく}
+
+\note{
+  TODO
+  * Implincit Theory for gradient calculation
+  * Initialization plane point cloud
+  * NVIDIA RTX 3090 GPU
+}
+
+本手法であるRefractive-Aware Gaussian Splatting(RA-GS)は、Gaussian Splattingのオープンソースフレームワーク gsplat~\cite{ye2025_gsplat} を拡張して実装した。
+検証にかかる時間の制約により、合成データ環境では、3DGS~\cite{Kerbl2023ToG_3DGS}、実環境では2DGS~\cite{Huang2024SIGGRAPH_2DGS}を採用している。
+合成データ環境においては、カメラパラメータを真値を既知として与え、画像解像度は800 $\times$ 800 pixelsをそのまま入力した。
+実環境においては、前述の\cref{sec:camera-calibration}で推定したカメラパラメータを用いる。
+解像度は1/4にダウンサンプリングした画像を用いる。
+
+カメラ視点からの屈折をモデル化するパラメータ変換は、PyTorch~\cite{paszke2019pytorch} のカスタムautograd関数として実装し、\texttt{gsplat} の微分可能ラスタライザおよび最適化パイプラインに統合している。
+補正を適用するべきGaussianは中心位置$p_z < Water Level$ であるものに対してのみ適用し、地上のGaussianには補正は適用しない。
+\cref{sec:position-correction}で述べた中心補正における4次方程式の求解には、ニュートン法を採用した。
+\note{どの程度で、収束するかを定量的に示す}
+
+この処理により、オリジナルの3DGS実装~\cite{Kerbl2023ToG_3DGS} と比較して計算コストは最大で3倍程度増加するが、これは実用上許容される範囲のオーバーヘッドである。
+\note{全体で何倍処理時間が増えるかを説明する。Positioin Correctionのみではなくヤコビアンの計算にもボトルネックがある}
+
+
+最適化プロセスにおいては、3DGS~\cite{Kerbl2023ToG_3DGS} の Adaptive Density Control(ADC)を採用し、ハイパーパラメータについても標準設定に準拠した上で、30,000イテレーションの学習を行った。 
+なお、勾配計算の実装を簡略化するため、ガウシアンの球調和関数（SH）の次数は0に固定しており、色は視点に依存しない設定（View-independent）としている。 
+\note{新実装では考慮している}
+ガウシアンの初期化に関しては、合成データによるシミュレーション環境では、水深約10mの位置に平面状の点群を配置して初期化を行い、
+実環境においては、前述の\cref{sec:initialization-of-gaussians} で述べた方法で初期化を行った。
+
+すべての実験を、NVIDIA RTX 3090 GPU ~ 1台を使用して実施した。
+
+
+\note{水面下と陸域のGaussinの区別はどの中心座標$\bm{p}$の$z$座標に対して行う}
+\note{陰関数定理}
+
+
+% まず古い実装と新しい実装で説明を変える
+\section{Mesh Extraction}\label{sec:mesh-extraction}
+メッシュ抽出に関しても、合成データと実環境で異なる方法を採用している。
+
+\subsubsection{Mesh Extraction for Synthetic Data}\label{subsec:mesh-extraction-synthetic}
+3DGSを使用した合成データに関しては、軽量な処理パイプラインを採用した。
+具体的には、まず3DGS-to-PC~\cite{stuart20253dgstopcconvert3dgaussian} を用い、各ガウシアンの体積に応じた確率的サンプリングを行うことで初期点群（Raw point clouds）を生成する。
+次に、浮遊ノイズ（Floating artifacts）を除去するため、CloudCompare~\cite{girardeau2016cloudcompare} を用いて局所平面へのフィッティングに基づく外れ値フィルタリングを適用する。 
+フィルタリング後の点群は水平面上の2Dグリッドへと離散化され、各グリッドセル内の高さの中央値（Median height）を算出することでハイトマップを作成する。
+このハイトマップに基づき、最終的な表面整合点群を再構成する（\cref{fig:extract_surface_aligned_pc}）。 なお、グリッド解像度およびフィルタリングのパラメータは、表面の平滑性と詳細構造の保存のバランスを考慮し、データセットごとに調整を行った。
+
+\begin{figure}[!tbhp]
+  \centering
+  \includegraphics[width=0.8\linewidth]{figure/70_experim/extraction.png}
+  \caption{
+    幾何抽出パイプラインの概要。\\
+    左：3DGSによるノイズを含む点群。
+    中央：グリッドによる離散化と中央値計算。
+    右：2.5次元ハイトマップおよび表面整合点群。
+  }
+  \label{fig:extract_surface_aligned_pc}
+\end{figure}
+
+\subsubsection{Mesh Extraction for Field Data}\label{subsec:mesh-extraction-field}
+2DGSを使用した実環境データに関しては、2DGS~\cite{Huang2024SIGGRAPH_2DGS} で提案された、Truncated Signed Distance Function (TSDF) Fusion~\cite{Curless1996SIGGRAPH_TSDF} を用いたMesh抽出を採用した。
+実装には、Open3D~\cite{Open3D}のAPIを使用した。
+
+TSDFに入力するDepth Mapは、RA-GSにより得られたRefractive-Freeなガウシアンから、レンダリングを行うことで獲られる。
+Depth Mapの算出には、\cite{Huang2024SIGGRAPH_2DGS}で良い結果が示されている、Median Depthによる値を採用している。
+
+また、TSDF Fusionにおける諸パラメータは、\cref{sec:field-dataset}によるデータがカメラ高度12mとして、およそ13~mmのGround Sample Distance(GSD)である。
+このことから、Voxel Sizeには、その3倍程度の3~cmを、
+Truncated Thresholdには、さらにその3倍程度の10~cmを設定した。
+
+
