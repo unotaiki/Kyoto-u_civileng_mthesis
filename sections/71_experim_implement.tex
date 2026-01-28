@@ -3,21 +3,15 @@
 
 \note{手法をRA-GSと呼称することをMethodologyで宣言しておく}
 
-\note{
-  TODO
-  * Implincit Theory for gradient calculation
-  * Initialization plane point cloud
-  * NVIDIA RTX 3090 GPU
-}
-
 本手法であるRefractive-Aware Gaussian Splatting(RA-GS)は、Gaussian Splattingのオープンソースフレームワーク gsplat~\cite{ye2025_gsplat} を拡張して実装した。
 検証にかかる時間の制約により、合成データ環境では、3DGS~\cite{Kerbl2023ToG_3DGS}、実環境では2DGS~\cite{Huang2024SIGGRAPH_2DGS}を採用している。
 合成データ環境においては、カメラパラメータを真値を既知として与え、画像解像度は800 $\times$ 800 pixelsをそのまま入力した。
 実環境においては、前述の\cref{sec:camera-calibration}で推定したカメラパラメータを用いる。
 解像度は1/4にダウンサンプリングした画像を用いる。
+RA-GSの実装を含めた、全ての過程において屈折率$n$を1.33で固定している。
 
 カメラ視点からの屈折をモデル化するパラメータ変換は、PyTorch~\cite{paszke2019pytorch} のカスタムautograd関数として実装し、\texttt{gsplat} の微分可能ラスタライザおよび最適化パイプラインに統合している。
-補正を適用するべきGaussianは中心位置$p_z < Water Level$ であるものに対してのみ適用し、地上のGaussianには補正は適用しない。
+補正を適用するべきGaussianは中心位置の$z$座標に関して$p_z < \text{Water Level}$ であるものに対してのみ適用し、地上のGaussianには補正は適用しない。
 \cref{sec:position-correction}で述べた中心補正における4次方程式の求解には、ニュートン法を採用した。
 \note{どの程度で、収束するかを定量的に示す}
 
@@ -26,16 +20,16 @@
 
 
 最適化プロセスにおいては、3DGS~\cite{Kerbl2023ToG_3DGS} の Adaptive Density Control(ADC)を採用し、ハイパーパラメータについても標準設定に準拠した上で、30,000イテレーションの学習を行った。 
-なお、勾配計算の実装を簡略化するため、ガウシアンの球調和関数（SH）の次数は0に固定しており、色は視点に依存しない設定（View-independent）としている。 
+なお、シミュレーション環境においては、勾配計算の実装を簡略化するため、ガウシアンの球調和関数（SH）の次数は0に固定しており、色は視点に依存しない設定（View-independent）としているが、
+実環境における2DGSの実装では、球面調和を考慮し、その次数を3として視線依存を実現している。 
 \note{新実装では考慮している}
 ガウシアンの初期化に関しては、合成データによるシミュレーション環境では、水深約10mの位置に平面状の点群を配置して初期化を行い、
 実環境においては、前述の\cref{sec:initialization-of-gaussians} で述べた方法で初期化を行った。
 
-すべての実験を、NVIDIA RTX 3090 GPU ~ 1台を使用して実施した。
+すべての実験は、NVIDIA RTX 3090 GPU 1台を使用して実施した。
 
-
-\note{水面下と陸域のGaussinの区別はどの中心座標$\bm{p}$の$z$座標に対して行う}
-\note{陰関数定理}
+\note{陰関数定理で勾配を伝搬することを説明}
+\note{Jacobianの導出はAppendixに載せる}
 
 
 % まず古い実装と新しい実装で説明を変える

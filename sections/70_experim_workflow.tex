@@ -26,7 +26,7 @@
 
 RA-GSは、他の他視点三次元再構成タスク(\cref{subsec:mvs,subsec:nvs})と同様に、正確なカメラ内部･外部パラメータと歪みのない画像(Undistorted Images)を必要とする。
 これらは、COLMAP~\cite{schoenberger2016_colmap}などのSfM(\cref{subsec:sfm})によって推定することが標準となっている。
-本研究では、学術研究が無料のフォトグラメトリソフトウェアであるRealityScan\cite{RealityScan}を使用し、カメラキャリブレーションと画像の歪み補正を行った。
+本研究では、学術研究に無料で使用できるフォトグラメトリソフトウェアRealityScan\cite{RealityScan}を用い、カメラキャリブレーションと画像の歪み補正を行った。
 \cref{sec:field-dataset}で示したように、スケール不定性を持つ多視点画像による再構成に対し、高精度なRTK-GPSの位置情報をリファレンスに用いることで、実環境に即したスケールを保証する。
 
 陸域を十分に撮像できず、後続の水面マスク抽出手法が適用できない場合は、R-SfM\cite{Makris2024_refractive-aware-sfm}を用いて、屈折領域込みでのカメラポーズ推定が可能である。
@@ -94,8 +94,6 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
 
 まずは、UAVによる上空からの視点であることを補強するテンプレート(例: \texttt{a drone view of \{\}.})を作成した。
 これは、一般に多くの基盤モデルは地上からの視点を想定してGroundingされているため、上空からの視点を補強することで、より精度の高いマスク生成が可能となると考えられる。
-
-
 
 
 
@@ -245,4 +243,44 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
 
 
 \section{Initialization of Gaussians}\label{sec:initialization-of-gaussians}
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.75\textwidth]{figure/70_experim/sfm-random_3dgs.png}
+  \caption{
+    Gaussianの初期化による比較。
+    \cite{Kerbl2023ToG_3DGS}から引用。\\
+    上：ランダムな点群による初期化\\
+    下：SfM点群による初期化\\
+    SfM点群による初期化は再構成精度向上に有効であることを示している。
+    特にカバーされる視点の少ない背景領域で顕著である。
+    }
+    \label{fig:initialization-of-gaussians}
+\end{figure}
+
+
+Gaussian Splattingでは、SfMから得られた粗点群の位置をもとにGaussianを初期化するが、もしこれをこれをランダムな位置で初期化した場合、再構成の品質が低下することが示されている(\cref{fig:initialization-of-gaussians})。
+本環境でも同様で、水面をマスクしたSfMプロセスからは、水底の点群を得ることができず、河床の再構成の質が大幅に低下する(\cref{fig:init-ablation-bed})。
+
+\IncludeTwoImages[5cm]
+  {figure/70_experim/GS-riverbed-w-ini.png}{川底の点群を入力した場合の再構成結果}
+  {figure/70_experim/GS-riverbed-wo-ini.png}{川底の点群を入力しなかった場合の再構成結果}
+  {
+    川底の点群を入力した場合と入力しなかった場合の再構成結果の比較。\\
+    学習は3DGSによる結果である。
+    川底に補正点群を設けない場合、川底のシーンの質は大幅に低下する。
+  }
+  {fig:init-ablation-bed}
+
+そこで、本研究では、水面をマスクしたSfM処理の後に、マスク化を解除し、推定したカメラパラメータからMVS(\cref{subsec:mvs})を行い、川底の点群を生成した。
+屈折の影響により優れた質の点群を生成できず、初期化のための点群であるから、時間効率を踏まえた低い品質のパラメータで行うことが可能である。
+この生成点群に対し、\cite{Woodget2014_PhotograBathy-multiply-n,westaway2001_PhotograBathy-multiply-n}で報告される水面下の点群に対し屈折率$n=1.33$を乗することで、補正点群を生成した。
+後述するRA-GSで保持できるGaussian数(点群数)にメモリ容量上の制約があるため、RA-GSの初期化においてはこの点群をさらにダウンサンプリングして用いた。
+具体的には、12GBのVRAMを搭載したNVIDIA RTX 3090 GPUでは、最大で約3M個のGaussianを保持できるため、初期化には約500k個のGaussianを用いるようにダウンサンプリングした。
+\note{もう一度、実装して実験し直したほうがいい。2DGSの結果は、色を失った黒点群を使っていた。}
+
+
+
+
+
 
