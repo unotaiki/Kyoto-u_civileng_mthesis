@@ -60,7 +60,14 @@ UAV画像から水面や Distractor を抽出するマスク生成には、以�
     RobustnessやZero-Shot Adaptabilityの根底にある要件であり、高いインタラクティビティを提供する。
 \end{itemize}
 
-本研究では、オープン語彙物体検出モデル（DINO.txt\cite{Jose2025CVPR_DINOv2-Text,Simeoni2025_DINOv3}）を採用し、テキストプロンプトによるゼロショット・セグメンテーションを行う。
+これらの要件を満たすべく本研究では、オープン語彙物体検出モデル（DINO.txt\cite{Jose2025CVPR_DINOv2-Text,Simeoni2025_DINOv3}）を利用し、テキストプロンプトによるゼロショット・セグメンテーションを行う。
+DINO.txtの概要は\cref{fig:DinoTXT}に示す。
+\note{
+  Dino.txtの簡単な説明。
+  Dinoによる豊かな特徴量を、Text と "Ground"させることで、自然言語によるセマンティックセグメンテーションが可能な時代だっちゃ。
+}
+
+
 
 \begin{figure}[htbp]
   \centering
@@ -80,11 +87,162 @@ UAV画像から水面や Distractor を抽出するマスク生成には、以�
 
 \missingfigure{実際のマスク作成例。定量も含めて示す}
 
-本研究の浅水域を対象とした、水域と陸域を区別する。
-前章で示した宇治川のデータを例に上げると、水面はマスクにより除外し(0値)、陸域には陸地や草木などが含まれ、それらを非マスクとして残す(1値)。
-今回は非マスクとして扱ったが、風の強い日では草木は揺らめくことで幾何推定の精度が悪化するため、その場合はマスクとして除外する必要があるし、
-宇治川データセットでは水面に多数の浮草が凝集して存在し、それらは屈折の影響を受けないため、SfMによる幾何推定の対象に含めたいため非マスクとして抽出したい。
+実環境データ~\cref{sec:field-dataset}に対しては、DinoV3\cite{Simeoni2025_DINOv3}のリポジトリで公開されている学習済みモデル\footnote{\url{https://ai.meta.com/resources/models-and-libraries/dinov3-downloads/}}およびコード\footnote{\url{https://github.com/facebookresearch/dinov3/blob/main/notebooks/dinotxt_segmentation_inference.ipynb}}を利用し、水域と陸域を区別するマスクを生成した。
+水面はマスクにより除外し(0値)、陸域には陸地や草木などが含まれ、それらを非マスクとして残す(1値)。
+今回は非マスクとして扱ったが、風の強い日では草木は揺らめくことで幾何推定の精度が悪化するため、その場合はマスクとして除外する必要があるといった多様な環境･状況に対してのControllabilityが必要となる。
+宇治川データセットでは水面に多数の浮遊植物が凝集して存在し、それらは屈折の影響を受けず、SfMによる幾何推定の精度向上に寄与すると考えたため、明示的にプロンプトで指定することで除外を試みた。
 
+まずは、UAVによる上空からの視点であることを補強するテンプレート(例: \texttt{a drone view of \{\}.})を作成した。
+これは、一般に多くの基盤モデルは地上からの視点を想定してGroundingされているため、上空からの視点を補強することで、より精度の高いマスク生成が可能となると考えられる。
+
+
+
+
+
+% \begin{figure}[htbp]
+%   \centering 
+%   \begin{subfigure}[b]{1.0\linewidth}
+%     \centering
+%     \includegraphics[height=8cm, keepaspectratio]{figure/60_data/study_area.png}
+%     \caption{入力画像。}
+%     \label{fig:japan-and-uji-city}
+%   \end{subfigure}
+%   \begin{subfigure}[b]{1.0\linewidth}
+%     \centering
+%     \includegraphics[height=10cm, keepaspectratio]{figure/60_data/area1.png}
+%     \caption{Area1のマスク生成結果。}
+%     \label{fig:area1_map}
+%   \end{subfigure}
+%   \caption{Area1のマスク生成結果。}
+%   \label{fig:study-area}
+% \end{figure}
+
+
+\begin{algorithm}[t]
+  \SetAlgoLined
+  \DontPrintSemicolon
+  \caption{DINO.txtによるセグメンテーションの推論手順}
+  \label{alg:segmentation}
+  
+  \KwIn{\\
+    \Indp
+    Input images $\mathcal{I}$ ,\\
+    Text prompts $\mathcal{P} = \{P_c\}_{c=1}^{C}$ mapped to $C$ categories (Water, Land, Veg),\\
+    Pretrained Encoder Model $\Phi$\\
+    \Indm
+    }
+  \KwOut{\\
+   \Indp
+    Segmentation masks $\mathcal{M}$,\\ 
+    Probability maps $\mathcal{S}$ \\
+    \Indm
+    }
+  \BlankLine
+  
+  \tcp{Stage 1: Build Text Embeddings}
+  Initialize text embeddings $\mathbf{T} \leftarrow \emptyset$, 
+  Category map $\mathbf{C}_{map} \leftarrow \emptyset$\;
+  \ForEach{category $c \in \{1, \dots, C\}$}{
+      \ForEach{prompt $p \in P_c$}{
+          Generate templates $\mathcal{T}_p = \{ \text{template}(p) \}$\;
+          Extract features: $\mathbf{f}_p = \text{Normalize}(\text{Mean}(\Phi_{\text{text}}(\mathcal{T}_p)))$\;
+          $\mathbf{T} \leftarrow \mathbf{T} \cup \{ \mathbf{f}_p \}$\;
+          $\mathbf{C}_{map}[p] \leftarrow c$\;
+      }
+  }
+  Stack $\mathbf{T} \in \mathbb{R}^{N \times D}$ where $N$ is total prompts\;
+  
+  \tcp{Stage 2: Inference Loop}
+  \ForEach{image $I \in \mathcal{I}$}{
+      Preprocess image: $I_{in} \leftarrow \text{Resize}(I)$\;
+      Extract image features: $\mathbf{F} = \Phi_{\text{image}}(I_{in})$\;
+      Compute logits: $\mathbf{L} = \mathbf{F} \cdot \mathbf{T}^\top$\;
+      Upsample logits to original size: $\mathbf{L}_{up} \leftarrow \text{Bilinear}(\mathbf{L})$\;
+      
+      \tcp{Stage 3: Aggregation by Category}
+      Initialize final probabilities $\mathbf{P}_{final} \in \mathbb{R}^{C \times H \times W}$\;
+      \For{$c = 1$ \KwTo $C$}{
+          Identify indices: $\mathcal{K}_c = \{k \mid \mathbf{C}_{map}[k] = c\}$\;
+          Extract detailed probs: $\mathbf{P}_{sub} = \mathbf{L}_{up}[\mathcal{K}_c]$\;
+          Aggregate: $\mathbf{P}_{final}[c] \leftarrow \text{AGG}(\mathbf{P}_{sub})$ \tcp*{e.g., Max, Mean, Sum}
+      }
+      
+      \tcp{Stage 4: Prediction \& Save}
+      Generate mask: $M \leftarrow \arg\max_{c} (\mathbf{P}_{final})$\;
+      Save $M$ and visualize heatmap $\max(\mathbf{P}_{final})$\;
+  }
+\end{algorithm}
+
+
+\begin{table}[t]
+  \centering
+  \caption{
+    Area1における水面マスク抽出に用いたテキストプロンプト。\\
+    浮遊植物と水域･陸域を区別しやすいように3カテゴリで分類を行った。
+    テンプレートは、UAVによる上空からの視点を強調するものである。
+  }
+  \label{tab:prompts-dinov3}
+  \begin{tabular}{lp{0.7\linewidth}}
+    \hline
+    カテゴリ & プロンプト（英語キーワード） \\
+    \hline
+    水（除外対象／マスク） &
+      \texttt{river}, \texttt{lake}, \texttt{sea},
+      \texttt{river water},
+      \texttt{blue water},
+      \texttt{green water},
+      \texttt{water surface},
+      \texttt{ripples},
+      \texttt{reflection},
+      \texttt{stream},
+      \texttt{fluid},
+      \texttt{riverbeds} \\
+    \hline
+    陸地（抽出対象1） &
+      \texttt{sand},
+      \texttt{gravel},
+      \texttt{pebbles},
+      \texttt{dirt},
+      \texttt{mud},
+      \texttt{dry land},
+      \texttt{rock}, \texttt{stone},
+      \texttt{boulder},
+      \texttt{concrete},
+      \texttt{shore},
+      \texttt{ground},
+      \texttt{reef},
+      \texttt{sandbank},
+      \texttt{sandy spit},
+      \texttt{shoal} \\
+    \hline
+    植生（抽出対象2） &
+      \texttt{vegetation},
+      \texttt{grass},
+      \texttt{tree}, \texttt{bush},
+      \texttt{leaves},
+      \texttt{plant},
+      \texttt{leaves on the water surface},
+      \texttt{green scum},
+      \texttt{floating weeds},
+      \texttt{water plants},
+      \texttt{lily pads} \\
+    \hline
+    テンプレート & 
+      \texttt{a drone view of \{\}.}
+      \texttt{an aerial view of \{\}.}
+      \texttt{a top-down photo of \{\}.}
+      \texttt{a photo of the \{\}.}
+      \texttt{\{\} texture.}
+      \texttt{a close-up of \{\}.}
+      \texttt{a view of \{\} from above.}
+      \texttt{an overhead view of \{\}.}
+      \texttt{a bird's-eye view of \{\}.}
+      \texttt{a high-angle shot of \{\}.} 
+      \texttt{an orthophoto of \{\}.} \\
+    \hline
+  \end{tabular}
+\end{table}
 
 
 \section{Initialization of Gaussians}\label{sec:initialization-of-gaussians}
+

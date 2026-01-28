@@ -120,38 +120,43 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
     \label{fig:3dgs_adc}
 \end{figure}
 
-\begin{algorithm}[H]\label{alg:3dgs-adc}
-  \caption{
-    Novel 3DGS\cite{Kerbl2023ToG_3DGS}における密度最適化アルゴリズム。
-    \cite{Grubert2025VISAPP_improve-ADC}より引用。
-    }
-  \SetAlgoLined
-  \DontPrintSemicolon
-  
-  \textbf{Data:} Scene of Gaussians $G$ \\
-  \For{$G_k \in G$}{
-      \Comment{Densification}
-      \If{$\tau_k \geq T_{grad}$}{
-          \If{$\max(s_k) > P_{dense} \cdot e_{scene}$}{
-              splitGaussian($G_k$)\;
-          }
-          \Else{
-              cloneGaussian($G_k$)\;
-          }
-      }
+
+\begin{center}
+  \begin{minipage}{0.8\linewidth}
+    \begin{algorithm}[H]\label{alg:3dgs-adc}
+      \caption{
+        Novel 3DGS\cite{Kerbl2023ToG_3DGS}における密度最適化アルゴリズム。
+        \cite{Grubert2025VISAPP_improve-ADC}より引用。
+        }
+      \SetAlgoLined
+      \DontPrintSemicolon
       
-      \Comment{Opacity Pruning}
-      \If{$\alpha_k < \alpha_{min}$}{
-          pruneGaussian($G_k$)\;
+      \textbf{Data:} Scene of Gaussians $G$ \\
+      \For{$G_k \in G$}{
+          \Comment{Densification}
+          \If{$\tau_k \geq T_{grad}$}{
+              \If{$\max(s_k) > P_{dense} \cdot e_{scene}$}{
+                  splitGaussian($G_k$)\;
+              }
+              \Else{
+                  cloneGaussian($G_k$)\;
+              }
+          }
+          
+          \Comment{Opacity Pruning}
+          \If{$\alpha_k < \alpha_{min}$}{
+              pruneGaussian($G_k$)\;
+          }
+          
+          \Comment{Size Pruning}
+          \If{$\max(s_k) > 0.1 \cdot e_{scene}$}{
+              pruneGaussian($G_k$)\;
+          }
       }
-      
-      \Comment{Size Pruning}
-      \If{$\max(s_k) > 0.1 \cdot e_{scene}$}{
-          pruneGaussian($G_k$)\;
-      }
-  }
-  
-\end{algorithm}
+    \end{algorithm}
+  \end{minipage}
+\end{center}
+
 ここで、
 $\tau_k$ は2次元位置誤差勾配の平均値、
 $P_{dense}$ は密度最適化のハイパーパラメータ、
