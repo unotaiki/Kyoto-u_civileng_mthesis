@@ -97,26 +97,15 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
 
 
 
-% \begin{figure}[htbp]
-%   \centering 
-%   \begin{subfigure}[b]{1.0\linewidth}
-%     \centering
-%     \includegraphics[height=8cm, keepaspectratio]{figure/60_data/study_area.png}
-%     \caption{入力画像。}
-%     \label{fig:japan-and-uji-city}
-%   \end{subfigure}
-%   \begin{subfigure}[b]{1.0\linewidth}
-%     \centering
-%     \includegraphics[height=10cm, keepaspectratio]{figure/60_data/area1.png}
-%     \caption{Area1のマスク生成結果。}
-%     \label{fig:area1_map}
-%   \end{subfigure}
-%   \caption{Area1のマスク生成結果。}
-%   \label{fig:study-area}
-% \end{figure}
+\begin{figure}[htbp]
+  \centering 
+  \includegraphics[width=0.90\textwidth]{figure/70_experim/mask-result.png}
+  \caption{Area1におけるマスク生成結果}
+  \label{fig:mask-result}
+\end{figure}
 
 
-\begin{algorithm}[t]
+\begin{algorithm}[htbp]
   \SetAlgoLined
   \DontPrintSemicolon
   \caption{DINO.txtによるセグメンテーションの推論手順}
@@ -124,15 +113,14 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
   
   \KwIn{\\
     \Indp
-    Input images $\mathcal{I}$ ,\\
-    Text prompts $\mathcal{P} = \{P_c\}_{c=1}^{C}$ mapped to $C$ categories (Water, Land, Veg),\\
+    Input images $\mathcal{I}$ \\
+    Text prompts $\mathcal{P} = \{P_c\}_{c=1}^{C}$ mapped to $C$ categories (Water, Land, Veg)\\
     Pretrained Encoder Model $\Phi$\\
     \Indm
     }
   \KwOut{\\
    \Indp
-    Segmentation masks $\mathcal{M}$,\\ 
-    Probability maps $\mathcal{S}$ \\
+    Segmentation masks $\mathcal{M}$\\ 
     \Indm
     }
   \BlankLine
@@ -149,30 +137,34 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
       }
   }
   Stack $\mathbf{T} \in \mathbb{R}^{N \times D}$ where $N$ is total prompts\;
-  
+  \BlankLine
+
   \tcp{Stage 2: Inference Loop}
   \ForEach{image $I \in \mathcal{I}$}{
       Preprocess image: $I_{in} \leftarrow \text{Resize}(I)$\;
       Extract image features: $\mathbf{F} = \Phi_{\text{image}}(I_{in})$\;
-      Compute logits: $\mathbf{L} = \mathbf{F} \cdot \mathbf{T}^\top$\;
+      Compute logits: $\mathbf{L} = s \cdot \mathbf{F} \cdot \mathbf{T}^\top$ \tcp*{$s$ is a scaling factor}
       Upsample logits to original size: $\mathbf{L}_{up} \leftarrow \text{Bilinear}(\mathbf{L})$\;
+      Compute probabilities: $\mathbf{P}_{all} \leftarrow \text{Softmax}(\mathbf{L}_{up})$\;
+      \BlankLine
       
       \tcp{Stage 3: Aggregation by Category}
       Initialize final probabilities $\mathbf{P}_{final} \in \mathbb{R}^{C \times H \times W}$\;
       \For{$c = 1$ \KwTo $C$}{
           Identify indices: $\mathcal{K}_c = \{k \mid \mathbf{C}_{map}[k] = c\}$\;
-          Extract detailed probs: $\mathbf{P}_{sub} = \mathbf{L}_{up}[\mathcal{K}_c]$\;
-          Aggregate: $\mathbf{P}_{final}[c] \leftarrow \text{AGG}(\mathbf{P}_{sub})$ \tcp*{e.g., Max, Mean, Sum}
+          Extract detailed probs: $\mathbf{P}_{sub} = \mathbf{P}_{all}[\mathcal{K}_c]$\;
+          Aggregate: $\mathbf{P}_{final}[c] \leftarrow \text{AGG}(\mathbf{P}_{sub})$ \tcp*{Sum of probabilities }
       }
-      
+      \BlankLine
+
       \tcp{Stage 4: Prediction \& Save}
       Generate mask: $M \leftarrow \arg\max_{c} (\mathbf{P}_{final})$\;
-      Save $M$ and visualize heatmap $\max(\mathbf{P}_{final})$\;
+      Save $M$
   }
 \end{algorithm}
 
 
-\begin{table}[t]
+\begin{table}[htbp]
   \centering
   \caption{
     Area1における水面マスク抽出に用いたテキストプロンプト。\\
@@ -242,6 +234,8 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
 \end{table}
 
 
+\newpage
+
 \section{Initialization of Gaussians}\label{sec:initialization-of-gaussians}
 
 \begin{figure}[htbp]
@@ -262,7 +256,7 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
 Gaussian Splattingでは、SfMから得られた粗点群の位置をもとにGaussianを初期化するが、もしこれをこれをランダムな位置で初期化した場合、再構成の品質が低下することが示されている(\cref{fig:initialization-of-gaussians})。
 本環境でも同様で、水面をマスクしたSfMプロセスからは、水底の点群を得ることができず、河床の再構成の質が大幅に低下する(\cref{fig:init-ablation-bed})。
 
-\IncludeTwoImages[5cm]
+\IncludeTwoImages[6cm]
   {figure/70_experim/GS-riverbed-w-ini.png}{川底の点群を入力した場合の再構成結果}
   {figure/70_experim/GS-riverbed-wo-ini.png}{川底の点群を入力しなかった場合の再構成結果}
   {
