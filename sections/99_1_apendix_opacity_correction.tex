@@ -1,0 +1,44 @@
+%!TEX root = ../main.tex
+
+\subsection{Opacity Correction}\label{sec:opacity-correction}
+
+屈折界面を通して観測されるシーンの再構成では、特有の放射輝度減衰が生じる。
+\cref{fig:refraction-makes-scene-darker}に示すように、水面越しに見えるシーンはエタンドゥ保存則 (etendue conservation) により著しく暗く見える \cite{etendue}。
+屈折率 $n$ の媒質から空気へ光束が移動する場合、放射輝度は次式でスケーリングされる。
+\begin{equation}
+L_{\mathrm{air}} = \frac{1}{n^{2}} L_{\mathrm{water}}
+\end{equation}
+この観測輝度の低下は 3D Gaussian Splatting にとって課題となる。
+暗い観測画像に直接最適化すると、解が不自然に低い不透明度へと崩壊しやすい。
+半透明なガウシアンは低い観測輝度を説明できる一方で、幾何が曖昧でぼやけた、拘束の弱い再構成を引き起こす。
+
+これらを抑制するため、上記の放射輝度関係に着想を得た不透明度の正則化を導入する。
+最適化が不透明度を自由に下げることを許すのではなく、屈折界面の背後に位置するガウシアンの不透明度を次式でスケーリングし、期待される輝度損失を補正する。
+\begin{equation}
+\alpha' = \frac{1}{n^{2}} \alpha
+\end{equation}
+この調整により各ガウシアンの不透明度の上限が抑えられ、低不透明度への自明な収束が抑制される。
+結果として、より密で空間的に整合的なプリミティブでシーンを表現するように最適化が誘導され、幾何の忠実度と見かけの忠実度が向上する。
+
+なお、本戦略は屈折の物理的に厳密なモデルではない。
+屈折環境における最適化を安定化するための原理的なヒューリスティックである。
+実験的には、よりシャープな幾何が一貫して得られ、フローターや過度な平滑化といった典型的なアーティファクトを回避できる。
+
+\begin{figure}[htbp]
+  \centering
+  % 1枚目の画像
+  \begin{minipage}[b]{0.40\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/color/0050_gt_background.png}
+  \end{minipage}
+  % \hfill % 画像間のスペースを最大にする
+  % 2枚目の画像
+  \begin{minipage}[b]{0.40\linewidth}
+    \centering
+    \includegraphics[width=\linewidth]{figure/method/color/0050_refraction_background.png}
+  \end{minipage}
+  \caption{
+    Blender Cycles によるパストレーシングレンダリングの比較。
+    右図は水面越しに観測された画像であり、屈折のない左図に比べて放射輝度が大きく低下している。
+    提案する不透明度正則化は、このような条件下で Gaussian Splatting が低不透明度でぼやけた解に収束する傾向を緩和する。}\label{fig:refraction-makes-scene-darker}
+\end{figure}

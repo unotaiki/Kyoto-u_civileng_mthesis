@@ -20,6 +20,8 @@
 \usepackage{cleveref}
 \input{./settings/cref.tex} 
 \usepackage{mathtools}
+\usepackage[normalem]{ulem}% 打ち消し線 (\sout) [normalem]はReferenceで下線が入るのを防ぐ
+\usepackage{pifont}        % 特殊な記号（チェックマークなど）
 
 \usepackage{physics}
 \usepackage[ppl]{mathcomp}
@@ -132,7 +134,8 @@
 \newcommand{\figureref}[1]{図\ref{#1}}
 \newcommand{\tableref}[1]{表\ref{#1}}
 
-
+\newcommand{\CheckmarkBold}{\ding{51}} % 太いチェックマーク
+\newcommand{\XSolidBrush}{\ding{55}}   % バツ印
 
 % --- TODO用コマンド ---
 % 要修正：赤（論理の飛躍、間違いなど）

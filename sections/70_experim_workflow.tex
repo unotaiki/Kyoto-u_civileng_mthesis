@@ -139,7 +139,7 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
   Stack $\mathbf{T} \in \mathbb{R}^{N \times D}$ where $N$ is total prompts\;
   \BlankLine
 
-  \tcp{Stage 2: Inference Loop}
+  \tcp{Stage 2: Image-Text Matching}
   \ForEach{image $I \in \mathcal{I}$}{
       Preprocess image: $I_{in} \leftarrow \text{Resize}(I)$\;
       Extract image features: $\mathbf{F} = \Phi_{\text{image}}(I_{in})$\;
