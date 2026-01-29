@@ -1,0 +1,50 @@
+%!TEX root = ../main.tex
+
+\subsection{Scale Correction}\label{sec:scale-correction}
+
+ここで、述べるスケール補正(Scale Correction)は、\cref{sec:3Dsigma-correction}で述べた手法の前手法であり、3D共分散補正ほど正確な物理モデルに基づいた補正ではない。
+しかし、実装の検証\cref{sec:eval_simulated}において用いたためここで記す。
+
+
+変換 $\mathbf{p}\rightarrow\mathbf{p}'$ は非線形であるため、見かけ空間では座標系が歪む（\cref{fig:space_compression_by_view}）。
+補償的なスケーリングを行わないと、空間が不自然に圧縮され、Gaussian は表面上でぼやけて膨張する（\cref{fig:artifact-w/o-scale-correction}）。
+
+
+
+このアーティファクトを抑えるため、ヤコビアン $J_{\text{app}}$ が正準基底をどのように変換するかを調べ、局所的な異方歪みを定量化する。
+例えば、変換後の $x$ 軸の基底ベクトルは $J_{\text{app}}$ の第1列として
+\cref{eq:Jacobian} から次のように書ける：
+\begin{equation}
+  \bm{e}_x'=
+  J_{\text{app}}\bm{e}_x=
+    \begin{bmatrix}
+        \partial x'/\partial x \\
+        \partial y'/\partial x \\
+        \partial z'/\partial x
+    \end{bmatrix}
+\end{equation}
+このノルムを方向スケール因子として
+\begin{equation}
+  s_x=\|\bm{e}_x'\|
+  % = \sqrt{\left(\frac{\partial x'}{\partial x}\right)^2 + \left(\frac{\partial y'}{\partial x}\right)^2 + \left(\frac{\partial z'}{\partial x}\right)^2}
+\end{equation}
+と定義する。同様に $s_y, s_z$ を他の軸について得る。
+
+$\lvert\det J_{\text{app}}\rvert$ を体積の圧縮量として用いるのは自然に見える。
+しかし、この近似は入射角が大きい領域で過補償となり、Gaussian が過度に小さくなることを確認した。
+そこで、方向スケール因子の幾何平均を用いる：
+\begin{equation}
+  V=s_x\,s_y\,s_z
+  \label{eq:volume-compression-ratio}
+\end{equation}
+さらに、等方的な補正係数を
+\begin{equation}
+  S = V^{1/3}
+  \label{scale-correction-factor}
+\end{equation}
+と定める。最終的なスケールは
+\begin{equation}
+  \bm{s}' = S\,\bm{s}
+  \label{eq:scale-correction-edge}
+\end{equation}
+で与える。この等方的な補正により、屈折による膨張アーティファクトを抑えつつ、学習の安定性を保ち、プリミティブが過度に膨張・収縮することを防げる。
