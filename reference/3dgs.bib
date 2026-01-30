@@ -78,7 +78,53 @@
   year    = {2014}
 }
 
-# ====== 3DGS' application =======
+# ====== 3DGS' related work  =======
+
+# Under-water
+@article{li20243DV_watersplatting,
+  title   = {{W}ater{S}platting: Fast Underwater {3D} Scene Reconstruction using Gaussian Splatting},
+  author  = {Li, Huapeng and Song, Wenxuan and Xu, Tianao and Elsig, Alexandre and Kulhanek, Jonas},
+  journal = {3DV},
+  year    = {2025}
+}
+
+@inproceedings{Yang2025ICRA_SeaSplat,
+  title     = {SeaSplat: Representing Underwater Scenes with 3D Gaussian Splatting and a Physically Grounded Image Formation Model},
+  url       = {http://dx.doi.org/10.1109/icra55743.2025.11128502},
+  doi       = {10.1109/icra55743.2025.11128502},
+  booktitle = {2025 IEEE International Conference on Robotics and Automation (ICRA)},
+  publisher = {IEEE},
+  author    = {Yang, Daniel and Leonard, John J. and Girdhar, Yogesh},
+  year      = {2025},
+  month     = may,
+  pages     = {7632--7638}
+}
+
+# 3DGS improvement
+@inproceedings{Yu2024CVPR_MipSplatting,
+  title     = {Mip-Splatting: Alias-Free 3D Gaussian Splatting},
+  url       = {http://dx.doi.org/10.1109/cvpr52733.2024.01839},
+  doi       = {10.1109/cvpr52733.2024.01839},
+  booktitle = {2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  publisher = {IEEE},
+  author    = {Yu, Zehao and Chen, Anpei and Huang, Binbin and Sattler, Torsten and Geiger, Andreas},
+  year      = {2024},
+  month     = jun,
+  pages     = {19447--19456}
+}
+
+@inproceedings{Fu2024CVPR_Colmap-free-3DGS,
+  title     = {COLMAP-Free 3D Gaussian Splatting},
+  url       = {http://dx.doi.org/10.1109/cvpr52733.2024.01965},
+  doi       = {10.1109/cvpr52733.2024.01965},
+  booktitle = {2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  publisher = {IEEE},
+  author    = {Fu, Yang and Wang, Xiaolong and Liu, Sifei and Kulkarni, Amey and Kautz, Jan and Efros, Alexei A.},
+  year      = {2024},
+  month     = jun,
+  pages     = {20796--20805}
+}
+
 # Geometry
 @inproceedings{Huang2024SIGGRAPH_2DGS,
   series     = {SIGGRAPH ’24},
@@ -111,9 +157,14 @@
   year    = {2024}
 }
 
-# Optimization
-# MCMC
+# Reflection
+@inproceedings{Jiang2024CVPR_GaussianShader, title={GaussianShader: 3D Gaussian Splatting with Shading Functions for Reflective Surfaces}, url={http://dx.doi.org/10.1109/cvpr52733.2024.00509}, DOI={10.1109/cvpr52733.2024.00509}, booktitle={2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)}, publisher={IEEE}, author={Jiang, Yingwenqi and Tu, Jiadong and Liu, Yuan and Gao, Xifeng and Long, Xiaoxiao and Wang, Wenping and Ma, Yuexin}, year={2024}, month=jun, pages={5322–5332} }
+@inproceedings{Ye2024SIGGRAPH_DeferredReflection, series={SIGGRAPH ’24}, title={3D Gaussian Splatting with Deferred Reflection}, url={http://dx.doi.org/10.1145/3641519.3657456}, DOI={10.1145/3641519.3657456}, booktitle={Special Interest Group on Computer Graphics and Interactive Techniques Conference Conference Papers 24}, publisher={ACM}, author={Ye, Keyang and Hou, Qiming and Zhou, Kun}, year={2024}, month=jul, pages={1–10}, collection={SIGGRAPH ’24} }
 
+
+
+# Optimization
+@inproceedings{Isack2024NeurIPS_MCMC-GS, series={NeurIPS 2024}, title={3D Gaussian Splatting as Markov Chain Monte Carlo}, url={http://dx.doi.org/10.52202/079017-2573}, DOI={10.52202/079017-2573}, booktitle={Advances in Neural Information Processing Systems 37}, publisher={Neural Information Processing Systems Foundation, Inc. (NeurIPS)}, author={Isack, Hossam and Kar, Abhishek and Kheradmand, Shakiba and Rebain, Daniel and Sharma, Gopal and Sun, Weiwei and Tagliasacchi, Andrea and Tseng, Yang-Che and Yi, Kwang Moo}, year={2024}, pages={80965–80986}, collection={NeurIPS 2024} }
 @inproceedings{Grubert2025VISAPP_improve-ADC,
    title={Improving Adaptive Density Control for 3D Gaussian Splatting},
    url={http://dx.doi.org/10.5220/0013308500003912},
@@ -126,6 +177,7 @@
 }
 
 
+# ====== 3DGS' application =======
 # Visual-SLAM
 @inproceedings{Matsuki2024CVPR_GaussianSplattingSLAM,
   title     = {Gaussian Splatting SLAM},
@@ -209,51 +261,6 @@
 }
 
 # Autonomous driving
-
-# Under-water
-@article{li20243DV_watersplatting,
-  title   = {{W}ater{S}platting: Fast Underwater {3D} Scene Reconstruction using Gaussian Splatting},
-  author  = {Li, Huapeng and Song, Wenxuan and Xu, Tianao and Elsig, Alexandre and Kulhanek, Jonas},
-  journal = {3DV},
-  year    = {2025}
-}
-
-@inproceedings{Yang2025ICRA_SeaSplat,
-  title     = {SeaSplat: Representing Underwater Scenes with 3D Gaussian Splatting and a Physically Grounded Image Formation Model},
-  url       = {http://dx.doi.org/10.1109/icra55743.2025.11128502},
-  doi       = {10.1109/icra55743.2025.11128502},
-  booktitle = {2025 IEEE International Conference on Robotics and Automation (ICRA)},
-  publisher = {IEEE},
-  author    = {Yang, Daniel and Leonard, John J. and Girdhar, Yogesh},
-  year      = {2025},
-  month     = may,
-  pages     = {7632--7638}
-}
-
-# 3DGS related
-@inproceedings{Yu2024CVPR_MipSplatting,
-  title     = {Mip-Splatting: Alias-Free 3D Gaussian Splatting},
-  url       = {http://dx.doi.org/10.1109/cvpr52733.2024.01839},
-  doi       = {10.1109/cvpr52733.2024.01839},
-  booktitle = {2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  publisher = {IEEE},
-  author    = {Yu, Zehao and Chen, Anpei and Huang, Binbin and Sattler, Torsten and Geiger, Andreas},
-  year      = {2024},
-  month     = jun,
-  pages     = {19447--19456}
-}
-
-@inproceedings{Fu2024CVPR_Colmap-free-3DGS,
-  title     = {COLMAP-Free 3D Gaussian Splatting},
-  url       = {http://dx.doi.org/10.1109/cvpr52733.2024.01965},
-  doi       = {10.1109/cvpr52733.2024.01965},
-  booktitle = {2024 IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
-  publisher = {IEEE},
-  author    = {Fu, Yang and Wang, Xiaolong and Liu, Sifei and Kulkarni, Amey and Kautz, Jan and Efros, Alexei A.},
-  year      = {2024},
-  month     = jun,
-  pages     = {20796--20805}
-}
 
 
 # implementation
