@@ -39,7 +39,7 @@ RA-GSの実装を含めた、全ての過程において屈折率$n$を1.33で�
 
 \subsubsection{Mesh Extraction for Synthetic Data}\label{subsec:mesh-extraction-synthetic}
 3DGSを使用した合成データに関しては、軽量な処理パイプラインを採用した。
-具体的には、まず3DGS-to-PC~\cite{stuart20253dgstopcconvert3dgaussian} を用い、各ガウシアンの体積に応じた確率的サンプリングを行うことで初期点群（Raw point clouds）を生成する。
+具体的には、まず3DGS-to-PC~\cite{Stuart2025ICCV_3DGS-to-PC} を用い、各ガウシアンの体積に応じた確率的サンプリングを行うことで初期点群（Raw point clouds）を生成する。
 次に、浮遊ノイズ（Floating artifacts）を除去するため、CloudCompare~\cite{girardeau2016cloudcompare} を用いて局所平面へのフィッティングに基づく外れ値フィルタリングを適用する。 
 フィルタリング後の点群は水平面上の2Dグリッドへと離散化され、各グリッドセル内の高さの中央値（Median height）を算出することでハイトマップを作成する。
 このハイトマップに基づき、最終的な表面整合点群を再構成する（\cref{fig:extract_surface_aligned_pc}）。 なお、グリッド解像度およびフィルタリングのパラメータは、表面の平滑性と詳細構造の保存のバランスを考慮し、データセットごとに調整を行った。

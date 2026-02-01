@@ -39,7 +39,7 @@ CGシミュレーションおよび実環境のフィールドワークで得ら
 これは、水媒質中で光の粒子が他の粒子と衝突する散乱、また吸収されることで生じる波長依存の効果であり、水中が青みがかって観測される物理的な理由である。
 本研究が対象とした浅水域では無視し得たが、水深が増すにつれて波長依存の減衰が顕著になり、最終的には水底からの放射輝度が消失する。
 % SeaThru \cite{Akkaynak2019CVPR_Sea-Thru} では、霧などの大気中で活用された一律な減衰モデルを改善し、RGBによる波長依存性を考慮した水中減衰モデルとその推定を定式化した。
-SeaSplat \cite{Yang2025ICRA_SeaSplat} や WaterSplatting \cite{li20243DV_watersplatting} にで実装されたような水中減衰モデルをRA-GSに統合することで、濁度や水深に応じた減衰係数の推定が可能になる。
+SeaSplat \cite{Yang2025ICRA_SeaSplat} や WaterSplatting \cite{li20243DV_watersplatting} で実装されたような水中減衰モデルをRA-GSに統合することで、濁度や水深に応じた減衰係数の推定が可能になる。
 これにより、「水底が視認できる」という主観的な基準に頼ることなく、物理的根拠に基づいた測量限界の提示や、色補正された高品質な水底三次元像の復元が可能となり、エコトーンにおける生物生息調査などへの応用が期待される。
 
 \subsection{カメラおよび環境パラメータの同時最適化}\label{subsec:camera-and-environment-parameter-optimization}
@@ -63,15 +63,39 @@ SeaSplat \cite{Yang2025ICRA_SeaSplat} や WaterSplatting \cite{li20243DV_watersp
 
 加えて、広域な河川や沿岸部のシーンを再構成するには、大量のGaussianを配置する必要があり、計算コストやメモリ消費量が実用上の大きな制約となる。
 本研究の実験（宇治川Area1）では、画像解像度を1/4にダウンサンプリング（約1300 $\times$ 1000 pixel）した200枚の画像を用い、3M個のGaussian（球面調和次数3）を最適化した段階で、VRAM 12GB（RTX 3090）のメモリ限界に達した。
-このような大規模シーンへの対応は、3DGSを実社会に応用する上での重要課題であり、Horizon-GS\cite{Jiang2025CVPR_Horizon-GS}やHierarchical 3DGS\cite{Kerbl2024ToG_Hierarchical3DGS}のような大規模シーン向けの手法の採用が考えられる。
-また、再構成後のデータ容量を削減するために、Compact 3DGSや3DGS.zipに代表される圧縮技術を導入することで、モバイル端末等での閲覧やデータ配布がより容易になると期待される。
-
-
-本研究では、計算リソース（VRAM容量）の制約から、比較的小規模な範囲の再構成に留まった。
-広範囲の河川測量を実現するためには、Hierarchical-3DGS\cite{Kerbl2024ToG_Hierarchical3DGS}や Horizon-GS \cite{Jiang2025CVPR_Horizon-GS} のような大規模シーン向けの手法を取り入れる必要がある。
-また、再構成後のデータ容量を削減するために、Compact 3DGS\cite{Lee2024CVPR_Compact3DGS}に代表される圧縮技術を導入することで、データの共有や保存が容易になると期待される。
-
-\newline
+このような大規模シーンへの対応は、3DGSを実社会に応用する上での重要課題であり、Hierarchical-3DGS\cite{Kerbl2024ToG_Hierarchical3DGS}や Horizon-GS \cite{Jiang2025CVPR_Horizon-GS} のような大規模シーン向けの手法を取り入れる必要がある。
+また、再構成後のデータ容量を削減するために、Compact 3DGS\cite{Lee2024CVPR_Compact3DGS}に代表される圧縮技術を導入することで、データの共有や保存が容易になると期待される。\\baselineskip
 
 以上のように、Gaussian Splattingを始めとする、逆レンダリングを活用した三次元再構成、また、Feed Forwardな手法は現在も日進月歩の進歩を遂げており、それらの手法をRA-GSと組み合わせることで、水深写真測量の完全な実用化を推進できると考えている。
 総括すると、本研究は水深写真測量における屈折の影響という長年の課題を解決するための重要な理論的枠組みと方法を提供する。
+
+\note{3DGRT,3DGUT,TransparentGSなどの屈折を考慮する手法の考察。}
+
+\begin{table}[htbp]
+  \centering
+  \caption{本研究の限界事項と今後の課題・解決アプローチの要約}
+  \label{tab:challenges-and-solutions}
+  \small
+  \renewcommand{\arraystretch}{1.4}
+  \setlength{\tabcolsep}{0.65em}
+  \begin{tabularx}{\textwidth}{@{} l >{\RaggedRight}p{2.4cm} >{\RaggedRight}p{2.6cm} >{\RaggedRight}X @{}}
+  \toprule
+  \textbf{項目} & \textbf{現状の仮定・課題} & \textbf{物理現象・要因} & \textbf{推奨される解決策・関連手法} \\
+  \midrule
+  波による歪み & 平坦な水面を仮定 & 局所的な屈折変動 &
+  LPIPS/SSIM損失の採用，法線・深さの正則化 \cite{Huang2024SIGGRAPH_2DGS, Gu2024CVPR_SuGaR} \\
+  \addlinespace[0.25em]
+  水面反射 & フレネル反射未考慮 & 鏡面反射・環境光 &
+  環境光の同時推定（環境マップの最適化） \cite{Jiang2024CVPR_GaussianShader, Ye2024SIGGRAPH_DeferredReflection} \\
+  \addlinespace[0.25em]
+  光の減衰 & 浅水域のため無視 & 波長依存の吸収・散乱 &
+  水中減衰モデルの統合による係数推定 \cite{Yang2025ICRA_SeaSplat, li20243DV_watersplatting,Akkaynak2019CVPR_Sea-Thru} \\
+  \addlinespace[0.25em]
+  既知パラメータ & ポーズ・水高を既知 & 陸域不足でのSfM困難 &
+  屈折考慮SfM \cite{Makris2024_refractive-aware-sfm}，カメラ姿勢・屈折率の同時最適化 \\
+  \addlinespace[0.25em]
+  大規模化 & 計算資源の制約 & メモリ消費・広域撮影 &
+  階層化GS \cite{Kerbl2024ToG_Hierarchical3DGS}，圧縮技術 \cite{Lee2024CVPR_Compact3DGS}，少数視点対応 \cite{Guedon2025CVPR_MatChaGaussians} \\
+  \bottomrule
+  \end{tabularx}
+\end{table}
