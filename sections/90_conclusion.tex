@@ -17,7 +17,8 @@ CGシミュレーションおよび実環境のフィールドワークで得ら
 しかし、実環境への完全な適用と大規模な展開に向けては、制限事項と解決すべき課題が残されている。
 本節では、それらの課題を整理し、今後の展望を述べる。
 
-\subsection{波による歪み}\label{subsec:wave-distortion}
+\paragraph{波による歪み}\label{subsec:wave-distortion}
+
 本研究では、前提として平坦な水面（Static Flat Surface）を仮定しており、波による水面法線の局所的な変動は考慮していない。
 波の空間的周期や振幅が小さい場合、あるいは飛行高度に対して波の影響が相対的に小さい場合は、平均的な誤差として無視しうる可能性がある。
 しかし、厳密には波によって屈折方向が変化し、ピクセル単位でのシーンの不一致が生じる。
@@ -25,7 +26,8 @@ CGシミュレーションおよび実環境のフィールドワークで得ら
 さらに、2DGS \cite{Huang2024SIGGRAPH_2DGS} や SuGaR \cite{Gu2024CVPR_SuGaR}、TrimGS \cite{fan2024_trimGS} といった手法で提案されている法線一致やDepth Distortionなどの正則化項を導入し、表面形状の滑らかさを強制することも、波の影響を低減する上で有効であると考えられる。
 今後は、波を含むシミュレーション環境を構築し、再構成結果への定量的な影響を検証する必要がある。
 
-\subsection{水面反射}\label{subsec:surface-reflection}
+\paragraph{水面反射}\label{subsec:surface-reflection}
+
 
 本研究では、水面における反射と屈折の比率を支配するフレネル反射を明示的にモデル化していない。
 フレネルの法則は微分可能なフレームワークとして導入可能であるが、その際に増加する外界の映り込みによる鏡面反射光の表現が課題となる。
@@ -33,7 +35,8 @@ CGシミュレーションおよび実環境のフィールドワークで得ら
 近年、物体表面の反射と環境光を同時に推定する研究\cite{Jiang2024CVPR_GaussianShader,Ye2024SIGGRAPH_DeferredReflection}が報告されている。
 これらの手法を応用し、環境マップとしての外界放射輝度を同時に最適化するアプローチの導入が検討される。
 
-\subsection{水中における光の減衰}\label{subsec:light-attenuation}
+\paragraph{水中における光の減衰}\label{subsec:light-attenuation}
+
 
 水中における光の吸収および散乱による減衰も、水深測量における重要な課題である。
 これは、水媒質中で光の粒子が他の粒子と衝突する散乱、また吸収されることで生じる波長依存の効果であり、水中が青みがかって観測される物理的な理由である。
@@ -42,7 +45,8 @@ CGシミュレーションおよび実環境のフィールドワークで得ら
 SeaSplat \cite{Yang2025ICRA_SeaSplat} や WaterSplatting \cite{li20243DV_watersplatting} で実装されたような水中減衰モデルをRA-GSに統合することで、濁度や水深に応じた減衰係数の推定が可能になる。
 これにより、「水底が視認できる」という主観的な基準に頼ることなく、物理的根拠に基づいた測量限界の提示や、色補正された高品質な水底三次元像の復元が可能となり、エコトーンにおける生物生息調査などへの応用が期待される。
 
-\subsection{カメラおよび環境パラメータの同時最適化}\label{subsec:camera-and-environment-parameter-optimization}
+\paragraph{カメラおよび環境パラメータの同時最適化}\label{subsec:camera-and-environment-parameter-optimization}
+
 
 本研究では、カメラ外部パラメータ、水面の高さ、および水の屈折率（$n=1.33$）を既知または固定値として扱った。
 実環境データセットにおいては、陸域の特徴点を用いたSfMによりカメラポーズを推定し、水面高さを手動で設定した。
@@ -53,7 +57,8 @@ SeaSplat \cite{Yang2025ICRA_SeaSplat} や WaterSplatting \cite{li20243DV_watersp
 
 \note{水面はマニュアルに検出していること。既知として何をRA-GSに与えているか、ワークフローImplementationでもう一度、しっかり説明する}
 
-\subsection{大規模シーンの効率的な再構成}\label{subsec:large-scale-reconstruction}
+\paragraph{大規模シーンの効率的な再構成}\label{subsec:large-scale-reconstruction}
+
 
 本研究では、多視点性を確保しつつ屈折歪みの影響を顕著に捉えるため、オフナディア角を設けた観測条件下で検証を行った。
 屈折による空間圧縮や歪みは視角に依存するため（\cref{fig:space_compression_by_view}）、物理モデルに基づくRA-GSの有効性はこうした条件下で最大化される。
@@ -73,7 +78,7 @@ SeaSplat \cite{Yang2025ICRA_SeaSplat} や WaterSplatting \cite{li20243DV_watersp
 
 \begin{table}[htbp]
   \centering
-  \caption{本研究の限界事項と今後の課題・解決アプローチの要約}
+  \caption{本研究の制限と今後の課題・解決アプローチ}
   \label{tab:challenges-and-solutions}
   \small
   \renewcommand{\arraystretch}{1.4}

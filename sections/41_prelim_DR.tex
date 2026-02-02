@@ -1,8 +1,8 @@
 %!TEX root = ../main.tex
 
-\section{Inverse Rendering as 3D Reconstruction}
+\section{Inverse Rendering as 3D Reconstruction}\label{sec:prelim_inverse-rendering-as-3d-reconstruction}
 
-\subsubsection{Inverse Rendering and Differentiable Rendering}
+\subsection{Inverse Rendering and Differentiable Rendering}\label{subsec:differentiable-rendering}
 
 コンピュータグラフィックス（CG）における古典的な課題は、3次元のシーン記述（形状、材質、光源）から2次元の画像を生成することである。
 この過程は「Forward Rendering（順方向レンダリング）」、あるいは単にレンダリングと呼ぶ。
@@ -72,7 +72,7 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
 \end{figure}
 
 
-\subsection{Neural Radiance Fields (NeRF)}
+\subsection{Neural Radiance Fields (NeRF)}\label{subsec:nerf}
 % \url{https://dl.acm.org/doi/10.1145/3758085}
 % \cite{Liao2025ACMSurv_NeRF}からまとめる。
 微分可能レンダリングの代表例が NeRF (Neural Radiance Fields) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である。
