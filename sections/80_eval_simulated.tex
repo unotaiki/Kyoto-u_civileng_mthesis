@@ -1,23 +1,23 @@
 %!TEX root = ../main.tex
 \newpage
-\chapter{Evaluation}\label{chap:evaluation}
+\chapter{評価検証}\label{chap:evaluation}
 本章では、RA-GSの3DGS\cite{Kerbl2023ToG_3DGS}実装のシミュレーション環境における定量･定性評価、
 および宇治川で取得した実環境データ\cref{sec:field-dataset}に対するRA-GSの2DGSによる屈折を排した三次元再構成の結果に関して述べる。
 
-\section{Evaluation on Simulated Dataset}\label{sec:eval_simulated}
+\section{シミュレーションデータにおける評価検証}\label{sec:eval_simulated}
 
 
 評価に使用した学習画像は、\cref{sec:simulated-dataset}で述べた手順により生成されたものであり、屈折面に起因する歪みを含んでいる。
-ただし、水面での環境光の反射、水中における光の減衰・散乱の影響は排除している。
+ただし、水面での環境光の反射、水中における光の減衰・散乱の影響は考慮してない。
+時間の制約上、実装においては、\cref{sec:covariance-correction,sec:color-correction}でなく、前手法として提案したスケール補正\cref{sec:scale-correction}と不透明度補正\cref{sec:opacity-correction}を適用している。
+シミュレーションデータにおいては、真値を用いた詳細な検証が可能のため、個々の補正要素に対するアブレーション分析に注力した。
 
-時間の都合上、実装においては、\cref{sec:3Dsigma-correction,sec:color-correction}でなく、前手法のとして提案したスケール補正\cref{sec:scale-correction}と不透明度補正\cref{sec:opacity-correction}を適用している。
-
-\subsection{Appearance Evaluation}\label{subsec:eval_simulated_appearance}
+\paragraph{外観評価}\label{subsec:eval_simulated_appearance}
 
 \begin{table*}[htbp]
   \caption{
-    外観(Appearance)に関する定量評価結果。
-    提案手法の各構成要素を除去したアブレーションスタディとの比較を示す。各モデルは屈折を含むシーン画像から学習されている。
+    外観に関する定量評価結果。
+    提案手法の各構成要素を除去したアブレーション分析による比較を示す。各モデルは屈折を含むシーン画像から学習されている。
   }
   \label{tab:apparent-evaluation}
   \centering
@@ -37,19 +37,19 @@
   % & 0.610 & 14.81 & 0.332 & 0.682 & 14.12 & 0.292 & 40.0 \\ 
   & - & - & - & 0.682 & 14.12 & 0.292 & 40.0 \\ 
   
-  Position
+  Position(\cref{sec:position-correction})
   & \CheckmarkBold & \XSolidBrush & \XSolidBrush
   & 0.980 & 37.56 & 0.023 & 0.953 & 21.49 & 0.039 & 23.1 \\
   
-  + Scale
+  + Scale(\cref{sec:scale-correction})
   & \CheckmarkBold & \CheckmarkBold & \XSolidBrush
   & 0.964 & 37.21 & 0.023 & 0.936 & 22.97 & 0.043 & 28.0 \\
 
-  + Opacity 
+  + Opacity(\cref{sec:opacity-correction})
   & \CheckmarkBold & \XSolidBrush & \CheckmarkBold
   & 0.984 & 38.44 & 0.018 & 0.954 & 25.27 & 0.033 & 38.8 \\
 
-  Ours
+  RA-GS
   & \CheckmarkBold & \CheckmarkBold & \CheckmarkBold
   & 0.981 & 38.42 & 0.017 & 0.933 & 25.97 & 0.046 & 41.3 \\
 
@@ -69,11 +69,12 @@
 第一に、屈折面を仮想的に配置した上で、再構成結果のシーンをレンダリングし(Render w/ Refraction)、屈折による歪みを含む正解画像と比較する場合である。
 第二に、屈折面なしでモデルをレンダリングし(Render w/o Refraction)、歪みのない正解画像と比較する場合である。
 
-結果として、ガウス分布の中心位置(Position)の補正が最も重要な役割を果たしており、すべての指標において大幅な改善をもたらすことが示された。
+結果として、ガウス分布の中心位置補正が最も重要な役割を果たしており、すべての指標において大幅な改善をもたらすことが示された。
 エコトーン環境における底質の分類といったアプリケーションにおいては、構造的な詳細を維持することが最優先されるため、SSIMが重要な指標となると考えれるが、
-本手法(Ours)は、難易度の高い `w/o Refraction'のシナリオにおいても0.93以上のSSIMスコアを維持している。
+提案手法は、難易度の高い `w/o Refraction'のシナリオにおいても0.93以上のSSIMスコアを維持している。
+これは、屈折のあるシーンから推定した場合でも、真の水底の幾何的なテクスチャを推定できることを意味しており、例えば水中の流経分布の解析を実スケールかつ高精細に行える可能性を示している。
 一方で、このシナリオにおける本手法のPSNRは、「屈折あり」の場合と比較して13 dB近く低い値となっている。
-これは、Appendixで議論した物理的な不正確さに起因すると考えられる。
+これは、\cref{sec:opacity-correction}で議論した物理的な不正確さに起因すると考えられる。
 本手法の不透明度補正は、すべてのガウス分布の不透明度を一様に低下させるため、背景が黒く透けるのではなく、背景にあるガウス分布が合成されてしまう。
 不透明度の正則化はPSNRの向上にわずかに寄与しているものの、屈折面における輝度の減少をモデル化するには不十分である。
 その結果、輝度のわずかな変化が生じ、画素ごとの差異を厳密に評価するPSNR指標において大きなペナルティとなっている。
@@ -81,28 +82,29 @@
 
 さらに、スケール補正を含めるとSSIMスコアがわずかに低下する傾向が見られた。
 これは、本手法がガウス分布の形状や方向に関わらずその体積を等方的に補正するため、非屈折レンダリングにおいて微細な構造的詳細を損なうブラーが生じているためだと考えられる。
-正確に見かけ空間における歪みをモデル化する\cref{sec:3Dsigma-correction-3DGS}による検証が将来的に必要となる。
+正確に見かけ空間における歪みをモデル化する\cref{sec:covariance-correction}による検証が将来的に必要である。
 
 \begin{figure}[htbp]
   \centering 
   \captionsetup{justification=raggedright}
   \includegraphics[width=0.9\linewidth]{figure/80_eval/simulated/appearance.png}
   \caption{
-    本手法、正解データ、および各補正要素のアブレーション結果による外観の視覚的比較。
-    なお、スケール補正および不透明度補正には、位置補正も併用してる。
+    本手法、正解データ、および各補正要素のアブレーション分析による外観の視覚的比較。
+    なお、スケール補正および不透明度補正には、位置補正も併用している。
+    補正を行わない場合は、視覚的に大きく歪んで推定されるが、位置補正を適用した提案手法ではどれでも高い視覚情報を復元できている。
     }
   \label{fig:ablation-appearance}W
 \end{figure}
 
 
 
-\subsection{Geometry Evaluation}\label{sec:eval_simulated_geometry}
+\paragraph{幾何評価}\label{sec:eval_simulated_geometry}
 
 \begin{table*}[htbp]
   \caption{
     形状(Geometry)に関する定量評価結果。提案手法の各構成要素のアブレーション比較を示す。
     各モデルは屈折を含むシーン画像から学習されている。
-    平均チャンファー距離(Chamfer Distance)および各閾値(10 cm, 30 cm)におけるF1スコアを報告する。
+    チャンファー距離、および各閾値(10 cm, 30 cm)におけるF1スコアを報告する。
     }
   \label{tab:eval_simulated_geometry}
   \centering
@@ -134,7 +136,7 @@
   & \CheckmarkBold & \XSolidBrush & \CheckmarkBold
   & 0.054 & 79.29 & 90.80 & 84.66 & 90.64 & 99.99  & 95.09 \\
 
-  Ours
+  RA-GS
   & \CheckmarkBold & \CheckmarkBold & \CheckmarkBold
   & 0.011 & 91.56 & 96.58 & 94.00 & 98.26 & 100.00 & 99.12 \\
 
@@ -167,10 +169,10 @@ F1 = \frac{2 \cdot Precision \cdot Recall}{Precision + Recall}
 \cref{tab:eval_simulated_geometry}に示すように、ベースラインである3DGSは、屈折の物理現象を考慮していないため、屈折シーンにおいて極めて低い性能を示した。
 その結果、非常に大きなチャンファー距離(8.477 m)と、ほぼゼロに近いF1スコアとなっている。
 アブレーションスタディは、提案された各構成要素の貢献を示している。
-位置(Position)補正の導入は最も実質的な改善をもたらし、CDを0.110 mまで大幅に減少させ、10 cm閾値でのF1スコアを76.51\%まで向上させた。
-さらにスケール(Scale)補正を加えることで形状が洗練され、CDは0.033 mに低下し、F1スコアは85.79\%に増加した。
-スケール補正と不透明度(Opacity)補正はそれぞれ追加することで漸進的な改善をもたらすが、3つの構成要素すべてを統合した本手法("Ours")が相乗効果により最高の性能を達成している。
-この包括的なアプローチにより、0.011 mという最小のチャンファー距離と、94.00\%(10 cm)および99.12\%(30 cm)という最高のF1スコアを実現した。
+位置補正の導入は最も実質的な改善をもたらし、CDを0.110 mまで大幅に減少させ、10 cm閾値でのF1スコアを76.51\%まで向上させた。
+さらにスケール補正を加えることで形状が洗練され、CDは0.033 mに低下し、F1スコアは85.79\%に増加した。
+スケール補正と不透明度補正はそれぞれ追加することで漸進的な改善をもたらすが、3つの構成要素すべてを統合した本手法`RA-GS'が相乗効果により最高の性能を達成している。
+この包括的なアプローチにより、\(\qty{0.011}{m}\)という最小のチャンファー距離と、\(94.00\%\)(\qty{10}{cm})および\(99.12\%\)(\qty{30}{cm})という最高のF1スコアを実現した。
 これらの結果は、最大水深10メートルという条件を含む挑戦的なデータセット上で達成されたものであり、本手法の堅牢性を強調するものである。
 これは、前節で示した外観の向上に加え、本手法の複合的な補正戦略が高忠実度な幾何形状の再構成において不可欠であることを実証している。
 
