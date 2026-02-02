@@ -72,7 +72,7 @@
 \end{itemize}
 という、パラメータセットによって定義される。
 これらのパラメータは、カメラパラメータを推定するSfMで副次的に得られる疎点群を用いて初期化される(\cref{fig:3dgs_pipeline}A)。
-共分散行列 $\bm{\Sigma}^{\mathrm{3D}}$ は、スケーリングベクトル $\bm{s} \in \mathbb{R}^3$ から構成されるスケール対角行列 $\bm{S} \in \mathbb{R}^{3 \times 3}$ と、回転クォータニオン$\bm{q} \in \mathbb{R}^4$ (回転行列 $\bm{R} \in SO(3)$ として表現)を用いて以下のように構成される：
+共分散行列 $\bm{\Sigma}^{\mathrm{3D}}$ は、スケールベクトル $\bm{s} \in \mathbb{R}^3$ から構成されるスケール対角行列 $\bm{S} \in \mathbb{R}^{3 \times 3}$ と、回転クォータニオン$\bm{q} \in \mathbb{R}^4$ (回転行列 $\bm{R} \in SO(3)$ として表現)を用いて以下のように構成される：
 \begin{equation}\label{eq:3dgs-sigma_RssR}
   \bm{\Sigma}^{\mathrm{3D}} = \bm{R} \bm{S} \bm{S}^\top \bm{R}^\top
 \end{equation}
@@ -192,103 +192,24 @@ $\alpha_{min}$ は消去を行うための不透明度に関するハイパー�
 
 
 \subsection{2D Gaussian Splatting}\label{sec:2DGS}
-2D Gaussian Splatting(2DGS) \parencite{Huang2024SIGGRAPH_2DGS}は、Photometricな一貫性に特化した3DGSに対し、幾何的な一貫性を向上させることを目的とした派生手法である。
-三次元シーンで観測されるRadianceは、環境光が物体表面で反射したものから観測されるという前提から、三次元シーンの各Gaussianは物体表面に整列して配置されることを目指すMVSなどのGeometric Reconstructionの一種とも言える。
+2D Gaussian Splatting(2DGS) \parencite{Huang2024SIGGRAPH_2DGS}は、測光誤差に関する最適化による外観の一貫性に特化した3DGSに対し、幾何的な一貫性を向上させることを目的とした派生手法である。
+三次元シーンで観測される放射輝度(Radiance)は、環境光が物体表面で反射することで観測されるという前提から、各Gaussianを物体表面に整列するように最適化を行う。
+MVSなどのGeometric Reconstructionの一種とも言える。
 
 2DGSの3DGSとの違いは、主に以下の3点である:
 \begin{itemize}
-  \item 平らな2次元ガウス分布(Surfel)プリミティブによる三次元シーン表現
-  \item 正確な透視投影(Perspective-accurate)による、2D Gaussian集合の2次元画像平面への射影
+  \item 平らな2次元ガウス分布(Surfel)による三次元シーン表現
+  \item 正確な透視投影(Perspective-accurate)な2D Gaussianの2次元画像平面への射影
   \item 幾何的な整合性を高める正則化の導入
 \end{itemize}
 
-2DGSにおいて、シーンは平らな2次元ガウス分布(Surfel)(2D-oriented planar Gaussian disks)の集合として表現される。
-つまり、3DGSに比較し、スケーリングベクトル $\bm{s}$のうち最小の成分が0と表現したSurfelとして表現し、
-2DGSのプリミティブは、中心位置$\bm{p}_k$、主方向ベクトル$\bm{t}_u$と$\bm{t}_v$、および対応するスケーリングベクトル$\bm{s} = (s_u, s_v)$によって表現される。
+2DGSにおいて、シーンは平らな2次元ガウス分布(Surfel:2D-oriented planar Gaussian disks)の集合として表現される。
+3DGSに比較し、スケーリングベクトル $\bm{s}$のうち最小の成分を0と表現したSurfelとして表現する。
+よって、2DGSのプリミティブは、中心位置$\bm{p}_k$、主方向ベクトル$\bm{t}_u$と$\bm{t}_v$、それに対応するスケール$\bm{s} = (s_u, s_v)$によって表現される。
 (回転行列$\bm{R}_k$、不透明度$\alpha_k$と視線依存色$\bm{c}_k$は3DGSと同様である。)
 
-% レイと第 $k$ プリミティブ平面との交点 $\bm{p}_{inter}$ をローカル座標系へ変換した変位ベクトルを $\bm{u}$ とすると、$\alpha_i$ は以下のように定義される。
 
-% \begin{equation}
-%     \alpha_i = o_i \exp\left( -\frac{1}{2} \bm{u}^\top \bm{\Sigma}_{2D}^{-1} \bm{u} \right)
-% \end{equation}
-
-% ここで、$o_i$ は学習可能な不透明度パラメータ、$\bm{\Sigma}_{2D}$ は2次元スケーリングと回転行列から構成される局所的な分散行列である。
-
-% \subsection{蓄積アルファ (\texttt{render\_alphas})}
-% \textbf{型:} $[..., C, H, W, 1]$
-
-% レイに沿った総不透明度であり、物理的にはレイが物体によって遮蔽された確率を表す。これは最終的な透過率 $T_{final}$ の補数となる。
-
-% \begin{equation}
-%     A(\mathbf{r}) = \sum_{i \in \mathcal{N}} \alpha_i T_i = 1 - T_{final} = 1 - \prod_{i=1}^{N} (1 - \alpha_i)
-% \end{equation}
-
-% \subsection{ボリューム法線 (\texttt{render\_normals})}
-% \textbf{型:} $[..., C, H, W, 3]$
-
-% 2DGSが「幾何学的に正確」であるための核心的な項である。各2次元ガウス円盤の固有法線 $\bm{n}_i$ を、色情報と同様の重みでブレンディングしたものである。
-
-% \begin{equation}
-%     \bm{n}_{vol}(\bm{r}) = \sum_{i \in \mathcal{N}} (\bm{R}_i \cdot \bm{z}_{local}) \alpha_i T_i
-% \end{equation}
-
-% ここで $\bm{R}_i$ はクォータニオンから導出される回転行列、$\bm{z}_{local} = (0,0,1)^\top$ はローカル座標系における法線ベクトルである。この $\bm{n}_{vol}$ は、後述する表面法線との整合性を取る正則化(Normal Consistency Loss)に使用される。
-
-% \subsection{表面法線 (\texttt{surf\_normals})}
-% \textbf{型:} $[..., C, H, W, 3]$
-
-% レンダリングされた深度マップの幾何学的勾配から算出される法線であり、「見かけ上の形状」を表す。まず、期待値深度(Expected Depth) $D(u,v)$ を計算する。
-
-% \begin{equation}
-%     D(u, v) = \sum_{i \in \mathcal{N}} t_i \alpha_i T_i
-% \end{equation}
-
-% ここで $t_i$ はカメラ原点から交点までの距離である。$\bm{n}_{surf}$ は画像空間における勾配のクロス積として近似される。
-
-% \begin{equation}
-%     \bm{n}_{surf} \propto \frac{\partial D}{\partial u} \times \frac{\partial D}{\partial v}
-% \end{equation}
-
-% \subsection{歪み (\texttt{render\_distort})}
-% \textbf{型:} $[..., C, H, W, 1]$
-
-% Mip-NeRF 360で提案されたDistortion LossのL1変種である。レイ上の密度分布が局所的に集中(＝明確な表面が存在)することを奨励する。
-
-% \begin{equation}
-%     \mathcal{L}_{dist}(\bm{r}) = \sum_{i, j} w_i w_j |t_i - t_j| + \frac{1}{3} \sum_i w_i^2 s_i
-% \end{equation}
-% (ただし実装上は計算効率化のため、上記式の簡易版が用いられる場合がある)
-
-% \subsection{中央値深度 (\texttt{render\_median})}
-% \textbf{型:} $[..., C, H, W, 1]$
-
-% 累積透過率が閾値0.5に達した地点の深度。期待値深度におけるエッジ付近のアーティファクト(Flying Pixels)を抑制し、TSDF Fusion等によるメッシュ再構成において堅牢な結果を提供する。
-
-% \begin{equation}
-%     t_{median} = \mathop{\mathrm{argmin}}_t \left| \int_{0}^{t} \alpha(s)T(s) \mathrm{d}s - 0.5 \right|
-% \end{equation}
-
-% \section{実装上の設計指針 (Engineering Advice)}
-
-% Google Researchの実装経験に基づき、安定したパイプライン構築のための重要な指針を以下に示す。
-
-% \subsection{Ray-Plane Intersectionの特異点処理}
-% 視線ベクトル $\bm{d}$ と平面法線 $\bm{n}_i$ が直交に近い場合(Grazing Angle)、交点計算は数値的に不安定となる。CUDAカーネル内では、内積値に対するハードクリッピングを推奨する。
-
-% \begin{equation}
-%     \text{if } |\bm{d} \cdot \bm{n}_i| < \epsilon \quad (\text{e.g., } \epsilon=0.05), \quad \text{discard intersection.}
-% \end{equation}
-
-% \subsection{幾何再構成のための深度モード}
-% メッシュ抽出を目的とする場合、\texttt{depth\_mode}の選択は重要である。浮遊ノイズの少ない高品質なメッシュを得るためには、\texttt{render\_median} の出力を信頼するか、あるいは正則化項を含んだ \texttt{RGB+ED} モードでの学習結果を用いることが望ましい。また、微分可能レンダリングにおいて \texttt{surf\_normals} を利用する際は、計算グラフの切断(detach)を適切に管理する必要がある。
-
-
-
-
-
-
-具体的には、3D空間内の2次元ガウス分布は、ローカルな接平面 $(u, v)$ 上で定義され、その幾何学的形状は同次変換行列 $\bm{H} \in \mathbb{R}^{4 \times 4}$ を用いて以下のようにパラメータ化される \parencite{Huang2024SIGGRAPH_2DGS}。
+具体的には、3D空間内の二次元ガウス分布は、ローカルな接平面 $(u, v)$ 上で定義され、その幾何学的形状は同次変換行列 $\bm{H} \in \mathbb{R}^{4 \times 4}$ を用いて以下のようにパラメータ化される。
 
 \begin{equation}\label{eq:2dgs-plane-def}
   \bm{H} = 
@@ -299,17 +220,17 @@ $\alpha_{min}$ は消去を行うための不透明度に関するハイパー�
 \end{equation}
 
 ここで、ローカル座標 $\bm{u} = (u, v)$ におけるガウス分布の強度は、標準的な2次元ガウス関数として定義される。
-\begin{equation}
+\begin{equation}\label{eq:2dgs_uv-space}
   G(\bm{u}) = \exp\left( - \frac{u^2 + v^2}{2} \right)
 \end{equation}
 
-\subsubsection{Perspective-Accurate Splatting via Ray-Splat Intersection}
-3DGSが採用しているアフィン近似による投影は、ガウス分布の中心から離れるにつれて近似誤差が増大し、視点によって深度が不整合になるという問題がある。
-これに対し2DGSは、視線レイ(Ray)と2次元平面(Splat)の交差判定(Ray-Splat Intersection)を明示的に計算することで、正しい透視投影を実現する。
+\paragraph{視線との交差判定による正確な透視投影}
+3DGSが採用しているアフィン近似による投影(\cref{eq:3dgs-affine-projection})は、ガウス分布の中心から離れるにつれて近似誤差が増大し、また、視点によって深度が不整合するという問題がある。
+これに対し2DGSは、視線と2D Gaussianの交差判定(Ray-Splat Intersection)を明示的に計算することで、正しい透視投影を実現する。
 
 スクリーン空間上のピクセル座標 $\bm{x} = (x, y)$ を通る視線レイは、三次元空間において直交する2つの平面(x-planeとy-plane)の交線として定義できる。
 これを同次座標系の4次元平面ベクトル $\bm{h}_x = (-1, 0, 0, x)^\top, \bm{h}_y = (0, -1, 0, y)^\top$ として表現し、これらをワールド空間からスクリーン空間への変換行列 $\bm{W}$ と、先述のローカル変換行列 $\bm{H}$ を用いてガウス分布のローカル座標系へ逆変換する。
-ここで、平面の変換には逆転置行列 $(\bm{W}\bm{H})^{-\top}$ を用いる必要があるが、これにより明示的な逆行列計算を回避し、数値的な安定性を保つことができる。
+ここで、平面の変換には逆転置行列 $(\bm{W}\bm{H})^{-\top}$ を用いるが、これにより明示的な逆行列計算を回避し、数値的な安定性を保つことができる。
 
 \begin{equation}\label{eq:2dgs-h-transform}
   \bm{h}_u = (\bm{W}\bm{H})^\top \bm{h}_x, \quad \bm{h}_v = (\bm{W}\bm{H})^\top \bm{h}_y
@@ -324,31 +245,32 @@ $\alpha_{min}$ は消去を行うための不透明度に関するハイパー�
     \bm{h}_u^4 \bm{h}_v^1 - \bm{h}_u^1 \bm{h}_v^4
   \end{pmatrix}
 \end{equation}
-ここで $\bm{h}^i$ はベクトルの第 $i$ 成分を表す。これにより得られた $\bm{u}(\bm{x})$ を用いて $G(\bm{u}(\bm{x}))$ を評価することで、正確なレンダリングが可能となる。
+ここで $\bm{h}^i$ はベクトルの第 $i$ 成分を表す。
+これにより得られた $\bm{u}(\bm{x})$ を用いて $G(\bm{u}(\bm{x}))$ (\cref{eq:2dgs_uv-space})を評価することで、正確なレンダリングが可能となる。
 
-また、2DGS特有の問題として、視線が円盤に対して平行に近い角度(Slanted viewpoint)になった際に、スクリーン上で線分に退化し、勾配消失やエイリアシングを引き起こす現象がある。
-これを防ぐため、2DGSではローパスフィルタ $\sigma$ を導入し、スクリーン空間での最小サイズを保証する以下のクリッピング処理を行う。
-\begin{equation}
-  \hat{G}(\bm{x}) = \max \left\{ G(\bm{u}(\bm{x})), G\left( \frac{\bm{x} - \bm{c}}{\sigma} \right) \right\}
-\end{equation}
-この処理は実装上、最適化の安定性を確保するために極めて重要である。
-\note{ローパスフィルタまでは説明しなくても良い。(3DGSでも説明していないから)。MipSplatting説明しないといけない}
+% また、2DGS特有の問題として、視線が円盤に対して平行に近い角度(Slanted viewpoint)になった際に、スクリーン上で線分に退化し、勾配消失やエイリアシングを引き起こす現象がある。
+% これを防ぐため、2DGSではローパスフィルタ $\sigma$ を導入し、スクリーン空間での最小サイズを保証する以下のクリッピング処理を行う。
+% \begin{equation}
+%   \hat{G}(\bm{x}) = \max \left\{ G(\bm{u}(\bm{x})), G\left( \frac{\bm{x} - \bm{c}}{\sigma} \right) \right\}
+% \end{equation}
 
-\subsubsection{Regularization for Geometric Consistency}
-2DGSはSurfel表現を持つが、単なるPhotometric lossのみでは、三次元再構成特有の不定性によりノイズの多い表面形状に収束してしまう傾向がある。
-そこで、幾何学的精度を向上させるために\cite{Barron2022CVPR_Mip-NeRF360}で提案された2つ正則化項をGSフレームワークに導入している。
+\paragraph{幾何学的な一貫性を高める正則化}
+2DGSは物体表面に適用しやすい面的なプリミティブで表現されるが、測光誤差のみでは三次元再構成特有の不定性によりノイズの多い表面形状に収束する傾向がある。
+そこで、幾何学的精度を向上させるために\cite{Barron2022CVPR_Mip-NeRF360}で提案された2つ正則化項をGSフレームワークに導入する。
 
-一つ目は \textbf{Depth Distortion Loss} ($\mathcal{L}_d$) である。
+一つ目は \textbf{深度歪み正則化} ($\mathcal{L}_d$) である。
 3DGSのボリュームレンダリングは、レイ上の交点間の距離を考慮しないため、ガウス分布が前後に散らばるアーティファクトが生じやすい。
-2DGSでは、レイ上の交差点深度 $z_i$ とブレンディング重み $\omega_i$ を用いて、寄与の高いガウス分布同士の深度距離を最小化するように制約をかける。
+そこで、2DGSでは、レイ上の交差点深度 $z_i$ とブレンディング重み $\omega_i$ を用いて、寄与の高いGaussian同士のの深度距離を最小化するように制約をかける。
+これにより、物体表面が高密に、明確に表現されるようになる。
 
-\missingfigure{依然、木津川で再構成した際のアーティストを示す}
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.7\textwidth]{figure/40_prelim/2dgs_regulatization.png}
   \caption{
     2DGSの正則化項の効果。
-    左から順に、入力画像、法線整合性正則化なしの表面法線、深度歪み正則化なしの表面法線、そして両方の正則化を適用した2DGSの結果である。
+    \cite{Huang2024SIGGRAPH_2DGS}より引用。
+    左から順に、入力画像、法線整合性正則化なし、深度歪み正則化なし、そして両方の正則化を適用した2DGSの結果である。
+    それぞれ法線マップで表面形状を可視化している。
     法線整合性正則化を適用しない場合、表面の法線方向にノイズが生じる。
     一方、深度歪み正則化を省略すると、法線マップがぼやけたものとなる。
     両方の正則化を併用することで、鋭く滑らかな表面形状を正確に再構成できている。
@@ -356,14 +278,12 @@ $\alpha_{min}$ は消去を行うための不透明度に関するハイパー�
     \label{fig:2dgs_regulatization}
 \end{figure}
 
-
-
 \begin{equation}
   \mathcal{L}_d = \sum_{i, j} \omega_i \omega_j |z_i - z_j|
 \end{equation}
 
-二つ目は \textbf{Normal Consistency Loss} ($\mathcal{L}_n$) である。
-2DGSのプリミティブは自身が法線ベクトル $\bm{n}_i = \bm{t}_u \times \bm{t}_v$ を持っている。
+二つ目は \textbf{法線整合性正則化} ($\mathcal{L}_n$) である。
+2DGSではプリミティブ自身が法線ベクトル $\bm{n}_i = \bm{t}_u \times \bm{t}_v$ を持っている。
 ここで $\times$ はベクトルの外積演算を表す。
 この明示的な法線と、レンダリングされた深度マップから推定される法線 $\bm{N}$(深度の勾配 $\nabla \bm{D}$ から算出)との整合性を取ることで、滑らかな表面再構成を強制する。
 
@@ -371,14 +291,11 @@ $\alpha_{min}$ は消去を行うための不透明度に関するハイパー�
   \mathcal{L}_n = \sum_{i} \omega_i (1 - \bm{n}_i^\top \bm{N})
 \end{equation}
 
-最終的な損失関数は、3DGSのPhotometric lossに加え、これらの正則化項を加重和したものである。
-これらの幾何学的制約により、2DGSはNoiseの少ない詳細なメッシュ抽出が可能となり、かつ3DGSと同等のレンダリング速度と画質を維持している。
-
-\note{メッシュの抽出にはTSDF Fusionを用いている。}
+最終的な損失関数は、3DGSの測光誤差(\cref{eq:loss-function})に加え、これらの正則化項を加重和したものである。
+これらの幾何学的制約により、2DGSからは高精細かつ滑らかなメッシュ抽出が可能となる一方で、3DGSと同等のレンダリング速度と画質を維持している。
 
 
-
-Gaussian Splattingのパイプラインはピンホールカメラモデルを基にした透視投影に依存しており、光が直線的に進むことを根本的な前提としている。
+しかしながら、これらのGaussian Splattingのパイプラインはピンホールカメラモデルを基にした透視投影に依存しており、光が直線的に進むことを根本的な前提としている。
 この前提は、空気と水の境界での屈折が幾何学的矛盾を引き起こすような複数の媒質が介在する環境においては成立しない。
-この制限にもかかわらず、3DGSの明示的な三次元表現は、屈折の法則を数学的に定式化し、シーン表現の幾何学的パラメータそのものに直接適用することを可能とする。
-一方で、3DGSではラスタライズによってレンダリングされるため、レイトレーシングのように容易に屈折の影響をモデル化することができない、という困難も生じる。
+この制限にもかかわらず、GSの明示的な三次元表現は、屈折の法則を数学的に定式化し、シーン表現の幾何学的パラメータそのものに直接適用することを可能とする。
+一方で、GSではラスタライズによってレンダリングされるため、レイトレーシングのように容易に屈折の影響をモデル化することができない、という困難も生じる。

@@ -79,10 +79,6 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
 \subsection{Neural Radiance Fields}\label{subsec:nerf}
 % \url{https://dl.acm.org/doi/10.1145/3758085}
 % \cite{Liao2025ACMSurv_NeRF}からまとめる。
-微分可能レンダリングの代表例が Neural Radiance Fields(NeRF) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である。
-
-NeRFでは、シーンをボクセルやポリゴンといった明示的な幾何構造ではなく、多層パーセプトロン(MLP)を用いた「連続的な輝度場(Radiance Field)」として表現する。
-これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードする陽表現(Explicit Representation)ではなく、関数を介して表現する陰表現(Implicit Representation)の一種である。
 
 \begin{figure}[htbp]
     \centering
@@ -108,6 +104,11 @@ NeRFでは、シーンをボクセルやポリゴンといった明示的な幾�
     全ての層において活性化関数としてReLUを使用する。    
     \label{fig:nerf_architecture}
 \end{figure}
+
+微分可能レンダリングの代表例が Neural Radiance Fields(NeRF) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である。
+
+NeRFでは、シーンをボクセルやポリゴンといった明示的な幾何構造ではなく、多層パーセプトロン(MLP)を用いた「連続的な輝度場(Radiance Field)」として表現する。
+これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードする陽表現(Explicit Representation)ではなく、関数を介して表現する陰表現(Implicit Representation)の一種である。
 
 具体的には、空間上の座標 $(x, y, z)$ と視線方向 $(\theta, \phi)$ を入力とし、その点における放射輝度(RGB)と体積密度($\sigma$)を出力する関数 $f_\Theta$ を学習する。
 この表現を用いて、以下の Volumetric Renderingによりピクセル値を算出する。
