@@ -1,7 +1,6 @@
 %!TEX root = ../main.tex
-\section{3D Covariance $\Sigma^{3D}$ Correction (3D共分散補正)}\label{sec:3Dsigma-correction}
+\section{共分散補正}\label{sec:3Dsigma-correction}
 
-\note{3DGSに対する補正と2DGSに対する補正双方を描く}
 
 \begin{figure}[htbp]
   \centering
@@ -14,14 +13,12 @@
     \label{fig:space_compression_by_view}
 \end{figure}
 
-
-
-前節で述べた位置補正 $\bm{p} \to \bm{p'}$ は非線形な変換であり、カメラから見た「見かけの空間(Apparent space)」は、実空間に対して非一様に歪み、圧縮された空間となる(\cref{fig:space_compression_by_view}。
+前節(\cref{sec:position-correction})で述べた位置補正 $\bm{p} \to \bm{p'}$ は非線形な変換であり、カメラから見た「見かけの空間(Apparent space)」は、実空間に対して非一様に歪み、圧縮された空間となる(\cref{fig:space_compression_by_view})。
 特に、入射角が大きい領域や深度が深い領域ほど、光路の屈折による空間圧縮効果は顕著となる。
 もし、Gaussianの中心位置のみを補正し、その形状(スケール$\bm{s}$および回転$\bm{R}$)を実空間のまま補正せずに用いた場合、圧縮された見かけの空間に対してGaussianが相対的に肥大化して投影されることとなる。
-\missingfigure{それぞれのCorrectionを適用した場合、屈折無しで学習したモデルがどのように真値の屈折あり画像に近づいていくか見せる。Lake1とかを使うといいかも。}
-これは、レンダリング画像において不自然なぼやけや、境界面の意図しない膨張といった視覚的アーティファクトを引き起こす要因となる(\cref{fig:artifact-w/o-scale-correction})。
-したがって、幾何学的に正確なレンダリングを行うためには、Gaussianの形状を決定する分散共分散行列(Covariance matrix)に対しても、空間の歪みに応じた補正が必要となる。
+% \missingfigure{それぞれのCorrectionを適用した場合、屈折無しで学習したモデルがどのように真値の屈折あり画像に近づいていくか見せる。Lake1とかを使うといいかも。}
+これは、レンダリング画像で、不自然なぼやけや、意図しない膨張といった視覚的アーティファクトを引き起こす要因となる(\cref{fig:artifact-w/o-scale-correction})。
+したがって、幾何学的に正確なレンダリングを行うためには、Gaussianの形状を決定する分散共分散行列(Covariance matrix)に対しても、空間の歪みに応じた補正を行う必要がある。
 
 \subsection{Covariance Correction for 3DGS}\label{sec:3Dsigma-correction-3DGS}
 ここで、各Gaussianプリミティブは十分に小さいと仮定し、その中心$\bm{p}$近傍における屈折変換を、Jacobian $J_{app}$(式\ref{eq:Jacobian})を用いた局所的な線形近似(Affine変換)として扱う。
