@@ -77,7 +77,10 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
 % \cite{Liao2025ACMSurv_NeRF}からまとめる。
 微分可能レンダリングの代表例が NeRF (Neural Radiance Fields) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である。
 
-\begin{figure}
+NeRFでは、シーンをボクセルやポリゴンといった明示的な幾何構造ではなく、多層パーセプトロン（MLP）を用いた「連続的な輝度場（Radiance Field）」として表現する。
+これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードするExplicit Representationではなく、関数を介して表現するImplicit Representationの一種である。
+
+\begin{figure}[htbp]
     \centering
     \captionsetup{justification=raggedright}
     \includegraphics[width=0.8\linewidth]{figure/40_prelim/NeRF_overview.png}
@@ -90,10 +93,7 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
     \label{fig:nerf_overview}
 \end{figure}
 
-NeRFでは、シーンをボクセルやポリゴンといった明示的な幾何構造ではなく、多層パーセプトロン（MLP）を用いた「連続的な輝度場（Radiance Field）」として表現する。
-これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードするExplicit Representationではなく、関数を介して表現するImplicit Representationの一種である。
-
-\begin{figure}
+\begin{figure}[htbp]
     \centering
     \captionsetup{justification=raggedright}
     \includegraphics[width=0.6\linewidth]{figure/40_prelim/NeRF_architecture.png}
@@ -111,19 +111,6 @@ NeRFでは、シーンをボクセルやポリゴンといった明示的な幾�
 \begin{equation}
     C(\mathbf{r}) = \int_{t_n}^{t_f} T(t) \sigma(\mathbf{r}(t)) \mathbf{c}(\mathbf{r}(t), \mathbf{d}) dt
 \end{equation}
-
-ここで $T(t)$ は透過率、$\mathbf{r}(t)$ はレイ上の点を表す。この積分プロセスは離散的なサンプリングによって近似され、微分可能な形で実装される。
-ボリュメトリックレンダリングは、元来、煙や炎などの不均等な媒質を通過する光の伝播をモデル化を可視化するために開発されたものである。
-しかしながら、メッシュなどのラスタライズに含まれる離散性がなく、微分可能性を保つとともに、汎用的なScene表現に用いられる。
-これにより、半透明や光沢などの複雑な光学的特性を含むシーンにおいても、エンドツーエンドでの高精度な再構成が可能となった。
-
-ピクセル色の決定には、古典的なボリュームレンダリングの原理が応用される。仮想的なカメラから放たれたレイ（光線）に沿って空間をサンプリングし、各サンプル点での密度 $\sigma$ を重みとした放射輝度 $\mathbf{c}$ の積分値を算出することで、最終的なピクセル値が決定される。
-この積分計算は離散的な総和として近似されるが、演算過程の全てが微分可能に保たれているため、レンダリング画像と実画像の二乗誤差を損失関数とし、MLPの重みをエンドツーエンドで最適化できる。
-しかし、NeRFは写真のような忠実度の自由視点合成を実現した一方で、実用上の重大な障壁も露呈させた。
-1ピクセルの描画のためにレイに沿った数百回のMLP推論を要する計算負荷の高さは、リアルタイムレンダリングを困難にし、またシーンごとに日単位の学習を要する点は、大規模なデータセットへの適用を制限している。
-また、3次元シーンがMLPにエンコードされる点で、その解釈や編集可能性が乏しく、測量用途としての適用性に欠ける。
-これらの課題、すなわち「計算資源の集約性」と「暗黙的表現による編集の困難性」を克服しようとする動機が、後の明示的な幾何プリミティブを用いる手法への回帰を促すこととなった。
-
 
 ここで $\mathbf{r}(t)$ はカメラから放たれたレイ（視線）上の点を表し、積分範囲 $[t_n, t_f]$ は近平面から遠平面までを示す。
 また、$T(t) = \exp(-\int_{t_n}^{t} \sigma(\mathbf{r}(s)) ds)$ は、光が遮られずにその点まで到達できる透過率を表す。

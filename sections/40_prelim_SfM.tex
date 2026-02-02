@@ -15,19 +15,82 @@
 古くから、単眼画像から形状を推定する手法として、輝度やテクスチャ、影などの手掛かりを利用する \textit{Shape from X}（$X \in \{\text{shading, Silhouette, Texture, Focus, etc.}\}$）の研究が行われてきた。
 しかし、より頑健な復元を行うためには、視点移動を伴う複数枚の画像、あるいは動画（Image sequence）を用いて幾何的な整合性を元に手法が主流となった。
 この手法、タスクの総称を Structure from Motion (SfM) と呼ぶ。
-このSfMを起点とする、3D Vision for Geometry手法の発達、高度なUIを備えた商用ソフト(Pix4D, Metashape, etc.)の出現、オープンソース化により、今日ではPhotogrammetry技術は広く一般に普及した。
+このSfMを起点とする、3D Vision 手法の発達、高度なUIを備えた商用ソフト(Metashape\cite{agisoftmetashape}, RealityScan\cite{RealityScan}, etc.)の出現、オープンソース化により、今日ではPhotogrammetry技術は広く一般に普及した。
 
 \subsection{Structure from Motion}\label{subsec:sfm}
 \kobayashi{項目のタイトルが英語と日本語が混在。日本語がある場合はなるべくした方がよいか}
+
 Structure from Motion (SfM)は、複数の視点から撮影された画像群に基づき、カメラの内部パラメータ（Intrinsic Parameters）・外部パラメータ（Extrinsic Parameters、すなわちカメラの三次元的な位置と姿勢）と、シーンの疎な（Sparse）3次元構造を同時に推定する手法である。
 SfMの理論的基礎は、Tomasi-Kanadeによる行列分解法\cite{Tomasi1992_FactorizationMethod}に始まり、HartleyとZissermanによって多視点幾何学（Multiple View Geometry）の理論体系\cite{Hartley2004_MultipleViewGeometry}として確立された。
 2016年に発表されたCOLMAP \cite{schoenberger2016_colmap}は、高い精度と汎用性、そしてオープンソースプロジェクトとしての完成度から、現在でもアカデミック分野におけるデファクトスタンダードとして広く利用されている。
-COLMAPにより出力される正確なカメラ内部パラメータと外部パラメータ、および歪み補正済み画像（Undistorted Images）は、後述する密な三次元再構成（Dense Reconstruction）や新規視点合成（Novel View Synthesis）タスクのための入力データとして、重要なパイプラインの一角を担っている。
+COLMAPにより出力される正確なカメラ内部パラメータと外部パラメータ、および歪み補正済み画像（Undistorted Images）は、後述する密な三次元再構成（Dense Reconstruction）\cref{subsec:mvs}や新規視点合成(Novel View Synthesis)\cref{fig:nvs}のための入力データとして、重要なパイプラインの一角を担っている。
 
-一般的なインクリメンタルSfMパイプラインでは、まずSIFTなどの特徴量検出器および記述子\parencite{Lowe2004_SIFT}を用いて、画像間でキーポイント（特徴点）の検出およびマッチングを行う。
-その後、2画像間の基本行列$F$を、8点アルゴリズム\parencite{Hartley1997_8PointAlgorithm}およびRANSAC\parencite{Fischler1987_RANSAC}を組み合わせて推定し、特異値分解（SVD）によるカメラ姿勢の復元へと繋げる。
-新たなカメラ姿勢は、Perspective-n-Point（PnP）アルゴリズムにより、既に推定された3次元点と新規画像内の2次元特徴点との対応付きで逐次的に登録する。
-対応点情報から三角測量（Triangulation）によって追加の3次元点群を求め、最後にバンドル調整（Bundle Adjustment, BA）\parencite{Triggs2000_BA}によって再投影誤差を最小化することで、カメラパラメータおよび3次元点群の両者を同時に高精度に最適化する。
+本節では、SfMの数理的枠組みを詳述する。
+SfMは、複数枚の画像からカメラの移動軌跡（外部パラメータ）とシーンの3次元構造を同時に復元する手法である。
+以下では、その基盤となる幾何学的原理と最適化手法を記述する。
+
+\subsubsection{射影幾何とカメラモデル}\label{subsubsec:sfm-camera-model}
+SfMをはじめとする3D Visionは、3次元空間の点 $\bm{X} \in \mathbb{R}^3$ が2次元画像平面の点 $\bm{x} \in \mathbb{R}^2$ へ投影される透視投影モデル（Perspective Projection Model）を用いて記述される。
+同次座標系を用いることで、投影変換は以下の線形代数形式で記述される：
+\begin{equation}\label{eq:sfm-projection}
+  \lambda \begin{bmatrix} x \\ y \\ 1 \end{bmatrix} = \bm{K} [\bm{R} | \bm{t}] \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix} = \bm{P} \begin{bmatrix} X \\ Y \\ Z \\ 1 \end{bmatrix}
+\end{equation}
+ここで、$\lambda$ は射影深度（Projective Depth）であり、カメラ行列 $\bm{P} = \bm{K} [\bm{R} | \bm{t}]$ は内部パラメータ $\bm{K}$ と外部パラメータ $[\bm{R} | \bm{t}]$ の積で構成される。
+$\bm{R} \in SO(3)$ は回転行列、$\bm{t} \in \mathbb{R}^3$ は並進ベクトルである。
+
+内部パラメータ $\bm{K}$ は、焦点距離 $f_x, f_y$、主点 $(c_x, c_y)$、スキュー $s$ を含み、カメラの光学特性を規定する：
+\begin{equation}\label{eq:sfm-intrinsic}
+  \bm{K} = \begin{bmatrix}
+    f_x & s & c_x \\
+    0 & f_y & c_y \\
+    0 & 0 & 1
+  \end{bmatrix}
+\end{equation}
+
+外部パラメータ は、世界座標系からカメラ座標系への剛体変換を定義し、カメラの「位置」と「向き」を表現する。
+実際のレンズで生じる放射方向および円周方向の歪みは、非線形モデル $\delta(\bm{x})$ によって補正し、理想的なピンホールモデルへ近づける。
+一般的な歪みモデルは、放射方向歪み係数 $k_1, k_2, k_3$ と円周方向歪み係数 $p_1, p_2$ を用いて表現される。
+
+\subsubsection{特徴点マッチングと初期姿勢推定（エピポーラ幾何）}\label{subsubsec:sfm-epipolar}
+SfMの第一段階は、画像間の対応関係の構築である。
+
+まず、特徴量抽出とマッチングを行う。
+SIFTなどの記述子\parencite{Lowe2004_SIFT}を用い、異なる画像間で同一の3次元点を指す2次元座標のペア $(\bm{x}_i, \bm{x}_j)$ を特定する。
+
+次に、2視点間の幾何学的制約であるエピポーラ拘束（Epipolar Constraint）を利用する。
+2つの画像における対応点 $\bm{x}_1, \bm{x}_2$ は、基本行列（Fundamental Matrix）$\bm{F}$ によって以下の関係を満たす：
+\begin{equation}\label{eq:sfm-epipolar}
+  \bm{x}_2^\top \bm{F} \bm{x}_1 = 0
+\end{equation}
+この $\bm{F}$ は、RANSACアルゴリズム\parencite{Fischler1987_RANSAC}と8点アルゴリズム\parencite{Hartley1997_8PointAlgorithm}を組み合わせることで、外れ値（誤マッチング）を除去しながら頑健に推定される。
+
+推定された $\bm{F}$ を特異値分解（SVD）することで、2画像間の相対的な回転 $\bm{R}$ と並進 $\bm{t}$ を抽出する。
+これがSfMパイプラインの初期値となる。
+
+\subsubsection{逐次的登録と三角測量}\label{subsubsec:sfm-triangulation}
+初期の2枚の画像から得られた構造に対し、新たな画像を順次追加していく。
+
+Perspective-n-Point (PnP)アルゴリズムにより、既に3次元位置が既知の点 $\{\bm{X}_i\}$ と、新規画像内の2次元特徴点 $\{\bm{x}_i\}$ の対応関係を用いて、新しいカメラの姿勢 $[\bm{R} | \bm{t}]$ を決定する。
+
+三角測量（Triangulation）では、複数のカメラ姿勢 $\{\bm{P}_j\}$ と対応点 $\{\bm{x}_{ij}\}$ が揃った時点で、最小二乗法を用いて3次元点 $\bm{X}_i$ の座標を決定する。
+推定誤差の影響で視線は空間内で完全には交差しないため、再投影誤差を最小化する点が3次元座標として採用される：
+\begin{equation}\label{eq:sfm-triangulation}
+  \bm{X}_i = \underset{\bm{X}}{\mathrm{argmin}} \sum_j d(\bm{x}_{ij}, \bm{P}_j \bm{X})^2
+\end{equation}
+ここで、$d(\cdot, \cdot)$ はユークリッド距離を表す。
+
+\subsubsection{バンドル調整}\label{subsubsec:sfm-bundle-adjustment}
+パイプラインの最終ステップ（または各画像追加ごとのステップ）として、推定された全てのパラメータを同時に最適化するバンドル調整（Bundle Adjustment, BA）\parencite{Triggs2000_BA}が行われる。
+
+目的関数は、全てのカメラパラメータ $\{\bm{P}_j\}$ と全ての3次元点座標 $\{\bm{X}_i\}$ を変数とし、観測された特徴点座標と投影モデルの予測値との乖離（再投影誤差）の総和を最小化する：
+\begin{equation}\label{eq:sfm-ba}
+  \underset{\{\bm{P}_j\}, \{\bm{X}_i\}}{\mathrm{argmin}} \sum_{i,j} \rho \left( d(\bm{x}_{ij}, \bm{P}_j \bm{X}_i)^2 \right)
+\end{equation}
+ここで、$\rho(\cdot)$ はロバストな損失関数（例：Huber損失）であり、外れ値の影響を抑制する。
+
+最適化アルゴリズムとしては、非線形最小二乗法であるLevenberg-Marquardt (LM) 法が主に用いられる。
+BAにおけるヤコビ行列は、特定のカメラと特定の点にしか依存しないというスパース性を持ため、
+Schur Complement（シューア補行列）を利用して計算を簡略化することで、数千枚の画像や数百万の点群を含む大規模な問題でも現実的な時間で解くことが可能となっている。
 
 \begin{figure}[htbp]
   \centering
