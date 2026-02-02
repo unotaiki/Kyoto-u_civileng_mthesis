@@ -3,17 +3,17 @@
 
 \section{見かけの深度 (Apparent Depth) の導出}\label{sec:apendix-apparent-depth}
 
-カメラ座標系においてカメラ位置を$z$軸上$\left(0, 0, H\right)$に、また水面を平坦な$xy$平面（法線ベクトルが一定、すなわち静水面とする）に配置する。
-水中に存在する各3次元Gaussianプリミティブの位置$\bm{p}$は$\left(x, y, z\right)$（ただし$z<0$）で表される。
-簡単化のため、問題を2次元化し、位置を$r = \sqrt{x^2 + y^2}$として$rz$-平面上に射影する（\cref{fig:rz}を参照）。
+カメラ座標系においてカメラ位置を$z$軸上$\left(0, 0, H\right)$に、また水面を平坦な$xy$平面(法線ベクトルが一定、すなわち静水面とする)に配置する。
+水中に存在する各3次元Gaussianプリミティブの位置$\bm{p}$は$\left(x, y, z\right)$(ただし$z<0$)で表される。
+簡単化のため、問題を2次元化し、位置を$r = \sqrt{x^2 + y^2}$として$rz$-平面上に射影する(\cref{fig:rz}を参照)。
 
-幾何光学原理およびスネルの法則（Snell's law）より、水中点$\bm{p}$を観測するカメラ視点から見た「見かけの位置」は、観測方向に依存せず定まる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}。
+幾何光学原理およびスネルの法則(Snell's law)より、水中点$\bm{p}$を観測するカメラ視点から見た「見かけの位置」は、観測方向に依存せず定まる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}。
 ここではその詳細な導出を示す。
 
 Gaussian中心の見かけの位置を$\bm{p}'(r', z')$とする。
-カメラ位置と見かけの位置$\bm{p}'$を結ぶ入射線と水面との交点を$(s, 0)$（$0 < s < r$）とおく。
+カメラ位置と見かけの位置$\bm{p}'$を結ぶ入射線と水面との交点を$(s, 0)$($0 < s < r$)とおく。
 
-スネルの法則（空気屈折率$1$、水屈折率$n$、入射角$\theta_i$、屈折角$\theta_r$）は次式で表される。
+スネルの法則(空気屈折率$1$、水屈折率$n$、入射角$\theta_i$、屈折角$\theta_r$)は次式で表される。
 \begin{equation}
   \sin \theta_i = n \sin \theta_r
 \end{equation}
@@ -28,7 +28,7 @@ Gaussian中心の見かけの位置を$\bm{p}'(r', z')$とする。
   &+ 2n^2H^2rs - n^2H^2r^2 = 0
 \end{split}
 \end{equation}
-（実装ではニュートン法等で数値的に解く。）
+(実装ではニュートン法等で数値的に解く。)
 
 わずかなずれ$\Delta s$を仮定し、$s+\Delta s$の交点、および$\theta_r+\Delta \theta_r$の微小変化を考える。三角形$\triangle IP'C'$の関係より、
 \begin{equation}\label{eq:triangle-IP'C'}

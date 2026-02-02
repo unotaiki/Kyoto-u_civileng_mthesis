@@ -2,7 +2,7 @@
 % This file is based on the following source:
 %
 % ファイル名: master_ja_sample.tex
-% 作成者：サイトウ リョウタ（2024年度山上研究室 修士修了）
+% 作成者：サイトウ リョウタ(2024年度山上研究室 修士修了)
 % 作成日：2025年2月19日
 % https://github.com/ryota-saito-coastal/LaTeXsample_for_Kyoto-u_civileng_mthesis
 %===============================================================================
@@ -21,7 +21,7 @@
 \input{./settings/cref.tex} 
 \usepackage{mathtools}
 \usepackage[normalem]{ulem}% 打ち消し線 (\sout) [normalem]はReferenceで下線が入るのを防ぐ
-\usepackage{pifont}        % 特殊な記号（チェックマークなど）
+\usepackage{pifont}        % 特殊な記号(チェックマークなど)
 
 \usepackage{physics}
 \usepackage[ppl]{mathcomp}
@@ -64,7 +64,7 @@
 % --- 参考文献リストのスタイル設定 ---
 % 1. 参考文献リスト内の行間を「1.0 (シングル)」に強制変更 ※ 全体の \linespread{2.5} をここだけ無効化
 \AtBeginBibliography{\setstretch{1.0}} 
-% 2. 項目ごとのフォントサイズを少し小さくする（任意） ※ 必要なければ \small を削除してください
+% 2. 項目ごとのフォントサイズを少し小さくする(任意) ※ 必要なければ \small を削除してください
 % \renewcommand*{\bibfont}{\small}
 % 3. 文献アイテム同士の間隔を詰める
 \setlength{\bibitemsep}{2.5pt} % 項目間の余白 (0ptでも可)
@@ -91,7 +91,7 @@
 \setsansfont{Arial}[RawFeature={+palt, +kern}, LetterSpace=1.5]
 \setmonofont{Courier New}[RawFeature={+palt, +kern}, LetterSpace=1.0]
 
-% 日本語フォント（必要に応じて有効化してください）
+% 日本語フォント(必要に応じて有効化してください)
 % \setmainjfont{MS Mincho}[RawFeature={+palt, +kern}, LetterSpace=12.5]
 % \setsansjfont{MS Gothic}[RawFeature={+palt, +kern}, LetterSpace=10.0]
 % \renewcommand{\bfseries}{\gtfamily}
@@ -138,13 +138,13 @@
 \newcommand{\XSolidBrush}{\ding{55}}   % バツ印
 
 % --- TODO用コマンド ---
-% 要修正：赤（論理の飛躍、間違いなど）
+% 要修正：赤(論理の飛躍、間違いなど)
 \newcommand{\fix}[1]{\todo[inline, color=red!40, bordercolor=red, size=\small]{#1}}
-% 要確認・出典：青（事実確認、引用もと探し）
+% 要確認・出典：青(事実確認、引用もと探し)
 \newcommand{\checkref}[1]{\todo[inline, color=blue!30, bordercolor=blue, size=\small]{#1}}
-% 表現・推敲：緑（英語の言い回し、日本語のニュアンス）
+% 表現・推敲：緑(英語の言い回し、日本語のニュアンス)
 \newcommand{\rewrite}[1]{\todo[inline, color=green!40, bordercolor=green, size=\small]{#1}}
-% 自分へのメモ：黄色（デフォルト）
+% 自分へのメモ：黄色(デフォルト)
 \newcommand{\note}[1]{\todo[inline, size=\small]{#1}}
 % 小林先生のコメント
 \newcommand{\kobayashi}[1]{\todo[inline, color=gray!40, bordercolor=gray, size=\small]{#1}}

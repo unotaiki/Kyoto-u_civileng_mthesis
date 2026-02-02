@@ -60,7 +60,7 @@ UAV画像から水面や Distractor を抽出するマスク生成には、以�
     RobustnessやZero-Shot Adaptabilityの根底にある要件であり、高いインタラクティビティを提供する。
 \end{itemize}
 
-これらの要件を満たすべく本研究では、オープン語彙物体検出モデル（DINO.txt\cite{Jose2025CVPR_DINOv2-Text,Simeoni2025_DINOv3}）を利用し、テキストプロンプトによるゼロショット・セグメンテーションを行う。
+これらの要件を満たすべく本研究では、オープン語彙物体検出モデル(DINO.txt\cite{Jose2025CVPR_DINOv2-Text,Simeoni2025_DINOv3})を利用し、テキストプロンプトによるゼロショット・セグメンテーションを行う。
 DINO.txtの概要は\cref{fig:DinoTXT}に示す。
 \note{
   Dino.txtの簡単な説明。
@@ -80,7 +80,7 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
     (中央):学習済SSLと、ゼロから学習したテキストエンコーダを整合させるトレーニング戦略。
     視覚エンコーダ上に軽量なビジョンブロックを追加することで、テキストとの整合性をさらに向上させている。
     モデル全体はわずか5万イテレーションで学習可能であり、ゼロショット分類およびオープン語彙セグメンテーションの両タスクにおいて高い性能を有する。
-    (右):出力結果例。（入力画像と、対応する zero-shot分類や open-vocabularyセグメンテーションの結果）。
+    (右):出力結果例。(入力画像と、対応する zero-shot分類や open-vocabularyセグメンテーションの結果)。
     }
     \label{fig:DinoTXT}
 \end{figure}
@@ -167,10 +167,10 @@ DINO.txtの概要は\cref{fig:DinoTXT}に示す。
 本手法では、ターゲットとなる $C$ 個のクラス(Water, Land, Vegetation)に対し、それぞれ複数のテキストプロンプト $\mathcal{P}_c$ を用意し(\cref{tab:prompts})、これらに前述のテンプレートを適用してテキストエンコーダに入力することで、テキスト埋め込みベクトル $\mathbf{T}$ を事前に構築する。
 推論時には、入力画像 $I$ を画像エンコーダに通して空間特徴量 $\mathbf{F}$ を抽出し、テキスト埋め込み$\mathbf{T}$との内積をとることで、各画素とプロンプトとの類似度を算出する。
 DinoV3の特徴マップは入力画像よりも解像度が低いため、バイリニア補間により元の画像サイズへアップサンプリングを行った後、Softmax関数により確率スコア$\mathbf{P}$に変換する。
-そして、同一カテゴリに属する複数のプロンプトに対する確率スコアを合算（Aggregation）する
+そして、同一カテゴリに属する複数のプロンプトに対する確率スコアを合算(Aggregation)する
 \footnote{Softmax関数を事前に適用しているため、合算に加算を用いることは数学的に妥当であり、カテゴリ内の要素数にフェアな確率を生成する。}。
 最終的に、画素ごとに確率が最大となるカテゴリを選択することで、ピクセル単位のセマンティックマスク $\mathcal{M}$ を生成した。
-これにより、水面領域（Water）と、再構成に使用する陸域（Land/Vegetation）を自動かつロバストに分離することが可能となる。
+これにより、水面領域(Water)と、再構成に使用する陸域(Land/Vegetation)を自動かつロバストに分離することが可能となる。
 
 
 \begin{table}[htbp]
@@ -183,9 +183,9 @@ DinoV3の特徴マップは入力画像よりも解像度が低いため、バ�
   \label{tab:prompts}
   \begin{tabular}{lp{0.7\linewidth}}
     \hline
-    カテゴリ & プロンプト（英語キーワード） \\
+    カテゴリ & プロンプト(英語キーワード) \\
     \hline
-    水（除外対象／マスク） &
+    水(除外対象／マスク) &
       \texttt{river}, \texttt{lake}, \texttt{sea},
       \texttt{river water},
       \texttt{blue water},
@@ -197,7 +197,7 @@ DinoV3の特徴マップは入力画像よりも解像度が低いため、バ�
       \texttt{fluid},
       \texttt{riverbeds} \\
     \hline
-    陸地（抽出対象1） &
+    陸地(抽出対象1) &
       \texttt{sand},
       \texttt{gravel},
       \texttt{pebbles},
@@ -214,7 +214,7 @@ DinoV3の特徴マップは入力画像よりも解像度が低いため、バ�
       \texttt{sandy spit},
       \texttt{shoal} \\
     \hline
-    植生（抽出対象2） &
+    植生(抽出対象2) &
       \texttt{vegetation},
       \texttt{grass},
       \texttt{tree}, \texttt{bush},

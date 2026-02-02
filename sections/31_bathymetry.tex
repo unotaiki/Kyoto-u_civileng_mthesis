@@ -125,8 +125,8 @@ SDBは海洋沿岸部等の広域な浅海域では有効な手法である一�
       \item 深海域において高効率な面的計測が可能
     \end{itemize} &
     \begin{itemize}[leftmargin=1.2em, nosep, itemsep=0.2em]
-      \item 浅水域では走査幅が狭く（\qty{3}{m}--\qty{8}{m}程度）、運用の時間的コストが高い
-      \item 送受波器直下数十センチメートルは計測不可（リンギング制約）
+      \item 浅水域では走査幅が狭く(\qty{3}{m}--\qty{8}{m}程度)、運用の時間的コストが高い
+      \item 送受波器直下数十センチメートルは計測不可(リンギング制約)
       \item 陸域との連続的な地形計測が不可能
     \end{itemize} \\
     \midrule
@@ -139,19 +139,19 @@ SDBは海洋沿岸部等の広域な浅海域では有効な手法である一�
     \end{itemize} &
     \begin{itemize}[leftmargin=1.2em, nosep, itemsep=0.2em]
       \item 機器・運用が極めて高価
-      \item 水質（濁度）に大きく依存
+      \item 水質(濁度)に大きく依存
       \item 機動的な高頻度モニタリングは経済的に困難
     \end{itemize} \\
     \midrule
     \textbf{SDB} & 
     \begin{itemize}[leftmargin=1.2em, nosep, itemsep=0.2em]
       \item 広域かつ低コストに水深情報を取得可能
-      \item 衛星画像（Landsat, Sentinel-2）などのオープンデータを利用可能
+      \item 衛星画像(Landsat, Sentinel-2)などのオープンデータを利用可能
     \end{itemize} &
     \begin{itemize}[leftmargin=1.2em, nosep, itemsep=0.2em]
       \item 水質・底質の空間的不均一性に強く依存
       \item 現地実測データによるキャリブレーションが不可欠
-      \item 空間解像度が不足（Sentinel-2: \qty{10}{m}, Landsat: \qty{30}{m}）
+      \item 空間解像度が不足(Sentinel-2: \qty{10}{m}, Landsat: \qty{30}{m})
     \end{itemize} \\
     \midrule
     \textbf{UAV写真測量} & 
@@ -171,10 +171,10 @@ SDBは海洋沿岸部等の広域な浅海域では有効な手法である一�
 \end{table}
 
 \subsection{空中写真測量 (Photogrammetric Bathymetry)}\label{subsec:bg_photogrammetric-bathymetry-overview}
-以上の既存手法の課題を踏まえ、近年急速に普及したドローンなどの無人航空機(Unmanned Aerial Vehicle: UAV)用いた写真測量(Photogrammetry)は、低コスト・高解像度・高頻度なデータ取得が可能であることから、浅瀬測量技術においても有効であると考えられる。
+以上の既存手法の課題を踏まえ、近年急速に普及したドローンなどの無人航空機(Unmanned Aerial Vehicle: UAV)用いた写真測量(Photogrammetry)は、低コスト・高解像度・高頻度なデータ取得が可能であることから、浅水域における水深測量において有効な手段となりえる。
 UAVにより空撮された多視点画像から、詳細を後述するStructure-from-Motion (SfM) (\cref{subsec:sfm}) および Multi-View Stereo (MVS) (\cref{subsec:mvs}) を用いて3次元形状を復元するアプローチは、陸部においては既に広い用途で実用化されている\cite{Bemis2014_UAV-photogrammetry,Gomez2016_UAV-photogrammetry-disaster,Iglhaut2019_UAV-photogrammetry-forestry}。
 この技術を水中に適用する場合、その手法は「空中からの水深写真測量(Photogrammetric Bathymetry)」と呼ばれ、多視点画像からの水中三次元再構成問題として定式化される。
-これを実現するためには、光の反射や、水中での光の散乱･吸収による減衰、波による被写体の歪みなどの課題が存在するが、中でも最も根本的で重要な課題として、水面における「光の屈折(Refraction)」を克服しなければならない。
+これを実現する上で、光の反射や、水中での光の散乱･吸収による減衰、波による被写体の歪みなどの課題が存在するが、中でも最も根本的で重要な課題として、水面における「光の屈折(Refraction)」を克服しなければならない。
 
 既存のSfM/MVSアルゴリズムの大部分は、カメラと被写体が同一媒質(空気中)にあることを前提とし、光が直進するという幾何的な仮定に基づいている。
 しかし、上空からの水中撮影においては、光は水中から空気中へ進む際に、媒質境界(水面)でスネルの法則(Snell's Law)に従って屈折する。
