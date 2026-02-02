@@ -1,5 +1,5 @@
 %!TEX root = ../main.tex
-\section{共分散補正}\label{sec:3Dsigma-correction}
+\section{共分散補正}\label{sec:covariance-correction}
 
 
 \begin{figure}[htbp]
@@ -20,9 +20,9 @@
 これは、レンダリング画像で、不自然なぼやけや、意図しない膨張といった視覚的アーティファクトを引き起こす要因となる(\cref{fig:artifact-w/o-scale-correction})。
 したがって、幾何学的に正確なレンダリングを行うためには、Gaussianの形状を決定する分散共分散行列(Covariance matrix)に対しても、空間の歪みに応じた補正を行う必要がある。
 
-\subsection{Covariance Correction for 3DGS}\label{sec:3Dsigma-correction-3DGS}
+
+\subsection{3DGSに対する共分散補正}\label{sec:covariance-correction-3DGS}
 ここで、各Gaussianプリミティブは十分に小さいと仮定し、その中心$\bm{p}$近傍における屈折変換を、Jacobian $J_{app}$(式\ref{eq:Jacobian})を用いた局所的な線形近似(Affine変換)として扱う。
-\note{$J_app$の導出をAppendixに載せたい。実装でも結局明示的に算出しているから}
 実空間におけるGaussianの三次元分散共分散行列を$\Sigma^{3D}$とすると、多変量正規分布の線形変換の性質に基づき、見かけの空間における分散共分散行列$\Sigma^{3D}_{app}$は次式で導出される。
 \begin{equation}\label{eq:covariance-correction}
   \Sigma^{3D}_{app} = J_{app} \cdot \Sigma^{3D} \cdot J_{app}^\top
@@ -43,4 +43,54 @@
     \label{fig:artifact-w/o-scale-correction}
 \end{figure}
 
-\subsection{Covariance Correction for 2DGS}\label{sec:3Dsigma-correction-2DGS}
+
+\subsection{2DGSに対する共分散補正}\label{sec:3Dsigma-correction-2DGS}
+
+3D Gaussian Splattingでは3次元の共分散行列全体を変換対象としたが、2D Gaussian Splattingにおいては、屈折による空間歪みを適用する際、その平面の基底ベクトルを直接操作し、新たな2D Gaussianとして再パラメータ化する必要がある。
+
+元の2D Gaussianは、回転行列 $R \in \mathbb{R}^{3 \times 3}$ の最初の2列である接線ベクトル $\mathbf{t}_u, \mathbf{t}_v$ と、対応するスケーリングパラメータ $s_u, s_v$ によって張られる。
+まず、ローカル座標系における基底ベクトル $\mathbf{u}, \mathbf{v} \in \mathbb{R}^3$ を以下のように復元する:
+\begin{equation}
+  \mathbf{u} = s_u \mathbf{t}_u, \quad \mathbf{v} = s_v \mathbf{t}_v
+\end{equation}
+
+これに対し、位置補正で導出したJacobian $J_{app}$ を適用し、屈折後の空間における基底ベクトル $\mathbf{u}', \mathbf{v}'$ を得る。
+\begin{equation}
+  \mathbf{u}' = J_{app} \mathbf{u}, \quad \mathbf{v}' = J_{app} \mathbf{v}
+\end{equation}
+
+この変換により、元の直交していた基底ベクトルは一般に非直交となり、Gaussianの形状は歪んだ楕円となる。
+2DGSの直交基底と軸に沿ったスケールという形式を維持するためには、$\mathbf{u}', \mathbf{v}'$ によって張られる部分空間上で新たな主軸を見つけ出し、直交化を行う必要がある。
+これは、$\mathbf{u}', \mathbf{v}'$ から構成されるグラム行列の固有値問題として定式化できる。
+グラム行列の要素 $A, B, C$ を以下のように定義する。
+\begin{equation}
+  A = \langle \mathbf{u}', \mathbf{u}' \rangle, \quad
+  B = \langle \mathbf{u}', \mathbf{v}' \rangle, \quad
+  C = \langle \mathbf{v}', \mathbf{v}' \rangle
+\end{equation}
+
+ここで、新たな直交主軸の長さの二乗（分散）に対応する固有値 $\lambda_{1}, \lambda_{2}$ は以下の特性方程式の解として求まる。
+\begin{equation}
+  \lambda_{1,2} = \frac{(A+C) \pm \sqrt{(A-C)^2 + 4B^2}}{2}
+\end{equation}
+これより、補正後の新たなスケーリングパラメータは $s'_1 = \sqrt{\lambda_1}, s'_2 = \sqrt{\lambda_2}$ となる。
+% なお、実装上は数値的安定性を確保するため、平方根内の値が負にならないよう微小値 $\epsilon$ によるクリッピングを行う。
+
+次に、変形後の平面内における主軸の回転角 $\psi$ を算出する。
+\begin{equation}
+  \psi = \frac{1}{2} \operatorname{atan2}\left(2B, A - C\right)
+\end{equation}
+この $\psi$ を用いて、歪んだベクトル $\mathbf{u}', \mathbf{v}'$ を線形結合し、新たな直交基底ベクトル $\mathbf{e}_1, \mathbf{e}_2$ を再構成する。
+\begin{equation}
+\begin{split}
+  \mathbf{e}_1 &= \frac{\mathbf{u}' \cos \psi + \mathbf{v}' \sin \psi}{\|\mathbf{u}' \cos \psi + \mathbf{v}' \sin \psi\|} \\
+  \mathbf{e}_2 &= \frac{\mathbf{v}' \cos \psi - \mathbf{u}' \sin \psi}{\|\mathbf{v}' \cos \psi - \mathbf{u}' \sin \psi\|}
+\end{split}
+\end{equation}
+ここで、分母は正規化項である。最後に、新たな平面の法線ベクトル $\mathbf{n}' = \mathbf{e}_1 \times \mathbf{e}_2$ を算出し、これらを用いて新たな回転行列 $R' = [\mathbf{e}_1, \mathbf{e}_2, \mathbf{n}']$ を構成する。
+この $R'$ をクォータニオンに変換することで、屈折を考慮した2D Gaussianの配向パラメータが得られる。
+
+以上の手順により、2DGSにおいても屈折による空間圧縮を幾何学的に正しく反映したレンダリングが可能となる。
+
+\note{実験的に勾配計算の数値的安定性を欠いているようなので、理論･実装が正しいか用心深く確認。Future Workになる}
+
