@@ -3,3 +3,5 @@ sfm_pipeline.png: http://theia-sfm.org/sfm.html
 NeRF: from original paper https://arxiv.org/pdf/2003.08934
 
 pinhole_camera_model.png: FPCV https://cave.cs.columbia.edu/Statics/monographs/Image%20Formation%20FPCV-1-1.pdf
+
+NVS.png: Sun2018ECCV_Multi-view-to-Novel-View
