@@ -1,29 +1,32 @@
 %!TEX root = ../main.tex
+\newpage
+\section{逆レンダリングによる三次元再構成}\label{sec:prelim_inverse-rendering-as-3d-reconstruction}
 
-\section{Inverse Rendering as 3D Reconstruction}\label{sec:prelim_inverse-rendering-as-3d-reconstruction}
+\subsection{微分可能レンダリング}\label{subsec:differentiable-rendering}
 
-\subsection{Inverse Rendering and Differentiable Rendering}\label{subsec:differentiable-rendering}
-
-コンピュータグラフィックス(CG)における典型的な課題は、3次元のシーン記述(形状、材質、光源)から2次元の画像を生成することである。
-この過程は「Forward Rendering(順方向レンダリング)」、あるいは単にレンダリングと呼ぶ。
+コンピュータグラフィックス(CG)における典型的な課題は、三次元のシーン記述(形状、材質、光源)から2次元の画像を生成することである。
+この過程は「順レンダリング(Forward Rendering)」、あるいは単にレンダリングと呼ぶ。
 これを数学的な関数 $R$ と見なすと、シーンパラメータ $\Theta$ から画像 $I$ への写像 $I = R(\Theta)$ として表現できる。
-これに対し、Inverse Rendering(逆レンダリング) は、観測された画像 $I_{obs}$ から、それを生成したシーンパラメータ $\Theta$ を推定する逆問題 $\Theta = R^{-1}(I_{obs})$ を解くことである。
-観測された画像郡から3Dシーンを推定するという意味において、Inverse Renderingは画像からの三次元再構成の一例であるといえる。
+これに対し、逆レンダリング(Inverse Rendering) は、観測された画像 $I_{obs}$ から、それを生成したシーンパラメータ $\Theta$ を推定する逆問題 $\Theta = R^{-1}(I_{obs})$ を解くことである。
+観測された画像郡から3Dシーンを推定するという意味において、逆レンダリングは画像からの三次元再構成の一例であるといえる。
 
 しかし、物理的な世界から画像への射影は、奥行き情報の消失や、法線とテクスチャの混同といった情報の縮退を伴うため、この逆問題は本質的に不良設定問題(Ill-posed problem)となる。
-この問題を、最適化手法を用いて解くためのフレームワークが、Differentiable Rendering(微分可能レンダリング) である。
+この問題を、最適化手法を用いて解くためのフレームワークが、微分可能レンダリング(Differentiable Rendering) である。
 
 \begin{figure}
     \centering
     \captionsetup{justification=raggedright}
     \includegraphics[width=0.8\linewidth]{figure/40_prelim/inverse_rendering.png}
     \caption{Forward RenderingとInverse Renderingの概念図。
-    \cite{Zeltner2021_LightPathGradients}}から引用。
+    \cite{Zeltner2021_LightPathGradients}から引用。
+    幾何形状、マテリアル、カメラ条件、光源などのシーンパラメータを入力として写実的な画像を生成するのが順レンダリング(Forward Rendering)である。
+    反対に、レンダリングされた画像からシーンパラメータを推定することを逆レンダリング(Inverse Rendering)と呼ぶ。
+    }
     \label{fig:forward_inverse_rendering}
 \end{figure}
 
-現代のInverse Renderingの多くは、Analysis-by-Synthesis というアプローチを採用している。
-これは、パラメータ $\Theta$ を直接回帰するのではなく、推定パラメータからレンダリングされた画像 $R(\Theta)$ と観測画像 $I_{obs}$ との差 $\mathcal{L}$ (L2ノルムなど)を最小化する最適化問題として定式化される。
+現代の逆レンダリングの多くは、Analysis-by-Synthesis というアプローチを採用している。
+これは、パラメータ $\Theta$ を直接回帰するのではなく、推定パラメータからレンダリングされた画像 $R(\Theta)$ と観測画像 $I_{obs}$ との差 $\mathcal{L}$ を最小化する最適化問題として定式化される。
 \begin{equation}\label{eq:analysis-by-synthesis}
     \Theta^* = \underset{\Theta}{\text{argmin}} \space \mathcal{L}(R(\Theta), I_{obs})
 \end{equation}
@@ -40,27 +43,27 @@
 前半の $\frac{\partial \mathcal{L}}{\partial \Theta}$(画像の画素値に対する損失の勾配)は容易に計算できるが、
 後半の $\frac{\partial I}{\partial \Theta}$(シーンパラメータの微小変化が画素値にどう影響するか)を計算できるように、三次元シーン表現とレンダリングプロセスを設計する必要がある。
 
-微分可能レンダリング(Differentiable Rendering, DR)の枠組みでは、以下のループによって3次元シーンが最適化される。
+微分可能レンダリングの枠組みでは、以下のループによって三次元シーンが最適化される。
 
 \begin{enumerate}
-    \item \textbf{レンダリング (Forward):} 現在推定されている3次元シーンパラメータ(形状・外観)から、仮想的な視点で画像を生成する。
-    \item \textbf{損失計算 (Loss Computation):} 生成された画像(Rendered Image)と、実際に撮影された正解画像(Source Image)との間の誤差(Loss)を計算する。
-    \item \textbf{誤差逆伝播 (Backpropagation):} 微分可能なレンダラを介して、誤差の勾配(Gradient)を連鎖律に従って3次元シーンのパラメータへと伝播させる。
-    \item \textbf{パラメータ更新 (Update):} 算出された勾配を用いて、3次元シーンのパラメータを逐次更新する。
+    \item \textbf{順レンダリング:} 現在推定されている三次元シーンパラメータ(形状・外観)から、仮想的な視点で画像を生成する。
+    \item \textbf{損失計算:} 生成された画像と、実際に撮影された正解画像との間の誤差を計算する。
+    \item \textbf{誤差逆伝播:} 微分可能なレンダラを介して、誤差の勾配を連鎖律に従って三次元シーンのパラメータへと伝播させる。
+    \item \textbf{パラメータ更新:} 算出された勾配を用いて、三次元シーンのパラメータを逐次更新する。
 \end{enumerate}
 
-従来のSfMにおけるバンドル調整も、三次元空間上の点群を二次元画像上へと投影した際の再投影誤差(Reprojection Error)を最小化することで、三次元点群を更新するという点において、広い意味での微分可能レンダリングの一種と捉えることができる。
+従来のSfMにおけるバンドル調整も、三次元空間上の点群を二次元画像上へと投影した際の再投影誤差を最小化することで、三次元点群を更新するという点において、広い意味での微分可能レンダリングの一種と捉えることができる。
 
 
-\subsection{Novel View Synthesis}\label{subsec:nvs}
+\subsection{新規視点合成}\label{subsec:nvs}
 
-従来のSfMやMVSといった手法は、Geometric Reconstructionとして、主に3次元的な「幾何情報(形状)」の復元に焦点を当てていた。
+従来のSfMやMVSといった手法は、幾何的三次元再構成(Geometric Reconstruction)として、主に三次元的な「幾何情報(形状)」の復元に焦点を当てていた。
 しかし、現実世界のシーンは幾何情報(Geometry)に加え、照明環境(Illumination)、テクスチャ(Texture)、そしてBRDFなどでモデル化される表面の反射特性(Material)などを含んでいる。
 
-Novel View Synthesis(新規視点合成)とは、既知のポーズが付与された画像群から、未撮影の新しい視点からの画像を生成・推定するタスクである。
+新規視点合成(Novel View Synthesis)とは、カメラパラメータが既知の画像群から、未撮影の新しい視点からの画像を生成・推定するタスクである(\cref{fig:nvs})。
 SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新規視点合成というタスクは外観の復元(Appearance Reconstruction)を主目的としている。
-ここで重要なのは、正しい外観を再現するためには、その基礎となる正しい幾何形状(Geometry)が必要不可欠であるという点である。
-つまり、Appearance Reconstructionというタスクは、Geometry Reconstructionのタスクを包含しており、外観の再現性を最大化することで、結果として形状も最適化されるという構造を持っている。
+ここで重要なのは、正しい外観を再現するためには、その基礎となる正しい幾何形状が必要不可欠であるという点である。
+つまり、NVSは、幾何的三次元再構成のタスクを包含しており、外観の再現性を最大化することで、結果として形状も最適化されるという構造を持っている。
 
 \begin{figure}
     \centering
@@ -68,17 +71,18 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
     \includegraphics[width=0.8\linewidth]{figure/40_prelim/NVS.png}
     \caption{新規視点合成の概念図。
     \cite{Sun2018ECCV_Multi-view-to-Novel-View}}から引用。
+    カメラパラメータが既知の画像群から、入力視点外からのシーンの外観を予測するタスクである。
     \label{fig:nvs}
 \end{figure}
 
 
-\subsection{Neural Radiance Fields (NeRF)}\label{subsec:nerf}
+\subsection{Neural Radiance Fields}\label{subsec:nerf}
 % \url{https://dl.acm.org/doi/10.1145/3758085}
 % \cite{Liao2025ACMSurv_NeRF}からまとめる。
-微分可能レンダリングの代表例が NeRF (Neural Radiance Fields) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である。
+微分可能レンダリングの代表例が Neural Radiance Fields(NeRF) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である。
 
 NeRFでは、シーンをボクセルやポリゴンといった明示的な幾何構造ではなく、多層パーセプトロン(MLP)を用いた「連続的な輝度場(Radiance Field)」として表現する。
-これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードするExplicit Representationではなく、関数を介して表現するImplicit Representationの一種である。
+これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードする陽表現(Explicit Representation)ではなく、関数を介して表現する陰表現(Implicit Representation)の一種である。
 
 \begin{figure}[htbp]
     \centering
@@ -87,9 +91,9 @@ NeRFでは、シーンをボクセルやポリゴンといった明示的な幾�
     \caption{NeRFによるシーン表現と微分可能レンダリングの処理の概念図。 
     \cite{Mildenhall2021ECCV_NeRF}}から引用。 
     (a) カメラ光線に沿って、5次元座標(位置および視線方向)をサンプリング。
-    (b) それらをMLPに入力し、色とvolume densityを出力。
-    (c) ボリュームレンダリングを用い、画像を生成。
-    (d) 合成された画像と実際に観測されたGT画像との間の誤差を最小化することによって、シーン表現の最適化を行う。
+    (b) それらをMLPに入力し、色と密度を出力。
+    (c) ボリュームレンダリングを用いて画像を生成。
+    (d) 合成画像と入力画像との間の誤差を最小化することによって、シーン表現の最適化を行う。
     \label{fig:nerf_overview}
 \end{figure}
 
@@ -99,7 +103,7 @@ NeRFでは、シーンをボクセルやポリゴンといった明示的な幾�
     \includegraphics[width=0.6\linewidth]{figure/40_prelim/NeRF_architecture.png}
     \caption{NeRFのネットワークアーキテクチャ。 
     \cite{Mildenhall2021ECCV_NeRF}}から引用。 
-    入力となる5次元座標のうち、位置 $\mathbf{x}$ は8層の全結合層によって処理され、体積密度 $\sigma$ と256次元の特徴ベクトルを出力する。
+    入力となる5次元座標のうち、位置 $\mathbf{x}$ は8層の全結合層によって処理され、密度 $\sigma$ と256次元の特徴ベクトルを出力する。
     この特徴ベクトルは視線方向 $\mathbf{d}$ と結合され、続く1層の全結合層を経て、視点依存(view-dependent)のRGB色を出力する。
     全ての層において活性化関数としてReLUを使用する。    
     \label{fig:nerf_architecture}
@@ -112,7 +116,7 @@ NeRFでは、シーンをボクセルやポリゴンといった明示的な幾�
     C(\mathbf{r}) = \int_{t_n}^{t_f} T(t) \sigma(\mathbf{r}(t)) \mathbf{c}(\mathbf{r}(t), \mathbf{d}) dt
 \end{equation}
 
-ここで $\mathbf{r}(t)$ はカメラから放たれたレイ(視線)上の点を表し、積分範囲 $[t_n, t_f]$ は近平面から遠平面までを示す。
+ここで $\mathbf{r}(t)$ はカメラから放たれたレイ(視線光線)上の点を表し、積分範囲 $[t_n, t_f]$ は近平面から遠平面までを示す。
 また、$T(t) = \exp(-\int_{t_n}^{t} \sigma(\mathbf{r}(s)) ds)$ は、光が遮られずにその点まで到達できる透過率を表す。
 
 本来、ボリュームレンダリングは煙や炎のような不均等な媒質中の光の伝播をモデル化するために開発された手法である。
@@ -125,6 +129,6 @@ NeRFではこの原理を一般的なシーン表現に応用することで、�
 第一に、計算コストの高さである。
 1ピクセルの色を決定するためにレイに沿って数百回のMLP推論を要するため、学習には数時間から数日を要し、推論(レンダリング)にも数十秒の時間を要する。
 第二に、幾何情報の陰表現に起因する編集・解釈の困難さである。
-3次元シーンがニューラルネットワークの中に埋め込まれているため、幾何形状を明示的に抽出するにはMarching Cubes\cite{Lorensen1987SIGGRAPH_MarchingCubes}等の後処理が必要となる。
+三次元シーンがニューラルネットワークの中に埋め込まれているため、幾何形状を明示的に抽出するにはMarching Cubes\cite{Lorensen1987SIGGRAPH_MarchingCubes}等の後処理が必要となる。
 このため、形状の編集や修正が困難であり、また測量分野で求められるような、明確な表面定義や高精度な座標計測への適用に限界がある。
 

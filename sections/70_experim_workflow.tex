@@ -1,12 +1,12 @@
 %!TEX root = ../main.tex
 \chapter{Experiments and Workflow}\label{chap:experiments}
-本節では、主に実環境データを対象にした、屈折を考慮した水中3次元再構成のための完全なパイプラインとその実装を概説する。
+本節では、主に実環境データを対象にした、屈折を考慮した水中三次元再構成のための完全なパイプラインとその実装を概説する。
 
 % \begin{figure}[htbp]
 %   \centering
 %   \includegraphics[width=0.95\textwidth]{figure/70_experim/workflow.png}
 %   \caption{
-%     実環境データを対象にした、屈折を考慮した水中3次元再構成のための完全なパイプライン。
+%     実環境データを対象にした、屈折を考慮した水中三次元再構成のための完全なパイプライン。
 %     }
 %     \label{fig:workflow}
 % \end{figure}
@@ -15,7 +15,7 @@
   \centering
   \includegraphics[width=0.95\textheight, keepaspectratio]{figure/70_experim/workflow.png}
   \caption{
-    実環境データを対象にした、屈折を考慮した水中3次元再構成のための完全なパイプライン。
+    実環境データを対象にした、屈折を考慮した水中三次元再構成のための完全なパイプライン。
     }
   \label{fig:workflow}
 \end{sidewaysfigure}
@@ -262,7 +262,7 @@ DinoV3の特徴マップは入力画像よりも解像度が低いため、バ�
 \end{figure}
 
 
-Gaussian Splattingでは、SfMから得られた粗点群の位置をもとにGaussianを初期化するが、もしこれをこれをランダムな位置で初期化した場合、再構成の品質が低下することが示されている(\cref{fig:initialization-of-gaussians})。
+Gaussian Splattingでは、SfMから得られた疎点群の位置をもとにGaussianを初期化するが、もしこれをこれをランダムな位置で初期化した場合、再構成の品質が低下することが示されている(\cref{fig:initialization-of-gaussians})。
 本環境でも同様で、水面をマスクしたSfMプロセスからは、水底の点群を得ることができず、河床の再構成の質が大幅に低下する(\cref{fig:init-ablation-bed})。
 
 \IncludeTwoImages[6cm]

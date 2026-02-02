@@ -9,19 +9,19 @@
 \missingfigure{NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}
 
 3D Gaussian Splatting (3DGS) は、新規視点合成において最先端(SOTA)の結果を達成している近年の手法である \parencite{Kerbl2023ToG_3DGS}。
-その特徴は、フォトリアリスティックかつ高忠実度な3次元シーンのキャプチャ能力、高速な学習時間、そしてリアルタイムレンダリングにある。
-明示的な(Explicit)3次元表現である3DGSは、Visual-SLAM \parencite{Yan2024CVPR_GS-SLAM,Zheng2025CVPR_WildGS-SLAM,Matsuki2024CVPR_GaussianSplattingSLAM}、アバター生成 \parencite{Moreau2024CVPR_HumanGaussianSplatting,Shao2024CVPR_GaussianAvatar}、フィードフォワード型3次元再構成 \parencite{Chen2024ECCV_MVSplatting} など、幅広いタスクへの適用に成功している。
-その可能性はさらに広がり、衛星画像からの数値表層モデル(DSM)生成 \parencite{Aira2025CVPR_EOGS}、自動運転、そして水中3次元再構成 \parencite{li20243DV_watersplatting} といった様々な実世界アプリケーションへと拡張されている。
+その特徴は、フォトリアリスティックかつ高忠実度な三次元シーンのキャプチャ能力、高速な学習時間、そしてリアルタイムレンダリングにある。
+明示的な(Explicit)三次元表現である3DGSは、Visual-SLAM \parencite{Yan2024CVPR_GS-SLAM,Zheng2025CVPR_WildGS-SLAM,Matsuki2024CVPR_GaussianSplattingSLAM}、アバター生成 \parencite{Moreau2024CVPR_HumanGaussianSplatting,Shao2024CVPR_GaussianAvatar}、フィードフォワード型三次元再構成 \parencite{Chen2024ECCV_MVSplatting} など、幅広いタスクへの適用に成功している。
+その可能性はさらに広がり、衛星画像からの数値表層モデル(DSM)生成 \parencite{Aira2025CVPR_EOGS}、自動運転、そして水中三次元再構成 \parencite{li20243DV_watersplatting} といった様々な実世界アプリケーションへと拡張されている。
 
 \missingfigure{GSが実際に楕円体のプリミティブで構成されていることを示す図。これは自分の発表で使用した寮の中庭の画像でいいかな}
 
 3DGSのパイプラインは主に、レンダリングを行うフォワードパスと、最適化を行うバックワードパスの2つの段階で構成される。
-フォワードパスでは、3次元ガウス分布(3D Gaussians)の集合をラスタライズして画像を合成する。
+フォワードパスでは、三次元ガウス分布(3D Gaussians)の集合をラスタライズして画像を合成する。
 各ガウス分布は、
 中心位置 $\bm{p} \in \mathbb{R}^3$、
 不透明度 $\alpha \in [0, 1]$、
 球面調和関数(SH)によって表現される視点依存の色係数 $\bm{c}(\bm{p}, \bm{t}_i) \in \mathbb{R}^{3}$、
-および3次元共分散行列 $\bm{\Sigma}^{\mathrm{3D}} \in \mathbb{R}^{3 \times 3}$ 
+および三次元共分散行列 $\bm{\Sigma}^{\mathrm{3D}} \in \mathbb{R}^{3 \times 3}$ 
 という、最適化可能なパラメータセットによって定義される。
 共分散行列 $\bm{\Sigma}^{\mathrm{3D}}$ は、スケーリングベクトル $\bm{s} \in \mathbb{R}^3$ から構成されるスケーリング対角行列 $\bm{S} \in \mathbb{R}^{3 \times 3}$ と、回転クォータニオン(回転行列 $\bm{R} \in SO(3)$ として表現)を用いて以下のように構成される：
 \begin{equation}\label{eq:3dgs-sigma_RssR}
@@ -35,12 +35,12 @@
 フォワードパスにおいて、あるカメラ視点からの画像をレンダリングするために、これらのガウス分布はまず外部パラメータ行列 $[\bm{W} | \bm{t}]$ を用いてワールド座標系からカメラ座標系へと変換される。
 ここで、$\bm{W}_\mathrm{view} \in \mathbb{R}^{3 \times 3}$ は視点回転行列、
 $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
-ガウス分布の中心位置 $\bm{p}$ と3次元共分散行列は以下のように更新される：
+ガウス分布の中心位置 $\bm{p}$ と三次元共分散行列は以下のように更新される：
 \begin{align*}
   &\bm{p}_\mathrm{cam} = \bm{W}\bm{p} + \bm{t} \\
   &\bm{\Sigma}^{3D}_\mathrm{cam} = \bm{W} \bm{\Sigma}^{3D} \bm{W}^\top
 \end{align*} 
-\cite{Zwicker2001_EWA-volume-splatting} の提案した射影手法に従い、カメラ空間における3次元共分散行列 $\Sigma_{cam}^{3D}$ は2次元画像平面へと射影される。
+\cite{Zwicker2001_EWA-volume-splatting} の提案した射影手法に従い、カメラ空間における三次元共分散行列 $\Sigma_{cam}^{3D}$ は2次元画像平面へと射影される。
 これは透視投影の一次近似(アフィン近似)のヤコビ行列 $\bm{J}$ を用いて行われ、2次元共分散行列 $\bm{\Sigma}^{\mathrm{2D}}$ が得られる：
 \begin{equation}\label{eq:3dgs-affine-projection}
 \Sigma^\mathrm{2D} = \bm{J} \Sigma^{\mathrm{3D}}_\mathrm{cam} \bm{J}^\top
@@ -66,7 +66,7 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
 % Adam \parencite{Adam} を用いた~ と言っていたがこれは、Implplementationで言及すること
 その最適化に要する学習時間は、30kのイテレーションによって1時間以内となり、当時NVSのSotaであったMip-NeRF360 \parencite{Barron2022CVPR_Mip-NeRF360} に比較して10倍以上の高速化を達成した。
 加えて、Ray-Tracingに比較し、既存のGPU描画パイプラインの性能を引き出すTile-Basedレンダリングによって、100 fps以上のリアルタイムレンダリングを実現したことで、インタラクティブなSceneの可視化が可能となった。
-このプロセスを通じて得られた3次元ガウス分布の集合は、3次元シーンを高忠実度で捉えることができる。
+このプロセスを通じて得られた三次元ガウス分布の集合は、三次元シーンを高忠実度で捉えることができる。
 
 
 しかし、このパイプライン全体はピンホールカメラモデルと透視投影に依存しており、光が直線的に進むことを根本的な前提としている。

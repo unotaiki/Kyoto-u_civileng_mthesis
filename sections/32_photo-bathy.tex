@@ -3,55 +3,39 @@
 
 % \url{https://www.notion.so/Photommetric-Bathymetry-2e002f0efa178010b4f3f365fdea4f29}
 
-空中からの水深写真測量において、水の屈折による見かけの深度と真の深度の差を補正する手法が数多く提案されている。
+前述のように水深写真測量における根本的な課題は、カメラと対象物が水と空気という異なる媒質(空気と水)に存在する「二媒質問題 (two-media problem)」にある。
+空気中の単一媒質の写真測量とは異なり、カメラ中心と対象物を結ぶ光線は直線ではなく、境界面においてスネルの法則に従い屈折する。
+この屈折による歪みは、適切に対処されない場合、Structure-from-Motion (SfM) および Multi-View Stereo (MVS) による再構成精度を低下させる。
 
-\section{Related Work}
+水深写真測量は古くは1940年代から言及されてきた歴史的な問題である\cite{Rinner1948_TwoMediumPhotogrammetry}。
+\cite{kotowski1988_RefractiveCorrectionN,Murase2008_refractiveCorrection}などにより、二媒質写真測量の理論は古くから提案されてきた。
+現代のUAVによる写真測量の文脈においては、Woodgetら\cite{Woodget2014_PhotograBathy-multiply-n}は、オルソ画像と数値標高モデル (DEM) から水面モデルを推定し、見かけの深度 (apparent depth) を導出した後、屈折率の乗数 ($n=1.34$) を用いて補正を行う簡易的な手法を実践した。
+このSimple Refraction Correctionは\cite{westaway2001_PhotograBathy-multiply-n}などでも、採用されている手法であるが、観測角を考慮しない近似手法であり、SfMパイプラインの特性を理論的な側面から考慮していない。
+深度が0.4$\sim$0.7\,mを超えると精度が低下することが言及されている。
 
-初期の研究では、経験的な補正手法が用いられてきた。
-\cite{Woodget2014_PhotograBathy-multiply-n}は、正射写真とデジタル標高モデル(DEM: Digital Elevation Model)から水面モデルを推定し、DEMベースモデルから差し引くことで見かけの深度を求める手法を提案した。
-その後、スネルの法則を適用し、純水の屈折率($n = 1.34$)を乗数として深度を補正することで、屈折補正済みの水深マップを生成する。
-この手法の主な制約は、平坦な水面を仮定することと、深度が0.4--0.7\,m以上になると効果が低下することである。
+幾何学的な厳密性を向上させるため、Dietrichら\cite{Dietrich2016_multi-angle-correction}はBathySfMを提案した。
+この手法では、SfMによりキャリブレーションされたカメラと点群に対し、点群とそれを観測する各カメラからの観測角に対してスネルの法則に基づいて光線を求める。
+水平方向の歪みを無視するためこれらの光線は一点で交わらないが、距離の二乗和が最小になるように反復的に補正を繰り返すことで、真の点群を復元する。
 
-\cite{Dietrich2016_multi-angle-correction}はBathySfMとして、より幾何学的に厳密な屈折補正手法を開発した。
-この手法は、まずSfM技術を用いて画像処理を行い、点群を生成する。
-次に、各点についてカメラパラメータを用いて瞬時視野角(IFOV: Instantaneous Field of View)とカメラコーナーの近似地上座標を計算する。
-各点について、天底からの屈折角を計算し、GNSSで測定された水縁に沿った点と点群上でデジタル化された追加点を用いて水面を再構成する。
-見かけの深度を計算し、スネルの法則を用いて入射角を決定する。
-その後、入射角と水面上の真の位置と海底上の見かけの位置との距離から真の深度を導出する。
-この手法は、精度が$\pm 0.01$\,m(飛行高度の0.02\%)、再現性が0.06--0.08\,m(飛行高度の0.1\%)であることが示されている。
-主な制約は、屈折補正を正確に適用するために平坦な水面が必要であることと、カメラの位置と姿勢の精度に依存することである。
-この手法は、透明で浅い水域、濁度が最小限の環境に最適である。
-実装スクリプトとして\textit{pyBathySfM}が公開されている。
+近年では、深層学習を活用した手法も多く提案されている。
+Mandlburgerら\cite{Mandlburger2021_BathyNet}は、マルチスペクトル画像と、航空機Lidar測量 (ALB) データで訓練されたCNN (U-Net\cite{Ronneberger2015_U-Net}) を利用するBathyNetを提案した。
+高精度のALBデータで学習した地域では、比較的高い性能を達成するが(\qty{15}{cm}未満)、
+異なる環境への汎化性能は低く、ALBの取得コストが高いため、実用性に欠ける。
 
-\cite{Agrafiotis2020_refractiveCorrection}は、画像補正に焦点を当てた屈折補正手法を提案した。
-この手法では、UAS(Unmanned Aircraft System)プラットフォームから取得したデータを、まずSfM-MVS(Multi-View Stereo)法を用いて処理し、密な点群を取得する。
-次に、DepthLearn機械学習技術を用いて点群から深度情報を復元し、画像変換とリサンプリング技術を用いて画像の屈折効果を補正する。
-補正された画像を再処理することで、屈折エラーのない沿岸域の3Dモデルを生成する。
-この手法の利点は、既存のSfMパイプラインをそのまま利用可能であることである。
-一方、他の屈折補正手法と同様に、穏やかな環境条件に依存するという制約がある。
-水は透明で、海底の視認性が良好である必要がある。
-さらに、テクスチャのある海底が必要であり、均質またはテクスチャのない領域はSfM-MVS処理において大きな課題となる。
+Agrafiotisら\cite{Agrafiotis2020_refractiveCorrection}は、SfM処理に用いる入力画像に対して屈折効果を補正する画像補正のアプローチを導入した。
+まず、屈折を補正せずに標準的なSfM-MVSパイプラインを適用し、密な点群から深度マップを作成する。
+そこから、機械学習ベースの深度推定を用いて、屈折の影響を補正した画像を生成する。
+再度、その画像を用いてSfM-MVSパイプラインを適用し、三次元再構成を行うことで、屈折の影響を補正した点群を生成する。
+この手法は高度な性能と操作性を持つ商用フォトグラメトリソフトウェアをワークフローにそのまま使用できる利点を持つが、深層学習モデルの性能に強く依存するため、前述の問題を含有する。
 
-\cite{Mandlburger2021_BathyNet}はBathyNetとして、マルチスペクトル航空画像から水深モデルを取得するために深層ニューラルネットワーク(DNN: Deep Neural Network)を使用するアルゴリズムを開発した。
-まず、ALB(Airborne LiDAR Bathymetry)から得られた点群を水面、乾燥域、湿潤域に分類する。
-水面を表す点を用いてデジタル水面モデル(DWSM: Digital Water Surface Model)を生成し、水陸境界を抽出する。
-その境界内の水底点に対して、レーザーパルスの伝播時間と屈折補正を適用し、補正された水底点を用いて水中地形のデジタルモデルを作成する。
-DWSMからの各画像レイとデジタル地形モデル(DTM: Digital Terrain Model)の画像レイとの交点から、水中の斜距離を決定する。
-航空画像は、写真測量SfM法を用いて処理される。
-計算された距離への依存と、RGBC(赤、緑、青、沿岸青)マルチスペクトル情報を組み合わせて、U-Net CNNを用いて各ピクセルの深度を訓練、テスト、検証する。
-結果は、系統的な深度バイアス精度が15\,cm未満、標準偏差が約40\,cmであることを示している。
-この手法の主な制約は、高品質な参照データへの依存であり、これがなければ手法を使用できないことである。
-さらに、環境条件の汎化性能が限定的である。
-この研究は透明で浅い湖で実施されており、最適でない条件下ではモデルの性能が低下する可能性がある。
+Makrisら\cite{Makris2024_refractive-aware-sfm}は、スネルの法則をバンドル調整の最適化プロセスに直接統合するRefraction-aware SfM (R-SfM) を提案･公開した。
+この手法はカメラの外部パラメータと水中の真の三次元点群を同時に最適化し、高い精度を実現する。
+しかし、R-SfMは疎な再構成しか生成しないため、深層学習 \cite{Alevizos2022_DL-shallow-bathymetry} を用い、密な再構成を行う必要があり、依然、環境依存の学習データを要する。
 
-より最近では、屈折を幾何モデルに直接組み込む手法が提案されている。
-\cite{Makris2024_refractive-aware-sfm}はR-SfM(Refraction-aware Structure-from-Motion)として、屈折幾何をSfM最適化に直接統合し、姿勢推定と点群再構成においてより高い精度を達成する手法を提案した。
-スネルの法則をバンドル調整に組み込み、カメラ外部標定と海底座標を同時最適化する。
-しかし、このようなパイプラインは依然として疎な再構成しか生成せず、USV(Unmanned Surface Vehicle)由来のデータセットで訓練された深層学習ベースの密化に依存することが多く、データ不足とサイト依存性により汎化が困難である。
+Zhanら \cite{Zhan2023CVPR_NeRFrac}水中下の三次元推定を目的に、Neural Radiance Fields(NeRF)(\cref{subsec:nerf})を拡張したNeRFracを開発した。
+NeRFracでは水中写真測量と同様のタスクを目標にし、非線形な光線追跡によって非平面水面内の三次元シーンを推定することで、平坦な水面仮定の限界に対処している。
+一方、現実的な写真測量用途ではその解釈可能性と計算コストが大きなボトルネックとなる。
 
-\cite{Zhan2023CVPR_NeRFrac}はNeRFracとして、NeRF(Neural Radiance Fields)を拡張し、屈折を伴う非線形レイ追跡により3D形状を再構成する手法を開発した。
-この手法は、波のある水面(Non-planar)も考慮可能であるという利点がある。
-一方、計算コストが極めて高いという課題がある。
 
 以下の\cref{tab:refraction_methods_comparison}に、これらの手法の詳細な比較を示す。
 一部は\cite{Kujawa2025_survey-shallow-bathymetry}を参考にした。
@@ -129,22 +113,7 @@ DWSMからの各画像レイとデジタル地形モデル(DTM: Digital Terrain 
       \end{itemize} \\ 
     
     \midrule
-  
-    % --- Image-based ---
-    \textbf{Image-based} & 
-    \textbf{Agrafiotis et al.} \cite{Agrafiotis2020_refractiveCorrection} 
-    & 
-    \textbf{画像ベースの屈折補正} \par
-    MVSと深層学習モデルから得られた深度マップから、入力画像に対して屈折除去の幾何変換を行い、屈折の影響を排した画像を生成してから再度、三次元再構成を行う。
-    & 
-    \textbf{利点:} 既存のSfMパイプラインを利用可能。\par
-    \textbf{課題:}
-      \begin{itemize}[leftmargin=1.2em, nosep]
-        \item 深層学習モデルに強く依存。
-      \end{itemize} \\ 
-    
-    \midrule
-  
+
     % --- Machine Learning ---
     \makecell[l]{\textbf{Machine} \\ \textbf{Learning}}
     & 
@@ -162,6 +131,21 @@ DWSMからの各画像レイとデジタル地形モデル(DTM: Digital Terrain 
         
 
     \midrule
+  
+    % --- Image-based ---
+    \textbf{Image-based} & 
+    \textbf{Agrafiotis et al.} \cite{Agrafiotis2020_refractiveCorrection} 
+    & 
+    \textbf{画像ベースの屈折補正} \par
+    MVSと深層学習モデルから得られた深度マップから、入力画像に対して屈折除去の幾何変換を行い、屈折の影響を排した画像を生成してから再度、三次元再構成を行う。
+    & 
+    \textbf{利点:} 既存のSfMパイプラインを利用可能。\par
+    \textbf{課題:}
+      \begin{itemize}[leftmargin=1.2em, nosep]
+        \item 深層学習モデルに強く依存。
+      \end{itemize} \\ 
+    
+    \midrule
     
     % --- Refraction-Aware ---
     \makecell[l]{\textbf{Refraction-} \\ \textbf{Aware}}
@@ -174,7 +158,7 @@ DWSMからの各画像レイとデジタル地形モデル(DTM: Digital Terrain 
     \textbf{利点:} 幾何学的に厳密。カメラと海底の両方を補正。\par
     \textbf{課題:}
       \begin{itemize}[leftmargin=1.2em, nosep]
-        \item 密な点群生成にはDeep Learning依存が残る。
+        \item 密な点群生成は深層学習へ依存。
       \end{itemize} \\ 
 
     \cmidrule{2-4} 
@@ -193,39 +177,3 @@ DWSMからの各画像レイとデジタル地形モデル(DTM: Digital Terrain 
 
 \end{xltabular}
 \endgroup
-
-
-
-前述のように水深写真測量における根本的な課題は、カメラと対象物が水と空気という異なる媒質(空気と水)に存在する「二媒質問題 (two-media problem)」にある。
-空気中の単一媒質の写真測量とは異なり、カメラ中心と対象物を結ぶ光線は直線ではなく、境界面においてスネルの法則に従い屈折する。
-この屈折による歪みは、適切に対処されない場合、Structure-from-Motion (SfM) および Multi-View Stereo (MVS) による再構成精度を低下させる。
-
-水深写真測量は古くは1940年代から言及されてきた歴史的な問題である\cite{Rinner1948_TwoMediumPhotogrammetry}。
-\cite{kotowski1988_RefractiveCorrectionN,Murase2008_refractiveCorrection}などにより、二媒質写真測量の理論は古くから提案されてきた。
-現代のUAVによる写真測量の文脈においては、Woodgetら\cite{Woodget2014_PhotograBathy-multiply-n}は、オルソ画像と数値標高モデル (DEM) から水面モデルを推定し、見かけの深度 (apparent depth) を導出した後、屈折率の乗数 ($n=1.34$) を用いて補正を行う簡易的な手法を実践した。
-このSimple Refraction Correctionは\cite{westaway2001_PhotograBathy-multiply-n}などでも、採用されている手法であるが、観測角を考慮しない近似手法であり、SfMパイプラインの特性を理論的な側面から考慮していない。
-深度が0.4$\sim$0.7\,mを超えると精度が低下することが言及されている。
-
-幾何学的な厳密性を向上させるため、Dietrichら\cite{Dietrich2016_multi-angle-correction}はBathySfMを提案した。
-この手法では、SfMによりキャリブレーションされたカメラと点群に対し、点群とそれを観測する各カメラからの観測角に対してスネルの法則に基づいて光線を求める。
-水平方向の歪みを無視するためこれらの光線は一点で交わらないが、距離の二乗和が最小になるように反復的に補正を繰り返すことで、真の点群を復元する。
-
-近年では、深層学習を活用した手法も多く提案されている。
-Mandlburgerら\cite{Mandlburger2021_BathyNet}は、マルチスペクトル画像と、航空機Lidar測量 (ALB) データで訓練されたCNN (U-Net\cite{Ronneberger2015_U-Net}) を利用するBathyNetを提案した。
-高精度のALBデータで学習した地域では、比較的高い性能を達成するが(\qty{15}{cm}未満)、
-異なる環境への汎化性能は低く、ALBの取得コストが高いため、実用性に欠ける。
-
-Agrafiotisら\cite{Agrafiotis2020_refractiveCorrection}は、SfM処理に用いる入力画像に対して屈折効果を補正する画像補正のアプローチを導入した。
-まず、屈折を補正せずに標準的なSfM-MVSパイプラインを適用し、密な点群から深度マップを作成する。
-そこから、機械学習ベースの深度推定を用いて、屈折の影響を補正した画像を生成する。
-再度、その画像を用いてSfM-MVSパイプラインを適用し、三次元再構成を行うことで、屈折の影響を補正した点群を生成する。
-この手法は高度な性能と操作性を持つ商用フォトグラメトリソフトウェアをワークフローにそのまま使用できる利点を持つが、深層学習モデルの性能に強く依存するため、前述の問題を含有する。
-
-Makrisら\cite{Makris2024_refractive-aware-sfm}は、スネルの法則をバンドル調整の最適化プロセスに直接統合するRefraction-aware SfM (R-SfM) を提案･公開した。
-この手法はカメラの外部パラメータと水中の真の三次元点群を同時に最適化し、高い精度を実現する。
-しかし、R-SfMは疎な再構成しか生成しないため、深層学習 \cite{Alevizos2022_DL-shallow-bathymetry} を用い、密な再構成を行う必要があり、依然、環境依存の学習データを要する。
-
-Zhanら \cite{Zhan2023CVPR_NeRFrac}水中下の三次元推定を目的に、Neural Radiance Fields(NeRF)(\cref{subsec:nerf})を拡張したNeRFracを開発した。
-NeRFracでは水中写真測量と同様のタスクを目標にし、非線形な光線追跡によって非平面水面内の3次元シーンを推定することで、平坦な水面仮定の限界に対処している。
-一方、現実的な写真測量用途ではその解釈可能性と計算コストが大きなボトルネックとなる。
-

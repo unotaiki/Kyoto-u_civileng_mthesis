@@ -1,5 +1,5 @@
 %!TEX root = ../main.tex
-
+\newpage
 \section{Gaussian Splatting}\label{sec:GS}
 
 \subsubsection{3D Gaussian Splatting}\label{sec:3DGS}
@@ -11,35 +11,41 @@
   \caption{
     Gaussian Splattingのパイプライン。
     \cite{Kerbl2023ToG_3DGS}より引用。
+    (A) SfMにより得られた疎点群を用いて三次元シーンのGaussianを初期化する。
+    (B) SfMにより得られた入力画像のカメラパラメータでシーンのGaussianをレンダリングする。
+    このプロセスは微分可能レンダリングであるため、レンダリング画像と入力画像の差からGaussianを最適化することが可能である。
+    (C) 局所最適解に陥るのを避けるため、Adaptive Density Controlが導入される。
+    各Gaussianの位置勾配やスケール、透明度を基に、分割、複製、消去を行う。
     }
     \label{fig:3dgs_pipeline}
 \end{figure}
 
-\begin{figure}[htbp]
+% \missingfigure{NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}
+
+3D Gaussian Splatting (3DGS) は、近年、新規視点合成のみならず、三次元表現として広く普及している手法である \parencite{Kerbl2023ToG_3DGS}。
+その特徴は、写実的かつ忠実な三次元シーンの表現力、高速な学習時間、そしてリアルタイムレンダリングにある。
+明示的な(Explicit)三次元表現である3DGSは、Visual-SLAM \parencite{Yan2024CVPR_GS-SLAM,Zheng2025CVPR_WildGS-SLAM,Matsuki2024CVPR_GaussianSplattingSLAM}、アバター生成 \parencite{Moreau2024CVPR_HumanGaussianSplatting,Shao2024CVPR_GaussianAvatar}、フィードフォワード型三次元再構成 \parencite{Chen2024ECCV_MVSplatting} など、幅広いタスクへの適用に成功している。
+またその応用先は広く、衛星画像からの数値表層モデル(DSM)生成 \parencite{Aira2025CVPR_EOGS}、自動運転 \parencite{Hess2025CVPR_SplatAD,Sandula2025ICRA_GS-Lidar-Fusion}、そして水中三次元再構成 \parencite{li20243DV_watersplatting,Yang2025ICRA_SeaSplat} といった様々な実世界アプリケーションへと拡張されている。
+
+
+\begin{figure}[tbp]
   \centering
-  \includegraphics[width=0.6\textwidth]{figure/40_prelim/nerf_vs_3dgs.png}
+  \includegraphics[width=0.8\textwidth]{figure/40_prelim/nerf_vs_3dgs.png}
   \caption{
     Gaussian SplattingとNeRFとレンダリング方式の違い。
     \cite{Chen2024_3DGS-Survey}より引用。
     (a) NeRFのレンダリング方式。
     (b) 3DGSのレンダリング方式。
-    NeRFでは各レイに沿ってサンプリングするため、計算コストが大きいが、GSではラスタライズによる高速なレンダリングを実現する。
+    NeRFでは各レイに沿ってサンプリングするため、計算コストが大きいが、Gaussian Splattingではラスタライズによる高速なレンダリングを実現する。
     これはGPUの描画パイプラインを効果的に流用する。ラスタライズにより3D空間のGaussianを2D画像平面に投影することを`Splatting'と表現している。
     }
     \label{fig:nerf_vs_3dgs_rendering}
 \end{figure}
 
-\missingfigure{NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}
 
-3D Gaussian Splatting (3DGS) は、新規視点合成において最先端(SOTA)の結果を達成している近年の手法である \parencite{Kerbl2023ToG_3DGS}。
-その特徴は、フォトリアリスティックかつ高忠実度な3次元シーンのキャプチャ能力、高速な学習時間、そしてリアルタイムレンダリングにある。
-明示的な(Explicit)3次元表現である3DGSは、Visual-SLAM \parencite{Yan2024CVPR_GS-SLAM,Zheng2025CVPR_WildGS-SLAM,Matsuki2024CVPR_GaussianSplattingSLAM}、アバター生成 \parencite{Moreau2024CVPR_HumanGaussianSplatting,Shao2024CVPR_GaussianAvatar}、フィードフォワード型3次元再構成 \parencite{Chen2024ECCV_MVSplatting} など、幅広いタスクへの適用に成功している。
-その可能性はさらに広がり、衛星画像からの数値表層モデル(DSM)生成 \parencite{Aira2025CVPR_EOGS}、自動運転、そして水中3次元再構成 \parencite{li20243DV_watersplatting} といった様々な実世界アプリケーションへと拡張されている。
-\fix{自動運転}
-
-\begin{figure}[htbp]
+\begin{figure}[tbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{figure/40_prelim/compare_pc-elip-render.png}
+  \includegraphics[width=0.9\textwidth]{figure/40_prelim/compare_pc-elip-render.png}
   \caption{
     点群と楕円体のレンダリング結果の比較。
     (a) 点群のレンダリング結果。
@@ -49,16 +55,24 @@
     \label{fig:compare_pc-elip-render}
 \end{figure}
 
-3DGSのパイプラインは主に、レンダリングを行うフォワードパスと、最適化を行うバックワードパスの2つの段階で構成される。
-フォワードパスでは、3次元ガウス分布(3D Gaussians)の集合を、ラスタライズにより画像平面に投影することで画像を合成する。
-各ガウス分布は、
-中心位置 $\bm{p} \in \mathbb{R}^3$、
-不透明度 $\alpha \in [0, 1]$、
-球面調和関数(SH)によって表現される視点依存の色係数 $\bm{c}(\bm{p}, \bm{t}_i) \in \mathbb{R}^{3}$、
-および3次元共分散行列 $\bm{\Sigma}^{\mathrm{3D}} \in \mathbb{R}^{3 \times 3}$ 
-という、最適化可能なパラメータセットによって定義される。
-これらのパラメータは、カメラパラメータを得る際に用いられるSfMで副次的に得られる粗点群を用い初期化される(\cref{fig:3dgs_pipeline}A)。
-共分散行列 $\bm{\Sigma}^{\mathrm{3D}}$ は、スケーリングベクトル $\bm{s} \in \mathbb{R}^3$ から構成されるスケーリング対角行列 $\bm{S} \in \mathbb{R}^{3 \times 3}$ と、回転クォータニオン(回転行列 $\bm{R} \in SO(3)$ として表現)を用いて以下のように構成される：
+3DGSでは、三次元シーンを多数の三次元ガウス分布(3D Gaussian)の集合で表現している。
+3DGSのパイプラインは主に、順レンダリングを行うフォワードパスと、最適化を行うバックワードパスの2つの段階で構成される。
+
+\paragraph{Gaussian Splattingの順レンダリング}
+フォワードパスでは、Gaussianの集合を、ラスタライズにより画像平面に投影することで画像を合成する。
+ラスタライズ(Rasterization)とは、コンピュータグラフィックスにおいて、3D空間上のデータを2D画像上に投影するプロセスを指す。
+3DGSにおいては、楕円体のように表される空間上の三次元ガウス分布を、画像平面上へ叩きつけるイメージから`Splatting'と表現している。
+
+各Gaussianは、
+\begin{itemize}
+  \item \textbf{中心位置}: $\bm{p} \in \mathbb{R}^3$
+  \item \textbf{不透明度}: $\alpha \in [0, 1]$
+  \item \textbf{球面調和関数(SH)によって表現される視点依存の色係数}: $\bm{c}(\bm{p}, \bm{t}_i) \in \mathbb{R}^{3}$
+  \item \textbf{スケール}: $\bm{s} \in \mathbb{R}^3$と\textbf{回転行列}: $\bm{R} \in SO(3)$から構成される\textbf{三次元共分散行列}: $\bm{\Sigma}^{\mathrm{3D}} \in \mathbb{R}^{3 \times 3}$ 
+\end{itemize}
+という、パラメータセットによって定義される。
+これらのパラメータは、カメラパラメータを推定するSfMで副次的に得られる疎点群を用いて初期化される(\cref{fig:3dgs_pipeline}A)。
+共分散行列 $\bm{\Sigma}^{\mathrm{3D}}$ は、スケーリングベクトル $\bm{s} \in \mathbb{R}^3$ から構成されるスケール対角行列 $\bm{S} \in \mathbb{R}^{3 \times 3}$ と、回転クォータニオン$\bm{q} \in \mathbb{R}^4$ (回転行列 $\bm{R} \in SO(3)$ として表現)を用いて以下のように構成される：
 \begin{equation}\label{eq:3dgs-sigma_RssR}
   \bm{\Sigma}^{\mathrm{3D}} = \bm{R} \bm{S} \bm{S}^\top \bm{R}^\top
 \end{equation}
@@ -68,46 +82,51 @@
     \exp \left( -\frac{1}{2} (\bm{x} - \bm{p})^T \left({\bm{\Sigma}^{3D}}\right)^{-1} (\bm{x} - \bm{p}) \right)
 \end{equation}
 フォワードパスにおいて、あるカメラ視点からの画像をレンダリングするために、これらのガウス分布はまず外部パラメータ行列 $[\bm{W} | \bm{t}]$ を用いてワールド座標系からカメラ座標系へと変換される。
-ガウス分布の中心位置 $\bm{p}$ と3次元共分散行列は以下のように更新される：
+ガウス分布の中心位置 $\bm{p}$ と三次元共分散行列は以下のように更新される：
 \begin{align*}
   &\bm{p}_\mathrm{cam} = \bm{W}\bm{p} + \bm{t} \\
   &\bm{\Sigma}^{3D}_\mathrm{cam} = \bm{W} \bm{\Sigma}^{3D} \bm{W}^\top
 \end{align*} 
 ここで、$\bm{W}_\mathrm{view} \in \mathbb{R}^{3 \times 3}$ は視点回転行列、
 $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
-\cite{Zwicker2001_EWA-volume-splatting} の提案した射影手法に従い、カメラ空間における3次元共分散行列 $\Sigma_{cam}^{3D}$ は2次元画像平面へと射影される。
-これは透視投影の一次近似(アフィン近似)のヤコビ行列 $\bm{J}$ を用いて行われ、2次元共分散行列 $\bm{\Sigma}^{\mathrm{2D}}$ が得られる：
+Zwickerら\cite{Zwicker2001_EWA-volume-splatting} の提案した射影手法に従い、カメラ空間における三次元共分散行列 $\Sigma_{cam}^{3D}$ は2次元画像平面へと射影される。
+これには透視投影のアフィン近似のヤコビ行列 $\bm{J}$ を用いることで、2次元共分散行列 $\bm{\Sigma}^{\mathrm{2D}}$ が得られる：
 \begin{equation}\label{eq:3dgs-affine-projection}
 \Sigma^\mathrm{2D} = \bm{J} \Sigma^{\mathrm{3D}}_\mathrm{cam} \bm{J}^\top
 \end{equation}
-各ピクセルの最終的なRGB値 $\bm{\Gamma} \in \mathbb{R}^{3}$ は、射影されたガウス分布をアルファブレンディングすることでレンダリングされる。
-ピクセルと重なるガウス分布の集合は、まず深度に基づいて手前から奥へとソートされ、視点依存色が以下のように累積される：
+各ピクセルの最終的なRGB値 $\bm{\Gamma} \in \mathbb{R}^{3}$ は、射影されたGaussianをボリュームレンダリングすることにより得られる。
+ピクセルと重なるGaussianの集合は、まず深度に基づいて手前から奥へとソートされ、視点依存色が以下のように累積される:
 \begin{align}\label{eq:3dgs-alpha-blending}
   \bm{\Gamma}(\bm{x}) = \sum_{k=1}^{K} \bm{c}_k \alpha^{\text{pixel}}_k \prod_{j=1}^{k-1} (1-\alpha^{\text{pixel}}_j) \\
   \quad \text{where} \quad \alpha^{\text{pixel}}_k = \alpha_k G_k^{\mathrm{2D}} \notag
 \end{align}
-ここで、$k$ はピクセルに重なる整列されたガウス分布の集合のインデックスである。
+ここで、$k$ はピクセルに重なる整列されたGaussianの集合のインデックスである。
 
+一般に、ラスタライズは、NeRF(\cref{subsec:nerf})で示したような視線光線に対して各々サンプリングを行うことで画素値を求めるレイトレーシング手法よりも高速である。
+3DGSでは、画面を小さなタイルに分割し、関係のあるガウシアンだけを効率よく計算するTile-Basedラスタライズを用いることで、100 fps以上の高速なリアルタイムレンダリングを実現している。
+
+
+\paragraph{Gaussian Splattingの逆レンダリング}
 バックワードパスでは、最適化により測光誤差(Photometric loss)を最小化する。
 これは $\mathcal{L}_1 (\Gamma, \Gamma_{gt})$ 損失と D-SSIM 損失 $\mathcal{L}_\mathrm{D-SSIM} (\Gamma, \Gamma_{gt})$ \parencite{Zhou2004_SSIM} の加重和である：
 \begin{equation}\label{eq:loss-function}
   \mathcal{L} = (1 - \lambda) \mathcal{L}_1 + \lambda \mathcal{L}_\mathrm{D-SSIM}
 \end{equation}
-したがって、最適化問題は以下のように定式化される：
+したがって、Analysis-by-Synthesis(\cref{subsec:differentiable-rendering})によって最適化問題は以下のように定式化される：
 \begin{equation}\label{eq:optimization}
   \underset{p, R, s, c, \alpha}{\textrm{argmin}} \quad \mathcal{L} = \mathcal{L}(\bm{\Gamma}, \bm{\Gamma_{gt}}) 
 \end{equation}
-これらの定式化により、パイプライン全体が完全微分可能となり、パラメータ $\Theta = \{\bm{p}, \bm{R}, \bm{s}, \bm{c}, \alpha\}$ はAdamを用いた勾配降下法\parencite{Adam}によって最適化可能となる。
+この定式化により、パイプライン全体が完全微分可能となり、パラメータ $\Theta = \{\bm{p}, \bm{R}, \bm{s}, \bm{c}, \alpha\}$ はAdamなどの勾配降下法\parencite{Adam}によって最適化可能となる。
 (\cref{fig:3dgs_pipeline}B)
 
-これらの勾配降下法のみでは、特に観測視点が少ない箇所(Few Shot Area)などで、シーンの適切な一貫性に欠ける局所最適解に陥りやすい。
+\paragraph{Adaptive Density Control}
+これらの勾配降下法のみでは、特に観測視点が少ない箇所(Few Shot Area)などで、シーンの多視点からの一貫性に欠ける局所最適解に陥りやすい。
 これを解決するために3DGSではAdaptive Density Control(ADC)というヒューリスティックな手法が導入されている。
-あるGaussianに関して、その2D平面や3D空間における位置に対する誤差勾配$\frac{\partial \mathcal{L}}{\partial \bm{p}}$が大きい場合、そのGaussianは幾何的な誤差の大きいものであるという推察に基づいて
+あるGaussianに関して、その2D平面や3D空間における位置に対する誤差勾配$\frac{\partial \mathcal{L}}{\partial \bm{p}}$が大きい場合、そのGaussianは幾何的な誤差の大きいものであるという推察に基づき、
 分割(Split)、複製(Clone)、消去(Prune)のいずれかの操作を行う。
 位置誤差勾配がある閾値を超え、さらにシーンに対してGaussianが大きい場合は分割、小さい場合は複製を行う。
 また、不透明度$\alpha$が小さいGaussianも消去する。
-効果的にシーンに寄与しないGaussianを削除するため、一定のイテレーションごとにシーンのGaussianの不透明度を一様に小さいものにリセットすることで、その後不透明度が向上しないGaussianを削除できるようにする。
-\note{MCMCの説明も。?。これらのヒューリスティックスはデータセットや初期値に対して依存するため、それを克服するようなMCMCといった手法も考案されている。}
+効果的にシーンに寄与しないGaussianを判別するため、一定のイテレーションごとにシーンのGaussianの不透明度を一様に透明に近くリセットすることで、その後不透明度が向上しないGaussianを削除できる。
 
 \begin{figure}[htbp]
   \centering
@@ -115,7 +134,8 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
   \caption{
     Adaptive Density Control(ADC)の操作。
     \cite{Kerbl2023ToG_3DGS}より引用。
-    Gaussianに流れる位置誤差勾配が大きい場合、サイズが小さいGaussianに対しては、複製、サイズが大きいGaussianに対しては、分割を行うことで、適切なサイズのGaussianでシーンを満たす。
+    Gaussianに流れる位置誤差勾配が大きい場合、または、サイズが小さいGaussianに対しては、複製を行う。
+    サイズが大きいGaussianに対しては、分割を行うことで、適切なサイズのガウス分布でシーンを満たす。
     }
     \label{fig:3dgs_adc}
 \end{figure}
@@ -125,7 +145,7 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
   \begin{minipage}{0.8\linewidth}
     \begin{algorithm}[H]\label{alg:3dgs-adc}
       \caption{
-        Novel 3DGS\cite{Kerbl2023ToG_3DGS}における密度最適化アルゴリズム。
+        3DGS\cite{Kerbl2023ToG_3DGS}におけるAdaptive Density Controlアルゴリズム。
         \cite{Grubert2025VISAPP_improve-ADC}より引用。
         }
       \SetAlgoLined
@@ -158,32 +178,26 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
 \end{center}
 
 ここで、
-$\tau_k$ は2次元位置誤差勾配の平均値、
-$P_{dense}$ は密度最適化のハイパーパラメータ、
+$\tau_k$ は二次元位置誤差勾配の平均値、
+$P_{dense}$ はシーンのスケールに応じた分割･複製のハイパーパラメータ、
 $T_{grad}$ は位置誤差勾配の閾値ハイパーパラメータ、
 $e_{scene}$ はシーンの範囲、
-$\alpha_{min}$ は最小不透明度ハイパーパラメータである。
-
+$\alpha_{min}$ は消去を行うための不透明度に関するハイパーパラメータである。
 
 % Adam \parencite{Adam} を用いた~ と言っていたがこれは、Implplementationで言及すること
-その最適化に要する学習時間は、30kのイテレーションによって1時間以内となり、当時NVSのSotaであったMip-NeRF360 \parencite{Barron2022CVPR_Mip-NeRF360} に比較して10倍以上の高速化を達成した。
-加えて、Ray-Tracingに比較し、既存のGPU描画パイプラインの性能を引き出すTile-Basedレンダリングによって、100 fps以上のリアルタイムレンダリングを実現したことで、インタラクティブなSceneの可視化が可能となった\cref{fig:nerf_vs_3dgs_rendering}。
-このプロセスを通じて得られた3次元ガウス分布の集合は、3次元シーンを高忠実度で捉えることができる。
+3DGSの最適化に要する時間は、30kのイテレーションにおいて1時間以内となり、当時NVSのSotaであったMip-NeRF360 \parencite{Barron2022CVPR_Mip-NeRF360} に画質指標で匹敵しながら、10倍以上の高速化を達成した。
 
 
-しかし、このパイプライン全体はピンホールカメラモデルと透視投影に依存しており、光が直線的に進むことを根本的な前提としている。
-この前提は、空気と水の境界での屈折が幾何学的矛盾を引き起こすような複数の媒質が介在する環境においては成立しない。
-この制限にもかかわらず、3DGSの明示的な3次元表現は、屈折の法則を数学的に定式化し、シーン表現の幾何学的パラメータそのものに直接適用することが可能とする。
-一方で、3DGSではラスタライズによってレンダリングされるため、レイトレーシングのように容易に屈折の影響をモデル化することができない、という困難も生じる。
+
 
 
 \subsection{2D Gaussian Splatting}\label{sec:2DGS}
 2D Gaussian Splatting(2DGS) \parencite{Huang2024SIGGRAPH_2DGS}は、Photometricな一貫性に特化した3DGSに対し、幾何的な一貫性を向上させることを目的とした派生手法である。
-3次元シーンで観測されるRadianceは、環境光が物体表面で反射したものから観測されるという前提から、3次元シーンの各Gaussianは物体表面に整列して配置されることを目指すMVSなどのGeometric Reconstructionの一種とも言える。
+三次元シーンで観測されるRadianceは、環境光が物体表面で反射したものから観測されるという前提から、三次元シーンの各Gaussianは物体表面に整列して配置されることを目指すMVSなどのGeometric Reconstructionの一種とも言える。
 
 2DGSの3DGSとの違いは、主に以下の3点である:
 \begin{itemize}
-  \item 平らな2次元ガウス分布(Surfel)プリミティブによる3次元シーン表現
+  \item 平らな2次元ガウス分布(Surfel)プリミティブによる三次元シーン表現
   \item 正確な透視投影(Perspective-accurate)による、2D Gaussian集合の2次元画像平面への射影
   \item 幾何的な整合性を高める正則化の導入
 \end{itemize}
@@ -293,7 +307,7 @@ $\alpha_{min}$ は最小不透明度ハイパーパラメータである。
 3DGSが採用しているアフィン近似による投影は、ガウス分布の中心から離れるにつれて近似誤差が増大し、視点によって深度が不整合になるという問題がある。
 これに対し2DGSは、視線レイ(Ray)と2次元平面(Splat)の交差判定(Ray-Splat Intersection)を明示的に計算することで、正しい透視投影を実現する。
 
-スクリーン空間上のピクセル座標 $\bm{x} = (x, y)$ を通る視線レイは、3次元空間において直交する2つの平面(x-planeとy-plane)の交線として定義できる。
+スクリーン空間上のピクセル座標 $\bm{x} = (x, y)$ を通る視線レイは、三次元空間において直交する2つの平面(x-planeとy-plane)の交線として定義できる。
 これを同次座標系の4次元平面ベクトル $\bm{h}_x = (-1, 0, 0, x)^\top, \bm{h}_y = (0, -1, 0, y)^\top$ として表現し、これらをワールド空間からスクリーン空間への変換行列 $\bm{W}$ と、先述のローカル変換行列 $\bm{H}$ を用いてガウス分布のローカル座標系へ逆変換する。
 ここで、平面の変換には逆転置行列 $(\bm{W}\bm{H})^{-\top}$ を用いる必要があるが、これにより明示的な逆行列計算を回避し、数値的な安定性を保つことができる。
 
@@ -321,7 +335,7 @@ $\alpha_{min}$ は最小不透明度ハイパーパラメータである。
 \note{ローパスフィルタまでは説明しなくても良い。(3DGSでも説明していないから)。MipSplatting説明しないといけない}
 
 \subsubsection{Regularization for Geometric Consistency}
-2DGSはSurfel表現を持つが、単なるPhotometric lossのみでは、3次元再構成特有の不定性によりノイズの多い表面形状に収束してしまう傾向がある。
+2DGSはSurfel表現を持つが、単なるPhotometric lossのみでは、三次元再構成特有の不定性によりノイズの多い表面形状に収束してしまう傾向がある。
 そこで、幾何学的精度を向上させるために\cite{Barron2022CVPR_Mip-NeRF360}で提案された2つ正則化項をGSフレームワークに導入している。
 
 一つ目は \textbf{Depth Distortion Loss} ($\mathcal{L}_d$) である。
@@ -361,3 +375,10 @@ $\alpha_{min}$ は最小不透明度ハイパーパラメータである。
 これらの幾何学的制約により、2DGSはNoiseの少ない詳細なメッシュ抽出が可能となり、かつ3DGSと同等のレンダリング速度と画質を維持している。
 
 \note{メッシュの抽出にはTSDF Fusionを用いている。}
+
+
+
+Gaussian Splattingのパイプラインはピンホールカメラモデルを基にした透視投影に依存しており、光が直線的に進むことを根本的な前提としている。
+この前提は、空気と水の境界での屈折が幾何学的矛盾を引き起こすような複数の媒質が介在する環境においては成立しない。
+この制限にもかかわらず、3DGSの明示的な三次元表現は、屈折の法則を数学的に定式化し、シーン表現の幾何学的パラメータそのものに直接適用することを可能とする。
+一方で、3DGSではラスタライズによってレンダリングされるため、レイトレーシングのように容易に屈折の影響をモデル化することができない、という困難も生じる。
