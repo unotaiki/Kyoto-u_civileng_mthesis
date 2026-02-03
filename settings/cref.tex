@@ -1,12 +1,19 @@
-% \crefname{equation}{式}{式}% {環境名}{単数形}{複数形} \crefで引くときの表示
-% \crefname{figure}{図}{図}% {環境名}{単数形}{複数形} \crefで引くときの表示
-% \crefname{table}{表}{表}% {環境名}{単数形}{複数形} \crefで引くときの表示
-% \crefname{algorithm}{Algorithm}{Algorithm}
+\crefname{equation}{式}{式}    % {環境名}{単数形}{複数形} \crefで引くときの表示
+\crefname{figure}{図}{図}
+\crefname{table}{表}{表}
+\crefname{algorithm}{Algorithm}{Algorithm}
 
-% \crefname{section}{第}{第}
-% \creflabelformat{section}{#2#1節#3}
-% \crefname{subsection}{第}{第}
-% \creflabelformat{subsection}{#2#1小節#3}
+% 章の設定
+\crefformat{chapter}{#2第#1章#3}
+\crefrangeformat{chapter}{#3第#1章#4〜#5第#2章#6}
+
+% 節の設定
+\crefformat{section}{#2#1節#3}
+\crefrangeformat{section}{#3#1節#4〜#5#2節#6}
+
+% 小節の設定
+\crefformat{subsection}{#2#1項#3}
+\crefrangeformat{subsection}{#3#1項#4〜#5#2項#6}
 
 % \theoremstyle{definition}% 日本語用．定理とか斜体にならないようにする
 % \newtheorem{theorem}{定理}
