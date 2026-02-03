@@ -7,8 +7,6 @@
 
 本節では、提案手法の実用可能性を示すため、一般に水深写真測量のパイプラインで使用されるMVS(COLMAPによる実装\cite{Schonberger2016ECCV_PatchMatchStereo})と補正を行わない場合の2DGSに関して、2DGSに関し提案手法を適用したRA-GSとの結果を比較する。
 
-
-
 \paragraph{定性評価}\label{subsec:eval_field_qualitative}
 
 \begin{figure}[htbp]
@@ -39,6 +37,21 @@
 2DGSでも、強力なSurface正則化が適用されているため、大部分で水底は滑らかに表現されているが、画像手前の特に深度の大きい部分には一部、本来は存在しない浮遊アーティファクトが存在している。
 一方、RA-GSでは、屈折の明示的モデル化によりシーンに測光的な一貫性を確保できるため、水底全体でノイズの少ない再構成ができている。
 
+また、\cref{fig:eval_field_render}に示すように、RA-GSから再構成したGaussian Splattingモデルは、屈折の影響を排した高精細な外観情報を保持している。
+専用のViewerを用いることでインタラクティブかつリアルタイムに視認できるため、エコトーン環境において生物の痕跡を探索したり、調査地の状態を詳細に記録・共有するための強力なツールとなる。
+屈折の影響がないため、実スケールでの粒径分析などの用途にも転用可能である。
+
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.8\textwidth]{figure/80_eval/field/render-bed.png}
+  \caption{
+    RA-GSによる再構成結果の外観情報。
+    RA-GSによるGaussianモデルは、屈折の影響を排した高精細の外観情報を含む。
+  }
+  \label{fig:eval_field_render}
+\end{figure}
+
 \begin{sidewaysfigure}[htbp]
   \centering 
   \captionsetup{justification=raggedright}
@@ -53,28 +66,49 @@
 
 \ref{fig:eval_field_voxel_height}は、COLMAPによるMVS実装\cite{Schonberger2016ECCV_PatchMatchStereo}を比較に加え、深度を色で明示している。
 形状が分かりやすいように各構成結果を0.08 cm単位のボクセル(Voxel)で区切り、水面下の形状を深度が深くになるにつれて青色から赤色にかけてのカラーランプで表示している。
-COLMAP MVSでは、最もノイズが散乱した結果になった。
-水底部から水面にかけて
+COLMAP MVSでは、最もノイズの散乱した再構成結果になった。
+水底部から水面にかけて一様にノイズが散乱するように点群が生成されており、水底部の幾何情報を抽出するのは難しい。
+2DGSでは、最深部でも50cm程度の深度で再構成されている。
+最深部が水底1m程度であることを考慮すると、大きく水深は過小評価されている。
 
-\subsection{Quantitative Evaluation}\label{subsec:eval_field_quantitative}
+RA-GSでは、定量評価(\cref{subsec:eval_field_quantitative})で後述するように、幾何的精度した水底を含めた三次元再構成ができている。
+浮遊植物によりオクルージョンとなっている部分が無ければ、流体シミュレーションなどの用途へも容易に転用できるデータを得ることができる。
+
+
+
+\subsection{定量評価}\label{subsec:eval_field_quantitative}
 
 \cref{sec:field-dataset}で示したPoint 1, Point 2を対象に、再構成メッシュから深度を手動で計測し、定量的に評価した。
 ターゲットの座標の真値は不明なので、再構成メッシュのテクスチャからターゲットを見つけ出すことで計測を行った。
+RA-GSのワークフローでは、高解像度な外観情報を含有するメッシュを出力できるため、数cmのターゲットを明確に確認することができた。
 計測はCloudCompare\cite{girardeau2016cloudcompare}上で行い、メッシュに対して各計測点の深度を読み取った。
 CloudCompare上での計測を\cref{fig:eval_field_cloudcompare_depth}に示す。
+
+\cref{tab:eval_field_depth}に、現地での実測値(Measured)と、メッシュから読み取った推定値(Estimated)、およびその差(Error)を示す。
+Relative Errorは撮影高度\qty{12}{m}に対する相対誤差である。
+Point 1, Point 2に対する実測値はそれぞれ、\qty{61.0}{cm}および\qty{71.0}{cm}であるのに対し、その推定値はそれぞれ、\qty{60.7}{cm}および\qty{70.7}{cm}であり、その差はそれぞれ、\qty{0.3}{cm}および\qty{0.3}{cm}であった。
+% \note{Point 1: 59.4, 61.0, 61.0, 61.4, ave60.7}
+% \note{Point 2: 71.3, 70.7, 70.3, 70.5, ave70.7}
+なお、座標を一意に決めることはできず、推定値はターゲット付近でサンプリングする位置に依存する。
+今回、ターゲットは水底に垂直に突き刺すように設置し、その底からの深度を計測しているため、
+再構成データからの推定値の計測には、ターゲットを中心とした四方の4点をサンプリングした深度の平均値を用いた。
+\[
+\begin{aligned}
+\mathrm{Point\ 1}:~&(59.4,~61.0,~61.0,~61.4) \rightarrow \mathrm{平均値};60.7\\
+\mathrm{Point\ 2}:~&(71.3,~70.7,~70.3,~70.5) \rightarrow \mathrm{平均値};70.7
+\end{aligned}
+\]
 
 \begin{figure}[htbp]
   \centering
   \includegraphics[width=0.8\textwidth]{figure/80_eval/field/measure.png}
   \caption{
-    CloudCompare上で表示した再構成メッシュと計測深度。
-    Point1、Point2は\cref{sec:field-dataset}の計測点を示す。
+    CloudCompare上で表示した再構成メッシュと深度計測。
+    Point1、Point2はArea1(\cref{sec:field-dataset})における計測点を示す。
+    % 画像では59.9と69.5で抽出しているが、ターゲットが鉛直方向に高さを持つことを考慮すると、その四方を計測するべき。
   }
   \label{fig:eval_field_cloudcompare_depth}
 \end{figure}
-
-\cref{tab:eval_field_depth}に、現地での実測値(Measured)と、メッシュから読み取った推定値(Estimated)、およびその差(Error)を示す。
-Relative Errorは撮影高度12 mに対する相対誤差である。
 
 \begin{table}[htbp]
   \centering
@@ -84,15 +118,12 @@ Relative Errorは撮影高度12 mに対する相対誤差である。
     \toprule
     Point & Measured [cm] & Estimated [cm] & Error [cm] & Relative Error (12 m height) [\%] \\
     \midrule
-    Point 1 & 61.0 & 59.9 & 1.1 & 0.091 \\
-    Point 2 & 71.0 & 69.5 & 1.5 & 0.13 \\
+    Point 1 & 61.0 & 60.7 & 0.3 & 0.025 \\
+    Point 2 & 71.0 & 70.7 & 0.3 & 0.025 \\ % 0.025%
     \bottomrule
   \end{tabular}
 \end{table}
 
-\cref{tab:eval_field_depth}より、最大相対誤差は0.13\%であり、これはSOTA手法であるDietrichらの手法\cite{Dietrich2016_multi-angle-correction}に匹敵する精度である。
-\note{確か、具体的な数値をもう一度確かめる。向こうはミニチュア環境だったかも。}
-検証点は少なく、統計的な有意確かめることはできないが、カメラアライメントや水面の抽出にmm級の誤差が存在することを踏まえると、RA-GSの屈折モデル化は実環境でも通用することが示された。
-
-
-
+\cref{tab:eval_field_depth}より、最大相対誤差は0.025\%であり、これはDietrichらの手法\cite{Dietrich2016_multi-angle-correction}0.02\%に匹敵する精度である。
+加えて、Dietrichらの手法では特徴点抽出に依存していたが、RA-GSではワークフローとして密な幾何情報を河床全域に対して抽出できている。
+検証点が少なく、統計的な有意確かめることはできないが、カメラアライメントや水面の抽出にmm級の誤差が存在し得ることを踏まえても、RA-GSの屈折モデル化は実環境においても正確に屈折の影響を除外した密な三次元再構成ができることが分かる。

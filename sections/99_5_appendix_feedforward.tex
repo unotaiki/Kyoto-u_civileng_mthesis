@@ -1,6 +1,6 @@
 %!TEX root = ../main.tex
 
-\section{Feed Forward 3D Reconstruction}
+\section{フィードフォワード型三次元再構成}\label{sec:feedforward-3d-reconstruction}
 
 本研究の本筋である最適化ベース(Optimization-based)の手法とは対照的に、近年(2023-2025年)、大規模データセットとDeep Learning、特にTransformerアーキテクチャの発展により、幾何学的計算を推論(Inference)として解く「フィードフォワード型(Feed-Forward)」の手法が台頭している。
 従来の手法(SfM/MVSやNeRF/3DGS)が、入力シーンごとにパラメータを反復的に更新して解を探索するのに対し、フィードフォワード型の手法は、学習済みの膨大な事前知識(Priors)を用いて、単一の順伝播処理のみで三次元構造を回帰するデータ駆動型(Data-driven)のアプローチである。
