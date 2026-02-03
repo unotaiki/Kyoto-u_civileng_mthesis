@@ -59,7 +59,10 @@
 \usepackage[colorinlistoftodos,disable]{todonotes} % TODO用。Writing以外の思いついたEditingタスクを瞬時に外部化し、ワーキングメモリを解放
 % --- 参考文献設定 (Biber + BibLaTeX) ---
 % 従来の \usepackage{cite} や thebibliography環境 の代わり
-\usepackage[backend=biber, style=phys, sorting=none]{biblatex} % style=numeric → style=physics
+\usepackage[backend=biber, style=phys, sorting=ynt]{biblatex} 
+% \usepackage[backend=biber, style=junsrt]{biblatex} 
+% tlmgr update --self
+% tlmgr install biblatex-japanese
 
 % --- 参考文献リストのスタイル設定 ---
 % 1. 参考文献リスト内の行間を「1.0 (シングル)」に強制変更 ※ 全体の \linespread{2.5} をここだけ無効化
