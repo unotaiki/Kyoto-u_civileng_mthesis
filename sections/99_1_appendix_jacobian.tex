@@ -1,4 +1,5 @@
 %!TEX root = ../main.tex
+\newpage
 \section{見かけの位置へのヤコビアン$J_app$の導出}\label{sec:appendix-jacobian}
 
 \cref{sec:position-correction}で述べた位置補正において、共分散補正(\cref{sec:covariance-correction})等で用いる変換の勾配には、真の位置$\bm{p}(r,z)$から見かけの位置$\bm{p}'(r',z')$へのヤコビアン行列$J_app$が必要となる。
@@ -134,3 +135,46 @@ $J_{21}$の導出と同様に括弧内を整理し:
   \frac{\partial z'}{\partial z} = \frac{z'}{z} + \frac{3 z' \tan^2 \theta_w}{\Delta} \left( 1 - n^2 \, \frac{\cos^2 \theta_w}{\cos^2 \theta_a} \right)
 \end{equation}
 
+\vspace{1em}
+以上より、求めるヤコビアン$J_{\mathrm{app}}$（$rz$平面における変換$\bm{p}=(r,z)^\top \mapsto \bm{p}'=(r',z')^\top$の勾配）は
+\begin{equation}\label{eq:Jacobian-app-matrix}
+  J_{\mathrm{app}} = \frac{\partial (r', z')}{\partial (r, z)}
+  =
+  \begin{pmatrix}
+    \dfrac{\partial r'}{\partial r} & \dfrac{\partial r'}{\partial z} \\[1.2em]
+    \dfrac{\partial z'}{\partial r} & \dfrac{\partial z'}{\partial z}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+    \displaystyle 1 + \frac{3(n^2 - 1) z \tan^2 \theta_w \sec^2 \theta_w}{\Delta}
+    &
+    \displaystyle (n^2 - 1) \tan^3 \theta_w \left( 1 + \frac{3 z \sec^2 \theta_w}{\Delta} \right)
+    \\[1.5em]
+    \displaystyle \frac{3 z' \tan \theta_w}{\Delta} \left( 1 - n^2 \, \frac{\cos^2 \theta_w}{\cos^2 \theta_a} \right)
+    &
+    \displaystyle \frac{z'}{z} + \frac{3 z' \tan^2 \theta_w}{\Delta} \left( 1 - n^2 \, \frac{\cos^2 \theta_w}{\cos^2 \theta_a} \right)
+  \end{pmatrix}
+\end{equation}
+で与えられる。
+
+\iffalse % (下記は旧下書き：記号が不整合なため無効化)
+= \frac{\partial (r', z')}{\partial (r, z)} = \begin{pmatrix} \frac{\partial r'}{\partial r} & \frac{\partial r'}{\partial z} \\ \frac{\partial z'}{\partial r} & \frac{\partial z'}{\partial z} \end{pmatrix}
+
+\\
+ =
+\begin{pmatrix}
+\displaystyle 
+1 + \frac{3(n^2 - 1) z \tan^2 \theta_r \sec^2 \theta_r}{\Delta}
+& 
+\displaystyle 
+(n^2 - 1) \tan^3 \theta_r \left( 1 + \frac{3 z \sec^2 \theta_r}{\Delta} \right) 
+
+\\[1.5em]
+
+\displaystyle 
+\frac{3 z' \tan \theta_r}{\Delta} \left( 1 - n^2 \gamma^2 \right)
+& 
+\displaystyle 
+\frac{z'}{z} + \frac{3 z' \tan^2 \theta_r}{\Delta} \left( 1 - n^2 \gamma^2 \right)
+\end{pmatrix}
+\fi

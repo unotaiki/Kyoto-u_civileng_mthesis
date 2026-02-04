@@ -1,5 +1,5 @@
 %!TEX root = ../main.tex
-
+\newpage
 \section{フィードフォワード型三次元再構成}\label{sec:feedforward-3d-reconstruction}
 
 本研究の本筋である最適化ベース(Optimization-based)の手法とは対照的に、近年(2023-2025年)、大規模データセットとDeep Learning、特にTransformerアーキテクチャの発展により、幾何学的計算を推論(Inference)として解く「フィードフォワード型(Feed-Forward)」の手法が台頭している。
@@ -18,8 +18,8 @@
   これにより、カメラパラメータを事前に与えることなく、エンドツーエンドでの三次元形状およびPoint Mapからのカメラ姿勢の逆推定が可能となった。
   後継のMASt3Rでは、局所的なマッチング精度の向上が図られており、より高精度な三次元アライメントを実現している。
 
-  \item \textbf{VGGT (Visual Geometry Grounded Transformer)} \cite{Wang2025CVPR_VGGT}: 
-  VGGTは、任意の枚数の画像を入力とし、カメラパラメータ、深度、点群、そして追跡情報(Tracks)の全てを同時に推論する。
+  \item \textbf{VGGT} \cite{Wang2025CVPR_VGGT}: 
+  Visual Geometry Grounded Transformer (VGGT)は、任意の枚数の画像を入力とし、カメラパラメータ、深度、点群、そして追跡情報(Tracks)の全てを同時に推論する。
   トランスフォーマーを用いた統合的なアーキテクチャにより、従来の幾何学的制約を学習された高次元の構造的特徴として捉え、ノイズの多い入力や極端な視点変化に対しても極めて高い頑健性を示す。
 
 \end{itemize}
