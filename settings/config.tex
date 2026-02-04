@@ -57,6 +57,7 @@
 \SetKwComment{Comment}{// }{} 
 
 \usepackage[colorinlistoftodos,disable]{todonotes} % TODO用。Writing以外の思いついたEditingタスクを瞬時に外部化し、ワーキングメモリを解放
+
 % --- 参考文献設定 (Biber + BibLaTeX) ---
 % 従来の \usepackage{cite} や thebibliography環境 の代わり
 \usepackage[backend=biber, style=phys, sorting=ynt]{biblatex} 
@@ -67,23 +68,22 @@
 % --- 参考文献リストのスタイル設定 ---
 % 1. 参考文献リスト内の行間を「1.0 (シングル)」に強制変更 ※ 全体の \linespread{2.5} をここだけ無効化
 \AtBeginBibliography{\setstretch{1.0}} 
-% 2. 項目ごとのフォントサイズを少し小さくする(任意） ※ 必要なければ \small を削除してください
-% \renewcommand*{\bibfont}{\small}
 % 3. 文献アイテム同士の間隔を詰める
-\setlength{\bibitemsep}{2.5pt} % 項目間の余白 (0ptでも可)
+\setlength{\bibitemsep}{3.0pt} % 項目間の余白 (0ptでも可)
 \setlength{\bibparsep}{1.0pt}  % 項目内の段落間余白
+% 1. 巻数(volume)の太字を解除
+\DeclareFieldFormat[article]{volume}{#1}
+\DeclareFieldFormat{volume}{#1}
 
-% % 引用番号のスタイルを [1] から 1) に変更
-% \DeclareFieldFormat{labelnumberwidth}{#1)}
+% 2. タイトル(title)の強調（イタリック/太字化）を解除
+\DeclareFieldFormat{title}{#1}
+\DeclareFieldFormat[article]{title}{#1}
+\DeclareFieldFormat[book]{title}{#1}
+\DeclareFieldFormat[inproceedings]{title}{#1}
 
-% % 文中の引用 \cite{} を上付き文字にする設定
-% \DeclareCiteCommand{\cite}[\mkbibsuperscript]
-%   {\usebibmacro{cite:init}%
-%    \usebibmacro{prenote}}
-%   {\usebibmacro{citeindex}%
-%    \printfield{labelnumber}\printtext{)}} % 閉じ括弧 ) を追加
-%   {\multicitedelim}
-%   {\usebibmacro{postnote}}
+% 3. 雑誌名・書籍名(journaltitle, booktitle)の強調も解除したい場合
+\DeclareFieldFormat{journaltitle}{#1}
+\DeclareFieldFormat{booktitle}{#1}
 
 % 複数の引用をカンマ区切りにする
 \renewcommand*{\multicitedelim}{\textsuperscript{,}}

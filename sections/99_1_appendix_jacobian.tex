@@ -44,7 +44,7 @@ $r'$、 $z'$は$\theta_a$、 $\theta_w$の関数として表されており、�
 と定義する。
 $z < 0$であることから第2項は正となり、$\Delta \neq 0$が保たれる。
 これより、\eqref{eq:dtheta-w-expr}を$d\theta_w$について解く（両辺を$\Delta$で割る）と
-\begin{equation}\label{eq:dtheta-w-expr}
+\begin{equation}\label{eq:dtheta-w-solved}
   d\theta_w = \frac{1}{\Delta}dr + \frac{\tan\theta_w}{\Delta}dz
 \end{equation}
 を得る。
@@ -157,24 +157,37 @@ $J_{21}$の導出と同様に括弧内を整理し:
 \end{equation}
 で与えられる。
 
-\iffalse % (下記は旧下書き：記号が不整合なため無効化)
-= \frac{\partial (r', z')}{\partial (r, z)} = \begin{pmatrix} \frac{\partial r'}{\partial r} & \frac{\partial r'}{\partial z} \\ \frac{\partial z'}{\partial r} & \frac{\partial z'}{\partial z} \end{pmatrix}
+\subsection{数値実装上の注意：中心軸および水面近傍の極限形}
+\label{sec:appendix-jacobian-limit}
 
-\\
- =
-\begin{pmatrix}
-\displaystyle 
-1 + \frac{3(n^2 - 1) z \tan^2 \theta_r \sec^2 \theta_r}{\Delta}
-& 
-\displaystyle 
-(n^2 - 1) \tan^3 \theta_r \left( 1 + \frac{3 z \sec^2 \theta_r}{\Delta} \right) 
+数値計算の実装においては、$\Delta$が小さい場合や$\tan\theta_w$が極めて小さい場合に、分母の極小化や桁落ちにより不安定化することがある。
+そのため、中心軸付近（$r\to 0$）および水面付近（$z\to 0$）では、適当な閾値$\epsilon$を設けて極限形に切り替える処理が有効である。
 
-\\[1.5em]
+\paragraph{\boldmath{$r\to 0$（ナディア視点）}}
+$r\to 0$では$\theta_w\to 0$かつ$\theta_a\to 0$となり、
+$\tan\theta_w\to 0$、$\cos\theta_w\to 1$、$\cos\theta_a\to 1$より$\Delta\to nH-z$、さらに$z'\to z/n$である。
+したがって、行列要素のうち$\tan\theta_w$を含む項は消失し、
+\begin{equation}\label{eq:Jacobian-app-r0}
+  \lim_{r\to 0} J_{\mathrm{app}}
+  =
+  \begin{pmatrix}
+    1 & 0 \\
+    0 & \dfrac{1}{n}
+  \end{pmatrix}
+\end{equation}
+を得る。
 
-\displaystyle 
-\frac{3 z' \tan \theta_r}{\Delta} \left( 1 - n^2 \gamma^2 \right)
-& 
-\displaystyle 
-\frac{z'}{z} + \frac{3 z' \tan^2 \theta_r}{\Delta} \left( 1 - n^2 \gamma^2 \right)
-\end{pmatrix}
-\fi
+\paragraph{\boldmath{$z\to 0$（水面付近）}}
+$z\to 0$では$z'\to 0$である一方、角度$\theta_w,\theta_a$は（$z=0$における幾何学拘束$r=H\tan\theta_a$およびスネルの法則）から決まる有限値に収束する。
+このとき$J_{11}$の補正項は$z$に比例して消失するため$J_{11}\to 1$、また$J_{21}$および$J_{22}$の第2項は$z'$に比例して消失するため$J_{21}\to 0$となる。
+よって
+\begin{equation}\label{eq:Jacobian-app-z0}
+  \lim_{z\to 0} J_{\mathrm{app}}
+  =
+  \begin{pmatrix}
+    1 & (n^2-1)\tan^3\theta_w \\
+    0 & \dfrac{1}{n}\left(\dfrac{\cos\theta_a}{\cos\theta_w}\right)^3
+  \end{pmatrix}
+\end{equation}
+である。
+
