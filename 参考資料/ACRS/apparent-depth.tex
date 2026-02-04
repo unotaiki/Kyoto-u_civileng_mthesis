@@ -7,9 +7,9 @@ Although this doesn't be well known, points underwater is determined at specific
 The appearance position of the Gaussian center is set as $\bm{p' (r', z')}$.
 We lead that easily below.
 The intersection between camera and appearance position can be set $(s, 0) \text{ where } 0 <  s < r $.
-Snell's Law lead to below equation, by the set of the incident angle $\theta_i$, refractive angle $\theta_r$, refractive index of water $n$, and we assume the refractive index of air is 1. % incident angle という言い方は良くない。実際のrayの向きはtransmitされたものをみている。observed という。添字もiやrとしない
+Snell's Law lead to below equation, by the set of the incident angle $\theta_a$, refractive angle $\theta_w$, refractive index of water $n$, and we assume the refractive index of air is 1. % incident angle という言い方は良くない。実際のrayの向きはtransmitされたものをみている。observed という。添字もiやrとしない
 \begin{equation}\label{eq:snell}
-  \sin \theta_i = n \sin \theta_r
+  \sin \theta_a = n \sin \theta_w
 \end{equation}
 Each sine function can be represented as the ratio of triangle camera, the intersection and origin, or the intersection, the appearance position and the vertival line from the appearance and $\textit{r-axix}$.
 % In \ref{}
@@ -23,62 +23,62 @@ This leads to a quartic equation and the value of s can be got by solving this. 
 \end{split}
 \end{equation}
 % in the implementation, i solved this by newton's method.
-Here we think of the ray from the real Gaussian center to camera with small difference, the intersection defines as $(s + \Delta s, 0) \text{ where }  \Delta s < 0$, the incident angle is difined as $\theta_r + \Delta \theta_r$.
+Here we think of the ray from the real Gaussian center to camera with small difference, the intersection defines as $(s + \Delta s, 0) \text{ where }  \Delta s < 0$, the incident angle is difined as $\theta_w + \Delta \theta_w$.
 From the relation of $\triangle IP'C'$, 
 \begin{equation}\label{eq:triangle-IP'C'}
-  -z' \tan \theta_i  = r' - s 
+  -z' \tan \theta_a  = r' - s 
 \end{equation}
 and from the relation of $\triangle I'P'C'$, 
 \begin{align}
-  -z' \tan \left(\theta_i + \Delta \theta_i \right) & = (r' - s) + (- \Delta s) \notag \\
-  -z' \left( \sin \theta_i + \Delta \theta_i \cos \theta_i  \right) & = (r' -s - \Delta s) \left( \cos \theta_i - \Delta \theta_i \sin \theta_i \right) \label{eq:triangle-I'P'C'}
+  -z' \tan \left(\theta_a + \Delta \theta_a \right) & = (r' - s) + (- \Delta s) \notag \\
+  -z' \left( \sin \theta_a + \Delta \theta_a \cos \theta_a  \right) & = (r' -s - \Delta s) \left( \cos \theta_a - \Delta \theta_a \sin \theta_a \right) \label{eq:triangle-I'P'C'}
 \end{align}
 
 % By removing $z'$ from \cref{eq:triangle-IP'C', eq:triangle-I'P'C'}, we get
 By removing $z'$ from \eqref{eq:triangle-IP'C'}, \eqref{eq:triangle-I'P'C'} and $\triangle \to 0$, we get
 \begin{equation}\label{eq:limit-r'}
-  r' = s - \sin \theta_i \cos \theta_i \frac{d s}{d \theta_i}
+  r' = s - \sin \theta_a \cos \theta_a \frac{d s}{d \theta_a}
 \end{equation}
 
 With the equations of \cref{eq:limit-r',eq:triangle-IP'C'}, we get
 \begin{equation}\label{eq:z'_ds/dtheta_i}
-  z' = \frac{d s}{d \theta_i} {\cos \theta_i}^2
+  z' = \frac{d s}{d \theta_a} {\cos \theta_a}^2
 \end{equation}
 
 From the triangle $\triangle IPC$, we get
 \begin{equation}\label{eq:r-s}
-  r - s = - z \tan \theta_r
+  r - s = - z \tan \theta_w
 \end{equation}
 
-and derivalate by $\theta_r$, we get
+and derivalate by $\theta_w$, we get
 \begin{equation}\label{eq:ds/dtheta_r}
-  \frac{d s}{d \theta_r} = z \cdot \frac{1}{{\cos \theta_r}^2}
+  \frac{d s}{d \theta_w} = z \cdot \frac{1}{{\cos \theta_w}^2}
 \end{equation}
 
-With derivalating \cref{eq:snell} by $\theta_i$, we get
+With derivalating \cref{eq:snell} by $\theta_a$, we get
 \begin{equation}\label{eq:dtheta_r/dtheta_i}
-  \frac{d \theta_r}{d \theta_i} = \frac{1}{n} \cdot \frac{\cos \theta_i}{\cos \theta_r}
+  \frac{d \theta_w}{d \theta_a} = \frac{1}{n} \cdot \frac{\cos \theta_a}{\cos \theta_w}
 \end{equation}
 
 With \cref{eq:dtheta_r/dtheta_i,eq:ds/dtheta_r}, we get
 \begin{equation}\label{eq:ds/dtheta_i}
-  \frac{d s}{d \theta_i} = \frac{z}{n} \cdot \frac{\cos \theta_i}{{\cos \theta_r}^3}
+  \frac{d s}{d \theta_a} = \frac{z}{n} \cdot \frac{\cos \theta_a}{{\cos \theta_w}^3}
 \end{equation}
 
 With \cref{eq:limit-r',eq:z'_ds/dtheta_i,eq:ds/dtheta_i,eq:r-s}, we get
 \begin{subequations}
   \begin{empheq}[left=\empheqlbrace]{align}
-      r' &= r + (n^2 -1) \cdot z \cdot {\tan \theta_r}^3 \label{eq:r'} \\
-      z' &= \frac{1}{n} \cdot \frac{{\cos \theta_i}^3}{{\cos \theta_r}^3} \cdot z \label{eq:z'}
+      r' &= r + (n^2 -1) \cdot z \cdot {\tan \theta_w}^3 \label{eq:r'} \\
+      z' &= \frac{1}{n} \cdot \frac{{\cos \theta_a}^3}{{\cos \theta_w}^3} \cdot z \label{eq:z'}
   \end{empheq}
 \end{subequations}
 
 This is the center position correction transformation.
-$\theta_i$ and $\theta_r$ are determined by the camera position and means of Gaussians. 
+$\theta_a$ and $\theta_w$ are determined by the camera position and means of Gaussians. 
 Therefore, the apparent Gaussian position relative to the view is uniquely determined, and we can correct means of Gaussians into apparent depth position $\bm{p'}(x', y', z')$.
 
-$(n^2 -1) \cdot z \cdot {\tan \theta_r}^3 < 0$ therefore $r' < r$, and $\frac{1}{n} \cdot \frac{{\cos \theta_i}^3}{{\cos \theta_r}^3} < 1$ therefore $\left| z' \right| < \left| z \right|$, which ensures that the apparent Gaussian $G'(\bm{x})$ is always looks closer than the actual Gaussian $G(\bm{x})$. 
-When $\theta_i = 0$, $r' = r$ and $z' = \frac{z}{n}$, which means that the apparent Gaussian is observed in the location which depth is devided by refractive index $n$.
+$(n^2 -1) \cdot z \cdot {\tan \theta_w}^3 < 0$ therefore $r' < r$, and $\frac{1}{n} \cdot \frac{{\cos \theta_a}^3}{{\cos \theta_w}^3} < 1$ therefore $\left| z' \right| < \left| z \right|$, which ensures that the apparent Gaussian $G'(\bm{x})$ is always looks closer than the actual Gaussian $G(\bm{x})$. 
+When $\theta_a = 0$, $r' = r$ and $z' = \frac{z}{n}$, which means that the apparent Gaussian is observed in the location which depth is devided by refractive index $n$.
 Based on this situation, a lot of work like \parencite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}, however, this is not exacly approximation in the majority of the cases because the camera rays with perspective range is off-nadir unless camera set down to vertical.
 
 % Implementation details に記述するべき?

@@ -7,17 +7,17 @@
 これは、フレネル反射や水中での散乱・吸収減衰に考慮せずとも、幾何光学的な光束$\Phi$の広がり(エタンデュ(Etendue))の変化に起因して発生する現象である。
 Snellの法則(式\cref{eq:snell})およびその微分式\cref{eq:dtheta_r/dtheta_i}より、以下の関係式が導かれる。
 \begin{equation}
-  n^2 \cos \theta_i \sin \theta_i d \theta_i = n^2 \cos \theta_r \sin \theta_r d \theta_r
+  n^2 \cos \theta_a \sin \theta_a d \theta_a = n^2 \cos \theta_w \sin \theta_w d \theta_w
 \end{equation}
 ここで、微小面積要素$dA$および方位角の微小変化$d\psi$を考慮し、微小立体角$d\omega = \sin\theta d\theta d\psi$との関係を用いると、エタンデュ保存則\parencite{etendue}として知られる以下の関係が得られる。
 \begin{equation}\label{eq:etendue_preservation}
-  \cos\theta_i d\omega_i dA = n^2 \cos\theta_r d\omega_r dA
+  \cos\theta_a d\omega_i dA = n^2 \cos\theta_w d\omega_r dA
 \end{equation}
 エテンデュは光学系における保存量であり、境界面での損失がないと仮定した場合、入射光線と屈折光線の間で保存される。
 したがって、水中(Radiance $L_w$)から空気中(Radiance $L_a$)へ光が進む際、光束の幾何学的変化に伴い、放射輝度は屈折率の二乗の逆数で減衰される:
 \begin{align}\label{eq:radiance_between_air_and_water}
-  L_a &= \frac{d^2 \Phi }{dA \cos\theta_i d\theta_i} \notag \\
-      &= \frac{d^2 \Phi }{n^2 dA \cos\theta_r d\theta_r} \notag \\
+  L_a &= \frac{d^2 \Phi }{dA \cos\theta_a d\theta_a} \notag \\
+      &= \frac{d^2 \Phi }{n^2 dA \cos\theta_w d\theta_w} \notag \\
       &= \frac{1}{n^2} L_w 
 \end{align}
 すなわち、空気中のカメラから観測される輝度$L_a$は、水中の真の輝度$L_w$と比較して$1/n^2$倍に減衰し、\cref{fig:refraction-makes-scene-darker}のようにシーン全体が暗く観測される。

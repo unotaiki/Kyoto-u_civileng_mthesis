@@ -7,19 +7,19 @@ This is a direct consequence of the fundamental change in radiance governed by t
 
 From Snell's Law, multiplying \cref{eq:snell,eq:dtheta_r/dtheta_i} yields:
 \begin{equation}
-  n^2 \cos \theta_i \sin \theta_i d \theta_i = n^2 \cos \theta_r \sin \theta_r d \theta_r
+  n^2 \cos \theta_a \sin \theta_a d \theta_a = n^2 \cos \theta_w \sin \theta_w d \theta_w
 \end{equation}
 Multiplying by a differential surface area  $dA$  and the azimuthal angle differential $d \psi$, we relate this to the differential solid angles $d\omega = \sin\psi d\psi d\theta$ \parencite{solid_angle}:
 \begin{equation}\label{eq:etendue_preservation}
-  \cos\theta_i d\omega_i dA = n^2 \cos\theta_r d\omega_r dA
+  \cos\theta_a d\omega_i dA = n^2 \cos\theta_w d\omega_r dA
 \end{equation}
 This relationship is known as the law of etendue conservation \parencite{etendue}. 
 Etendue, a measure of how spread out light is in terms of both area and solid angle, is conserved across a lossless interface. 
 Assuming the differential area dA remains constant for incident and refracted rays, the radiance must change. 
 Specifically, for a light ray bundle traveling from water (radiance $L_w$) to air (radiance $L_a$), their relationship is:
 \begin{align}\label{eq:radiance_between_air_and_water}
-  L_a &= \frac{d^2 \Phi }{dA \cos\theta_i d\theta_i} \notag \\
-      &= \frac{d^2 \Phi }{n^2 dA \cos\theta_r d\theta_r} \notag \\
+  L_a &= \frac{d^2 \Phi }{dA \cos\theta_a d\theta_a} \notag \\
+      &= \frac{d^2 \Phi }{n^2 dA \cos\theta_w d\theta_w} \notag \\
       &= \frac{1}{n^2} L_w 
 \end{align}
 Thus, Radiance in water into air become reduce devided by $n^2$, and the brightness is lower and looks darker.

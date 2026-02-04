@@ -1,7 +1,7 @@
 %!TEX root = ../main.tex
 \chapter{付録}
 
-\section{見かけの位置の導出}\label{sec:apendix-apparent-depth}
+\section{見かけの位置の導出}\label{sec:appendix-apparent-depth}
 
 カメラ座標系においてカメラ位置を$z$軸上$\left(0, 0, H\right)$に、また水面を平坦な$xy$平面(法線ベクトルが一定、すなわち静水面とする)に配置する。
 水中に存在する各三次元Gaussianプリミティブの位置$\bm{p}$は$\left(x, y, z\right)$(ただし$z<0$)で表される。
@@ -11,72 +11,61 @@
 ここではその詳細な導出を示す。
 
 Gaussian中心の見かけの位置を$\bm{p}'(r', z')$とする。
-カメラ位置と見かけの位置$\bm{p}'$を結ぶ入射線と水面との交点を$(s, 0)$($0 < s < r$)とおく。
-
-スネルの法則(空気屈折率$1$、水屈折率$n$、入射角$\theta_i$、屈折角$\theta_r$)は次式で表される。
-\begin{equation}
-  \sin \theta_i = n \sin \theta_r
+カメラ位置と見かけの位置$\bm{p}'$を結ぶ入射線と水面との交点を$(s, 0)$($0 \leq s < r$)とおく。
+スネルの法則(空気屈折率$1$、水屈折率$n$、空中角$\theta_a$、水中角$\theta_w$)は次式で表される:
+\begin{equation}\label{eq:-snell}
+  \sin \theta_a = n \sin \theta_w
 \end{equation}
-
-各三角関数項は、カメラ、交点、原点などで構成される三角形$\triangle OAI$, $\triangle IPC$により幾何的に表現できる。
-
-上記関係から、$s$に関する四次方程式が導かれる。
-\begin{equation}
+上記関係から、$s$に関する四次方程式が導かれる:
+\begin{equation}\label{eq:-quartic-s}
 \begin{split}
   (1-n^2)s^4 &+ 2(n^2-1)rs^3 \\
   &+ ((1-n^2)r^2 - n^2H^2 + z^2)s^2 \\
   &+ 2n^2H^2rs - n^2H^2r^2 = 0
 \end{split}
 \end{equation}
-(実装ではニュートン法等で数値的に解く。)
+ニュートン法やFerrariの公式で、$0 \leq s < r$の範囲で解くことで、光線の水面との交点位置$s$が求められる。
 
-わずかなずれ$\Delta s$を仮定し、$s+\Delta s$の交点、および$\theta_r+\Delta \theta_r$の微小変化を考える。三角形$\triangle IP'C'$の関係より、
-\begin{equation}\label{eq:triangle-IP'C'}
-  -z' \tan \theta_i  = r' - s 
+わずかなずれ$\Delta s$を仮定し、$s+\Delta s$の交点、および$\theta_w+\Delta \theta_w$の微小変化を考える。
+辺$IP'$と鉛直･水平線がつくる三角形の関係より:
+\begin{equation}\label{eq:-triangle-IP'C'}
+   r' - s = -z' \tan \theta_a 
 \end{equation}
-また、$\triangle I'P'C'$より
-\begin{align}\label{eq:triangle-I'P'C'}
-  -z' \tan \left(\theta_i + \Delta \theta_i \right) & = (r' - s) + (- \Delta s) \notag \\
-  -z' \left( \sin \theta_i + \Delta \theta_i \cos \theta_i  \right) & = (r' -s - \Delta s) \left( \cos \theta_i - \Delta \theta_i \sin \theta_i \right) 
+また、$\triangle I'P'C'$より:
+\begin{align}\label{eq:-triangle-I'P'C'}
+   r' - ( s + \Delta s ) & = -z' \tan \left(\theta_a + \Delta \theta_a \right)  \notag \\
+   \iff (r' -s - \Delta s) \left( \cos \theta_a - \Delta \theta_a \sin \theta_a \right) & = -z' \left( \sin \theta_a + \Delta \theta_a \cos \theta_a  \right) 
 \end{align}
-
-\cref{eq:triangle-IP'C'}と\cref{eq:triangle-I'P'C'}から$z'$を消去し、$\Delta \to 0$の極限をとると
-\begin{equation}\label{eq:limit-r'}
-  r' = s - \sin \theta_i \cos \theta_i \frac{d s}{d \theta_i}
+\cref{eq:-triangle-IP'C'}と\cref{eq:-triangle-I'P'C'}から$z'$を消去し、$\Delta \to 0$の極限をとると:
+\begin{equation}\label{eq:-limit-r'}
+  r' = s - \sin \theta_a \cos \theta_a \frac{d s}{d \theta_a}
 \end{equation}
 が得られる。
-
-また、\cref{eq:triangle-IP'C'}と上式より
-\begin{equation}\label{eq:z'_ds/dtheta_i}
-  z' = \frac{d s}{d \theta_i} {\cos \theta_i}^2
+これを再び\cref{eq:-triangle-IP'C'}に用い、$z'$で表すと:
+\begin{equation}\label{eq:-z'_ds/dtheta_i}
+  z' = \frac{d s}{d \theta_a} {\cos \theta_a}^2
 \end{equation}
-
-さらに、三角形$\triangle IPC$から
-\begin{equation}\label{eq:r-s}
-  r - s = - z \tan \theta_r
+さらに、三角形$\triangle IPC$から:
+\begin{equation}\label{eq:-r-s}
+  r - s = - z \tan \theta_w
 \end{equation}
-
-これを$\theta_r$で微分すると
-\begin{equation}\label{eq:ds/dtheta_r}
-  \frac{d s}{d \theta_r} = z \cdot \frac{1}{{\cos \theta_r}^2}
+これを$\theta_w$で微分すると:
+\begin{equation}\label{eq:-ds/dtheta_r}
+  \frac{d s}{d \theta_w} = z \cdot \frac{1}{{\cos \theta_w}^2}
 \end{equation}
-
-また、スネルの法則\eqref{eq:snell}を$\theta_i$で微分すると
-\begin{equation}\label{eq:dtheta_r/dtheta_i}
-  \frac{d \theta_r}{d \theta_i} = \frac{1}{n} \cdot \frac{\cos \theta_i}{\cos \theta_r}
+また、スネルの法則\eqref{eq:-snell}を$\theta_a$で微分すると:
+\begin{equation}\label{eq:-dtheta_r/dtheta_i}
+  \frac{d \theta_w}{d \theta_a} = \frac{1}{n} \cdot \frac{\cos \theta_a}{\cos \theta_w}
 \end{equation}
-
-\eqref{eq:dtheta_r/dtheta_i},\eqref{eq:ds/dtheta_r}より
-\begin{equation}\label{eq:ds/dtheta_i}
-  \frac{d s}{d \theta_i} = \frac{z}{n} \cdot \frac{\cos \theta_i}{{\cos \theta_r}^3}
+\eqref{eq:-dtheta_r/dtheta_i},\eqref{eq:-ds/dtheta_r}より:
+\begin{equation}\label{eq:-ds/dtheta_i}
+  \frac{d s}{d \theta_a} = \frac{z}{n} \cdot \frac{\cos \theta_a}{{\cos \theta_w}^3}
 \end{equation}
-
-以上をまとめると、見かけの位置$(r', z')$はそれぞれ
-\begin{equation}
-  \begin{split}
-    (1-n^2)s^4 &+ 2(n^2-1)rs^3 \\
-    &+ ((1-n^2)r^2 - n^2H^2 + z^2)s^2 \\
-    &+ 2n^2H^2rs - n^2H^2r^2 = 0
-  \end{split}
-\end{equation}
+以上の式を整理すると、見かけの位置$(r', z')$はそれぞれ:
+\begin{subequations}\label{eq:apparent-position}
+  \begin{empheq}[left=\empheqlbrace]{align}
+    r' &= r + (n^2 -1) \cdot z \cdot \tan^3 \theta_w \label{eq:r'} \\
+    z' &= \frac{1}{n} \cdot \frac{{\cos \theta_a}^3}{{\cos \theta_w}^3} \cdot z \label{eq:z'}
+\end{empheq}
+\end{subequations}
 と表される。

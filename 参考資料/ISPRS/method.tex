@@ -28,7 +28,7 @@ Because refraction is rotationally symmetric around the viewing direction, we re
 
 Let $s$ be the radial coordinate of the ray–interface intersection
 ($0\le s < r$).
-Let $\theta_r$ and $\theta_i$ denote, respectively, the incidence and
+Let $\theta_w$ and $\theta_a$ denote, respectively, the incidence and
 refraction angles with respect to the interface normal.
 With refractive index $n$ for water (air assumed to be $1$), Snell’s law reads:
 \begin{equation}
@@ -49,26 +49,26 @@ The physically valid root $s$ is computed numerically using Newton iterations or
 
 Once $s$ is known, the geometric relations ($\triangle IPC$, $\triangle IP'C'$, and $\triangle I'P'C'$):
 \begin{align}
-  r - s &= -z\tan\theta_r  \notag \\
-  r' - s &= z'\tan\theta_i \notag \\ 
-  -z' \tan \left(\theta_i + \Delta \theta_i \right) & = (r' - s) + (- \Delta s) 
+  r - s &= -z\tan\theta_w  \notag \\
+  r' - s &= z'\tan\theta_a \notag \\ 
+  -z' \tan \left(\theta_a + \Delta \theta_a \right) & = (r' - s) + (- \Delta s) 
   \label{eq:triangle-relations}
 \end{align}
 combined with \cref{eq:snell} and the derivative of Snell’s law:
 \begin{equation}
-  \frac{d\theta_r}{d\theta_i}
-  =\frac{1}{n}\frac{\cos\theta_i}{\cos\theta_r} 
+  \frac{d\theta_w}{d\theta_a}
+  =\frac{1}{n}\frac{\cos\theta_a}{\cos\theta_w} 
   \label{eq:dtheta_r/dtheta_i}
 \end{equation}
 lead to closed-form expressions for the apparent position:
 \begin{subequations}
 \begin{empheq}[left=\empheqlbrace]{align}
     r' &= r + (n^{2}-1)\,z\,\tan^{3}\theta_{r}, \label{eq:r'}\\[2pt]
-    z' &= \frac{1}{n}\left(\frac{\cos\theta_i}{\cos\theta_r}\right)^{3} z. \label{eq:z'}
+    z' &= \frac{1}{n}\left(\frac{\cos\theta_a}{\cos\theta_w}\right)^{3} z. \label{eq:z'}
 \end{empheq}
 \end{subequations}
 
-Because $z<0$ and $\theta_i>\theta_r$, these relations guarantee
+Because $z<0$ and $\theta_a>\theta_w$, these relations guarantee
 $r'<r$ and $|z'|<|z|$; i.e., underwater points appear both shallower and closer to the optical axis (\cref{fig:rz}).  
 For $r=0$ (nadir view), the formula simplifies to the well-known approximation
 $z' = z/n$.

@@ -34,11 +34,11 @@ The apparent position of the Gaussian's center, after accounting for refraction,
 
 From Snell's law and geometric optics, it follows that the apparent position of a submerged point, as seen from a fixed camera center, is uniquely determined\parencite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}.
 The ray from the apparent position $\bm{p'}$ to the camera intersects the water surface at a point we define as $(s, 0)$ on the \textit{rz-plane}, where $0 \leq s < r$.
-Let $\theta_r$ be the angle of incidence (in water) and $\theta_i$ be the angle of refraction (in air), both measured with respect to the surface normal. 
+Let $\theta_w$ be the angle of incidence (in water) and $\theta_a$ be the angle of refraction (in air), both measured with respect to the surface normal. 
 Let $n$ be the refractive index of water, and we assume the refractive index of air is 1. 
 Snell's Law gives:
 \begin{equation}\label{eq:snell}
-  \sin \theta_i = n \sin \theta_r
+  \sin \theta_a = n \sin \theta_w
 \end{equation}
 From the geometry of the system, these angles can be related to the positions, leading to a quartic equation in $s$
 (triangle similarity between $\triangle OAI$ and $\triangle IPC$):
@@ -54,34 +54,34 @@ To find the apparent position $(r', z')$, we analyze the differential change in 
 From the geometry of triangles formed by the rays and positions, we can establish the following relationships.
 ( $\triangle IPC$, $\triangle IP'C'$, and $\triangle I'P'C'$):
 \begin{equation}\label{eq:r-s}
-  r - s = -z \tan \theta_r
+  r - s = -z \tan \theta_w
 \end{equation}
 \begin{equation}\label{eq:triangle-IP'C'}
-  r' - s = z' \tan \theta_i
+  r' - s = z' \tan \theta_a
 \end{equation}
 \begin{align}
-  -z' \tan \left(\theta_i + \Delta \theta_i \right) & = (r' - s) + (- \Delta s) \notag \\
-  -z' \left( \sin \theta_i + \Delta \theta_i \cos \theta_i  \right) & = (r' -s - \Delta s) \left( \cos \theta_i - \Delta \theta_i \sin \theta_i \right) \label{eq:triangle-I'P'C'}
+  -z' \tan \left(\theta_a + \Delta \theta_a \right) & = (r' - s) + (- \Delta s) \notag \\
+  -z' \left( \sin \theta_a + \Delta \theta_a \cos \theta_a  \right) & = (r' -s - \Delta s) \left( \cos \theta_a - \Delta \theta_a \sin \theta_a \right) \label{eq:triangle-I'P'C'}
 \end{align}
 With the derivative of Snell's law from \cref{eq:snell}:
 \begin{equation}\label{eq:dtheta_r/dtheta_i}
-  \frac{d \theta_r}{d \theta_i} = \frac{1}{n} \frac{\cos \theta_i}{\cos \theta_r}
+  \frac{d \theta_w}{d \theta_a} = \frac{1}{n} \frac{\cos \theta_a}{\cos \theta_w}
 \end{equation}
 By differentiating these geometric relationships \cref{eq:triangle-I'P'C',eq:triangle-IP'C',eq:r-s} and combining them with equations of Snell's law \cref{eq:snell,eq:dtheta_r/dtheta_i},
-we can represent the apparent position $(r', z')$ with $\theta_i$ and $\theta_r$.
+we can represent the apparent position $(r', z')$ with $\theta_a$ and $\theta_w$.
 \begin{subequations}
   \begin{empheq}[left=\empheqlbrace]{align}
-      r' &= r + (n^2 -1) \cdot z \cdot \tan^3 \theta_r \label{eq:r'} \\
-      z' &= \frac{1}{n} \cdot \frac{{\cos \theta_i}^3}{{\cos \theta_r}^3} \cdot z \label{eq:z'}
+      r' &= r + (n^2 -1) \cdot z \cdot \tan^3 \theta_w \label{eq:r'} \\
+      z' &= \frac{1}{n} \cdot \frac{{\cos \theta_a}^3}{{\cos \theta_w}^3} \cdot z \label{eq:z'}
   \end{empheq}
 \end{subequations}
 This is the center position correction transformation. 
-Since $\theta_i$ and $\theta_r$ are determined by the camera position and the Gaussian's mean position $\bm{p}$, the apparent position $\bm{p'}$ is uniquely determined. 
+Since $\theta_a$ and $\theta_w$ are determined by the camera position and the Gaussian's mean position $\bm{p}$, the apparent position $\bm{p'}$ is uniquely determined. 
 The transformation is applied by first calculating $r$ and then finding the new coordinates $x' = x \frac{r'}{r}$ and $y' = y \frac{r'}{r}$.
-Note that since $z<0$, the term $(n^2 -1) \cdot z \cdot \tan^3 \theta_r$ is negative, ensuring $r' < r$. 
-Similarly, since $\theta_i > \theta_r$ for $n>1$, we have $\cos \theta_i < \cos \theta_r$, which ensures $|z'| < |z|$. 
+Note that since $z<0$, the term $(n^2 -1) \cdot z \cdot \tan^3 \theta_w$ is negative, ensuring $r' < r$. 
+Similarly, since $\theta_a > \theta_w$ for $n>1$, we have $\cos \theta_a < \cos \theta_w$, which ensures $|z'| < |z|$. 
 This confirms that the apparent Gaussian $G'(\bm{p'})$ always appears shallower and closer to the central axis than the actual Gaussian $G(\bm{p})$.
-In the special case where the Gaussian is directly below the camera ($r=0$, thus $\theta_i = \theta_r = 0$), the equations simplify to $r'=r$ and $z' = z/n$. 
+In the special case where the Gaussian is directly below the camera ($r=0$, thus $\theta_a = \theta_w = 0$), the equations simplify to $r'=r$ and $z' = z/n$. 
 This special case, where apparent depth is the true depth divided by $n$, is a common approximation used in prior work (e.g., \cite{Woodget2014_PhotograBathy-multiply-n}). 
 However, this approximation is inaccurate for most rays in a perspective projection which are off-nadir.
 

@@ -1,12 +1,136 @@
 %!TEX root = ../main.tex
-\chapter{APPENDIX}
+\section{見かけの位置へのヤコビアン$J_app$の導出}\label{sec:appendix-jacobian}
 
-TODO
+\cref{sec:position-correction}で述べた位置補正において、共分散補正(\cref{sec:covariance-correction})等で用いる変換の勾配には、真の位置$\bm{p}(r,z)$から見かけの位置$\bm{p}'(r',z')$へのヤコビアン行列$J_app$が必要となる。
+本節では、$rz$平面における$2 \times 2$のヤコビアン
+\begin{equation}\label{eq:Jacobian-def-rz}
+  J_{rz} = \frac{\partial (r', z')}{\partial (r, z)} = \begin{pmatrix} \dfrac{\partial r'}{\partial r} & \dfrac{\partial r'}{\partial z} \\[1em] \dfrac{\partial z'}{\partial r} & \dfrac{\partial z'}{\partial z} \end{pmatrix}
+\end{equation}
+の各成分を、\cref{sec:appendix-apparent-depth}で得られた見かけの位置の式\eqref{eq:apparent-position}に基づき導出する。
+$r'$、 $z'$は$\theta_a$、 $\theta_w$の関数として表されており、これらは$(r,z)$に依存するため、連鎖律を用いて角度の偏微分を経由して求める。
 
-勾配計算。明示的 vs 陰関数定理。
-4次方程式をニュートン法で解くので、Pytorchの自動微分を使うのはいやや。
-このように明示的に計算もできるが、H、nとかは定数とおいているので、最適化対象にできない。
-陰関数定理を使うと、、、
+\subsection{角度の偏微分係数}
 
-計算時間やメモリは。。
+幾何学的拘束およびスネルの法則から、$\theta_w$の$r$, $z$に関する偏微分係数を求める。
+カメラと水面交点$(s, 0)$および\cref{eq:-r-s}より
+\begin{equation}\label{eq:geom-constraint}
+  r = s - z \tan \theta_w, \qquad s = H \tan \theta_a
+\end{equation}
+であり、$s$を消去すると
+\begin{equation}\label{eq:constraint-rz}
+  r = H \tan \theta_a - z \tan \theta_w
+\end{equation}
+が成り立つ。
+この両辺の全微分をとると
+\begin{equation}\label{eq:total-diff-rz}
+  dr = H \sec^2 \theta_a \, d\theta_a - \tan \theta_w \, dz - z \sec^2 \theta_w \, d\theta_w
+\end{equation}
+となる。
+一方、スネルの法則\cref{eq:snell}を微分すると
+\begin{equation}\label{eq:snell-diff}
+  \cos \theta_a \, d\theta_a = n \cos \theta_w \, d\theta_w \quad \Rightarrow \quad d\theta_a = n \, \frac{\cos \theta_w}{\cos \theta_a} \, d\theta_w
+\end{equation}
+である。
+\eqref{eq:total-diff-rz}に\eqref{eq:snell-diff}を代入し、$d\theta_w$について整理すると
+\begin{equation}\label{eq:dtheta-w-expr}
+  dr + \tan \theta_w \, dz = \left( H \sec^2 \theta_a \cdot n \, \frac{\cos \theta_w}{\cos \theta_a} - z \sec^2 \theta_w \right) d\theta_w
+\end{equation}
+となる。
+右辺の$d\theta_w$の係数を
+\begin{equation}\label{eq:Delta-def}
+  \Delta \equiv n H \, \frac{\cos \theta_w}{\cos^3 \theta_a} - z \sec^2 \theta_w
+\end{equation}
+と定義する。
+$z < 0$であることから第2項は正となり、$\Delta \neq 0$が保たれる。
+これより、\eqref{eq:dtheta-w-expr}を$d\theta_w$について解く（両辺を$\Delta$で割る）と
+\begin{equation}\label{eq:dtheta-w-expr}
+  d\theta_w = \frac{1}{\Delta}dr + \frac{\tan\theta_w}{\Delta}dz
+\end{equation}
+を得る。
+一方で、$\theta_w=\theta_w(r,z)$の全微分は一般に
+\begin{equation}
+  d\theta_w = \left(\frac{\partial \theta_w}{\partial r}\right)dr + \left(\frac{\partial \theta_w}{\partial z}\right)dz
+\end{equation}
+と書けるため、$dr$および$dz$の係数を比較すれば、$\theta_w$の偏微分係数は
+\begin{equation}\label{eq:partial-theta-w}
+  \frac{\partial \theta_w}{\partial r} = \frac{1}{\Delta}, \qquad \frac{\partial \theta_w}{\partial z} = \frac{\tan \theta_w}{\Delta}
+\end{equation}
+と得られる。
+また、以降の記述を簡潔にするため
+\begin{equation}\label{eq:alpha-def}
+  \beta \equiv n \, \frac{\cos \theta_w}{\cos \theta_a}
+\end{equation}
+とおく。
+
+\subsection{ヤコビアン各成分の導出}
+
+見かけの位置は\eqref{eq:r'}, \eqref{eq:z'}で与えられる:
+\begin{equation}\label{eq:r'-z'-recap}
+  r' = r + (n^2 - 1) z \tan^3 \theta_w, \qquad z' = \frac{z}{n} \left( \frac{\cos \theta_a}{\cos \theta_w} \right)^3
+\end{equation}
+
+\subsubsection{\boldmath{$J_{11} = \dfrac{\partial r'}{\partial r}$}}
+
+\eqref{eq:r'-z'-recap}の$r'$を$r$で偏微分する。
+$r$は直接現れるほか、$\theta_w(r,z)$を通じて間接的に現れるため、連鎖律より:
+\begin{equation}\label{eq:dr'-dr}
+  \frac{\partial r'}{\partial r} = 1 + (n^2 - 1) z \cdot \frac{\partial}{\partial \theta_w}(\tan^3 \theta_w) \cdot \frac{\partial \theta_w}{\partial r} = 1 + (n^2 - 1) z \cdot 3 \tan^2 \theta_w \sec^2 \theta_w \cdot \frac{1}{\Delta}
+\end{equation}
+
+したがって:
+\begin{equation}\label{eq:J11}
+  \frac{\partial r'}{\partial r} = 1 + \frac{3(n^2 - 1) z \tan^2 \theta_w \sec^2 \theta_w}{\Delta}
+\end{equation}
+
+
+\subsubsection{\boldmath{$J_{12} = \dfrac{\partial r'}{\partial z}$}}
+
+$r'$を$z$で偏微分する。
+積の微分と$\dfrac{\partial \theta_w}{\partial z} = \dfrac{\tan \theta_w}{\Delta}$を用いると:
+\begin{align}
+  \frac{\partial r'}{\partial z} &= (n^2 - 1) \left[ \tan^3 \theta_w + z \cdot 3 \tan^2 \theta_w \sec^2 \theta_w \cdot \frac{\tan \theta_w}{\Delta} \right] \notag \\
+  &= (n^2 - 1) \tan^3 \theta_w \left( 1 + \frac{3 z \sec^2 \theta_w}{\Delta} \right)
+\end{align}
+したがって:
+\begin{equation}\label{eq:J12}
+  \frac{\partial r'}{\partial z} = (n^2 - 1) \tan^3 \theta_w \left( 1 + \frac{3 z \sec^2 \theta_w}{\Delta} \right)
+\end{equation}
+
+
+\subsubsection{\boldmath{$J_{21} = \dfrac{\partial z'}{\partial r}$}}
+
+$z' = \dfrac{z}{n} \left( \dfrac{\cos \theta_a}{\cos \theta_w} \right)^3$に対し、対数微分を用いる。
+\begin{equation}
+  \ln z' = \ln z - \ln n + 3(\ln \cos \theta_a - \ln \cos \theta_w)
+\end{equation}
+を$r$で偏微分すると、$\ln z$の項は$r$に依存しないため:
+\begin{equation}
+  \frac{1}{z'} \frac{\partial z'}{\partial r} = 3 \left( -\tan \theta_a \frac{\partial \theta_a}{\partial r} + \tan \theta_w \frac{\partial \theta_w}{\partial r} \right)
+\end{equation}
+
+$\dfrac{\partial \theta_a}{\partial r} = \beta \dfrac{\partial \theta_w}{\partial r}$および\eqref{eq:partial-theta-w}より:
+\begin{equation}
+  \frac{\partial z'}{\partial r} = 3 z' \left( \tan \theta_w - \beta \tan \theta_a \right) \frac{\partial \theta_w}{\partial r} = \frac{3 z'}{\Delta} \left( \tan \theta_w - \beta \tan \theta_a \right)
+\end{equation}
+ここで$\beta = n \cos \theta_w / \cos \theta_a$および$\sin \theta_a = n \sin \theta_w$を用いると:
+\begin{equation}
+  \tan \theta_w - \beta \tan \theta_a = \tan \theta_w \left( 1 - n^2 \, \frac{\cos^2 \theta_w}{\cos^2 \theta_a} \right)
+\end{equation}
+と整理できる。
+よって:
+\begin{equation}\label{eq:J21}
+  \frac{\partial z'}{\partial r} = \frac{3 z' \tan \theta_w}{\Delta} \left( 1 - n^2 \, \frac{\cos^2 \theta_w}{\cos^2 \theta_a} \right)
+\end{equation}
+
+\subsubsection{\boldmath{$J_{22} = \dfrac{\partial z'}{\partial z}$}}
+
+同様に対数微分した式を$z$で偏微分する。
+$\ln z$の項から$\dfrac{1}{z}$が現れる:
+\begin{equation}
+  \frac{1}{z'} \frac{\partial z'}{\partial z} = \frac{1}{z} + 3 \left( \tan \theta_w - \beta \tan \theta_a \right) \frac{\partial \theta_w}{\partial z} = \frac{1}{z} + 3 \left( \tan \theta_w - \beta \tan \theta_a \right) \frac{\tan \theta_w}{\Delta}
+\end{equation}
+$J_{21}$の導出と同様に括弧内を整理し:
+\begin{equation}\label{eq:J22}
+  \frac{\partial z'}{\partial z} = \frac{z'}{z} + \frac{3 z' \tan^2 \theta_w}{\Delta} \left( 1 - n^2 \, \frac{\cos^2 \theta_w}{\cos^2 \theta_a} \right)
+\end{equation}
 
