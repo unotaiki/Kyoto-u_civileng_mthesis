@@ -5,22 +5,22 @@
 
 空気水面間の屈折境界面を通して三次元シーンを観測する場合、空間の歪みによる幾何学的な変動に加え、放射輝度(Radiance)の変化に伴う「見かけの暗化」が生じる。
 これは、フレネル反射や水中での散乱・吸収減衰を考慮せずとも、幾何光学的な光束$\Phi$の広がり(エタンデュ(Etendue))の変化に起因して発生する現象である。
-Snellの法則(式\cref{eq:snell})およびその微分式\cref{eq:dtheta_r/dtheta_i}より、以下の関係式が導かれる。
+Snellの法則(\cref{eq:snell})およびその微分(\cref{eq:-dtheta_r/dtheta_i})の両辺を乗じると:
 \begin{equation}
   n^2 \cos \theta_a \sin \theta_a d \theta_a = n^2 \cos \theta_w \sin \theta_w d \theta_w
 \end{equation}
-ここで、微小面積要素$dA$および方位角の微小変化$d\psi$を考慮し、微小立体角$d\omega = \sin\theta d\theta d\psi$との関係を用いると、エタンデュ保存則\parencite{etendue}として知られる以下の関係が得られる。
+ここで、微小面積$dA$および方位角の微小変化$d\psi$を両辺にかけ、微小立体角$d\omega = \sin\theta d\theta d\psi$との関係を用いると、エタンデュ保存則\parencite{etendue}として知られる以下の関係が得られる:
 \begin{equation}\label{eq:etendue_preservation}
   \cos\theta_a d\omega_i dA = n^2 \cos\theta_w d\omega_r dA
 \end{equation}
 エテンデュは光学系における保存量であり、境界面での損失がないと仮定した場合、入射光線と屈折光線の間で保存される。
-したがって、水中(Radiance $L_w$)から空気中(Radiance $L_a$)へ光が進む際、光束の幾何学的変化に伴い、放射輝度は屈折率の二乗の逆数で減衰される:
+したがって、水中(放射輝度$L_w$)から空気中(放射輝度$L_a$)へ光が進む際、光束の幾何学的変化に伴い、放射輝度は屈折率の二乗の逆数で減衰される:
 \begin{align}\label{eq:radiance_between_air_and_water}
   L_a &= \frac{d^2 \Phi }{dA \cos\theta_a d\theta_a} \notag \\
       &= \frac{d^2 \Phi }{n^2 dA \cos\theta_w d\theta_w} \notag \\
       &= \frac{1}{n^2} L_w 
 \end{align}
-すなわち、空気中のカメラから観測される輝度$L_a$は、水中の真の輝度$L_w$と比較して$1/n^2$倍に減衰し、\cref{fig:refraction-makes-scene-darker}のようにシーン全体が暗く観測される。
+すなわち、空気中のカメラから観測される放射輝度$L_a$は、水中の真の放射輝度$L_w$と比較して$1/n^2$倍に減衰し、\cref{fig:refraction-makes-scene-darker}のようにシーン全体が暗く観測される。
 
 \IncludeTwoImages[4cm]
   {figure/50_method/0090_gt_background.png}{}
@@ -30,7 +30,7 @@ Snellの法則(式\cref{eq:snell})およびその微分式\cref{eq:dtheta_r/dthe
   {fig:refraction-makes-scene-darker}
 
 本補正の目的は、この物理的な減衰を補正し、本来の明るさにおける色情報をGaussianのパラメータとして学習することにある。
-GSにおいて、シーンの放射輝度は最終的なRGBカラー値に焼き付けられている。
+Gaussian Splattingにおいて、シーンの放射輝度は最終的なRGBカラー値に焼き付けられている。
 つまり、復元されるシーンの色情報は、撮像記録された画像群における色空間のまま、各Gaussianの色パラメータ$\bm{c}_k$として保持･レンダリングされる。
 ここでは、色空間が一般的なsRGB色空間(Gamma補正済み)であると仮定しモデル化を行う。
 Gamma値を$\gamma$(通常$\gamma=2.2$)、RGBから輝度への変換ベクトルを$\mathbf{I}$ (例 $\mathbf{I}^\top = (0.2126, 0.7152, 0.0722)$)とすると、ピクセル強度$\mathrm{intensity}(\bm{\Gamma})$は以下のようにベクトルの内積で表される:

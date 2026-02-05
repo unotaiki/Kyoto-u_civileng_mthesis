@@ -1,20 +1,36 @@
-\crefname{equation}{式}{式}    % {環境名}{単数形}{複数形} \crefで引くときの表示
-\crefname{figure}{図}{図}
-\crefname{table}{表}{表}
-\crefname{algorithm}{Algorithm}{Algorithm}
-\crefalias{equation}{equation}
+% 数式 (equation) の設定
+% \crefname は使わず、formatを直接指定してカッコを除去します
+\crefformat{equation}{#2式#1#3}
+\crefrangeformat{equation}{#3式#1#4〜#5#2#6}
+\crefmultiformat{equation}{#2式#1#3}{, #2#1#3}{, #2#1#3}{, #2#1#3}
+
+% 図表などの設定（format で equation と統一）
+\crefformat{figure}{#2図#1#3}
+\crefformat{table}{#2表#1#3}
+\crefformat{algorithm}{#2Algorithm#1#3}
+
+\crefrangeformat{figure}{#3図#1#4〜#5#2#6}
+\crefrangeformat{table}{#3表#1#4〜#5#2#6}
+\crefrangeformat{algorithm}{#3Algorithm#1#4〜#5#2#6}
+
+\crefmultiformat{figure}{#2図#1#3}{, #2#1#3}{, #2#1#3}{, #2#1#3}
+\crefmultiformat{table}{#2表#1#3}{, #2#1#3}{, #2#1#3}{, #2#1#3}
+\crefmultiformat{algorithm}{#2Algorithm#1#3}{, #2#1#3}{, #2#1#3}{, #2#1#3}
 
 % 章の設定
 \crefformat{chapter}{#2第#1章#3}
 \crefrangeformat{chapter}{#3第#1章#4〜#5第#2章#6}
+\crefmultiformat{chapter}{#2第#1章#3}{, #2#1章#3}{, #2#1章#3}{, #2#1章#3}
 
 % 節の設定
 \crefformat{section}{#2#1節#3}
 \crefrangeformat{section}{#3#1節#4〜#5#2節#6}
+\crefmultiformat{section}{#2#1節#3}{, #2#1節#3}{, #2#1節#3}{, #2#1節#3}
 
 % 小節の設定
 \crefformat{subsection}{#2#1項#3}
 \crefrangeformat{subsection}{#3#1項#4〜#5#2項#6}
+\crefmultiformat{subsection}{#2#1項#3}{, #2#1項#3}{, #2#1項#3}{, #2#1項#3}
 
 % \theoremstyle{definition}% 日本語用．定理とか斜体にならないようにする
 % \newtheorem{theorem}{定理}

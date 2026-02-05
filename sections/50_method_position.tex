@@ -6,10 +6,10 @@
   \includegraphics[width=1.0\textwidth]{figure/50_method/overview.png}
   \caption{
     Refractive-Aware Gaussian Splattingの概要。
-    3D Gaussianの集合で表される三次元シーンに対し、カメラ視点ごとに屈折による歪みに生じる見た目と対応するようパラメータ変換を行う。
-    具体的には、空気-水により引き起こされる屈折現象の物理的なモデル化に基づき、位置・共分散・色の各パラメータを微分可能な変換によって補正する。
-    変換後のGaussianをレンダリングし、屈折による歪みを含む入力画像と比較することで、再構成誤差を逆伝播させ、真の三次元空間におけるGaussianパラメータを更新する。
-    これにより、屈折の影響を排除した三次元再構成が可能になり、屈折の影響を受けない幾何抽出と写実的な新規視点合成を実現する。
+    3D Gaussianの集合で表される三次元シーンに対し、カメラ視点に応じた屈折による外観の歪みと対応するようパラメータ変換を行う。
+    具体的には、空気と水の境界より引き起こされる屈折現象の物理的なモデル化に基づき、位置・共分散・色の各パラメータを微分可能な変換によって補正する。
+    変換後のGaussianをレンダリングし、屈折を観測した入力画像と比較することで、再構成誤差を逆伝播させ、Gaussianを真の空間に適合するように更新する。
+    これにより、屈折の影響を排除した幾何抽出と写実的な新規視点合成を実現する。
     }
     \label{fig:method-overview}
 \end{figure}
@@ -20,14 +20,15 @@
   \includegraphics[width=0.7\textwidth]{figure/50_method/rz.png}
   \caption{
     rz平面における見かけの位置と実際の位置の関係。
-    実際の位置が青色のGaussianプリミティブで表されるとき、見かけのGaussianは赤色の位置で表される。
+    真の位置が青色のGaussianで表されるとき、カメラの視点からは見かけのGaussianは赤色の位置に観測される。
     }
     \label{fig:rz}
 \end{figure}
   
 % \note{図の中のCorrection名が異なる}
   
-本研究では、屈折を含む画像群から、屈折の影響を除外する三次元再構成手法として、Refractive-Aware Gaussian Splatting(RA-GS)を提案する。
+本研究では、屈折を含む画像群から屈折の影響を除外する三次元再構成手法として、Refractive-Aware Gaussian Splatting(RA-GS)を提案する。
+\cref{fig:method-overview}に手法の概要を示す。
 RA-GSでは、空気と水面の境界におけるスネルの法則に基づく光の屈折を考慮し、水中の真の位置に存在する三次元Gaussianのパラメータを、カメラから観測される屈折により生じる「見かけの位置」へと補正する。
 
 \cref{sec:prelim_inverse-rendering-as-3d-reconstruction}で述べたように、微分可能レンダリングによる逆レンダリングを用いた本研究では、Analysis-by-Synthesisのアプローチを採用する。
@@ -36,8 +37,7 @@ RA-GSでは、空気と水面の境界におけるスネルの法則に基づく
 その結果、推定されるシーンパラメータ $\Theta$(各Gaussianの位置や形状)自体が、屈折による歪みを再現するために誤った位置（見かけの位置）へと更新されてしまう。
 これは、物理モデルの欠如を幾何形状の歪みで補完している状態である。
 
-対して本手法では、レンダリング過程に屈折モデルを組み込むことで、レンダリング関数 $R$ を「屈折を考慮したレンダリング関数 $R_{refr}$」へと拡張していると解釈できる。
-本手法における最適化は、以下の整合性を保つように行われる:
+対して本手法では、以下のようなプロセスでパラメータ更新を行う:
   
 \[
   \textbf{シーンパラメータ(真の形状)}\ \Theta_{\mathrm{real}}
@@ -53,19 +53,19 @@ RA-GSでは、空気と水面の境界におけるスネルの法則に基づく
 RA-GSでは、真の位置にあるGaussianに対し、視点に応じた屈折歪みの影響を反映するため、物理法則に基づく以下の3つのパラメータ変換を導入する:
 \begin{itemize}
   \item \textbf{位置補正}:スネルの法則に基づき、真の三次元位置から観測される見かけの位置への変換を行う(\cref{sec:position-correction})。
-  \item \textbf{共分散行列（形状）補正}:屈折による空間の圧縮を考慮し、Gaussianの形状を補正する(\cref{sec:covariance-correction})。
-  \item \textbf{色・輝度補正}:水面を通した観測による輝度の変化を、Gaussianの色変化で表す補正を導入する(\cref{sec:color-correction})。
+  \item \textbf{共分散補正}:屈折による空間の圧縮を考慮し、Gaussianの形状を補正する(\cref{sec:covariance-correction})。
+  \item \textbf{放射輝度補正}:水面を通した観測による輝度の変化を、Gaussianの色変化で表す補正を導入する(\cref{sec:color-correction})。
 \end{itemize}
 
 RA-GSは入力として、カメラパラメータが既知の画像$I_{obs}$を取る。
-加えて、カメラに対する水面位置、水の屈折率$n$を既知として与える。
+加えて、カメラに対する水面位置、水の屈折率$n$を既知として与え、水面は平坦としている。
 
 \section{位置補正}\label{sec:position-correction}
-まず、カメラ座標系を定義する。カメラ中心を$z$軸上の$(0, 0, H)$、水面を$xy$平面($z=0$)、水面法線ベクトルを$\mathbf{n} = (0, 0, 1)$とする。
+まず、カメラ座標系を定義する。カメラ中心を$z$軸上の$(0, 0, H)$、水面を$xy$平面($z=0$)とする。
 ここで、水中の任意のGaussianの中心位置を$\bm{p} = (x, y, z)$ ($z < 0$)とする。
 水面に波がなく平坦であると仮定した場合、屈折現象は視線方向に対して回転対称性を有する。
 したがって、幾何学的計算を簡略化するため、三次元座標を動径方向距離 $r = \sqrt{x^2 + y^2}$ を用いて二次元の$rz$平面へと射影して議論を行う。
-既存手法\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n,Dietrich2016_multi-angle-correction,Makris2024_refractive-aware-sfm}では考慮されていないが、あるカメラ位置からの水中の点はある見かけの位置に一意にマッピングされる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}
+既存手法\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n,Dietrich2016_multi-angle-correction,Makris2024_refractive-aware-sfm}では考慮されていないが、あるカメラ位置から観測した水中の点はある見かけの位置に一意にマッピングされる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}
 (詳細な導出は\cref{sec:appendix-apparent-depth}を参照)。
 
 屈折を考慮した際、カメラから観測されるGaussianの見かけの中心位置(Apparent position)を$\bm{p'} = (x', y', z')$とし、$rz$平面上での座標を$(r', z')$とする。
@@ -76,7 +76,7 @@ RA-GSは入力として、カメラパラメータが既知の画像$I_{obs}$を
   \sin \theta_a = n \sin \theta_w
 \end{equation}
 
-幾何学的拘束条件およびスネルの法則より、視線光線と水面との交点$s$は以下の$s$に関する4次方程式の解$0\leq s < r$として決定される\cite{nassar1994_ApparentDepth}。
+三角比を三平方の定理により展開し整理すると、視線光線と水面との交点$s$は以下の$s$に関する4次方程式が得られる:
 \begin{equation}\label{eq:quartic-s}
   \begin{split}
     (1-n^2)s^4 &+ 2(n^2-1)rs^3 \\
@@ -84,9 +84,8 @@ RA-GSは入力として、カメラパラメータが既知の画像$I_{obs}$を
     &+ 2n^2H^2rs - n^2H^2r^2 = 0
   \end{split}
 \end{equation}
-
-この方程式の物理的に妥当な解$s$は、勾配法あるいはFerrariの公式を用いることで数値的に算出可能である。
-交点$s$が求まれば、幾何学的な位置関係およびスネルの法則の微分関係($\triangle IPC, \triangle IP'C', \triangle I'P'C'$における微小変化)を用いることで、見かけの位置$(r', z')$は$\theta_a$および$\theta_w$の関数として以下の閉形式で導出される(\cref{sec:appendix-apparent-depth}を参照)。
+この方程式の解$s \in [0, r)$は、勾配法あるいはFerrariの公式を用いることで算出可能である。
+交点$s$が求まれば、幾何学的な位置関係およびスネルの法則の微分関係($\triangle IPC, \triangle IP'C', \triangle I'P'C'$における微小変化)を用いることで、見かけの位置$(r', z')$は$\theta_a$および$\theta_w$の関数として以下の閉形式で導出される(\cref{sec:appendix-apparent-depth}を参照):
 \begin{subequations}\label{eq:apparent-position}
   \begin{empheq}[left=\empheqlbrace]{align}
     r' &= r + (n^2 -1) \cdot z \cdot \tan^3 \theta_w \label{eq:r'} \\
@@ -94,17 +93,15 @@ RA-GSは入力として、カメラパラメータが既知の画像$I_{obs}$を
 \end{empheq}
 \end{subequations}
 ここで$z < 0$および$n > 1$,($\theta_a > \theta_w$)であることから、$r' < r$かつ$|z'| < |z|$が常に成立する。
-これは、水中の物体が屈折の影響により、実位置よりも「浅く」、かつ「光軸(直下)寄りに」観測されるという物理現象と合致する。
-なお、カメラ直下(Nadir view: $r=0$)においては、上式は$z'=z/n$となり、これは従来の航空写真測量等で用いられる近似式\cite{Woodget2014_PhotograBathy-multiply-n}と一致する。
+これは、水中の物体が屈折の影響により、実位置よりも「浅く」、かつ「鉛直下寄りに」観測されるという物理現象と合致する。
+なお、カメラ直下($r=0$)においては、上式は$z'=z/n$となり、これは従来の航空写真測量等で用いられる近似式\cite{Woodget2014_PhotograBathy-multiply-n}と一致する。
 
 提案手法を3D Gaussian Splattingの学習プロセスに組み込むためには、この座標変換が微分可能でなければならない。
-すなわち、実空間上の位置$\bm{p}$に対する見かけの位置$\bm{p'}$の勾配(Jacobian)が必要となる:
+すなわち、実空間上の位置$\bm{p}$に対する見かけの位置$\bm{p'}$の勾配(ヤコビ行列: Jacobian)が必要となる:
 \begin{equation}\label{eq:Jacobian}
   J_{app} = \frac{\partial \bm{p'}}{\partial \bm{p}} \in \mathbb{R}^{3 \times 3}
 \end{equation}
-
-本研究では、明示的な導出からJacobianを算出した。
-% (\cref{sec:appendix-jacobian}を参照)。
+本研究では、明示的な導出からヤコビ行列を算出した(\cref{sec:appendix-jacobian}を参照)。
 
 % この微分可能な「位置補正」により
 
