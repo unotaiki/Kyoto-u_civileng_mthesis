@@ -28,7 +28,7 @@
   \Sigma^{3D}_{app} = J_{app} \cdot \Sigma^{3D} \cdot J_{app}^\top
 \end{equation}
 この$\Sigma^{3D}_{app}$は、屈折によって歪んだ局所空間におけるGaussianの適切な形状と配向を表現している。
-最終的なレンダリングプロセスでは、通常の3DGSと同様に、この補正された共分散行列$\Sigma^{3D}{app}$に対して射影変換(\cref{eq:3dgs-affine-projection})を適用し、画像平面上での2次元共分散行列を算出する。
+最終的なレンダリングプロセスでは、通常の3DGSと同様に、この補正された共分散行列$\Sigma^{3D}_{app}$に対して射影変換(\cref{eq:3dgs-affine-projection})を適用し、画像平面上での2次元共分散行列を算出する。
 これにより、水面屈折特有の非線形な歪みを考慮しつつ、高品質かつアーティファクトの少ない水中シーンの再現が可能となる。
 
 \begin{figure}[htbp]

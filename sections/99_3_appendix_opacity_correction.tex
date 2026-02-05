@@ -2,11 +2,11 @@
 \newpage
 \section{不透明度補正}\label{sec:opacity-correction}
 
-ここで、述べる不透明度補正(Opacity Correction)は、\cref{sec:color-correction}で述べた放射輝度補正の前手法であり、放射輝度補正ほど正確な物理モデルに基づいた補正ではない。
+ここで述べる不透明度補正(Opacity Correction)は、\cref{sec:color-correction}で述べた放射輝度補正の簡易版であり、放射輝度補正ほど正確な物理モデルに基づいた補正ではない。
 しかし、実装の検証において、用いたためここで記す。
 
 屈折界面を通して観測されるシーンの再構成では、特有の放射輝度減衰が生じる。
-\cref{fig:refraction-makes-scene-darker}に示すように、水面越しに見えるシーンはエタンドゥ保存則 (etendue conservation) により著しく暗く見える \cite{etendue}。
+\cref{fig:refraction-makes-scene-darker}に示すように、水面越しに見えるシーンはエタンデュ保存則 (etendue conservation) により著しく暗く見える \cite{etendue}。
 屈折率 $n$ の媒質から空気へ光束が移動する場合、放射輝度は次式でスケーリングされる。
 \begin{equation}
 L_{\mathrm{air}} = \frac{1}{n^{2}} L_{\mathrm{water}}

@@ -30,7 +30,7 @@
 本研究では、屈折を含む画像群から、屈折の影響を除外する三次元再構成手法として、Refractive-Aware Gaussian Splatting(RA-GS)を提案する。
 RA-GSでは、空気と水面の境界におけるスネルの法則に基づく光の屈折を考慮し、水中の真の位置に存在する三次元Gaussianのパラメータを、カメラから観測される屈折により生じる「見かけの位置」へと補正する。
 
-\cref{sec:prelim_inverse-rendering-as-3d-reconstruction}で述べたように、微分可能レンダリングによる逆レンダリングを用いてた本研究では、Analysis-by-Synthesisのアプローチを採用する。
+\cref{sec:prelim_inverse-rendering-as-3d-reconstruction}で述べたように、微分可能レンダリングによる逆レンダリングを用いた本研究では、Analysis-by-Synthesisのアプローチを採用する。
 水中シーンにおいて、観測画像 $I_{obs}$ は屈折による幾何学的歪みを含んでいる。
 従来の3D Gaussian Splattingのように、レンダリング関数 $R$ が「空気中」のみを仮定している場合、最適化プロセスは シーンパラメータによるレンダリング画像$R(\Theta)$ を歪んだ $I_{obs}$ に無理やり適合させようとする。
 その結果、推定されるシーンパラメータ $\Theta$(各Gaussianの位置や形状)自体が、屈折による歪みを再現するために誤った位置（見かけの位置）へと更新されてしまう。
@@ -65,7 +65,7 @@ RA-GSは入力として、カメラパラメータが既知の画像$I_{obs}$を
 ここで、水中の任意のGaussianの中心位置を$\bm{p} = (x, y, z)$ ($z < 0$)とする。
 水面に波がなく平坦であると仮定した場合、屈折現象は視線方向に対して回転対称性を有する。
 したがって、幾何学的計算を簡略化するため、三次元座標を動径方向距離 $r = \sqrt{x^2 + y^2}$ を用いて2次元の$rz$平面へと射影して議論を行う。
-既存手法\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n,Dietrich2016_multi-angle-correction,Makris2024_refractive-aware-sfm}では考慮されていないが、あるカメラ位置からの水中の点はある見かけの位置に位置に一意にマッピングされる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}
+既存手法\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n,Dietrich2016_multi-angle-correction,Makris2024_refractive-aware-sfm}では考慮されていないが、あるカメラ位置からの水中の点はある見かけの位置に一意にマッピングされる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}
 (詳細な導出は\cref{sec:appendix-apparent-depth}を参照)。
 
 屈折を考慮した際、カメラから観測されるGaussianの見かけの中心位置(Apparent position)を$\bm{p'} = (x', y', z')$とし、$rz$平面上での座標を$(r', z')$とする。

@@ -1,8 +1,8 @@
 %!TEX root = ../main.tex
 \newpage
-\section{見かけの位置へのヤコビアン$J_app$の導出}\label{sec:appendix-jacobian}
+\section{見かけの位置へのヤコビアン$J_{\mathrm{app}}$の導出}\label{sec:appendix-jacobian}
 
-\cref{sec:position-correction}で述べた位置補正において、共分散補正(\cref{sec:covariance-correction})等で用いる変換の勾配には、真の位置$\bm{p}(r,z)$から見かけの位置$\bm{p}'(r',z')$へのヤコビアン行列$J_app$が必要となる。
+\cref{sec:position-correction}で述べた位置補正において、共分散補正(\cref{sec:covariance-correction})等で用いる変換の勾配には、真の位置$\bm{p}(r,z)$から見かけの位置$\bm{p}'(r',z')$へのヤコビアン行列$J_{\mathrm{app}}$が必要となる。
 本節では、$rz$平面における$2 \times 2$のヤコビアン
 \begin{equation}\label{eq:Jacobian-def-rz}
   J_{rz} = \frac{\partial (r', z')}{\partial (r, z)} = \begin{pmatrix} \dfrac{\partial r'}{\partial r} & \dfrac{\partial r'}{\partial z} \\[1em] \dfrac{\partial z'}{\partial r} & \dfrac{\partial z'}{\partial z} \end{pmatrix}

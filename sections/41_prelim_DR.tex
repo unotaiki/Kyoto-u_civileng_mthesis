@@ -40,8 +40,8 @@
     \frac{\partial \mathcal{L}}{\partial \Theta} = \frac{\partial \mathcal{L}}{\partial I} \cdot \frac{\partial I}{\partial \Theta}
 \end{equation}
 
-前半の $\frac{\partial \mathcal{L}}{\partial \Theta}$(画像の画素値に対する損失の勾配)は容易に計算できるが、
-後半の $\frac{\partial I}{\partial \Theta}$(シーンパラメータの微小変化が画素値にどう影響するか)を計算できるように、三次元シーン表現とレンダリングプロセスを設計する必要がある。
+前半の $\frac{\partial \mathcal{L}}{\partial I}$（画像の画素値に対する損失の勾配）は容易に計算できるが、
+後半の $\frac{\partial I}{\partial \Theta}$（シーンパラメータの微小変化が画素値にどう影響するか）を計算できるように、三次元シーン表現とレンダリングプロセスを設計する必要がある。
 
 微分可能レンダリングの枠組みでは、以下のループによって三次元シーンが最適化される。
 
