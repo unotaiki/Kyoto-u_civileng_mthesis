@@ -4,7 +4,7 @@
 
 \subsection{微分可能レンダリング}\label{subsec:differentiable-rendering}
 
-コンピュータグラフィックス(CG)における典型的な課題は、三次元のシーン記述(形状、材質、光源)から2次元の画像を生成することである。
+コンピュータグラフィックス(CG)における典型的な課題は、三次元のシーン記述(形状、マテリアル、光源)から二次元の画像を生成することである。
 この過程は「順レンダリング(Forward Rendering)」、あるいは単にレンダリングと呼ぶ。
 これを数学的な関数 $R$ と見なすと、シーンパラメータ $\Theta$ から画像 $I$ への写像 $I = R(\Theta)$ として表現できる。
 これに対し、逆レンダリング(Inverse Rendering) は、観測された画像 $I_{obs}$ から、それを生成したシーンパラメータ $\Theta$ を推定する逆問題 $\Theta = R^{-1}(I_{obs})$ を解くことである。
@@ -18,7 +18,7 @@
     \captionsetup{justification=raggedright}
     \includegraphics[width=0.8\linewidth]{figure/40_prelim/inverse_rendering.png}
     \caption{Forward RenderingとInverse Renderingの概念図。
-    \cite{Zeltner2021_LightPathGradients}から引用。
+    \cite{Zeltner2021_LightPathGradients}から引用。\\
     幾何形状、マテリアル、カメラ条件、光源などのシーンパラメータを入力として写実的な画像を生成するのが順レンダリング(Forward Rendering)である。
     反対に、レンダリングされた画像からシーンパラメータを推定することを逆レンダリング(Inverse Rendering)と呼ぶ。
     }
@@ -57,12 +57,12 @@
 
 \subsection{新規視点合成}\label{subsec:nvs}
 
-従来のSfMやMVSといった手法は、幾何的三次元再構成(Geometric Reconstruction)として、主に三次元的な「幾何情報(形状)」の復元に焦点を当てていた。
-しかし、現実世界のシーンは幾何情報(Geometry)に加え、照明環境(Illumination)、テクスチャ(Texture)、そしてBRDFなどでモデル化される表面の反射特性(Material)などを含んでいる。
+従来のSfMやMVSといった手法は、幾何的三次元再構成(Geometric Reconstruction)として、主に三次元的な幾何情報(形状)の復元に焦点を当てていた。
+しかし、現実世界のシーンは幾何情報(Geometry)に加え、光源(Illumination)、テクスチャ(Texture)、そしてBRDFなどでモデル化される表面の反射特性(Material)などを含んでいる。
 
-新規視点合成(Novel View Synthesis)とは、カメラパラメータが既知の画像群から、未撮影の新しい視点からの画像を生成・推定するタスクである(\cref{fig:nvs})。
+新規視点合成(Novel View Synthesis: NVS)とは、カメラパラメータが既知の画像群から、未撮影の新しい視点からの画像を生成・推定するタスクである(\cref{fig:nvs})。
 SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新規視点合成というタスクは外観の復元(Appearance Reconstruction)を主目的としている。
-ここで重要なのは、正しい外観を再現するためには、その基礎となる正しい幾何形状が必要不可欠であるという点である。
+ここで重要なのは、正しい外観を再現するためには、その構成要素となる正しい幾何形状が必要不可欠であるという点である。
 つまり、NVSは、幾何的三次元再構成のタスクを包含しており、外観の再現性を最大化することで、結果として形状も最適化されるという構造を持っている。
 
 \begin{figure}
@@ -70,7 +70,7 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
     \captionsetup{justification=raggedright}
     \includegraphics[width=0.8\linewidth]{figure/40_prelim/NVS.png}
     \caption{新規視点合成の概念図。
-    \cite{Sun2018ECCV_Multi-view-to-Novel-View}}から引用。
+    \cite{Sun2018ECCV_Multi-view-to-Novel-View}}から引用。\\
     カメラパラメータが既知の画像群から、入力視点外からのシーンの外観を予測するタスクである。
     \label{fig:nvs}
 \end{figure}
@@ -85,7 +85,7 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
     \captionsetup{justification=raggedright}
     \includegraphics[width=0.8\linewidth]{figure/40_prelim/NeRF_overview.png}
     \caption{NeRFによるシーン表現と微分可能レンダリングの処理の概念図。 
-    \cite{Mildenhall2021ECCV_NeRF}}から引用。 
+    \cite{Mildenhall2021ECCV_NeRF}}から引用。 \\
     (a) カメラ光線に沿って、5次元座標(位置および視線方向)をサンプリング。
     (b) それらをMLPに入力し、色と密度を出力。
     (c) ボリュームレンダリングを用いて画像を生成。
@@ -107,11 +107,11 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
 
 微分可能レンダリングの代表例が Neural Radiance Fields(NeRF) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である。
 
-NeRFでは、シーンをボクセルやポリゴンといった明示的な幾何構造ではなく、多層パーセプトロン(MLP)を用いた「連続的な輝度場(Radiance Field)」として表現する。
+NeRFでは、シーンをボクセルやメッシュといった明示的な幾何構造ではなく、多層パーセプトロン(MLP)を用いた「連続的な輝度場(Radiance Field)」として表現する。
 これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードする陽表現(Explicit Representation)ではなく、関数を介して表現する陰表現(Implicit Representation)の一種である。
 
-具体的には、空間上の座標 $(x, y, z)$ と視線方向 $(\theta, \phi)$ を入力とし、その点における放射輝度(RGB)と体積密度($\sigma$)を出力する関数 $f_\Theta$ を学習する。
-この表現を用いて、以下の Volumetric Renderingによりピクセル値を算出する。
+具体的には、空間上の座標 $(x, y, z)$ と視線方向 $(\theta, \phi)$ を入力とし、その点における放射輝度(RGB)と体積密度($\sigma$)を出力する関数を学習する。
+この表現を用いて、以下の ボリュームレンダリング(Volumetric Rendering)によりピクセル値を算出する。
 
 \begin{equation}
     C(\mathbf{r}) = \int_{t_n}^{t_f} T(t) \sigma(\mathbf{r}(t)) \mathbf{c}(\mathbf{r}(t), \mathbf{d}) dt

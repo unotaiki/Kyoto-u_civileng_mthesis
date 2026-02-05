@@ -64,7 +64,7 @@ RA-GSは入力として、カメラパラメータが既知の画像$I_{obs}$を
 まず、カメラ座標系を定義する。カメラ中心を$z$軸上の$(0, 0, H)$、水面を$xy$平面($z=0$)、水面法線ベクトルを$\mathbf{n} = (0, 0, 1)$とする。
 ここで、水中の任意のGaussianの中心位置を$\bm{p} = (x, y, z)$ ($z < 0$)とする。
 水面に波がなく平坦であると仮定した場合、屈折現象は視線方向に対して回転対称性を有する。
-したがって、幾何学的計算を簡略化するため、三次元座標を動径方向距離 $r = \sqrt{x^2 + y^2}$ を用いて2次元の$rz$平面へと射影して議論を行う。
+したがって、幾何学的計算を簡略化するため、三次元座標を動径方向距離 $r = \sqrt{x^2 + y^2}$ を用いて二次元の$rz$平面へと射影して議論を行う。
 既存手法\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n,Dietrich2016_multi-angle-correction,Makris2024_refractive-aware-sfm}では考慮されていないが、あるカメラ位置からの水中の点はある見かけの位置に一意にマッピングされる\cite{nassar1994_ApparentDepth,Missailidis2025_apparentDepth-leading}
 (詳細な導出は\cref{sec:appendix-apparent-depth}を参照)。
 

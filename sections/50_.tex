@@ -6,7 +6,7 @@
 
 \missingfigure{3DGSの図。3DGSのパイプラインの図}
 
-\missingfigure{NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、2次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}
+\missingfigure{NeRFと3DGSの分類図。レンダリング速度と、データサイズの2Dプロット。Barronさんのレクチャー動画から。学習速度も入れれば、二次元に収まらない。。2個いるかな? できれば、MVSとかも含めて示せればいい。それだったら表が美しい}
 
 3D Gaussian Splatting (3DGS) は、新規視点合成において最先端(SOTA)の結果を達成している近年の手法である \parencite{Kerbl2023ToG_3DGS}。
 その特徴は、フォトリアリスティックかつ高忠実度な三次元シーンのキャプチャ能力、高速な学習時間、そしてリアルタイムレンダリングにある。
@@ -40,8 +40,8 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
   &\bm{p}_\mathrm{cam} = \bm{W}\bm{p} + \bm{t} \\
   &\bm{\Sigma}^{3D}_\mathrm{cam} = \bm{W} \bm{\Sigma}^{3D} \bm{W}^\top
 \end{align*} 
-\cite{Zwicker2001_EWA-volume-splatting} の提案した射影手法に従い、カメラ空間における三次元共分散行列 $\Sigma_{cam}^{3D}$ は2次元画像平面へと射影される。
-これは透視投影の一次近似(アフィン近似)のヤコビ行列 $\bm{J}$ を用いて行われ、2次元共分散行列 $\bm{\Sigma}^{\mathrm{2D}}$ が得られる：
+\cite{Zwicker2001_EWA-volume-splatting} の提案した射影手法に従い、カメラ空間における三次元共分散行列 $\Sigma_{cam}^{3D}$ は二次元画像平面へと射影される。
+これは透視投影の一次近似(アフィン近似)のヤコビ行列 $\bm{J}$ を用いて行われ、二次元共分散行列 $\bm{\Sigma}^{\mathrm{2D}}$ が得られる：
 \begin{equation}\label{eq:3dgs-affine-projection}
 \Sigma^\mathrm{2D} = \bm{J} \Sigma^{\mathrm{3D}}_\mathrm{cam} \bm{J}^\top
 \end{equation}
@@ -84,7 +84,7 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
 
 
 
-2DGSにおいて、シーンは配向された平らな2次元ガウス分布(Surfel)の集合として表現される。
+2DGSにおいて、シーンは配向された平らな二次元ガウス分布(Surfel)の集合として表現される。
 ピクセル座標 $(u, v)$ を通過する視線(Ray) $\bm{r}(t) = \bm{o} + t\bm{d}$ は、深度順にソートされた $N$ 個のガウス平面と交差し、その交点における評価値が画像形成に寄与する。
 
 \section{返り値の数理的解析}
@@ -105,7 +105,7 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
     \alpha_i = o_i \exp\left( -\frac{1}{2} \bm{u}^\top \bm{\Sigma}_{2D}^{-1} \bm{u} \right)
 \end{equation}
 
-ここで、$o_i$ は学習可能な不透明度パラメータ、$\bm{\Sigma}_{2D}$ は2次元スケーリングと回転行列から構成される局所的な分散行列である。
+ここで、$o_i$ は学習可能な不透明度パラメータ、$\bm{\Sigma}_{2D}$ は二次元スケーリングと回転行列から構成される局所的な分散行列である。
 
 \subsection{蓄積アルファ (\texttt{render\_alphas})}
 \textbf{型:} $[..., C, H, W, 1]$
@@ -119,7 +119,7 @@ $\bm{t} \in \mathbb{R}^3$ は平行移動ベクトルである。
 \subsection{ボリューム法線 (\texttt{render\_normals})}
 \textbf{型:} $[..., C, H, W, 3]$
 
-2DGSが「幾何学的に正確」であるための核心的な項である。各2次元ガウス円盤の固有法線 $\bm{n}_i$ を、色情報と同様の重みでブレンディングしたものである。
+2DGSが「幾何学的に正確」であるための核心的な項である。各二次元ガウス円盤の固有法線 $\bm{n}_i$ を、色情報と同様の重みでブレンディングしたものである。
 
 \begin{equation}
     \bm{n}_{vol}(\bm{r}) = \sum_{i \in \mathcal{N}} (\bm{R}_i \cdot \bm{z}_{local}) \alpha_i T_i

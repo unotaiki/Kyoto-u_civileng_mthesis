@@ -15,11 +15,7 @@
 \usepackage{amsmath,amssymb,amsthm}% 数式関連のパッケージ
 \usepackage{empheq} % 数式に括弧
 \usepackage{mathtools}
-\mathtoolsset{showonlyrefs=true}
-\usepackage[unicode=true,hypertexnames=false,setpagesize=false,colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue]{hyperref}
-\usepackage{cleveref}
-\input{./settings/cref.tex} 
-\usepackage{mathtools}
+% \mathtoolsset{showonlyrefs=true}  % crefとの競合を確認
 \usepackage[normalem]{ulem}% 打ち消し線 (\sout) [normalem]はReferenceで下線が入るのを防ぐ
 \usepackage{pifont}        % 特殊な記号(チェックマークなど）
 
@@ -43,12 +39,14 @@
 \usepackage{fancyhdr}
 \usepackage{tocloft}
 \usepackage{indentfirst} % 章の最初の段落も字下げ
-\usepackage{bookmark}
 \usepackage{caption}
 \usepackage{enumitem}
-\usepackage{url}
+\usepackage{xurl}
 \usepackage{tabularx}   % For adjustable column widths
 \usepackage{ragged2e}   % For better text alignment
+
+\usepackage[unicode=true,hypertexnames=false,setpagesize=false,colorlinks=true,urlcolor=blue,linkcolor=blue,citecolor=blue,breaklinks=true]{hyperref}
+\usepackage{bookmark}
 
 % algorithm2e: アルゴリズムを書くためのパッケージ
 \usepackage[ruled,vlined]{algorithm2e}
@@ -57,15 +55,31 @@
 \SetKwComment{Comment}{// }{} 
 
 \usepackage[colorinlistoftodos,disable]{todonotes} % TODO用。Writing以外の思いついたEditingタスクを瞬時に外部化し、ワーキングメモリを解放
-
 % --- 参考文献設定 (Biber + BibLaTeX) ---
 % 従来の \usepackage{cite} や thebibliography環境 の代わり
 \usepackage[backend=biber, style=phys, sorting=ynt]{biblatex} 
-% \usepackage[backend=biber, style=junsrt]{biblatex} 
-% tlmgr update --self
-% tlmgr install biblatex-japanese
+
+% --- cleverrefは最後に読み込む ----
+\usepackage{cleveref}
+\input{./settings/cref.tex} 
+
+
+% --- Format
+\titleformat{\chapter}[block]
+    {\normalfont\gtfamily\huge\bfseries}
+    {\fontsize{40pt}{40pt}\selectfont\thechapter\hspace{15pt}\vrule width 1.5pt\hspace{15pt}}
+    {0pt}
+    {\huge}
+\titlespacing*{\chapter}{0pt}{0pt}{40pt}
+
+\titleformat{\section}
+    {\normalfont\Large\gtfamily\bfseries}
+    {\thesection}{1em}{}[\titlerule] % 節の下に細い線を引く
+
+
 
 % --- 参考文献リストのスタイル設定 ---
+
 % 1. 参考文献リスト内の行間を「1.0 (シングル)」に強制変更 ※ 全体の \linespread{2.5} をここだけ無効化
 \AtBeginBibliography{\setstretch{1.0}} 
 % 3. 文献アイテム同士の間隔を詰める
@@ -87,6 +101,8 @@
 
 % 複数の引用をカンマ区切りにする
 \renewcommand*{\multicitedelim}{\textsuperscript{,}}
+
+
 
 % --- フォント設定 (LuaLaTeX用) ---
 % 英数字フォント
@@ -242,8 +258,6 @@
     \label{#9}
   \end{figure}
 }
-
-
 
 
 % --- デバッグモード設定 (目に優しい黒背景) ---

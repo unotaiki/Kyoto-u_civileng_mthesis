@@ -28,7 +28,7 @@
   \Sigma^{3D}_{app} = J_{app} \cdot \Sigma^{3D} \cdot J_{app}^\top
 \end{equation}
 この$\Sigma^{3D}_{app}$は、屈折によって歪んだ局所空間におけるGaussianの適切な形状と配向を表現している。
-最終的なレンダリングプロセスでは、通常の3DGSと同様に、この補正された共分散行列$\Sigma^{3D}_{app}$に対して射影変換(\cref{eq:3dgs-affine-projection})を適用し、画像平面上での2次元共分散行列を算出する。
+最終的なレンダリングプロセスでは、通常の3DGSと同様に、この補正された共分散行列$\Sigma^{3D}_{app}$に対して射影変換(\cref{eq:3dgs-affine-projection})を適用し、画像平面上での二次元共分散行列を算出する。
 これにより、水面屈折特有の非線形な歪みを考慮しつつ、高品質かつアーティファクトの少ない水中シーンの再現が可能となる。
 
 \begin{figure}[htbp]
@@ -46,7 +46,7 @@
 
 \subsection{2DGSに対する共分散補正}\label{sec:3Dsigma-correction-2DGS}
 
-3D Gaussian Splattingでは3次元の共分散行列全体を変換対象としたが、2D Gaussian Splattingにおいては、屈折による空間歪みを適用する際、その平面の基底ベクトルを直接操作し、新たな2D Gaussianとして再パラメータ化する必要がある。
+3D Gaussian Splattingでは三次元の共分散行列全体を変換対象としたが、2D Gaussian Splattingにおいては、屈折による空間歪みを適用する際、その平面の基底ベクトルを直接操作し、新たな2D Gaussianとして再パラメータ化する必要がある。
 
 元の2D Gaussianは、回転行列 $R \in \mathbb{R}^{3 \times 3}$ の最初の2列である接線ベクトル $\mathbf{t}_u, \mathbf{t}_v$ と、対応するスケーリングパラメータ $s_u, s_v$ によって張られる。
 まず、ローカル座標系における基底ベクトル $\mathbf{u}, \mathbf{v} \in \mathbb{R}^3$ を以下のように復元する:

@@ -3,51 +3,51 @@
 
 \section{画像による三次元再構成}\label{sec:prelim_3d-reconstruction-from-images}
 画像を用いた測量は写真測量(Photogrammetry)と呼ばれ、19世紀半ばに航空写真測量の技術として確立されて以来、長い歴史を持つ。
-初期の写真測量は、専門的な技能を持つ技術者が専用の測量機器を用いて手動で行うものであったが、画像のデジタル化とイメージセンサの発明により、コンピュータビジョン(Computer Vision, CV)の分野として発展した。
+初期の写真測量は、専門的な技能を持つ技術者が専用の測量機器を用いて手動で行うものであったが、画像のデジタル化とイメージセンサの発明により、コンピュータビジョン(Computer Vision, CV)の分野で進展を遂げた。
 コンピュータビジョンは、画像センサから得られた視覚情報を処理し、人間や他の生物と同様に、コンピュータや機械がシーンを理解することを目指す学問分野である。
 この領域では写真測量は、｢画像による三次元再構成｣(3D Reconstruction from Images)と呼ばれる。
 
 画像センサ(Image Sensor)が捉える情報は、本質的には三次元シーンから二次元平面への射影(Projection)である。
 この過程において、三次元空間の奥行き情報は1次元分欠落し、情報の「縮退」が発生する。
 三次元復元の主眼は、この失われた次元を幾何学的制約や事前知識(Priors)を用いて補完し、元のシーンの構造を逆問題として解くことにある。
-三次元情報は、生物が自己が生きる世界を認識・理解するうえで必須の情報であり、ロボットの自己位置推定(SLAM: Simultaneous Localization and Mapping)や環境認識などにも多大なニーズがある。
-そのため、コンピュータビジョンの主要タスクとして数多くの研究が行われており、非常に活発な研究領域である。
+三次元情報は、生物が自己の生きる世界を認識・理解するうえで必須の情報であり、ロボットの自己位置推定(SLAM: Simultaneous Localization and Mapping)や環境認識などにも多大なニーズがある。
+そのため、コンピュータビジョンの主要タスクとして数多くの研究が行われる非常に活発な研究領域である。
 
 古くから、単眼画像から形状を推定する手法として、輝度やテクスチャ、影などの手掛かりを利用する \textit{Shape from X}($X \in \{\text{shading, Silhouette, Texture, Focus, etc.}\}$)の研究が行われてきた。
-しかし、より頑健な復元を行うためには、視点移動を伴う複数枚の画像、あるいは動画(Image sequence)を用いて幾何的な整合性を元に手法が主流となった。
+しかし、実用精度の頑健な復元を行うためには、視点移動を伴う複数枚の画像や動画を用いて幾何的な整合性を元に手法が主流となった。
 この手法、タスクの総称を 多視点三次元再構成(Multi-View 3D Reconstruction)と呼ぶ。
-このような3D Vision 手法の発達、高度なUIを備えた商用ソフト(Metashape\cite{agisoftmetashape}, RealityScan\cite{RealityScan}, etc.)の出現、オープンソース化により、今日ではこれらの写真測量技術は広く一般に普及した。
+このような3D Vision 手法の発達、高度なUIを備えた商用ソフト(Metashape\cite{agisoftmetashape}, RealityScan\cite{RealityScan}, etc.)の出現、オープンソース化により、今日ではこれらの写真測量技術は広く一般に普及した\cite{Bemis2014_UAV-photogrammetry,Gomez2016_UAV-photogrammetry-disaster,Iglhaut2019_UAV-photogrammetry-forestry}。
 
 
 \subsection{Structure from Motion}\label{subsec:sfm}
 
 Structure from Motion (SfM) は、視点の異なる複数の画像群から、カメラの内部・外部パラメータとシーンの疎な(Sparse)三次元構造を同時に推定する手法である。
-その理論的基礎は、Tomasi-Kanadeによる行列分解法\cite{Tomasi1992_FactorizationMethod}に始まり、HartleyとZissermanによって多視点幾何学(Multiple View Geometry)の理論体系\cite{Hartley2004_MultipleViewGeometry}として確立され、現在ではCOLMAP \cite{schoenberger2016_colmap}等のオープンソースソフトウェアにより、堅牢かつ高精度な推定が可能となっている。
-SfMによって推定されたカメラパラメータと疎な点群は、Multi-View Stereo (MVS) \cref{subsec:mvs}による密な形状復元や、Neural Radiance Fields (NeRF)\cref{subsec:nerf}、Gaussian Splatting\cref{sec:GS}といった多視点三次元再構成の初期値および入力データとして利用される。
+その理論的基礎は、TomasiとKanadeによる行列分解法\cite{Tomasi1992_FactorizationMethod}に始まり、HartleyとZissermanによって多視点幾何学(Multiple View Geometry)の理論体系\cite{Hartley2004_MultipleViewGeometry}として確立され、現在ではCOLMAP \cite{schoenberger2016_colmap}等のオープンソースソフトウェアを用いた、堅牢かつ高精度な推定が可能となっている。
+SfMによって推定されたカメラパラメータと疎な点群は、Multi-View Stereo (MVS) \cref{subsec:mvs}による密な形状復元や、Neural Radiance Fields (NeRF)(\cref{subsec:nerf})、Gaussian Splatting(\cref{sec:GS})といった多視点三次元再構成の初期値および入力データとして利用される。
 以下では、COLMAPをはじめとするSfMで広く用いられるIncremental SfMのパイプラインの理論的な流れを記述する。
 
 \paragraph{カメラモデルと射影幾何}
-SfMをはじめとする3D Visionでは、幾何学的記述に、三次元空間の点 $\bm{X} = [X, Y, Z]^\top \in \mathbb{R}^3$ を2次元画像平面上の点 $\bm{x} = [x, y]^\top \in \mathbb{R}^2$ へ投影する透視投影モデル(Pinhole Camera Model)が一般に用いられる。
+SfMをはじめとする3D Visionでは、幾何学的記述に、三次元空間の点 $\bm{X} = (X, Y, Z)^\top \in \mathbb{R}^3$ を二次元画像平面上の点 $\bm{x} = (x, y)^\top \in \mathbb{R}^2$ へ投影する透視投影モデル(Pinhole Camera Model)が一般に用いられる。
 同次座標系を用いることで、この投影変換は以下の線形形式で記述される：
 \begin{equation}\label{eq:sfm-projection}
   \lambda \tilde{\bm{x}} = \bm{K} [\bm{R} | \bm{t}] \tilde{\bm{X}}
 \end{equation}
-ここで、$\tilde{\bm{x}} = [x, y, 1]^\top, \tilde{\bm{X}} = [X, Y, Z, 1]^\top$ は同次座標表現、$\lambda$ は射影深度(Projective Depth)である。
+ここで、$\tilde{\bm{x}} = (x, y, 1)^\top, \tilde{\bm{X}} = (X, Y, Z, 1)^\top$ は同次座標表現、$\lambda$ は射影深度である。
 行列 $\bm{K} \in \mathbb{R}^{3 \times 3}$ はカメラ内部パラメータ(Intrinsic Parameters)であり、焦点距離 $f_x, f_y$ や主点座標 $(c_x, c_y)$ など、カメラ固有の光学特性を保持する。
 一方、$[\bm{R} | \bm{t}]$ はカメラ外部パラメータ(Extrinsic Parameters)であり、世界座標系からカメラ座標系への剛体変換を表す回転行列 $\bm{R} \in SO(3)$ と並進ベクトル $\bm{t} \in \mathbb{R}^3$ で構成される。
 実用的なSfMでは、レンズの放射歪曲や円周歪曲を補正するため、非線形歪みモデルを導入し、観測座標を理想的なピンホールモデルへ写像する処理が含まれる。
 
 \paragraph{特徴点検出･マッチング}
 SfMパイプラインの第一段階は、画像間の対応関係の構築である。
-SIFT \cite{Lowe2004_SIFT} 等の記述子を用いて抽出された特徴点は、画像間でマッチングされ、同一の三次元点を指す2次元座標のペア $\{\bm{x}_i, \bm{x}_j\}$ が生成される。
+SIFT \cite{Lowe2004_SIFT} 等の記述子を用いて抽出された特徴点は、画像間でマッチングされ、同一の三次元点を指す二次元座標のペア $\{\bm{x}_i, \bm{x}_j\}$ が生成される。
 この際、誤マッチング(Outlier)を除去するために、2視点間の幾何学的制約であるエピポーラ拘束(Epipolar Constraint)が利用される。
 対応点 $\bm{x}_i, \bm{x}_j$ は、基本行列(Fundamental Matrix)$\bm{F}$ に対して $\bm{x}_j^\top \bm{F} \bm{x}_i = 0$ を満たす必要がある。
 RANSAC \cite{Fischler1987_RANSAC} アルゴリズムを用いてこの制約を満たすインライアのみを抽出することで、頑健な対応関係を求めることができる。
 
 \paragraph{増分的な再構成とバンドル調整}
-初期の2画像から推定された構造に対し、Perspective-n-Point (PnP) アルゴリズムを用いて新たな画像のカメラ姿勢 $[\bm{R} | \bm{t}]$ を推定し、三角測量(Triangulation)によって新規の三次元点 $\bm{X}$ を生成するプロセスを繰り返すことで、シーン全体を段階的に復元する。
-この過程で累積する推定誤差を最小化するため、最終段階あるいは各段階においてバンドル調整(Bundle Adjustment, BA)\cite{Triggs2000_BA} と呼ばれる大域的最適化が行われる。
-BAは、全てのカメラパラメータ $\{\bm{P}_j\}$ と全ての三次元点座標 $\{\bm{X}_i\}$ を変数とし、観測された特徴点座標と再投影された座標とのユークリッド距離(再投影誤差)の総和を最小化する非線形最小二乗問題である：
+初期の2画像から推定された構造に対し、マッチングされた特徴点からPerspective-n-Point (PnP) アルゴリズムを用いて新たな画像のカメラ姿勢 $[\bm{R} | \bm{t}]$ を推定し、三角測量(Triangulation)によって新規の三次元点 $\bm{X}$ を生成するプロセスを繰り返すことで、シーン全体を段階的に復元する。
+この過程で累積する推定誤差を最小化するため、最終段階あるいは各段階においてバンドル調整(Bundle Adjustment:BA)\cite{Triggs2000_BA} と呼ばれる大域的最適化が行われる。
+バンドル調整は、全てのカメラパラメータ $\{\bm{P}_j\}$ と全ての三次元点群 $\{\bm{X}_i\}$ を変数とし、観測された特徴点座標と再投影された座標とのユークリッド距離(再投影誤差)の総和を最小化する非線形最小二乗問題である：
 \begin{equation}\label{eq:sfm-ba}
   \underset{\{\bm{P}_j\}, \{\bm{X}_i\}}{\mathrm{argmin}} \sum_{i,j}  \| \bm{x}_{ij} - \pi(\bm{P}_j, \bm{X}_i) \|^2 
 \end{equation}
@@ -71,8 +71,8 @@ BAは、全てのカメラパラメータ $\{\bm{P}_j\}$ と全ての三次元�
 
 \subsection{Multi-View Stereo}\label{subsec:mvs}
 
-SfMなどによって得られたカメラパラメータが既知の多視点画像群から、各画素単位で密な深度推定により、高密度な三次元復元を行うのが Multi-View Stereo (MVS) である。
-SfMの出力三次元情報が疎な点群であるのに対して、MVSは物体表面の密なな三次元点群やメッシュを推定することから、MVSでは密な三次元再構成(Dense 3D Reconstruction)のタスクを行っていると言える。
+SfMなどによって得られたカメラパラメータが既知の多視点画像群から、各画素単位での深度推定により、高密度な三次元復元を行うのが Multi-View Stereo (MVS) である。
+SfMの出力三次元情報が疎な点群であるのに対して、MVSは物体表面全体の三次元点群やメッシュを推定することから、MVSでは密な三次元再構成(Dense 3D Reconstruction)のタスクを行っていると言える。
 これを達成するため、各画素における深度(Depth)や法線(Normal)といった幾何パラメータを、画像間の整合性(Photometric Consistency)に基づいて最適化する手法がとられる。
 本節では、パッチベース手法の古典であるPMVS \cite{Furukawa2010_PatchMVS}と、現在の標準的なパイプライン \cite{Schonberger2016ECCV_PatchMatchStereo}の基礎となるPatchMatch Stereoについて詳述する。
 
