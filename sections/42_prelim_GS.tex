@@ -56,7 +56,7 @@
     \label{fig:compare_pc-elip-render}
 \end{figure}
 
-3DGSでは、三次元シーンを多数の三次元ガウス分布(3D Gaussian)の集合で表現している。
+3DGSでは、三次元シーンを多数の三次元ガウス分布(3D Gaussian)の集合で表現している(\cref{fig:compare_pc-elip-render})。
 3DGSのパイプラインは主に、順レンダリングを行うフォワードパスと、最適化を行うバックワードパスの2つの段階で構成される。
 
 \paragraph{Gaussian Splattingの順レンダリング}
@@ -122,12 +122,13 @@ Zwickerら\cite{Zwicker2001_EWA-volume-splatting} の提案した射影手法に
 
 \paragraph{Adaptive Density Control}
 これらの勾配降下法のみでは、特に観測視点が少ない箇所(Few Shot Area)などで、任意視点からの一貫性に欠ける局所最適解に陥りやすい。
-これを解決するために3DGSではAdaptive Density Control(ADC)というヒューリスティックな手法が導入されている。
+これを解決するために3DGSではAdaptive Density Control(ADC)というヒューリスティックな手法が導入されている(\cref{fig:3dgs_adc})。
 あるGaussianに関して、画像平面への投影位置に対する誤差勾配$\frac{\partial \mathcal{L}}{\partial \bm{p}}$が大きい場合、そのGaussianは幾何的な誤差の大きいものであるという推察に基づき、
 分割(Split)、複製(Clone)、消去(Prune)のいずれかの操作を行う。
 具体的には、位置誤差勾配がある閾値を超え、さらにシーンに対してGaussianが大きい場合は分割、小さい場合は複製を行う。
 また、不透明度$\alpha$が小さいGaussianも消去する。
 効果的にシーンに寄与しないGaussianを判別するため、一定のイテレーションごとにシーンのGaussianの不透明度を一様に透明に近くリセットすることで、その後不透明度が向上しないGaussianを削除できる。
+\cref{alg:3dgs-adc}に、ADCのアルゴリズムを示す。
 
 \begin{figure}[htbp]
   \centering

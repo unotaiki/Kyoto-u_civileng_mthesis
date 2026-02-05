@@ -4,11 +4,12 @@
 % ========================
 \section{水深測量の諸手法とその課題}\label{sec:bg_bathymetry-method-overview}
 本節では、既存の水深測量技術を概観し、浅水域(Shallow Water)の三次元計測において生じる技術的課題を整理する。
+\cref{fig:remote-sensing-bathymetry-method}と\cref{tab:bathymetry-methods-comparison}に、リモートセンシングによる水深測量技術の分類と各手法の特性を示す。
 
 \subsection{音響測深}\label{subsec:bg_sonar}
 
 
-現在、水深測量の標準となっているのは、船舶に搭載したマルチビーム音響測深機(Multibeam Echosounder: MBES)である。
+現在、水深測量の標準となっているのは、船舶に搭載したマルチビーム音響測深機(Multibeam Echosounder: MBES)である(\cref{fig:sonar-figure})。
 MBESは船底から扇状に音波を発射し、走査線上の多数の計測点の水深を同時に取得することで、面的な地形図の作成を可能とする。
 深海域においては、一度の航行で数キロメートル幅の海底をスキャンできるため、Seabed 2030のような大規模な海洋マッピングプロジェクトの中核技術となっている。
 
@@ -43,8 +44,8 @@ USVは浅水域へのアクセスを可能にするが、流水環境下での�
 
 
 \subsection{航空レーザ測深}\label{subsec:bg_alb}
-航空レーザ測深(Airborne LiDAR Bathymetry: ALB)は、航空機から水を透過する緑色レーザ(波長\qty{532}{nm}付近)を照射し、水面反射と水底反射の時間差から水深を求める技術である\cite{Saylam2018_ALB}。
-自らエネルギーを照射して観測を行うため、能動的リモートセンシング(Active Remote Sensing)に分類される。
+航空レーザ測深(Airborne LiDAR Bathymetry: ALB)は、航空機から水を透過する緑色レーザ(波長\qty{532}{nm}付近)を照射し、水面反射と水底反射の時間差から水深を求める技術である\cite{Saylam2018_ALB}(\cref{fig:ALB-principle})。
+自らエネルギーを照射して観測を行うため、能動的リモートセンシング(Active Remote Sensing)に分類される(\cref{fig:passive-vs-active-remote-sensing})。
 濁度などの水質に大きく依存するが、最大で15 m程度まで計測可能であり、\cite{asia_survey_ALB}によると水深3m程度までを高密度に測定可能である。
 陸域と水域をシームレス取得することができ、日本国内においても、国土交通省により一級河川の定期横断測量への導入が進められている\cite{milt_river_3d_application_manual}。
 

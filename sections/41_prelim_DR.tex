@@ -7,7 +7,7 @@
 コンピュータグラフィックス(CG)における典型的な課題は、三次元のシーン記述(形状、マテリアル、光源)から二次元の画像を生成することである。
 この過程は「順レンダリング(Forward Rendering)」、あるいは単にレンダリングと呼ぶ。
 これを数学的な関数 $R$ と見なすと、シーンパラメータ $\Theta$ から画像 $I$ への写像 $I = R(\Theta)$ として表現できる。
-これに対し、逆レンダリング(Inverse Rendering) は、観測された画像 $I_{obs}$ から、それを生成したシーンパラメータ $\Theta$ を推定する逆問題 $\Theta = R^{-1}(I_{obs})$ を解くことである。
+これに対し、逆レンダリング(Inverse Rendering) は、観測された画像 $I_{obs}$ から、それを生成したシーンパラメータ $\Theta$ を推定する逆問題 $\Theta = R^{-1}(I_{obs})$ を解くことである(\cref{fig:forward_inverse_rendering})。
 観測された画像郡から3Dシーンを推定するという意味において、逆レンダリングは画像からの三次元再構成の一例であるといえる。
 
 しかし、物理的な世界から画像への射影は、奥行き情報の消失や、法線とテクスチャの混同といった情報の縮退を伴うため、この逆問題は本質的に不良設定問題(Ill-posed problem)となる。
@@ -105,7 +105,7 @@ SfMやMVSでは幾何形状の復元を主目的とする方法ならば、新�
     \label{fig:nerf_architecture}
 \end{figure}
 
-微分可能レンダリングの代表例が Neural Radiance Fields(NeRF) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である。
+微分可能レンダリングの代表例が Neural Radiance Fields(NeRF) \cite{Mildenhall2021ECCV_NeRF,Liao2025ACMSurv_NeRF}である(\cref{fig:nerf_overview,fig:nerf_architecture})。
 
 NeRFでは、シーンをボクセルやメッシュといった明示的な幾何構造ではなく、多層パーセプトロン(MLP)を用いた「連続的な輝度場(Radiance Field)」として表現する。
 これは、点群やメッシュといった、シーンの幾何情報を直接的にエンコードする陽表現(Explicit Representation)ではなく、関数を介して表現する陰表現(Implicit Representation)の一種である。

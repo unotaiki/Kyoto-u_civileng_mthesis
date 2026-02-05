@@ -54,7 +54,7 @@ RANSAC \cite{Fischler1987_RANSAC} アルゴリズムを用いてこの制約を�
 ここで、$\pi(\cdot)$ は投影関数である。
 この最適化問題は一般に非線形最適化手法であるLevenberg-Marquardt法で解かれるが、ヤコビ行列のスパース構造(Schur Complement)を利用することで、大規模なシーンに対しても効率的に解を求めることが可能である。
 
-以上のプロセスを経て出力される「高精度に推定されたカメラパラメータ」と「疎な三次元点群」は、後述するGaussian Splattingにおいて、ガウス分布の初期配置およびレンダリング時の視点情報の基礎として用いられる。
+以上のプロセスを経て出力される「高精度に推定されたカメラパラメータ」と「疎な三次元点群」は、後述するGaussian Splattingにおいて、ガウス分布の初期配置およびレンダリング時の視点情報の基礎として用いられる(\cref{fig:sfm_pipeline})。
 
 
 \begin{figure}[htbp]
@@ -87,7 +87,7 @@ SfMの出力三次元情報が疎な点群であるのに対して、MVSは物�
   \label{fig:pmvs_pipeline}
 \end{figure}
 
-Furukawaら\cite{Furukawa2010_PatchMVS} によって提案された Patch-based Multi-View Stereo (PMVS) は、物体表面を微小な平面パッチの集合としてモデル化し、これを拡張・最適化することで密な三次元形状を復元する手法である。
+Furukawaら\cite{Furukawa2010_PatchMVS} によって提案された Patch-based Multi-View Stereo (PMVS) は、物体表面を微小な平面パッチの集合としてモデル化し、これを拡張・最適化することで密な三次元形状を復元する手法である(\cref{fig:pmvs_pipeline})。
 PMVSは、特徴点マッチングによる疎な初期復元から出発し、信頼度の高いパッチを周囲に拡張する。
 物体表面の形状を密に三次元推定するための先駆的かつ代表的な手法である。
 
