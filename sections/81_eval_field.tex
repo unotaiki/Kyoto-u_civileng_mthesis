@@ -35,7 +35,9 @@
 \cref{fig:eval_field_cray}に示すように、RA-GSによる再構成結果は、2DGS(補正無し)に比べて、より深い位置に形状を復元している。
 これは、正確に屈折を考慮した補正が適用され、見かけの浅さの影響が除外できているからであると考えられる。
 2DGSでも、強力なSurface正則化が適用されているため、大部分で水底は滑らかに表現されているが、画像手前の特に深度の大きい部分には一部、本来は存在しない浮遊アーティファクトが存在している。
+このアーティファクトは、補正を行わない場合、屈折による外観の歪みに対して整合性をもって空間を表現できないために生じると考察できる。
 一方、RA-GSでは、屈折の明示的モデル化によりシーンに測光的な一貫性を確保できるため、水底全体でノイズの少ない再構成ができている。
+\kobayashi{↑図の浮遊アーティファクトの原因の考察を追加}
 
 また、\cref{fig:eval_field_render}に示すように、RA-GSから再構成したGaussian Splattingモデルは、屈折の影響を排した高精細な外観情報を保持している。
 専用のViewerを用いることでインタラクティブかつリアルタイムに視認できるため、エコトーン環境において生物の痕跡を探索したり、調査地の状態を詳細に記録・共有するための強力なツールとなる。
@@ -116,7 +118,7 @@ Point 1, Point 2に対する実測値はそれぞれ、\qty{61.0}{cm}および\q
   \label{tab:eval_field_depth}
   \begin{tabular}{lcccc}
     \toprule
-    Point & Measured [cm] & Estimated [cm] & Error [cm] & Relative Error (12 m height) [\%] \\
+    Point & 実測値 [cm] &  RA-GS[cm] & RA-GSの誤差[cm] & 相対誤差[\%] \\
     \midrule
     Point 1 & 61.0 & 60.7 & 0.3 & 0.025 \\
     Point 2 & 71.0 & 70.7 & 0.3 & 0.025 \\ % 0.025%
@@ -124,6 +126,7 @@ Point 1, Point 2に対する実測値はそれぞれ、\qty{61.0}{cm}および\q
   \end{tabular}
 \end{table}
 
-\cref{tab:eval_field_depth}より、最大相対誤差は0.025\%であり、これはDietrichらの手法\cite{Dietrich2016_multi-angle-correction}0.02\%に匹敵する精度である。
+\kobayashi{COLMAP MVS と、補正を行わないGaussian Splattingによる水底の深度を求めた定量評価を追加}
+\cref{tab:eval_field_depth}より、高度12mに対する最大相対誤差は0.025\%であり、これはDietrichらの手法\cite{Dietrich2016_multi-angle-correction}0.02\%に匹敵する精度である。
 加えて、Dietrichらの手法では特徴点抽出に依存していたが、RA-GSではワークフローとして密な幾何情報を河床全域に対して抽出できている。
 検証点が少なく、統計的な有意を確かめることはできないが、カメラアライメントや水面の抽出にmm級の誤差が存在し得ることを踏まえても、RA-GSの屈折モデル化は実環境においても正確に屈折の影響を除外した密な三次元再構成ができることが分かる。

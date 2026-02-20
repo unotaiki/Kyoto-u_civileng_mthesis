@@ -256,7 +256,10 @@ DinoV3の特徴マップは入力画像よりも解像度が低いため、バ�
 
 
 Gaussian Splattingでは、SfMから得られた疎点群の位置をもとにGaussianを初期化するが、もしこれをランダムな位置で初期化した場合、再構成の品質が低下することが示されている(\cref{fig:initialization-of-gaussians})。
-本環境でも同様で、水面をマスクしたSfMプロセスからは、水底の点群を得ることができず、河床の再構成の質が大幅に低下する(\cref{fig:init-ablation-bed})。
+\kobayashi{マスクの有無と分かりにくい表現になってしまっていたので、より明確に説明}
+本環境でも同様で、初期化時に川底の点群を配置した場合としなかった場合の最適化後のGaussianの比較を\cref{fig:init-ablation-bed}に示す。
+学習中はどちらも水面のマスクを解除し、水底が見えている状態で最適化している。
+川底の点群を初期化として入力しなかった場合、河床の再構成の質が大幅に低下する。
 
 \IncludeTwoImages[6cm]
   {figure/70_experim/GS-riverbed-w-ini.png}{川底の点群を入力した場合の再構成結果}
