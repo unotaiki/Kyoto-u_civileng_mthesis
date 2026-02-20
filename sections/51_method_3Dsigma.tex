@@ -33,16 +33,18 @@
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=0.7\textwidth]{figure/50_method/artifact-wo-scale-correction.png}
+  \includegraphics[width=0.7\textwidth]{figure/50_method/apply_correction.png}
   \caption{
-    スケール補正を行わない場合のアーティファクトの例。\\
-    (左) 屈折面を考慮せず、真値画像で学習した3DGSモデルのレンダリング結果。\\
-    (右) 位置補正のみを適用し、スケール補正を行わない場合のレンダリング結果。
-    赤枠で囲った領域は、入射角が大きい部分を拡大して示している。
+    補正適用時のGaussianの見かけの変化。\\
+    左から、屈折面を考慮せず、真値画像で学習した3DGSモデルのレンダリング結果。
+    位置補正の適用時。共分散補正適用時。放射輝度補正適用時。\\
+    補正は順に並列して適用している。
+    屈折のモデル化を、屈折により生じる外観的な変化に落とし混むことで、逆レンダリングを通した、厳密かつシンプルな水中写真測量が可能にする。
+    赤枠で囲った領域は、観測角が特に大きく、共分散補正による空間の圧縮の考慮が重要になる領域を拡大して示している。
     }
     \label{fig:artifact-w/o-scale-correction}
 \end{figure}
-\note{補正を適用後のアーティファクトの減少を見せる}
+
 
 
 \subsection{2DGSに対する共分散補正}\label{sec:3Dsigma-correction-2DGS}
@@ -94,5 +96,5 @@
 
 以上の手順により、2DGSにおいても屈折による空間圧縮を幾何学的に正しく反映したレンダリングが可能となる。
 
-\note{実験的に勾配計算の数値的安定性を欠いているようなので、理論･実装が正しいか用心深く確認。Future Workになる}
+% \note{実験的に勾配計算の数値的安定性を欠いているようなので、理論･実装が正しいか用心深く確認。Future Workになる}
 
