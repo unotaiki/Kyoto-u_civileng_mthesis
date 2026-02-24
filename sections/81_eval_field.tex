@@ -112,46 +112,53 @@ Point 1, Point 2に対する実測値はそれぞれ、\qty{61.0}{cm}および\q
   \label{fig:eval_field_cloudcompare_depth}
 \end{figure}
 
-\begin{table}[htbp]
-  \centering
-  \caption{Point 1, Point 2における実測深度と推定深度の比較}
-  \label{tab:eval_field_depth}
-  \begin{tabular}{lcccc}
-    \toprule
-    Point & 実測値 [cm] &  RA-GS[cm] & RA-GSの誤差[cm] & 相対誤差[\%] \\
-    \midrule
-    Point 1 & 61.0 & 60.7 & 0.3 & 0.025 \\
-    Point 2 & 71.0 & 70.7 & 0.3 & 0.025 \\ % 0.025%
-    \bottomrule
-  \end{tabular}
-\end{table}
+% \begin{table}[htbp]
+%   \centering
+%   \caption{Point 1, Point 2における実測深度と推定深度の比較}
+%   \label{tab:eval_field_depth}
+%   \begin{tabular}{lcccc}
+%     \toprule
+%     Point & 実測値 [cm] &  RA-GS[cm] & RA-GSの誤差[cm] & 相対誤差[\%] \\
+%     \midrule
+%     Point 1 & 61.0 & 60.7 & 0.3 & 0.025 \\
+%     Point 2 & 71.0 & 70.7 & 0.3 & 0.025 \\ % 0.025%
+%     \bottomrule
+%   \end{tabular}
+% \end{table}
 
 \kobayashi{COLMAP MVS と、補正を行わないGaussian Splattingによる水底の深度を求めた定量評価を追加}
+同様に、COLMAP MVSと2DGSによる再構成結果による深度、およびその屈折補正値を算出し比較を行った。
+深度はRA-GSと同様に、再構成後のメッシュから読み取り、四方をサンプリングした深度の平均値を用いた。
 それぞれの補正は、水深に屈折率$n=1.33$を乗じる\cite{westaway2001_PhotograBathy-multiply-n,Woodget2014_PhotograBathy-multiply-n}を適用している。
+結果を\cref{tab:depth_error_comparison}に示す。
 
+RA-GSにおいては、高度12mに対する最大相対誤差は0.025\%であり、これはDietrichらの手法\cite{Dietrich2016_multi-angle-correction}0.02\%に匹敵する精度である。
+COLMAP MVSによる深度補正結果は、RS-GSに次いで高精度であり、0.27\%ほどの相対誤差での再構成が示されている。
+しかしながら、RA-GSより10倍程度の誤差が大きく、深度が過小評価される傾向がある。
+これは、MVSによる結果に単純な深度補正を乗じるだけでは、屈折の影響をMVSの原理を通して除外できていないためであると考えられる。
+このことは、2DGSによる結果でも同様で、三次元再構成のアルゴリズム中に明示的に屈折の影響を除外するRefractive-Awareな手法の重要性を示唆している。
 
-\cref{tab:eval_field_depth}より、高度12mに対する最大相対誤差は0.025\%であり、これはDietrichらの手法\cite{Dietrich2016_multi-angle-correction}0.02\%に匹敵する精度である。
-加えて、Dietrichらの手法では特徴点抽出に依存していたが、RA-GSではワークフローとして密な幾何情報を河床全域に対して抽出できている。
-検証点が少なく、統計的な有意を確かめることはできないが、カメラアライメントや水面の抽出にmm級の誤差が存在し得ることを踏まえても、RA-GSの屈折モデル化は実環境においても正確に屈折の影響を除外した密な三次元再構成ができることが分かる。
+% 加えて、Dietrichらの手法では特徴点抽出に依存していたが、RA-GSではワークフローとして密な幾何情報を河床全域に対して抽出できている。
+結論としては、検証点が少なく、統計的な有意を確かめることはできないが、カメラアライメントや水面の抽出にmm級の誤差が存在し得ることを踏まえても、RA-GSの屈折モデル化は実環境においても正確に屈折の影響を除外した密な三次元再構成ができることが分かる。
 
-\begin{table*}[htbp]
-  \centering
-  \caption{Point 1, Point 2における実測深度と各手法の推定深度・誤差の比較}
-  \label{tab:eval_field_depth}
-  \begin{tabular}{llccccc}
-    \toprule
-    Point & 手法 & 生の推定値 [cm] & 補正後推定値 [cm] & 実測値 [cm] & 誤差 [cm] & 相対誤差 [\%] \\
-    \midrule
-    \multirow{3}{*}{Point 1} & COLMAP MVS & 43.7 & 58.3 & \multirow{3}{*}{61.0} & 2.7 & 4.4 \\
-                             & 2DGS       & 39.0 & 52.0 &                       & 9.0 & 14.8 \\
-                             & RA-GS      & -    & 60.7 &                       & 0.3 & 0.5 \\
-    \midrule
-    \multirow{3}{*}{Point 2} & COLMAP MVS & 51.2 & 68.3 & \multirow{3}{*}{71.0} & 2.7 & 3.8 \\
-                             & 2DGS       & 44.9 & 59.9 &                       & 11.1 & 15.6 \\
-                             & RA-GS      & -    & 70.7 &                       & 0.3 & 0.4 \\
-    \bottomrule
-  \end{tabular}
-\end{table*}
+% \begin{table*}[htbp]
+%   \centering
+%   \caption{Point 1, Point 2における実測深度と各手法の推定深度・誤差の比較}
+%   \label{tab:eval_field_depth}
+%   \begin{tabular}{llccccc}
+%     \toprule
+%     Point & 手法 & 生の推定値 [cm] & 補正後推定値 [cm] & 実測値 [cm] & 誤差 [cm] & 相対誤差 [\%] \\
+%     \midrule
+%     \multirow{3}{*}{Point 1} & COLMAP MVS & 43.7 & 58.3 & \multirow{3}{*}{61.0} & 2.7 & 4.4 \\
+%                              & 2DGS       & 39.0 & 52.0 &                       & 9.0 & 14.8 \\
+%                              & RA-GS      & -    & 60.7 &                       & 0.3 & 0.5 \\
+%     \midrule
+%     \multirow{3}{*}{Point 2} & COLMAP MVS & 51.2 & 68.3 & \multirow{3}{*}{71.0} & 2.7 & 3.8 \\
+%                              & 2DGS       & 44.9 & 59.9 &                       & 11.1 & 15.6 \\
+%                              & RA-GS      & -    & 70.7 &                       & 0.3 & 0.4 \\
+%     \bottomrule
+%   \end{tabular}
+% \end{table*}
 
 % Please add the following required packages to your document preamble:
 % \usepackage[table,xcdraw]{xcolor}
